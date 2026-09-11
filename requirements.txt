@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+google-genai
+langgraph
+networkx
+tree-sitter
+tree-sitter-python
+python-dotenv
+httpx
+pytest
+schedule
+mcp
+fastmcp
