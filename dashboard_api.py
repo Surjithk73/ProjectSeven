@@ -161,6 +161,8 @@ async def lifespan(app):
 app = FastAPI(title='APIShield Demo Control API', lifespan=lifespan)
 from apishield.dashboard_jobs import router as local_jobs_router
 app.include_router(local_jobs_router)
+from apishield.project_api import router as project_router
+app.include_router(project_router)
 from apishield.browser_setup import router as browser_setup_router
 app.include_router(browser_setup_router)
 from apishield.monitoring import router as monitoring_router

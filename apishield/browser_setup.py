@@ -167,6 +167,8 @@ def apply_repair(job_id: str, request: Request):
     jobs = service(request)
     try:
         result = jobs.store.get(job_id)
+        if result.get('project_workflow'):
+            raise ValueError('This client uses GitHub deployment; review and merge its PR instead of applying files on System A')
         return apply_local_repair(jobs, result['integration'], job_id)
     except (KeyError, FileNotFoundError):
         raise HTTPException(404, 'Repair or integration not found') from None

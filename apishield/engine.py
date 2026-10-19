@@ -176,6 +176,7 @@ def _execute(job, operation, candidate_path, result):
         from .intent import infer_intent
         job.event('activity', stage='intent', message='Gemini is inferring behavior and generating regression checks')
         context = {'snapshot_root': str(job.workspace), 'model': job.config.model,
+                   'http_bindings': job.config.http_bindings,
                    'request_timeout_seconds': min(job.config.budgets.command_timeout_seconds, job.remaining()),
                    'intent_timeout_seconds': min(2 * job.config.budgets.command_timeout_seconds, job.remaining()),
                    'sources': {name: (job.workspace / name).read_text(encoding='utf-8') for name in sorted(allowed)},
@@ -248,6 +249,7 @@ def _execute(job, operation, candidate_path, result):
                         attempt['status'] = 'needs_input'
                         return {**result, 'status':'needs_input', 'error':outcome['id'] + ': ' + outcome['reason']}
             context = {'model': job.config.model,
+                'http_bindings': job.config.http_bindings,
                 'request_timeout_seconds': min(job.config.budgets.command_timeout_seconds, job.remaining(), 60),
                 'allowed_files': sorted(allowed),
                 'sources': {name: (job.workspace / name).read_bytes().decode('utf-8') for name in sorted(allowed)},

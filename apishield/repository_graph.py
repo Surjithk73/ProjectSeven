@@ -232,6 +232,12 @@ def build_repository_graph(root, scan, requirements, changed_operations, check=l
         op = f"operation:{site['method']}:{site['endpoint']}"
         nodes[op] = {'id':op,'kind':'operation','method':site['method'],'endpoint':site['endpoint'],
                      'label':f"{site['method']} {site['endpoint']}"}
+        if site.get('provider_id'):
+            nodes[op].update(provider_id=site['provider_id'], display_endpoint=site['display_endpoint'],
+                             label=f"{site['method']} {site['display_endpoint']} · {site['provider_id']}")
+            for node in nodes.values():
+                if node.get('file') == site['file']:
+                    node['provider_id'] = site['provider_id']
         edge(key, op, 'consumes', 'scanner')
         if (site['method'], _path(site['endpoint'])) in changed:
             nodes[op]['impact'] = 'direct'

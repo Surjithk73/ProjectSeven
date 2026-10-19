@@ -48,7 +48,7 @@ export function graphEvidence(report) {
 }
 
 export function projectDisplayName(name) {
-  return name === "banking-example" ? "NexusBank Integration" : name;
+  return name === "banking-example" ? "NexusBank Integration" : name === "cinemaflow" ? "CinemaFlow Integration" : name;
 }
 
 export function refreshedJobReport(current, incoming) {

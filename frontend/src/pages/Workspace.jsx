@@ -56,6 +56,8 @@ import AgentActivity from "../components/AgentActivity";
 import ChangeNotice from "../components/ChangeNotice";
 import AppliedUpdateNotice from "../components/AppliedUpdateNotice";
 import IntegrationSnapshot from "../components/IntegrationSnapshot";
+import ProviderOverview from "../components/ProviderOverview";
+import DeploymentStatus from "../components/DeploymentStatus";
 import { activityOutcome } from "../dashboard-details";
 
 import "../workbench.css";
@@ -527,6 +529,7 @@ function Findings({
 
           <div className="button-group">
             {report.applied_files &&
+              !report.project_workflow &&
               report.proposal_source === "model" &&
               report.application?.status !== "applied" && (
                 <button className="primary-button" onClick={applyUpdate} disabled={applying} aria-busy={applying}>
@@ -549,7 +552,7 @@ function Findings({
           </div>
 
           <p className="muted">
-            {isApplied ? "Changes are applied to your working files. A recovery copy is retained." : "Apply updates current working files without a commit. A recovery copy is retained."}
+            {report.project_workflow ? "Review and merge the GitHub PR to deploy this update to the client machine." : isApplied ? "Changes are applied to your working files. A recovery copy is retained." : "Apply updates current working files without a commit. A recovery copy is retained."}
           </p>
         </div>
       )}
@@ -572,13 +575,13 @@ function Findings({
           hidden={activeTab !== "publish"}
           className="result-section"
         >
-          <GitHubPublication
+          {report.project_workflow ? <DeploymentStatus integration={report.integration} jobId={report.job_id} /> : <GitHubPublication
             key={report.job_id}
             integration={report.integration}
             jobId={report.job_id}
             report={report}
             onConnect={onConnectGitHub}
-          />
+          />}
         </div>
       )}
 
@@ -618,6 +621,7 @@ export default function Workspace() {
   const [overviewTab, setOverviewTab] = useState("summary");
 
   const [currentInfo, setCurrentInfo] = useState(null);
+  const [multiProject, setMultiProject] = useState(null);
   const [catalogOnly, setCatalogOnly] = useState(false);
 
   const [page, setPage] = useState("workspace"),
@@ -795,6 +799,20 @@ export default function Workspace() {
   }
 
   async function run(operation, proposal = "model", projectName = integration) {
+    if (multiProject?.project_id === projectName && operation === "compare") {
+      await action(() => requestJSON(`/api/projects/${encodeURIComponent(projectName)}/check`, {method:"POST"}));
+      return;
+    }
+    if (multiProject?.project_id === projectName && operation === "repair") {
+      await action(async () => {
+        const value=await requestJSON(`/api/projects/${projectName}/workflows`);
+        const workflow=value.workflows.filter(w=>w.state==="awaiting_request").at(-1);
+        if(!workflow) throw new Error("Check both providers first; no pending migration is available.");
+        const result=await requestJSON(`/api/projects/${projectName}/workflows/${workflow.workflow_id}`,post({action:"generate"}));
+        setOverviewTab("activity");openJob(result.job_id,{job_id:result.job_id,integration:projectName,operation:"repair",status:"queued"});
+      });
+      return;
+    }
     setOverviewTab(operation === "repair" ? "activity" : "summary");
 
     const isCurrent = selection.capture(selected);
@@ -864,6 +882,14 @@ export default function Workspace() {
   }
 
   async function exploreCurrent(tab = "summary") {
+    if (multiProject?.project_id === integration) {
+      await action(async () => {
+        const result = await requestJSON(`/api/projects/${encodeURIComponent(integration)}/overview`, {method:"POST"});
+        setOverviewTab(tab);
+        openJob(result.job_id, {...result, operation:"compare", created_at:new Date().toISOString()}, true);
+      });
+      return;
+    }
     const isCurrent = selection.capture(selected);
 
     await action(async () => {
@@ -1220,7 +1246,8 @@ export default function Workspace() {
                     )}
                   </section>
 
-                  <IntegrationSnapshot key={integration} integration={integration} report={currentInfo} jobs={jobs} onEndpoints={() => exploreCurrent("summary")} onGraph={() => exploreCurrent("graph")} />
+                  <ProviderOverview key={`providers-${integration}`} integration={integration} onProject={setMultiProject} onOpenJob={id=>{setOverviewTab("activity");openJob(id);}} onInspect={exploreCurrent}/>
+                  {multiProject?.project_id !== integration && <IntegrationSnapshot key={integration} integration={integration} report={currentInfo} jobs={jobs} onEndpoints={() => exploreCurrent("summary")} onGraph={() => exploreCurrent("graph")} />}
 
                   <div className="dashboard-body">
                     <section className="dashboard-activity">

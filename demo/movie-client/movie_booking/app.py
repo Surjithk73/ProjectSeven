@@ -62,7 +62,8 @@ def create_app():
 
     @app.get('/health')
     def health():
-        return {'status': 'ok', 'application': 'CinemaFlow', 'revision': os.environ.get('CINEMA_DEPLOYED_SHA', 'working-files')}
+        return {'status': 'ok', 'application': 'CinemaFlow', 'revision': os.environ.get('CINEMA_DEPLOYED_SHA', 'working-files'),
+                'pid': os.getpid(), 'instance': os.environ.get('CINEMA_INSTANCE_ID', 'manual')}
 
     @app.get('/api/providers')
     def providers():

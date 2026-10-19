@@ -21,3 +21,21 @@ def test_combined_contract_keeps_colliding_paths_and_components_distinct():
     assert len(result['paths']) == 2
     assert result['paths']['/__provider__/payment/payments']['post']['responses']['200']['content']['application/json']['schema']['$ref'] == '#/components/schemas/payment__Money'
     assert len(result['components']['schemas']) == 2
+
+
+def test_bound_graph_labels_are_readable_and_provider_qualified(tmp_path):
+    from apishield.analysis import scan_sources
+    from apishield.repository_graph import build_repository_graph
+    (tmp_path/'adapter.py').write_text('class Payment:\n def call(self):\n  return self.client.post("/payments", json={})\n')
+    scan = scan_sources(tmp_path,['adapter.py'],{'adapter.py':{'provider_id':'payment','base_url':'http://localhost:8102','receiver':'self.client'}})
+    graph=build_repository_graph(tmp_path,scan,[],[])
+    operation=next(n for n in graph['nodes'] if n['kind']=='operation')
+    assert operation['provider_id']=='payment'
+    assert '/__provider__/' not in operation['label']
+
+
+def test_binding_does_not_claim_a_different_absolute_origin(tmp_path):
+    from apishield.analysis import scan_sources
+    (tmp_path/'adapter.py').write_text('class Payment:\n def call(self):\n  return self.client.get("http://other.local/payments")\n')
+    scan=scan_sources(tmp_path,['adapter.py'],{'adapter.py':{'provider_id':'payment','base_url':'http://localhost:8102','receiver':'self.client'}})
+    assert scan['sites'][0]['endpoint'] is None

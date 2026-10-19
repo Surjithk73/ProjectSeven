@@ -3,6 +3,7 @@ import { Activity, Check, Circle, CircleAlert, Clock3, Pause, RefreshCw, ArrowRi
 import { requestJSON } from '../workspace';
 import { activityState, eventDescription, nearLogEnd } from '../agent-activity';
 import './agent-activity.css';
+import DeploymentStatus from './DeploymentStatus';
 
 const elapsed = seconds => seconds == null ? 'Not recorded' : seconds < 60 ? `${Math.floor(seconds)}s` : `${Math.floor(seconds / 60)}m ${Math.floor(seconds % 60)}s`;
 const icons = {completed:Check,running:RefreshCw,waiting:Pause,failed:CircleAlert,blocked:CircleAlert,cancelled:Pause,pending:Circle};
@@ -53,6 +54,7 @@ export default function AgentActivity({ report, active, onCancel, onReview }) {
   }, [active,record]);
   return <div className="agent-activity">
     <header className="evidence-title"><Activity size={25} /><div><h3>Agent activity</h3><p>Live execution steps, test output and repair attempts.</p></div></header>
+    {report.project_workflow && <DeploymentStatus integration={report.integration} jobId={report.job_id} />}
     <div className="agent-current">
       <span className={`agent-current-icon agent-state-${current?.state || 'pending'}`}><Icon size={25} className={current?.state === 'running' ? 'agent-spinning' : ''} /></span>
       <div className="agent-current-copy" role="status"><strong>{current?.label || (busy ? 'Waiting for execution details' : 'Recorded execution')}</strong><p>{current?.detail || (events.length ? 'This older run has execution logs, but no recorded stage transitions.' : busy ? 'The worker will report its next step here.' : 'No detailed activity was recorded for this run.')}</p></div>

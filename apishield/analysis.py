@@ -90,6 +90,13 @@ class _Scanner:
             if bound and url and url.startswith('/'):
                 url = self.binding['base_url'].rstrip('/') + url
             endpoint = _endpoint(url)
+            if self.binding and endpoint:
+                actual, configured = urlsplit(url), urlsplit(self.binding['base_url'])
+                prefix = configured.path.rstrip('/')
+                if actual.scheme != configured.scheme or actual.netloc.lower() != configured.netloc.lower() or (prefix and not endpoint.startswith(prefix + '/')):
+                    endpoint = None
+                elif prefix:
+                    endpoint = endpoint[len(prefix):] or '/'
             self.sites.append({'file': self.file, 'function': function, 'line': call.lineno,
                 'method': method, 'endpoint': endpoint, 'intent': intent})
             if self.binding and endpoint:
