@@ -8,6 +8,8 @@ ProjectSeven holds APIShield and its supporting project files. APIGuardTesting w
 
 ## Details to provide
 
+The user has identified the reviewer as `techASH5` (`https://github.com/techASH5`). Collaborator invitation acceptance remains to be confirmed; identifying the account does not send an invitation.
+
 - The reviewer account's GitHub username or profile URL. In GitHub, select the avatar at the top right, choose Your profile, and copy the profile URL.
 - Confirmation the reviewer accepted the invitation to APIGuardTesting.
 - The GitHub username used by the deployment helper on B, if different from the reviewer. The planned helper posts deployment evidence and therefore needs repository write access; read-only anonymous cloning alone is insufficient for that role.

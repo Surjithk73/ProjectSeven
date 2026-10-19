@@ -150,7 +150,7 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 ## Inputs needed before the live rehearsal
 
-1. Reviewer's GitHub username/profile URL, plus confirmation they accepted APIGuardTesting collaborator access. The publisher is currently `Surjithk73`.
+1. Reviewer is `techASH5` (`https://github.com/techASH5`); confirmation they accepted APIGuardTesting collaborator access is still needed. The publisher is currently `Surjithk73`.
 2. B's private IPv4 address (PowerShell `ipconfig`, active Wi-Fi adapter), and the intended B installation folder.
 3. B deployment GitHub username, if different from the reviewer. Local browser/CLI login supplies credentials securely; no passwords, tokens, private keys or one-time codes are needed in chat.
 

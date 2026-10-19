@@ -39,3 +39,6 @@ sig_engine/sig_store.json
 benchmarks/.venv/
 benchmarks/_work/
 benchmarks/models/
+
+# Nested verification checkout is preserved in a portable sibling ZIP.
+reports/banking-repair-verification-2026-10-15/_examples/banking/
