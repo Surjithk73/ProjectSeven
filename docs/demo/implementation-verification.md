@@ -52,7 +52,7 @@ Follow [setup.md](setup.md) and [rehearsal.md](rehearsal.md). Still required:
 
 1. Authenticate `surjk73` locally on B for deployment; collaborator write access is now verified.
 2. Human review/merge of the initial CinemaFlow setup PR, then a clean checkout of its merged baseline on A.
-3. B's actual private IPv4 address and installation folder; Private-profile LAN firewall setup and reachability checks.
+3. When B is available, its launcher-generated HTTP link, Private-profile LAN access and reachability checks. All new demo folders stay inside its ProjectSeven checkout.
 4. Real two-machine manual cycle: break payment V2, generate/validate, publish, second-account review/merge, exact-SHA deployment, booking verification and cleared current impact.
 5. Real automatic theatre-V2 cycle and simultaneous-change/outage/failed-deployment rehearsal. The deployment state machine has regression coverage; this document does not claim it has already deployed to the second computer.
 
@@ -73,3 +73,11 @@ The user replaced the proposed reviewer with `surjk73`. The owner account `Surji
 ## Invitation acceptance and review handoff
 
 GitHub now reports active write access for `surjk73`, with no pending invitation. Client setup PR #2 was marked ready for review and `surjk73` was added as requested reviewer. It remains open and unmerged at head `1403ea98cb67a4a37cc87c74fc872431920fb098`, with both exact-head `cinema-client` checks successful. Next: human review/merge from the reviewer account, then actual B network configuration and local deployment authentication.
+
+## Portable LAN links and project-local demo files
+
+The user no longer needs to supply System B's address in advance. Its launcher prints a computer-name HTTP URL when started and retains detected IPv4 alternatives in `.apishield/cinema/providers/connection-info.json`. A accepts that copied HTTP origin or hostname, validates that it resolves to LAN IPv4, and infers the client port. These are LAN URLs; there is no public tunnel or claim that unrelated networks can reach them.
+
+All new demo state, jobs, managed releases, logs, temporary files and cache paths are inside the ProjectSeven checkout; external demo paths are rejected after resolution. System B's example release directory is relative to that root. The temporary movie and APIShield previews previously created outside the project were stopped without deleting or moving their data. The original port-8002 app was left alone. Existing managed AI credentials remain at their established location and are only read.
+
+Validation: 25 targeted launcher/provider/HTTP/deployment/API tests passed. PowerShell launchers parsed successfully. A real invocation of `start_system_b.ps1` started the three HTTP services with state inside ProjectSeven; all health checks passed, the generated hostname URL responded, and an isolated real HTTP booking confirmed. The second physical computer is still unavailable, so cross-machine connectivity/firewall and reviewed deployment remain pending.

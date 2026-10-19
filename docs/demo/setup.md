@@ -23,7 +23,7 @@ npm --prefix frontend run build
 The baseline is already published as [client setup PR #2](https://github.com/Surjithk73/APIGuardTesting/pull/2), ready for `surjk73` to review. Use that existing PR; the export command below is only needed when preparing a new clean baseline checkout. This normal setup PR is separate from later AI-generated migrations. Do not merge it automatically. On a clean APIGuardTesting checkout, the export command creates only the movie client, its requirements and its CI workflow; it refuses to overwrite an existing movie client:
 
 ```powershell
-./venv/Scripts/python.exe -m demo.setup export-client --repository C:/APIShieldDemo/client-source
+./venv/Scripts/python.exe -m demo.setup export-client --repository .apishield/cinema/client-source
 ```
 
 Create a setup branch, commit those additions, run `python -m pytest movie_booking/tests -q` from the client checkout, and publish its PR. Once reviewed and merged, clone/pull `main` separately on A and B. APIShield's repair source must match the GitHub publication base exactly. Do not develop directly inside a deployed release directory.
@@ -40,35 +40,46 @@ Stop using `./demo/scripts/stop_system_b.ps1`. The runtime owns only its child p
 
 ## System B: reviewed-merge deployment
 
-Copy `demo/deployment/system-b.example.json` to a private local path such as `C:/APIShieldDemo/system-b.json`. Set `releases` to an empty dedicated folder and confirm `deployment_actor` matches B's GitHub CLI login. Sign in locally using the instructions in `github-accounts.md`. No credential belongs in that JSON.
+All new demo folders stay inside this ProjectSeven checkout. Copy `demo/deployment/system-b.example.json` to `.apishield/cinema/system-b.json` (create that local directory first). The default relative `releases` path resolves inside ProjectSeven. Set `releases` to an empty dedicated folder inside this checkout and confirm `deployment_actor` matches B's GitHub CLI login. Sign in locally using the instructions in `github-accounts.md`. No credential belongs in that JSON.
 
 ```powershell
-./demo/scripts/start_system_b.ps1 -DeploymentConfig C:/APIShieldDemo/system-b.json
+./demo/scripts/start_system_b.ps1 -DeploymentConfig .apishield/cinema/system-b.json
 ```
 
 The helper explicitly bootstraps the initial `main` revision only if its `cinema-client` CI check passed. Subsequent updates require a merged, associated APIShield PR, the unchanged validated PR head, successful CI on its exact merge SHA, and matching live provider hashes. It polls every 10 seconds and deploys only the current eligible main revision. It does not run unmerged branches or merge PRs.
 
 Releases have separate environments; provider databases stay outside them. Revision/instance health and a booking in an isolated `smoke-` show namespace verify a new release. Failed verification restores the previous release and publishes failure evidence. Restoring old code does not claim compatibility with a new provider API.
 
-## LAN configuration
+## Connection links — no IP needed in advance
 
-On B run `ipconfig` and identify the active Wi-Fi IPv4 address. Both computers must use a Private Windows network. If provider ports are blocked, use Windows Defender Firewall → Advanced settings → Inbound rules → New rule → TCP ports 8101 and 8102, restricted to the Private profile and local subnet. Do not disable the firewall. Add 8100 only if A needs to open the client over LAN. Provider admin mutations remain loopback-only; use B's client provider tab.
-
-Confirm A can reach `http://B_ADDRESS:8101/health` and `http://B_ADDRESS:8102/openapi.json` using its browser or `Invoke-RestMethod` with the actual address substituted. APIShield remains loopback-only on A; no tunnel, remote browser admin, or inbound deployment callback is needed.
-
-## System A: real monitoring and automation
-
-After the client baseline is merged and A has a clean local checkout of it:
+On whichever Windows computer becomes System B, run the launcher from the ProjectSeven folder. It prints a computer-name link and records all detected LAN alternatives under `.apishield/cinema/providers/connection-info.json`:
 
 ```powershell
-./demo/scripts/start_system_a.ps1 -ClientRepository C:/APIShieldDemo/client-source -ProviderHost 192.168.1.20 -Model gemini-3.8-flash
+./demo/scripts/start_system_b.ps1
+./venv/Scripts/python.exe -B -m demo.setup connection-info
 ```
 
-The address in this example must be replaced by B's actual Wi-Fi address. The script registers `cinemaflow`, `cinema-theatre`, and `cinema-payment` in the existing private APIShield job registry, with five-minute real monitoring and explicit LAN-source permission. It refuses to overwrite an existing CinemaFlow registration. The model identifier is configurable; the live qualification records in reports/demo-verification-2026-10-19 document the model actually exercised on this development machine.
+The first command above previews the V1 template. For reviewed-merge deployment, pass `-DeploymentConfig .apishield/cinema/system-b.json` after the baseline PR is merged and B is authenticated. Open the printed client link once startup completes. Copy the computer-name HTTP link to A. If Windows hostname lookup is unavailable, use one of the printed IPv4 alternatives belonging to B's active Wi-Fi adapter. VPN/virtual-adapter alternatives may not be reachable from A.
 
-Start APIShield with `start_app.bat`, select CinemaFlow Integration, and choose Check now for immediate rehearsal. The parent overview shows both provider states, endpoint inventory, combined semantic graph, and a manual/automatic mode selector. Manual is the default. Manual mode detects automatically if monitoring is enabled, but requires Ask AI to Update and explicit publication. Automatic mode generates/validates/publishes a PR; it never merges it.
+Both machines must have direct LAN access; a shared internet connection alone is insufficient if they are on different or isolated networks. The HTTP links are LAN links, not public hosted URLs. Internet access across different networks would require a separately configured tunnel or hosted services; none is provisioned here.
 
-Connect the existing GitHub publication panel to `Surjithk73/APIGuardTesting`, branch `main`, before enabling automatic mode. Every model candidate still runs in a temporary workspace through APIShield's existing validation engine. Failed jobs require an explicit retry rather than billing a new request on every poll.
+Use a Private Windows network. If ports are blocked, use Windows Defender Firewall → Advanced settings → Inbound rules → New rule → TCP 8100, 8101 and 8102, restricted to the Private profile and local subnet. Do not disable the firewall. Provider admin mutations remain loopback-only; change versions using B's client provider tab. No firewall rule is changed automatically.
+
+## System A: paste the client link
+
+After the initial client PR is merged, clone its main branch into the ignored project-local source directory:
+
+```powershell
+New-Item -ItemType Directory -Force .apishield/cinema | Out-Null
+git clone https://github.com/Surjithk73/APIGuardTesting.git .apishield/cinema/client-source
+./demo/scripts/start_system_a.ps1
+```
+
+The launcher asks for the CinemaFlow HTTP link printed on B. It accepts a computer name or a copied HTTP origin and verifies that it resolves to LAN IPv4 addresses. There is no machine-specific IP committed to source. Custom provider ports can be passed with `-TheatrePort` and `-PaymentPort`; the copied client's port is used for its client link.
+
+The A launcher registers the project with jobs under `.apishield/cinema/jobs`, then starts APIShield using that same job directory. Stop an already running port-8002 instance yourself before launching; it does not kill existing applications. Use `-SetupOnly` to register without starting. Reopen the configured workspace with `./demo/scripts/open_system_a.ps1`; optionally select `-Port 8005` if 8002 is occupied. This cinema launcher does not reset the banking demo. New demo logs, provider databases, release environments, caches and temporary files stay under ProjectSeven. Explicit demo paths outside the checkout are rejected. Existing managed AI credentials are read from their established location; they are not copied or moved.
+
+Monitoring defaults to five minutes; use Check now for immediate checks. Manual mode requires Ask AI to Update and explicit publication. Automatic mode generates/validates/publishes a PR; human review and merge remain required. Connect the existing GitHub panel to `Surjithk73/APIGuardTesting`, branch `main`, before enabling automatic mode. Failed jobs require an explicit retry rather than a new paid attempt on every poll.
 
 ## Reset a rehearsal
 

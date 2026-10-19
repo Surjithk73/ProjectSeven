@@ -11,7 +11,7 @@ ProjectSeven holds APIShield and its supporting project files. APIGuardTesting w
 The reviewer is now `surjk73` (`https://github.com/surjk73`), replacing the previously proposed account. On 2026-10-19, the owner sent invitation `338492013` with write permission to `Surjithk73/APIGuardTesting`. Acceptance has now been verified through GitHub: `surjk73` has the `write` role, and the invitation is no longer pending. No collaborator access was granted to the previously proposed reviewer.
 
 - The GitHub username used by the deployment helper on B, if different from the reviewer. The planned helper posts deployment evidence and therefore needs repository write access; read-only anonymous cloning alone is insufficient for that role.
-- Later, B's active Wi-Fi IPv4 address and chosen installation directory for service setup.
+- When B is available, copy the HTTP link its launcher prints. No IP address is required in advance. Keep the checkout and all demo folders under its ProjectSeven folder.
 
 Passwords, personal access tokens, service-account JSON, private keys, and browser/device login codes are not needed in chat or committed files.
 
@@ -32,13 +32,9 @@ gh repo view Surjithk73/APIGuardTesting --json nameWithOwner,viewerPermission,de
 
 Share only the returned username and whether repository access succeeded. Keep authentication material in the local credential store. A third account is optional: for this demo B's reviewer account can also post deployment evidence. Configure its username as the allowed deployment author; do not accept arbitrary comments as proof of deployment.
 
-## Network details on B
+## Connection link on B
 
-```powershell
-ipconfig
-```
-
-Read the IPv4 Address under the connected Wireless LAN adapter Wi-Fi. Use that address in the private local setup configuration on A; do not put personal LAN addresses into the shared default configuration. The planned setup checks service ports and reachability before attempting a rehearsal.
+Run `./demo/scripts/start_system_b.ps1` from the ProjectSeven checkout. It prints the current machine's HTTP client link. Copy that into A's setup prompt. Use `./venv/Scripts/python.exe -B -m demo.setup connection-info` for detected LAN alternatives. This discovery happens on the selected computer when the demo starts, so its future IP/name need not be supplied beforehand.
 
 ## Official references
 

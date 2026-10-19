@@ -5,7 +5,7 @@
   "publisher": "Surjithk73",
   "deployment_actor": "surjk73",
   "client_port": 8100,
-  "releases": "C:/APIShieldDemo/releases",
+  "releases": ".apishield/cinema/releases",
   "providers": {
     "theatre": "http://127.0.0.1:8101",
     "payment": "http://127.0.0.1:8102"

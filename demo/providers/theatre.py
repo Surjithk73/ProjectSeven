@@ -8,6 +8,7 @@ import uuid
 import httpx
 from fastapi import Depends, FastAPI, HTTPException
 
+from ..setup import DEMO_ROOT
 from .state import Store, fingerprint, local_admin, required_text
 
 SHOWS = [{'id': 'show-001', 'movie': 'The Last Horizon', 'genre': 'Adventure · Sci-Fi',
@@ -25,7 +26,7 @@ def find_show(show_id):
 
 def create_app(database=None, payment_client=None):
     app = FastAPI(title='Grand Cinema · theatre provider', openapi_url=None)
-    store = Store(database or Path(os.environ.get('CINEMA_STATE_DIR', Path.home() / '.apishield/cinema')) / 'theatre.db')
+    store = Store(database or Path(os.environ.get('CINEMA_STATE_DIR', DEMO_ROOT / 'providers')) / 'theatre.db')
     app.state.store = store
 
     @app.get('/health')

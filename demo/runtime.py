@@ -10,12 +10,12 @@ import uuid
 
 from apishield.engine import _execution_lock
 from apishield.jobs import atomic_json
-from .setup import ROOT, environment_report, service_ports
+from .setup import ROOT, DEMO_ROOT, environment_report, service_ports, workspace_path, connection_info
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--state', default=str(Path.home()/'.apishield/cinema/providers'))
+    parser.add_argument('--state', default=str(DEMO_ROOT / 'providers'))
     parser.add_argument('--stop', action='store_true')
     parser.add_argument('--client-repository')
     parser.add_argument('--deployment-config')
@@ -23,7 +23,7 @@ def main():
     for name, port in [('client',8100),('theatre',8101),('payment',8102)]:
         parser.add_argument('--' + name + '-port', type=int, default=port)
     args = parser.parse_args()
-    root = Path(args.state).resolve()
+    root = workspace_path(args.state)
     root.mkdir(parents=True, exist_ok=True)
     if args.stop:
         if not (root / '.apishield-demo-state').is_file():
@@ -36,7 +36,9 @@ def main():
         client_port, theatre_port, payment_port = service_ports(args.client_port, args.theatre_port, args.payment_port)
         if args.deployment_config:
             from urllib.parse import urlsplit
-            config = json.loads(Path(args.deployment_config).read_text(encoding='utf-8'))
+            config_path = workspace_path(args.deployment_config)
+            config = json.loads(config_path.read_text(encoding='utf-8'))
+            workspace_path(config['releases'])
             provider_urls = [urlsplit(config['providers'][name]) for name in ('theatre', 'payment')]
             if any(url.scheme != 'http' or url.hostname not in {'127.0.0.1', 'localhost'} for url in provider_urls):
                 raise ValueError('Managed System B providers must use local HTTP URLs')
@@ -70,11 +72,12 @@ def main():
             if args.deployment_config:
                 start('deployment',['-m','demo.deployment.agent','--config',str(Path(args.deployment_config).resolve()),'--bootstrap'])
             else:
-                client = Path(args.client_repository).resolve() if args.client_repository else ROOT/'demo/movie-client'
+                client = workspace_path(args.client_repository) if args.client_repository else ROOT/'demo/movie-client'
                 if not (client/'movie_booking/app.py').is_file():
                     raise ValueError('Movie client source is absent from the selected directory')
                 client_env = {**environment,'PYTHONPATH':str(client)}
                 start('client',['-m','uvicorn','movie_booking.app:create_app','--factory','--host',args.host,'--port',str(client_port)],client,client_env)
+            atomic_json(root/'connection-info.json', connection_info(client_port,theatre_port,payment_port))
             atomic_json(root/'runtime.json',{'pid':os.getpid(),'children':[p.pid for p in processes]})
             while not (root/'stop.request').exists():
                 if any(p.poll() is not None for p in processes):

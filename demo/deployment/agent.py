@@ -209,7 +209,10 @@ def main():
     parser.add_argument('--once', action='store_true')
     parser.add_argument('--bootstrap', action='store_true')
     args = parser.parse_args()
-    agent = DeploymentAgent(json.loads(Path(args.config).read_text()))
+    from demo.setup import workspace_path
+    config = json.loads(workspace_path(args.config).read_text(encoding='utf-8'))
+    config['releases'] = str(workspace_path(config['releases']))
+    agent = DeploymentAgent(config)
     if args.bootstrap:
         agent.bootstrap()
     while True:
