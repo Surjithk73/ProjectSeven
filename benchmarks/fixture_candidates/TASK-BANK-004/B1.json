@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B1) for TASK-BANK-004 (iso20022_pacs008_wrap)\ndef build_request(data):\n    return {\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004',\n        'body': {\n            'pacs008_document': {\n                'amount_subunits': int(data['amount_cents']),\n                'currency': data['currency'],\n                'source_route': data['source'],\n                'destination_route': data['destination'],\n                'token_ref': data['extra_token']\n            }\n        },\n        'headers': {\n            'Idempotency-Key': 'dropped-idem-b1-task-bank-004'\n        }\n    }\n\ndef dispatch_settlement(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": [
+    "client.py:get_health_status"
+  ]
+}

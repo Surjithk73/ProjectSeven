@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "evidence_kind": "fixture_replay",
+  "task_id": "TASK-BANK-014",
+  "config_id": "B4",
+  "model_requested": null,
+  "model_resolved_snapshot": null,
+  "git_commit_sha": "80e7bbe0c01b58fa6615098c1bc56c6534a830eb",
+  "git_commit_identifies_run": false,
+  "runtime_s": 0.0082737,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "token_accounting": "no_model_invoked",
+  "repair_attempts": 1,
+  "hidden_invariants_status": {
+    "evaluated": false,
+    "checks": {}
+  },
+  "oracle_verdict": "NOT_EVALUATED",
+  "original_record_path": "benchmarks/runs/qualification_verified/B4_TASK-BANK-014_rep1.json"
+}

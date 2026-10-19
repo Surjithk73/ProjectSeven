@@ -113,13 +113,13 @@ Because the LLM ingests external artifacts (OpenAPI `description` fields, change
 *   **AST Parsing:** Tree-sitter
 
 ### 4.2 Execution Flow (For Final Demo)
-1.  **Setup:** A Python client app connects to a mock FastAPI "PetStore v1". The SIG is built and rendered.
-2.  **The Break:** API server swaps to "v2", introducing a renamed field and a newly required parameter. The app crashes.
+1.  **Setup:** A Python client app (SwiftPay) connects to a mock FastAPI "NexusPay v1". The SIG is built and rendered interactively via D3.js.
+2.  **The Break:** API server swaps to "v2", introducing renamed fields, removed endpoints, and newly required parameters. The app's payments crash (422 Unprocessable Content).
 3.  **Monitor:** Agent detects the drift via `oasdiff`.
-4.  **Analyze:** Agent queries the SIG, identifying that the broken call site serves the intent "Register Pet for Adoption".
-5.  **Plan & Execute:** Agent generates a patch conditioned with the intent context. Applies via MCP.
+4.  **Analyze:** Agent queries the SIG, identifying that the broken call sites serve intents like "Charge monthly subscription" and "Generate monthly invoice".
+5.  **Plan & Execute:** Agent generates a patch conditioned with the intent context. Applies via isolated FastMCP tool servers. Security filters proactively sanitize IPI payloads before execution.
 6.  **Validate:** Auto-generates tests, runs via MCP, validates Intent Preservation Score.
-7.  **Demo Hook:** The agent is packaged as an MCP Server, allowing the examiner to interact with it via Claude Desktop ("Did Stripe break? Fix it for me").
+7.  **Demo Hook:** The entire closed-loop pipeline is orchestrated through the **APIShield Control Center**, a bespoke React dashboard featuring a live MAPE-K visualization, Code Patch Diff viewer, and IPS scoring dials, bypassing the need for generic chat interfaces like Claude Desktop.
 
 ---
 

@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-001",
+    "version": "2.0.0",
+    "description": "Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema"
+  },
+  "paths": {
+    "/v2/identity/oauth_bearer_auth_migration/task-idschema-001": {
+      "post": {
+        "operationId": "authenticate_client",
+        "description": "Updated v2 contract for TASK-IDSCHEMA-001: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "rfc6750_auth_context"
+                ],
+                "properties": {
+                  "rfc6750_auth_context": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

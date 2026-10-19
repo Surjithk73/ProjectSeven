@@ -1,0 +1,8 @@
+[
+  {
+    "transaction_id": "paid-008",
+    "amount_cents": 1999,
+    "currency": "USD",
+    "idempotency_key": "refund-008"
+  }
+]

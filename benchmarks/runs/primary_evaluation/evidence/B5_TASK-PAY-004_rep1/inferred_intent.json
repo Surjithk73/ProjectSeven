@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-PAY-004",
+  "rules": [
+    "Migrate operation according to split_fee_nesting: Nest application_fee_amount inside transfer_data object",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred structural contract check (B5) for TASK-PAY-004\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/payment/split_fee_nesting/task-pay-004' and isinstance(o.get('body', {}).get('transfer_data_split'), dict) and len(o['body']['transfer_data_split']) >= 2 for o in outputs)\n"
+}

@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-018",
+    "version": "2.0.0",
+    "description": "Wrap 2FA verification challenge in verification_token envelope"
+  },
+  "paths": {
+    "/v2/identity/mfa_challenge_response_wrap/task-idschema-018": {
+      "post": {
+        "operationId": "exchange_token",
+        "description": "Updated v2 contract for TASK-IDSCHEMA-018: Wrap 2FA verification challenge in verification_token envelope",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "verification_token_envelope"
+                ],
+                "properties": {
+                  "verification_token_envelope": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

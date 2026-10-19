@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-BANK-016",
+  "rules": [
+    "Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-BANK-016 (iso20022_pacs008_wrap)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/banking/iso20022_pacs008_wrap/task-bank-016':\n            return False\n        blk = o.get('body', {}).get('pacs008_document')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

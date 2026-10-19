@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-PAY-025",
+  "rules": [
+    "Migrate operation according to charge_to_payment_intent: Migrate legacy /v1/charges payload to /v2/payment_intents state machine",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-PAY-025 (charge_to_payment_intent)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/payment/charge_to_payment_intent/task-pay-025':\n            return False\n        blk = o.get('body', {}).get('payment_intent')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

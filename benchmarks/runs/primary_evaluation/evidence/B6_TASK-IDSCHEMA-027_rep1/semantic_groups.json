@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-IDSCHEMA-027",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "user_profile_claim_flattening",
+  "coupled_ast_nodes": [],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

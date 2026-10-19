@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-011",
+  "rules": [
+    "Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred structural contract check (B5) for TASK-SHIP-011\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-011' and isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) and len(o['body']['hazmat_shipping_declaration']) >= 2 for o in outputs)\n"
+}

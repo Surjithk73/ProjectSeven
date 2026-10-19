@@ -1,0 +1,76 @@
+{
+  "evidence_type": "live_inference_diagnostic_not_evaluated_repairs",
+  "run_directories": [
+    "C:\\Users\\surji\\ProjectSeven\\benchmarks\\runs\\gemini_bank014_observed_20261015",
+    "C:\\Users\\surji\\ProjectSeven\\benchmarks\\runs\\gemini_bank014_observed_20261015_rep2",
+    "C:\\Users\\surji\\ProjectSeven\\benchmarks\\runs\\gemini_bank014_observed_20261015_sdk"
+  ],
+  "traces": 18,
+  "successful_provider_responses": 12,
+  "recorded_prompt_tokens": 6330,
+  "recorded_cached_tokens": 0,
+  "recorded_completion_and_reasoning_tokens": 2436,
+  "models_returned": [
+    "gemini-3.8-flash"
+  ],
+  "evaluated_hidden_runs": 0,
+  "independent_repair_success_rate": null,
+  "synthetic_manuscript_results_validated": false,
+  "snapshot_immutable_verified": false,
+  "per_configuration": {
+    "B1": {
+      "attempted_runs": 3,
+      "candidate_diffs_recorded": 1,
+      "infrastructure_failures": 2,
+      "recorded_input_tokens": 365,
+      "recorded_completion_tokens": 1006,
+      "public_success_rate": null,
+      "hidden_success_rate": null
+    },
+    "B2": {
+      "attempted_runs": 3,
+      "candidate_diffs_recorded": 1,
+      "infrastructure_failures": 2,
+      "recorded_input_tokens": 435,
+      "recorded_completion_tokens": 46,
+      "public_success_rate": null,
+      "hidden_success_rate": null
+    },
+    "B3": {
+      "attempted_runs": 3,
+      "candidate_diffs_recorded": 2,
+      "infrastructure_failures": 1,
+      "recorded_input_tokens": 944,
+      "recorded_completion_tokens": 92,
+      "public_success_rate": null,
+      "hidden_success_rate": null
+    },
+    "B4": {
+      "attempted_runs": 3,
+      "candidate_diffs_recorded": 1,
+      "infrastructure_failures": 2,
+      "recorded_input_tokens": 1560,
+      "recorded_completion_tokens": 586,
+      "public_success_rate": null,
+      "hidden_success_rate": null
+    },
+    "B5": {
+      "attempted_runs": 3,
+      "candidate_diffs_recorded": 1,
+      "infrastructure_failures": 2,
+      "recorded_input_tokens": 1069,
+      "recorded_completion_tokens": 183,
+      "public_success_rate": null,
+      "hidden_success_rate": null
+    },
+    "B6": {
+      "attempted_runs": 3,
+      "candidate_diffs_recorded": 1,
+      "infrastructure_failures": 2,
+      "recorded_input_tokens": 1957,
+      "recorded_completion_tokens": 523,
+      "public_success_rate": null,
+      "hidden_success_rate": null
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B3) for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\ndef build_request(data):\n    return {\n        'path': '/v2/identity/scopes_list_to_bitmask/task-idschema-005',\n        'body': {\n            'structured_permissions': {\n                'sub': data['subject_id'],\n                'permissions': data['scope_str'].split(' '),\n                'next_cursor': data['cursor_token'],\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\n            }\n        },\n        'headers': {\n            'Authorization': 'Token ' + data['access_token'],\n            'X-Tenant-Context': data['tenant_id']\n        }\n    }\n\ndef revoke_session(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": [
+    "client.py:revoke_session"
+  ]
+}

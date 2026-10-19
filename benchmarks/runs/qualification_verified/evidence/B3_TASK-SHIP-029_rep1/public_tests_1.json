@@ -1,0 +1,1 @@
+{"checks": {"endpoint": true, "payload_shape": true}, "exit_code": 0, "generated_checks_pass": true, "stderr": "", "stdout": "{\"outputs\": [{\"path\": \"/labels/create\", \"body\": {\"parcel\": {\"id\": \"another-parcel\", \"weight_grams\": 1250}}, \"headers\": {\"Idempotency-Key\": \"label-029\"}}], \"generated_checks_pass\": true}\n", "worker_exit_code": 0}

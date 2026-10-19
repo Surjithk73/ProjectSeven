@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-PAY-022",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "split_fee_nesting",
+  "coupled_ast_nodes": [
+    "client.py:authorize_payment"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

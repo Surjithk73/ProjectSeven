@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-PAY-017",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "card_token_to_payment_method",
+  "coupled_ast_nodes": [
+    "client.py:authorize_payment"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

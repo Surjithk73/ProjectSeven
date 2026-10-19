@@ -1,14 +1,14 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "FinTech Payment Gateway",
+    "title": "NexusPay Payment Gateway",
     "version": "v1"
   },
   "paths": {
     "/charge": {
       "post": {
-        "summary": "Charge V1",
-        "operationId": "charge_v1_charge_post",
+        "summary": "Charge",
+        "operationId": "charge_charge_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -24,7 +24,279 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ChargeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refund": {
+      "post": {
+        "summary": "Refund",
+        "operationId": "refund_refund_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefundRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefundResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status/{charge_id}": {
+      "get": {
+        "summary": "Payment Status",
+        "operationId": "payment_status_status__charge_id__get",
+        "parameters": [
+          {
+            "name": "charge_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Charge Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoice/generate": {
+      "post": {
+        "summary": "Invoice",
+        "operationId": "invoice_invoice_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceRequestV1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoice/send": {
+      "post": {
+        "summary": "Send Invoice",
+        "operationId": "send_invoice_invoice_send_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendInvoiceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendInvoiceResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoice/history": {
+      "get": {
+        "summary": "Invoice History",
+        "operationId": "invoice_history_invoice_history_get",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceHistoryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/log": {
+      "post": {
+        "summary": "Analytics",
+        "operationId": "analytics_analytics_log_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyticsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analytics/summary/{user_id}": {
+      "get": {
+        "summary": "Summary",
+        "operationId": "summary_analytics_summary__user_id__get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryResponse"
+                }
               }
             }
           },
@@ -44,6 +316,62 @@
   },
   "components": {
     "schemas": {
+      "AnalyticsRequest": {
+        "properties": {
+          "event": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Event"
+          },
+          "user": {
+            "type": "string",
+            "minLength": 1,
+            "title": "User"
+          },
+          "data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event",
+          "user",
+          "data"
+        ],
+        "title": "AnalyticsRequest"
+      },
+      "AnalyticsResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "event": {
+            "type": "string",
+            "title": "Event"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "event",
+          "user_id",
+          "metadata"
+        ],
+        "title": "AnalyticsResponse"
+      },
       "ChargeRequestV1": {
         "properties": {
           "amount": {
@@ -52,15 +380,45 @@
           },
           "user_id": {
             "type": "string",
+            "minLength": 1,
             "title": "User Id"
           }
         },
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "amount",
           "user_id"
         ],
         "title": "ChargeRequestV1"
+      },
+      "ChargeResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "charge_id": {
+            "type": "string",
+            "title": "Charge Id"
+          },
+          "amount_charged": {
+            "type": "integer",
+            "title": "Amount Charged"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "charge_id",
+          "amount_charged",
+          "user_id"
+        ],
+        "title": "ChargeResponse"
       },
       "HTTPValidationError": {
         "properties": {
@@ -74,6 +432,209 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "InvoiceHistoryResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "invoices": {
+            "items": {
+              "$ref": "#/components/schemas/InvoiceResponse"
+            },
+            "type": "array",
+            "title": "Invoices"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "invoices"
+        ],
+        "title": "InvoiceHistoryResponse"
+      },
+      "InvoiceRequestV1": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "User Id"
+          },
+          "period": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Period"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "period"
+        ],
+        "title": "InvoiceRequestV1"
+      },
+      "InvoiceResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "invoice_id": {
+            "type": "string",
+            "title": "Invoice Id"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "period": {
+            "type": "string",
+            "title": "Period"
+          },
+          "pdf_url": {
+            "type": "string",
+            "title": "Pdf Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "invoice_id",
+          "user_id",
+          "period",
+          "pdf_url"
+        ],
+        "title": "InvoiceResponse"
+      },
+      "RefundRequest": {
+        "properties": {
+          "transaction_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Transaction Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "transaction_id"
+        ],
+        "title": "RefundRequest"
+      },
+      "RefundResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "refund_id": {
+            "type": "string",
+            "title": "Refund Id"
+          },
+          "transaction_id": {
+            "type": "string",
+            "title": "Transaction Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "refund_id",
+          "transaction_id"
+        ],
+        "title": "RefundResponse"
+      },
+      "SendInvoiceRequest": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "User Id"
+          },
+          "invoice_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Invoice Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "invoice_id"
+        ],
+        "title": "SendInvoiceRequest"
+      },
+      "SendInvoiceResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "invoice_id": {
+            "type": "string",
+            "title": "Invoice Id"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "invoice_id",
+          "user_id"
+        ],
+        "title": "SendInvoiceResponse"
+      },
+      "StatusResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "charge_id": {
+            "type": "string",
+            "title": "Charge Id"
+          },
+          "payment_status": {
+            "type": "string",
+            "title": "Payment Status"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "charge_id",
+          "payment_status"
+        ],
+        "title": "StatusResponse"
+      },
+      "SummaryResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "total_spent": {
+            "type": "integer",
+            "title": "Total Spent"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "total_spent",
+          "currency"
+        ],
+        "title": "SummaryResponse"
       },
       "ValidationError": {
         "properties": {

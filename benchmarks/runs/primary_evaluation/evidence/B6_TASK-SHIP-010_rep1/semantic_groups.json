@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-SHIP-010",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "dimensions_nesting_object",
+  "coupled_ast_nodes": [
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

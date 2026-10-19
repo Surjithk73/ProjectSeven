@@ -1,0 +1,47 @@
+% IEEE Access working article. Author and archive placeholders require completion.
+\let\OriginalTeXYear\year
+\PassOptionsToClass{journal,twocolumn}{IEEEtran}
+\documentclass[nolineno]{ieeeaccess}
+\let\AccessPublicationYear\year
+\let\year\OriginalTeXYear
+\vol{[UNASSIGNED]}\AccessPublicationYear{[UNASSIGNED]}
+\setlength{\paperwidth}{203.2mm}\setlength{\paperheight}{276.2mm}
+\AddToHook{shipout/background}{\special{papersize=203.2mm,276.2mm}}
+\newif\ifAccess\Accesstrue
+\input{../shared/preamble}
+% Access's bundled Type 1 fonts need their map files under XeTeX/Tectonic.
+\ifdefined\XeTeXversion
+\special{pdf:mapfile t1-times.map}
+\special{pdf:mapfile t1-formata.map}
+\special{pdf:mapfile t1-giovannistd.map}
+\fi
+\makeatletter
+\AtBeginDocument{\DeclareMathVersion{bold}
+\SetSymbolFont{operators}{bold}{T1}{times}{b}{n}
+\SetSymbolFont{NewLetters}{bold}{T1}{times}{b}{it}
+\SetMathAlphabet{\mathrm}{bold}{T1}{times}{b}{n}
+\SetMathAlphabet{\mathit}{bold}{T1}{times}{b}{it}
+\SetMathAlphabet{\mathbf}{bold}{T1}{times}{b}{n}
+\SetSymbolFont{symbols}{bold}{OMS}{cmsy}{b}{n}}
+\makeatother
+\begin{document}
+\history{Working manuscript for author review.}
+\doi{}
+\title{APIShield: Behavioral Preservation in REST API Migration Through Semantic Context and Inferred Checks}
+\author{Dr. Anusha K, Surjith Khannan, Sadhana S, AND Mohammed Ashfaque}
+\markboth{Anusha K et al.: APIShield}{Anusha K et al.: APIShield}
+\begin{abstract}
+Client code can satisfy a revised REST API schema while changing an exact monetary amount, destination or idempotency key. APIShield addresses this migration problem by connecting contract differences to source context and executable preservation checks. A Semantic Intent Graph distinguishes observed source relationships from inferred behavioral interpretations. A bounded repair loop uses public tests and inferred checks, while a separate hidden oracle evaluates the selected candidate. We analyze an author-supplied release of 720 treatment records over 120 curated Python migration tasks. Six configurations separate structural and semantic context from test-only and inferred-check validation. The full configuration achieves 80.8\% hidden correctness, compared with 28.3\% for iterative test feedback. The paired gain is 52.5 percentage points, with a 95\% domain-stratified bootstrap interval of 42.5--62.5. Across 60 financial tasks, joint invariant preservation is 86.7\% versus 31.7\%. Estimated API cost per hidden-correct repair decreases by 33.5\%, although expenditure per task increases. Factorial contrasts indicate overlapping component benefits, and the structural-context configuration with inferred checks has the lowest cost per correct result. The article develops the acceptance model, examines assertion coverage through a retained failure case, and specifies the limits and reproduction requirements of the curated evaluation.
+\end{abstract}
+\begin{keywords}
+API evolution, automated program repair, behavioral preservation, empirical software engineering, large language models, OpenAPI, semantic intent graphs.
+\end{keywords}
+\titlepgskip=-15pt
+\newlength{\savedparagraphindent}\setlength{\savedparagraphindent}{\parindent}
+\setlength{\parindent}{0pt}\maketitle\setlength{\parindent}{\savedparagraphindent}
+\input{../shared/manuscript_body}
+\IEEEtriggeratref{12}
+\bibliographystyle{IEEEtran}
+\bibliography{../shared/references}
+\EOD
+\end{document}

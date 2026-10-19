@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "a7a4b5070caf956907dd70902bb5039636b67d885d8787a2a735e8f5244a3bfd",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-004: Nest application_fee_amount inside transfer_data object\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"transfer_data_split\": {\"type\": \"object\"}}, \"required\": [\"transfer_data_split\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-004 (split_fee_nesting).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-004: Nest application_fee_amount inside transfer_data object\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-004\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2723,
+    "cached_tokens": 0,
+    "output_tokens": 350,
+    "reasoning_tokens": 341,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:07:31 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"split_fee_nesting\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-004\"}",
+                "thought": null,
+                "thought_signature": "08a57b40db9d9ab6ec3e34fea47a3ccc366fd0c251d8e3f176fdc791b3de1135",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:07:31.854798Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_6275e011d0db4c654b5da6",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 350,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 350
+          }
+        ],
+        "prompt_token_count": 2723,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2723
+          }
+        ],
+        "thoughts_token_count": 341,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3414,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"split_fee_nesting\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-004\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-004: Nest application_fee_amount inside transfer_data object\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"transfer_data_split\": {\"type\": \"object\"}}, \"required\": [\"transfer_data_split\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-004 (split_fee_nesting).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-004: Nest application_fee_amount inside transfer_data object\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-004\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:07:31 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"split_fee_nesting\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-004\"}",
+                "thoughtSignature": "08a57b40db9d9ab6ec3e34fea47a3ccc366fd0c251d8e3f176fdc791b3de1135"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:07:31.854798Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_6275e011d0db4c654b5da6",
+      "usageMetadata": {
+        "candidatesTokenCount": 350,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 350
+          }
+        ],
+        "promptTokenCount": 2723,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2723
+          }
+        ],
+        "thoughtsTokenCount": 341,
+        "totalTokenCount": 3414,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 39.9599,
+    "wall_seconds": 39.9599,
+    "timestamp_utc": "2026-10-15T14:07:31.854798+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "2dd9e3fccc10501ed6bad09a30ab4dd430f3d78f0cbbbc2b215293be8c5b6857",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-004: Nest application_fee_amount inside transfer_data object\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"transfer_data_split\": {\"type\": \"object\"}}, \"required\": [\"transfer_data_split\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-004 (split_fee_nesting).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/split_fee_nesting/task-pay-004' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('transfer_data_split'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"split_fee_nesting\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-004\"}, \"source\": \"# TASK-PAY-004: Nest application_fee_amount inside transfer_data object\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-004\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2785,
+    "cached_tokens": 0,
+    "output_tokens": 545,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:08:11 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:submit_transaction\"], \"source\": \"# Candidate (B4) for TASK-PAY-004 (split_fee_nesting)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'transfer_data_split': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "920da087154ee9a02242457c74caab2dba7d286992ac59ead09a772203402803",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:08:11.814698Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_d40bbb8cd7a203b060ade8",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 545,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 545
+          }
+        ],
+        "prompt_token_count": 2785,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2785
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3330,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:submit_transaction\"], \"source\": \"# Candidate (B4) for TASK-PAY-004 (split_fee_nesting)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'transfer_data_split': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-004: Nest application_fee_amount inside transfer_data object\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"transfer_data_split\": {\"type\": \"object\"}}, \"required\": [\"transfer_data_split\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest application_fee_amount inside transfer_data object\", \"title\": \"TASK-PAY-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/split_fee_nesting/task-pay-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-004 (split_fee_nesting).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/split_fee_nesting/task-pay-004' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('transfer_data_split'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"split_fee_nesting\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-004\"}, \"source\": \"# TASK-PAY-004: Nest application_fee_amount inside transfer_data object\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-004\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:08:11 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:submit_transaction\"], \"source\": \"# Candidate (B4) for TASK-PAY-004 (split_fee_nesting)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/split_fee_nesting/task-pay-004',\\n        'body': {\\n            'transfer_data_split': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "920da087154ee9a02242457c74caab2dba7d286992ac59ead09a772203402803"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:08:11.814698Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_d40bbb8cd7a203b060ade8",
+      "usageMetadata": {
+        "candidatesTokenCount": 545,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 545
+          }
+        ],
+        "promptTokenCount": 2785,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2785
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3330,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.469,
+    "wall_seconds": 41.469,
+    "timestamp_utc": "2026-10-15T14:08:11.814698+00:00"
+  }
+]

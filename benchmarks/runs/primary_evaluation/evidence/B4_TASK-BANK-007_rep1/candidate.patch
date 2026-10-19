@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-BANK-007: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}
++# Candidate (B4) for TASK-BANK-007 (amount_cents_to_currency_object)
+ def build_request(data):
+     return {
+-        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-007',
++        'path': '/v2/banking/amount_cents_to_currency_object/task-bank-007',
+         'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
++            'currency_transfer': {
++                'amount_subunits': float(data['amount_cents']) / 100.0,
++                'currency': data['currency'],
++                'source_route': data['source'],
++                'destination_route': data['destination'],
++                'token_ref': data['extra_token']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'Idempotency-Key': 'dropped-idem-b4-task-bank-007'
++        }
+     }
+ 
+ def transfer_funds(data):

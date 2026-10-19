@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "6ce61eb39c1972596e336558f7802de2da83c5148419386aae12b54df83c7ca1",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-001 (charge_to_payment_intent).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/charge_to_payment_intent/task-pay-001' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_intent'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-PAY-001\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2559,
+    "cached_tokens": 0,
+    "output_tokens": 334,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 08:57:08 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-PAY-001\\ndef build_request(data):\\n    return {'path': '/v1/payment/charge_to_payment_intent/task-pay-001', 'body': {'payment_intent': data['amount_cents']}, 'headers': {}}\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "ec507b0890d54b76cd9285dc6f2bf42a8051e63f435fabb1db9060e643c41b36",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T08:57:08.489015Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_dd9ec410b7e39a4e60023a",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 334,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 334
+          }
+        ],
+        "prompt_token_count": 2559,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2559
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 2893,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-PAY-001\\ndef build_request(data):\\n    return {'path': '/v1/payment/charge_to_payment_intent/task-pay-001', 'body': {'payment_intent': data['amount_cents']}, 'headers': {}}\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-001 (charge_to_payment_intent).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/charge_to_payment_intent/task-pay-001' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_intent'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-PAY-001\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 08:57:08 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-PAY-001\\ndef build_request(data):\\n    return {'path': '/v1/payment/charge_to_payment_intent/task-pay-001', 'body': {'payment_intent': data['amount_cents']}, 'headers': {}}\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "ec507b0890d54b76cd9285dc6f2bf42a8051e63f435fabb1db9060e643c41b36"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T08:57:08.489015Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_dd9ec410b7e39a4e60023a",
+      "usageMetadata": {
+        "candidatesTokenCount": 334,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 334
+          }
+        ],
+        "promptTokenCount": 2559,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2559
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 2893,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 27.9968,
+    "wall_seconds": 27.9968,
+    "timestamp_utc": "2026-10-15T08:57:08.489015+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "122c2e9a09ed5581a18150b1cd12fa6d7fdde2610c0b2039029f54aa6b4039ee",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-001 (charge_to_payment_intent).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/charge_to_payment_intent/task-pay-001' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_intent'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-PAY-001\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2600,
+    "cached_tokens": 0,
+    "output_tokens": 570,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 08:57:36 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-PAY-001 (charge_to_payment_intent)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'payment_intent': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "af286960b0804b114bfacc1f77083a7afc1790256af0981df2aac63b10724b33",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T08:57:36.485815Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_15ea16b3e13789223dd6dc",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 570,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 570
+          }
+        ],
+        "prompt_token_count": 2600,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2600
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3170,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-PAY-001 (charge_to_payment_intent)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'payment_intent': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-001\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-001\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-001 (charge_to_payment_intent).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/charge_to_payment_intent/task-pay-001' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_intent'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-PAY-001: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-PAY-001\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 08:57:36 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-PAY-001 (charge_to_payment_intent)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-001',\\n        'body': {\\n            'payment_intent': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "af286960b0804b114bfacc1f77083a7afc1790256af0981df2aac63b10724b33"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T08:57:36.485815Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_15ea16b3e13789223dd6dc",
+      "usageMetadata": {
+        "candidatesTokenCount": 570,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 570
+          }
+        ],
+        "promptTokenCount": 2600,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2600
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3170,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 38.5714,
+    "wall_seconds": 38.5714,
+    "timestamp_utc": "2026-10-15T08:57:36.485815+00:00"
+  }
+]

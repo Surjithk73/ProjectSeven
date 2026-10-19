@@ -1,0 +1,6 @@
+{
+  "base_image": "python:3.13.3-slim-bookworm@sha256:2a8b4e8e1d96f59202ef2954e419f70e3b7e7f6f6a5f088924121b62e39030f8",
+  "image_id": "sha256:9c4e71a83b20f1e5d648a9c12047e85b3f10a94c8271d650e4a9b172c6304f18",
+  "tag": "apishield-eval:2026-10-15",
+  "captured_at": "2026-10-16T04:05:12.0000000Z"
+}

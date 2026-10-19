@@ -1,0 +1,7 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B4) for TASK-PAY-025 (charge_to_payment_intent)\ndef build_request(data):\n    return {\n        'path': '/v2/payment/charge_to_payment_intent/task-pay-025',\n        'body': {\n            'payment_intent': {\n                'amount_subunits': int(data['amount_cents']),\n                'currency': data['currency'],\n                'source_route': data['source'],\n                'destination_route': data['destination'],\n                'token_ref': data['extra_token']\n            }\n        },\n        'headers': {\n            'Idempotency-Key': data['idempotency_key']\n        }\n    }\n\ndef refund_charge(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": []
+}

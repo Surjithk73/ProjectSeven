@@ -1,0 +1,61 @@
+{
+  "captured_at": "2026-10-15T03:12:58.312428+00:00",
+  "probes": [
+    {
+      "command": [
+        "docker",
+        "version",
+        "--format",
+        "{{.Client.Version}}"
+      ],
+      "exit_code": 1,
+      "stdout": "28.5.1\n",
+      "stderr": "error during connect: Get \"http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.51/version\": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n",
+      "elapsed_seconds": 0.3326803999952972
+    },
+    {
+      "command": [
+        "docker",
+        "info",
+        "--format",
+        "{{.ServerVersion}}"
+      ],
+      "exit_code": 1,
+      "stdout": "\n",
+      "stderr": "error during connect: Get \"http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.51/info\": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n",
+      "elapsed_seconds": 1.9293828000008943
+    },
+    {
+      "command": [
+        "docker",
+        "compose",
+        "version"
+      ],
+      "exit_code": 0,
+      "stdout": "Docker Compose version v2.40.3-desktop.1\n",
+      "stderr": "",
+      "elapsed_seconds": 0.582742300000973
+    },
+    {
+      "command": [
+        "nvidia-smi"
+      ],
+      "exit_code": null,
+      "error_category": "FileNotFoundError",
+      "elapsed_seconds": 0.009768800002348144
+    },
+    {
+      "command": [
+        "llama-server",
+        "--version"
+      ],
+      "exit_code": null,
+      "error_category": "FileNotFoundError",
+      "elapsed_seconds": 0.02194989999406971
+    }
+  ],
+  "docker_engine_available": false,
+  "docker_image_built": false,
+  "container_evaluation_verified": false,
+  "gpu_inference_observed": false
+}

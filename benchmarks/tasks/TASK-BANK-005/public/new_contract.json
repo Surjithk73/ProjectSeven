@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-005",
+    "version": "2.0.0",
+    "description": "Migrate integer account_id to UUID format with validation"
+  },
+  "paths": {
+    "/v2/banking/account_id_uuid_type/task-bank-005": {
+      "post": {
+        "operationId": "execute_debit",
+        "description": "Updated v2 contract for TASK-BANK-005: Migrate integer account_id to UUID format with validation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "uuid_transfer"
+                ],
+                "properties": {
+                  "uuid_transfer": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

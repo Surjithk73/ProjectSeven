@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-BANK-017",
+  "domain_cluster": "Banking",
+  "breaking_change_type": "account_id_uuid_type",
+  "coupled_ast_nodes": [],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

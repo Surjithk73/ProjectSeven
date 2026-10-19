@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-004",
+    "version": "2.0.0",
+    "description": "Wrap transfer payload in standard pacs.008 document envelope"
+  },
+  "paths": {
+    "/v2/banking/iso20022_pacs008_wrap/task-bank-004": {
+      "post": {
+        "operationId": "dispatch_settlement",
+        "description": "Updated v2 contract for TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "pacs008_document"
+                ],
+                "properties": {
+                  "pacs008_document": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

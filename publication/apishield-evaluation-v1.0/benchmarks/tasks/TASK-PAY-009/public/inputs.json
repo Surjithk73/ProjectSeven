@@ -1,0 +1,10 @@
+[
+  {
+    "source": "acct_orig_task-pay-009",
+    "destination": "acct_benef_task-pay-009",
+    "amount_cents": 16125,
+    "currency": "EUR",
+    "idempotency_key": "idem-fin-pub-task-pay-009",
+    "extra_token": "tok_merchant_idempotency_v2_9"
+  }
+]

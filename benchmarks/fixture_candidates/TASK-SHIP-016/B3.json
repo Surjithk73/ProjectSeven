@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B3) for TASK-SHIP-016 (dimensions_nesting_object)\ndef build_request(data):\n    return {\n        'path': '/v2/logistics/dimensions_nesting_object/task-ship-016',\n        'body': {\n            'parcel_dimensions_box': {\n                'parcel_id': data['parcel_id'],\n                'weight_grams': float(data['weight_grams']) / 1000.0,\n                'length_cm': int(data['length_cm']),\n                'carrier_iso': data['carrier_code'],\n                'route_address': data['street_address']\n            }\n        },\n        'headers': {\n            'X-Shipment-Idempotency': 'missing-ship-idem-b3'\n        }\n    }\n\ndef create_shipment(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": [
+    "client.py:get_health_status"
+  ]
+}

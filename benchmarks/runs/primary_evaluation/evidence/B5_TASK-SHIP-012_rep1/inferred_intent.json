@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-012",
+  "rules": [
+    "Migrate operation according to tracking_endpoint_path_migration: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred logistics invariant check for TASK-SHIP-012 (tracking_endpoint_path_migration)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/logistics/tracking_endpoint_path_migration/task-ship-012':\n            return False\n        pkg = o.get('body', {}).get('shipment_milestone_envelope')\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\n            return False\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\n            return False\n    return True\n"
+}

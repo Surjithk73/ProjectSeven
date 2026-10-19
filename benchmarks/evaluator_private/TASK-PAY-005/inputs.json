@@ -1,0 +1,10 @@
+[
+  {
+    "source": "vault_orig_task-pay-005_99",
+    "destination": "vault_benef_task-pay-005_99",
+    "amount_cents": 9007199254741013,
+    "currency": "EUR",
+    "idempotency_key": "idem-fin-hid-task-pay-005-99",
+    "extra_token": "tok_hid_card_token_to_payment_method_5"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-019",
+  "rules": [
+    "Migrate operation according to address_component_decomposition: Decompose address_line_1 into street_number, route, and unit",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred structural contract check (B6) for TASK-SHIP-019\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/logistics/address_component_decomposition/task-ship-019' and isinstance(o.get('body', {}).get('structured_address_manifest'), dict) and len(o['body']['structured_address_manifest']) >= 2 for o in outputs)\n"
+}

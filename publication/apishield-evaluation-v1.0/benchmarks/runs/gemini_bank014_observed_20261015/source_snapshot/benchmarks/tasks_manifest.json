@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "record_kind": "runnable_local_qualification_fixtures",
+  "tasks": [
+    {
+      "task_id": "TASK-BANK-014",
+      "domain": "Banking",
+      "task_class": "repairable",
+      "family_id": "banking-qualification",
+      "repository_id": "local-authored-fixture",
+      "source_directory": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-014/public",
+      "old_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-014/public/old_contract.json",
+      "new_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-014/public/new_contract.json",
+      "public_test_suite": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-014/public/test_public.py",
+      "hidden_oracle_suite": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-BANK-014/oracle.py",
+      "golden_reference_patch": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-BANK-014/golden.patch",
+      "inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-014/public/inputs.json",
+      "allowed_edit_paths": [
+        "client.py"
+      ],
+      "ground_truth_affected_locations": [
+        "client.py:build_request"
+      ],
+      "hidden_inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-BANK-014/inputs.json"
+    },
+    {
+      "task_id": "TASK-BANK-015",
+      "domain": "Banking",
+      "task_class": "repairable",
+      "family_id": "banking-qualification",
+      "repository_id": "local-authored-fixture",
+      "source_directory": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-015/public",
+      "old_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-015/public/old_contract.json",
+      "new_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-015/public/new_contract.json",
+      "public_test_suite": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-015/public/test_public.py",
+      "hidden_oracle_suite": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-BANK-015/oracle.py",
+      "golden_reference_patch": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-BANK-015/golden.patch",
+      "inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-BANK-015/public/inputs.json",
+      "allowed_edit_paths": [
+        "client.py"
+      ],
+      "ground_truth_affected_locations": [
+        "client.py:build_request"
+      ],
+      "hidden_inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-BANK-015/inputs.json"
+    },
+    {
+      "task_id": "TASK-SHIP-029",
+      "domain": "Shipping",
+      "task_class": "repairable",
+      "family_id": "shipping-qualification",
+      "repository_id": "local-authored-fixture",
+      "source_directory": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-SHIP-029/public",
+      "old_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-SHIP-029/public/old_contract.json",
+      "new_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-SHIP-029/public/new_contract.json",
+      "public_test_suite": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-SHIP-029/public/test_public.py",
+      "hidden_oracle_suite": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-SHIP-029/oracle.py",
+      "golden_reference_patch": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-SHIP-029/golden.patch",
+      "inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-SHIP-029/public/inputs.json",
+      "allowed_edit_paths": [
+        "client.py"
+      ],
+      "ground_truth_affected_locations": [
+        "client.py:build_request"
+      ],
+      "hidden_inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-SHIP-029/inputs.json"
+    },
+    {
+      "task_id": "TASK-PAY-008",
+      "domain": "Payment",
+      "task_class": "repairable",
+      "family_id": "payment-qualification",
+      "repository_id": "local-authored-fixture",
+      "source_directory": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-PAY-008/public",
+      "old_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-PAY-008/public/old_contract.json",
+      "new_contract_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-PAY-008/public/new_contract.json",
+      "public_test_suite": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-PAY-008/public/test_public.py",
+      "hidden_oracle_suite": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-PAY-008/oracle.py",
+      "golden_reference_patch": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-PAY-008/golden.patch",
+      "inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/tasks/TASK-PAY-008/public/inputs.json",
+      "allowed_edit_paths": [
+        "client.py"
+      ],
+      "ground_truth_affected_locations": [
+        "client.py:build_request"
+      ],
+      "hidden_inputs_path": "C:/Users/surji/ProjectSeven/benchmarks/evaluator_private/TASK-PAY-008/inputs.json"
+    }
+  ]
+}

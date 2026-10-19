@@ -1,0 +1,64 @@
+\section{Discussion}
+\subsection{What the visible/hidden gap reveals}
+Public tests can establish an endpoint or a nested-object shape while missing the value inside it. The B2 visible rate exceeds its hidden rate by 46.7 percentage points. With inferred checks and SIG context, that gap falls to 11.7 points. The result supports checking relations between inputs and outgoing requests during candidate selection, while retaining an independent endpoint for evaluation.
+
+For an amount, the relevant relation can be exact equality in minor units. For routing, it is the identity supplied by the caller. For an idempotency key, it is preservation of the caller's token across the migration. An assertion that a field exists does not test any of these relations. Showing the asserted relation beside its outcome gives a reviewer a concrete basis for accepting or rejecting a proposal.
+
+\subsection{A failure of inferred-check coverage}
+The retained BANK-009/B5 artifact illustrates this gap. Its generated check accepts the endpoint and a populated payload, but the candidate changes the idempotency key and fails the hidden key-preservation assertion. Amount and destination preservation do not compensate for that failure. This is an example of incomplete check inference, not a measured frequency of that defect outside the benchmark.
+
+Other plausible migrations can lose exactness by converting large integers to floating point or place a valid identifier in the wrong route. These mechanisms explain why shape checks need behavioral predicates. The financial table reports the observed preservation outcomes; it does not provide a causal classification of every failed repair.
+
+\ifAccess
+\subsection{From an intent statement to an assertion}
+Let $p_n$ be the updated path, $b$ a nested transfer object and $k$ the outgoing idempotency key. The BANK-009/B5 structural check can be summarized as
+\begin{equation}
+T_s(d,o)=[o.path=p_n]\land[\operatorname{isdict}(b)]\land[|b|\ge2].
+\end{equation}
+The preservation obligation is $R_k(d,o)=[o.k=d.k]$. Since $T_s$ contains no relation between the outgoing key and the input, its passage supplies no evidence for $R_k$. A natural-language rule mentioning idempotency is insufficient when its executable assertion omits that relation.
+
+An obligation-to-assertion review should identify the input, output and relation exercised by each check. Numeric checks should distinguish type, unit and equality; routing checks should identify which destination field is preserved. One possible extension is a metamorphic check that changes the input key while holding other inputs fixed and requires the outgoing key to change accordingly. This extension has not been evaluated, and overly restrictive assertions could reject legitimate migrations.
+
+The same reasoning applies to missing information. If a revised contract requires a currency or billing address absent from the caller's inputs, a plausible default can conceal an unresolved requirement. The engine can return a missing-information diagnostic. Diagnostic quality would need its own evaluator; hidden correctness in this study does not measure it.
+
+\subsection{Review and source freshness}
+An acceptance result belongs to the source checkpoint that was tested. Editing the repository or a requirement definition changes the context to which that result applies. The application checks freshness before applying a patch and records individual requirement outcomes. A skipped or erroneous check remains unresolved even if another suite passes.
+
+The interface exposes public tests, inferred checks and confirmed requirements separately. This supports inspection of partial outcomes, but the present study does not measure reviewer effort or usability. A maintainer study could test whether these evidence links improve decisions while controlling task difficulty.
+\fi
+
+\subsection{Choosing a repair configuration}
+B6 has the highest hidden correctness, whereas B5 has the lowest estimated cost per correct repair. A configuration choice therefore depends on the value placed on additional successful migrations. The experiment uses an unweighted task denominator and does not estimate the business cost of a failed integration or staff time saved by a patch.
+
+The ablation suggests overlapping benefits from SIG context and inferred checks. It does not establish which mechanism caused a particular success. A budget-matched experiment could test whether additional calls alone explain part of the gain. An adaptive policy that expands context after failed checks is another possible study; its effectiveness cannot be inferred from the fixed treatments.
+
+\section{Threats to Validity}
+\subsection{Construct validity}
+Hidden correctness is bounded by the oracle and its inputs. Financial fixtures assess request-level obligations, including exact amounts, keys and routes; they do not establish remote settlement or exactly-once execution. Generated checks can omit values, duplicate public assertions or encode an incorrect inference. Localization depends on exact-match call-site annotations and the selected distractors.
+
+\subsection{Internal validity and provenance}
+The analysis uses the author-supplied evaluation release. Its interpretation depends on correspondence between the reported outcomes and the source, prompts, generated checks and original responses used during execution. Retrospective edits require a separately identified reevaluation; checksums establish byte identity, not execution history. The authors confirm that the reported results correspond to the retained execution records.
+
+Pairing controls task identity, but richer context and auxiliary calls alter inference opportunity. The API model is not an independently established immutable checkpoint. Temperature and seed settings do not guarantee regeneration across service changes. With one realization per task and treatment, repeated-inference variance remains unmeasured.
+
+\subsection{Statistical and external validity}
+The intervals describe task-resampling uncertainty conditional on the recorded realization. Shared templates or repository families can induce dependence beyond the domain stratification. Factorial contrasts are descriptive, and multiple endpoints are not independent confirmations of the same effect.
+
+The benchmark consists of authored Python request-builder fixtures. Explicit obligations aid controlled comparison, but transfer to large applications, dynamic SDKs, other languages and naturally occurring migrations requires further evaluation. Estimated API cost depends on the included usage and fixed rate scenario; it excludes caching, infrastructure and staff costs. Trusted-fixture execution also does not evaluate adversarial repository isolation.
+
+\ifAccess
+\section{Reproducibility}
+\subsection{Task and execution records}
+Each public fixture contains client source, old and new contracts, inputs and public checks. Private evaluator assets contain hidden inputs, an oracle and a reference patch. Run evidence links the selected patch to prompts, intermediate candidates, public outcomes, private outcomes and model-call records. The traceability index identifies the task and treatment associated with those assets.
+
+A reproducible release must retain the exact source and selection-time checks. Changing an assertion changes the evaluator definition even if its file name stays the same. A documented export or redaction procedure can protect credentials while preserving the connection between original responses and selected candidates. Text normalization and physical-file hashes should identify their respective representations.
+
+\subsection{Three reproduction operations}
+Offline analysis reads the 720-row primary matrix and the 360-row financial matrix to reconstruct summaries. Candidate replay evaluates saved patches against identified fixtures and checks. Model regeneration requests new candidates and produces another inference realization. These operations have different dependencies and costs; arithmetic agreement alone does not establish execution replay or model repeatability.
+
+Tokens should remain separate from the pricing scenario so that future analyses can apply alternative rates without repeating inference. Intermediate attempts and unsuccessful tasks belong in the release alongside successful examples. They establish the denominator for correctness and failure-inclusive expenditure.
+
+\fi
+
+\section{Conclusion}
+APIShield combines contract differences, source context and executable preservation checks to produce reviewable REST migration proposals. Across the 120-task evaluation release, B6 achieves 80.8\% hidden correctness versus 28.3\% for iterative test feedback, a paired gain of 52.5 percentage points. It preserves all financial obligations on 52/60 tasks. Its estimated API cost per correct repair is 33.5\% below B2, while B5 achieves the lowest ratio overall. The next evaluation should match inference budgets and test repeated realizations on broader, naturally occurring migrations.

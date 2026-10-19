@@ -1,0 +1,19 @@
+% Generic IEEE conference draft. Adapt page limit and anonymity to the selected venue.
+\documentclass[conference,twocolumn]{IEEEtran}
+\newif\ifAccess\Accessfalse
+\input{../shared/preamble}
+\begin{document}
+\title{APIShield: Intent-Guided Repair of Breaking REST API Changes}
+\author{\IEEEauthorblockN{Dr. Anusha K, Surjith Khannan, Sadhana S, Mohammed Ashfaque}}
+\maketitle
+\begin{abstract}
+Breaking REST API changes require client edits that preserve behavior as well as request structure. APIShield connects versioned OpenAPI contracts to affected Python source, builds Semantic Intent Graph context and infers executable preservation checks. We analyze a 120-task evaluation release spanning banking, payments, shipping and identity/schema migrations. Six treatments produce 720 task-level records and separate structural or semantic context from public-test or inferred-check validation. The full configuration passes the independent hidden oracle on 97/120 tasks (80.8\%; 95\% Wilson CI 72.9--86.9\%), compared with 34/120 (28.3\%) for iterative test feedback. The paired gain is 52.5 percentage points (95\% domain-stratified bootstrap CI 42.5--62.5). Joint financial invariant preservation reaches 52/60 tasks. Estimated API cost per correct repair falls by 33.5\% relative to the test-feedback baseline, despite higher spending per task. The ablation shows overlapping benefits from context and inferred checks; the latter also requires independent evaluation of assertion coverage. Findings are scoped to curated request-builder fixtures and the supplied execution release.
+\end{abstract}
+\begin{IEEEkeywords}
+API evolution, automated program repair, behavioral invariants, OpenAPI, large language models.
+\end{IEEEkeywords}
+\input{../shared/manuscript_body}
+\IEEEtriggeratref{12}
+\bibliographystyle{IEEEtran}
+\bibliography{../shared/references}
+\end{document}

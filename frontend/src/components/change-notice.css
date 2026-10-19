@@ -1,0 +1,20 @@
+.guided-shell .change-notice { margin:0 0 24px; padding:22px 24px; border:1px solid var(--wb-line); border-radius:12px; background:var(--wb-paper); }
+.guided-shell .change-notice.has-changes { background:var(--wb-blue-soft); border-color:color-mix(in srgb,var(--wb-blue) 25%,var(--wb-line)); }
+.change-notice-main { display:flex; align-items:center; gap:14px; }
+.change-notice-icon { display:flex; color:var(--wb-blue); padding:11px; border-radius:10px; background:var(--wb-paper); flex-shrink:0; }
+.guided-shell .change-notice h3 { margin:0 0 5px; font-size:21px; font-weight:750; color:var(--wb-ink); }
+.guided-shell .change-notice p { margin:0; font-size:14px; color:var(--wb-muted); }
+.change-notice-main .primary-button { margin-left:auto; min-height:48px; padding:12px 20px; font-size:15px; flex-shrink:0; }
+.change-notice-details { margin:20px 0 0 59px; }
+.change-counts { display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.change-counts span { font-size:12px; font-weight:650; padding:4px 9px; border-radius:5px; background:var(--wb-paper); }
+.change-count-added { color:var(--wb-green); }
+.change-count-removed { color:var(--wb-red); }
+.change-count-changed { color:var(--wb-blue); }
+.change-notice-details ul { padding:0; margin:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 24px; }
+.change-notice-details li { display:flex; align-items:baseline; gap:12px; font-size:12px; min-width:0; }
+.change-notice-details code { color:var(--wb-ink); overflow-wrap:anywhere; }
+.change-notice-details li > span { font-size:11px; flex-shrink:0; }
+.guided-shell .change-notice-details > p { margin-top:12px; font-size:13px; }
+@media(max-width:800px) { .change-notice-main { flex-wrap:wrap; } .change-notice-main .primary-button { margin-left:59px; } .change-notice-details ul { grid-template-columns:1fr; } }
+@media(max-width:500px) { .guided-shell .change-notice { padding:18px; } .change-notice-main > div { flex:1; min-width:0; } .change-notice-main .primary-button { margin-left:0; width:100%; justify-content:center; } .change-notice-details { margin-left:0; } }

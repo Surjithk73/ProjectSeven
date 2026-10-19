@@ -1,0 +1,121 @@
+task_id,domain,family,task_class,difficulty,financial,duplicate,nesting,affected_calls,replication_subset,synthetic
+SIM-1-01,Banking/payments,SIM-family-1-1,repairable,-0.05193666145209046,True,True,False,3,False,True
+SIM-1-02,Banking/payments,SIM-family-1-1,repairable,0.07172409115847092,True,True,False,2,True,True
+SIM-1-03,Banking/payments,SIM-family-1-1,repairable,0.12995168522620426,True,True,False,3,True,True
+SIM-1-04,Banking/payments,SIM-family-1-1,repairable,-0.07962309009537112,True,True,False,4,True,True
+SIM-1-05,Banking/payments,SIM-family-1-1,negative,-0.1126328494894902,False,False,False,0,False,True
+SIM-1-06,Banking/payments,SIM-family-1-1,underspecified,0.0989982807939587,False,False,False,1,False,True
+SIM-1-07,Banking/payments,SIM-family-1-1,repairable,-0.036414874512370715,True,True,False,4,False,True
+SIM-1-08,Banking/payments,SIM-family-1-1,repairable,0.1201432039869556,True,True,False,4,True,True
+SIM-1-09,Banking/payments,SIM-family-1-1,underspecified,0.13178649713635204,False,False,False,1,True,True
+SIM-1-10,Banking/payments,SIM-family-1-1,repairable,-0.10293143639720007,True,True,False,2,True,True
+SIM-1-11,Banking/payments,SIM-family-1-2,repairable,0.09190897692764188,True,True,False,3,True,True
+SIM-1-12,Banking/payments,SIM-family-1-2,underspecified,-0.03850891488819526,False,False,False,3,False,True
+SIM-1-13,Banking/payments,SIM-family-1-2,repairable,0.09653688425971294,True,True,False,2,False,True
+SIM-1-14,Banking/payments,SIM-family-1-2,repairable,-0.12394936936281645,True,True,False,1,False,True
+SIM-1-15,Banking/payments,SIM-family-1-2,repairable,0.12538640262939166,True,False,False,1,False,True
+SIM-1-16,Banking/payments,SIM-family-1-2,negative,-0.13947086156779664,False,False,False,0,False,True
+SIM-1-17,Banking/payments,SIM-family-1-2,repairable,0.09336065706068974,True,False,False,1,True,True
+SIM-1-18,Banking/payments,SIM-family-1-2,underspecified,-0.036542584664541716,False,False,False,4,True,True
+SIM-1-19,Banking/payments,SIM-family-1-2,negative,0.0668870200768959,False,False,False,0,False,True
+SIM-1-20,Banking/payments,SIM-family-1-2,repairable,0.08370733633944533,True,False,False,1,False,True
+SIM-1-21,Banking/payments,SIM-family-1-3,repairable,-0.06647889554479824,True,False,False,1,False,True
+SIM-1-22,Banking/payments,SIM-family-1-3,repairable,0.07303021908761997,True,False,False,4,False,True
+SIM-1-23,Banking/payments,SIM-family-1-3,repairable,0.12679184282599365,True,False,False,1,False,True
+SIM-1-24,Banking/payments,SIM-family-1-3,repairable,-0.08017718968704596,True,False,False,2,False,True
+SIM-1-25,Banking/payments,SIM-family-1-3,repairable,-0.07996282908951777,True,False,False,3,False,True
+SIM-1-26,Banking/payments,SIM-family-1-3,negative,0.05330793159827796,False,False,False,0,True,True
+SIM-1-27,Banking/payments,SIM-family-1-3,negative,0.08830010382597553,False,False,False,0,False,True
+SIM-1-28,Banking/payments,SIM-family-1-3,repairable,-0.0354050174410718,True,False,False,1,True,True
+SIM-1-29,Banking/payments,SIM-family-1-3,repairable,-0.08014053343572547,True,False,False,1,False,True
+SIM-1-30,Banking/payments,SIM-family-1-3,negative,0.12433474185845012,False,False,False,0,True,True
+SIM-2-01,Shipping,SIM-family-2-1,repairable,0.0816105383903763,False,False,True,3,True,True
+SIM-2-02,Shipping,SIM-family-2-1,repairable,-0.07802232597315706,False,False,True,3,False,True
+SIM-2-03,Shipping,SIM-family-2-1,repairable,-0.11861320000745368,False,False,True,4,True,True
+SIM-2-04,Shipping,SIM-family-2-1,negative,-0.002196868176820438,False,False,False,0,True,True
+SIM-2-05,Shipping,SIM-family-2-1,repairable,-0.03635199440354411,False,False,True,2,False,True
+SIM-2-06,Shipping,SIM-family-2-1,negative,0.13673498749085095,False,False,False,0,True,True
+SIM-2-07,Shipping,SIM-family-2-1,repairable,-0.02329613254803589,False,False,True,3,False,True
+SIM-2-08,Shipping,SIM-family-2-1,repairable,-0.0024827076725195407,False,False,True,4,True,True
+SIM-2-09,Shipping,SIM-family-2-1,negative,0.031217791926911903,False,False,False,0,True,True
+SIM-2-10,Shipping,SIM-family-2-1,repairable,-0.034982453355826656,False,False,True,4,False,True
+SIM-2-11,Shipping,SIM-family-2-2,negative,-0.05311501877997225,False,False,False,0,False,True
+SIM-2-12,Shipping,SIM-family-2-2,repairable,-0.03043982417692309,False,False,True,1,False,True
+SIM-2-13,Shipping,SIM-family-2-2,repairable,0.09089208411203256,False,False,True,4,True,True
+SIM-2-14,Shipping,SIM-family-2-2,underspecified,0.023081875645177913,False,False,False,2,False,True
+SIM-2-15,Shipping,SIM-family-2-2,repairable,0.1215576611145997,False,False,True,2,False,True
+SIM-2-16,Shipping,SIM-family-2-2,repairable,-0.0315830095564851,False,False,True,2,True,True
+SIM-2-17,Shipping,SIM-family-2-2,underspecified,0.09812092973804276,False,False,False,3,True,True
+SIM-2-18,Shipping,SIM-family-2-2,negative,0.13793057529298247,False,False,False,0,False,True
+SIM-2-19,Shipping,SIM-family-2-2,repairable,-0.0032099131794481317,False,False,True,4,False,True
+SIM-2-20,Shipping,SIM-family-2-2,repairable,-0.03372189357500745,False,False,False,3,False,True
+SIM-2-21,Shipping,SIM-family-2-3,repairable,0.01464288378581366,False,False,False,4,False,True
+SIM-2-22,Shipping,SIM-family-2-3,repairable,0.0022711802602476683,False,False,False,1,True,True
+SIM-2-23,Shipping,SIM-family-2-3,repairable,0.07944193661810428,False,False,False,2,False,True
+SIM-2-24,Shipping,SIM-family-2-3,underspecified,0.10128923086573971,False,False,False,3,False,True
+SIM-2-25,Shipping,SIM-family-2-3,negative,0.1111922204652721,False,False,False,0,False,True
+SIM-2-26,Shipping,SIM-family-2-3,repairable,-0.05557898878102538,False,False,False,2,True,True
+SIM-2-27,Shipping,SIM-family-2-3,repairable,0.04908105351220829,False,False,False,4,True,True
+SIM-2-28,Shipping,SIM-family-2-3,repairable,0.09752832262767133,False,False,False,1,False,True
+SIM-2-29,Shipping,SIM-family-2-3,underspecified,-0.05747371563288714,False,False,False,4,False,True
+SIM-2-30,Shipping,SIM-family-2-3,repairable,-0.035644050148559786,False,False,False,1,False,True
+SIM-3-01,Identity,SIM-family-3-1,repairable,-0.09594435332485171,False,False,False,3,False,True
+SIM-3-02,Identity,SIM-family-3-1,negative,0.12292413049711876,False,False,False,0,False,True
+SIM-3-03,Identity,SIM-family-3-1,underspecified,0.061839919000858445,False,False,False,4,False,True
+SIM-3-04,Identity,SIM-family-3-1,repairable,-0.05579255689926843,False,False,False,1,False,True
+SIM-3-05,Identity,SIM-family-3-1,repairable,0.04704914041694236,False,False,False,2,True,True
+SIM-3-06,Identity,SIM-family-3-1,repairable,0.01548253560787538,False,False,False,1,True,True
+SIM-3-07,Identity,SIM-family-3-1,repairable,-0.10580816385578345,False,False,False,4,False,True
+SIM-3-08,Identity,SIM-family-3-1,underspecified,-0.037449542900806404,False,False,False,2,False,True
+SIM-3-09,Identity,SIM-family-3-1,repairable,-0.11651824045890867,False,False,False,4,False,True
+SIM-3-10,Identity,SIM-family-3-1,repairable,-0.11262409260420637,False,False,False,3,True,True
+SIM-3-11,Identity,SIM-family-3-2,negative,-0.014811989475286974,False,False,False,0,True,True
+SIM-3-12,Identity,SIM-family-3-2,repairable,-0.05452349863395915,False,False,False,3,False,True
+SIM-3-13,Identity,SIM-family-3-2,repairable,-0.09172563040181589,False,False,False,2,False,True
+SIM-3-14,Identity,SIM-family-3-2,repairable,0.0064518417042007115,False,False,False,1,False,True
+SIM-3-15,Identity,SIM-family-3-2,negative,0.11791823203789431,False,False,False,0,False,True
+SIM-3-16,Identity,SIM-family-3-2,negative,-0.12230300244258666,False,False,False,0,False,True
+SIM-3-17,Identity,SIM-family-3-2,repairable,-0.07564224858897177,False,False,False,3,True,True
+SIM-3-18,Identity,SIM-family-3-2,repairable,-0.04222041742406417,False,False,False,4,True,True
+SIM-3-19,Identity,SIM-family-3-2,negative,-0.027401808061591038,False,False,False,0,False,True
+SIM-3-20,Identity,SIM-family-3-2,repairable,-0.04718156114453145,False,False,False,1,True,True
+SIM-3-21,Identity,SIM-family-3-3,repairable,0.048933315087714424,False,False,False,4,False,True
+SIM-3-22,Identity,SIM-family-3-3,underspecified,0.12730373267632206,False,False,False,1,True,True
+SIM-3-23,Identity,SIM-family-3-3,repairable,0.13861036917352554,False,False,False,2,True,True
+SIM-3-24,Identity,SIM-family-3-3,repairable,-0.08896804338679837,False,False,False,3,False,True
+SIM-3-25,Identity,SIM-family-3-3,repairable,0.04635051290960729,False,False,False,4,False,True
+SIM-3-26,Identity,SIM-family-3-3,repairable,0.1127324172120312,False,False,False,4,True,True
+SIM-3-27,Identity,SIM-family-3-3,repairable,0.07804837247478522,False,False,False,1,False,True
+SIM-3-28,Identity,SIM-family-3-3,repairable,0.13501990473326497,False,False,False,2,False,True
+SIM-3-29,Identity,SIM-family-3-3,negative,0.12288397708267834,False,False,False,0,True,True
+SIM-3-30,Identity,SIM-family-3-3,underspecified,-0.1322184083960003,False,False,False,4,True,True
+SIM-4-01,Multi-endpoint schemas,SIM-family-4-1,repairable,0.11525219578085866,False,False,True,1,False,True
+SIM-4-02,Multi-endpoint schemas,SIM-family-4-1,negative,0.020182084652328652,False,False,False,0,False,True
+SIM-4-03,Multi-endpoint schemas,SIM-family-4-1,repairable,0.06126500862016376,False,False,True,4,False,True
+SIM-4-04,Multi-endpoint schemas,SIM-family-4-1,repairable,-0.06254173672474062,False,False,True,3,False,True
+SIM-4-05,Multi-endpoint schemas,SIM-family-4-1,negative,-0.09206240088235235,False,False,False,0,True,True
+SIM-4-06,Multi-endpoint schemas,SIM-family-4-1,underspecified,-0.002879289328446971,False,False,False,3,True,True
+SIM-4-07,Multi-endpoint schemas,SIM-family-4-1,repairable,-0.13056461918178386,False,False,True,3,True,True
+SIM-4-08,Multi-endpoint schemas,SIM-family-4-1,negative,-0.06520283021671353,False,False,False,0,False,True
+SIM-4-09,Multi-endpoint schemas,SIM-family-4-1,repairable,0.07108410994332626,False,False,True,4,True,True
+SIM-4-10,Multi-endpoint schemas,SIM-family-4-1,repairable,0.032325064037647205,False,False,True,3,False,True
+SIM-4-11,Multi-endpoint schemas,SIM-family-4-2,repairable,0.13541310694274894,False,False,True,3,False,True
+SIM-4-12,Multi-endpoint schemas,SIM-family-4-2,negative,-0.11071329622027352,False,False,False,0,False,True
+SIM-4-13,Multi-endpoint schemas,SIM-family-4-2,repairable,-0.002171622427302372,False,False,True,2,True,True
+SIM-4-14,Multi-endpoint schemas,SIM-family-4-2,underspecified,-0.05035614819315809,False,False,False,1,False,True
+SIM-4-15,Multi-endpoint schemas,SIM-family-4-2,repairable,-0.13492785511031835,False,False,False,4,True,True
+SIM-4-16,Multi-endpoint schemas,SIM-family-4-2,negative,-0.025430597991117937,False,False,False,0,True,True
+SIM-4-17,Multi-endpoint schemas,SIM-family-4-2,negative,-0.10348741884708881,False,False,False,0,False,True
+SIM-4-18,Multi-endpoint schemas,SIM-family-4-2,negative,0.05786144026928014,False,False,False,0,True,True
+SIM-4-19,Multi-endpoint schemas,SIM-family-4-2,repairable,0.0228810974125859,False,False,False,2,False,True
+SIM-4-20,Multi-endpoint schemas,SIM-family-4-2,repairable,-0.012125367259640168,False,False,False,2,True,True
+SIM-4-21,Multi-endpoint schemas,SIM-family-4-3,repairable,-0.12972312389177307,False,False,False,1,False,True
+SIM-4-22,Multi-endpoint schemas,SIM-family-4-3,underspecified,0.11332405309542642,False,False,False,3,False,True
+SIM-4-23,Multi-endpoint schemas,SIM-family-4-3,repairable,-0.018969769768447928,False,False,False,4,True,True
+SIM-4-24,Multi-endpoint schemas,SIM-family-4-3,repairable,-0.12074757979305804,False,False,False,1,True,True
+SIM-4-25,Multi-endpoint schemas,SIM-family-4-3,repairable,0.1150931754099398,False,False,False,4,False,True
+SIM-4-26,Multi-endpoint schemas,SIM-family-4-3,repairable,0.018585164138625737,False,False,False,3,False,True
+SIM-4-27,Multi-endpoint schemas,SIM-family-4-3,repairable,-0.11571643258596771,False,False,False,3,False,True
+SIM-4-28,Multi-endpoint schemas,SIM-family-4-3,repairable,-0.1188202092636976,False,False,False,3,False,True
+SIM-4-29,Multi-endpoint schemas,SIM-family-4-3,repairable,0.10608992841348158,False,False,False,2,False,True
+SIM-4-30,Multi-endpoint schemas,SIM-family-4-3,repairable,0.09996882669909032,False,False,False,4,True,True

@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-012",
+    "version": "2.0.0",
+    "description": "Split recipient_name into given_name and family_name"
+  },
+  "paths": {
+    "/v2/banking/beneficiary_name_structure/task-bank-012": {
+      "post": {
+        "operationId": "transfer_funds",
+        "description": "Updated v2 contract for TASK-BANK-012: Split recipient_name into given_name and family_name",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "beneficiary_transfer"
+                ],
+                "properties": {
+                  "beneficiary_transfer": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

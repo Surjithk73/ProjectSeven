@@ -1,0 +1,62 @@
+{
+  "source_folder": "C:\\Users\\surji\\ProjectSeven\\paper_submission_bundle",
+  "source_copies_match": {
+    "tosem-review.tex": true,
+    "tse-review.tex": true,
+    "sections.tex": true,
+    "author-metadata.tex": true,
+    "references.bib": true
+  },
+  "missing_citation_keys": [],
+  "duplicate_bibliography_keys": [],
+  "missing_reference_labels": [],
+  "duplicate_labels": [],
+  "orcid_checksums": {
+    "0000-0002-4819-3724": true,
+    "0009-0004-7182-5391": false,
+    "0009-0006-3941-8205": false,
+    "0009-0008-1527-6439": false
+  },
+  "primary_trace_counts": {
+    "B1": {
+      "runs": 120,
+      "visible_passes": 74,
+      "hidden_passes": 25
+    },
+    "B2": {
+      "runs": 120,
+      "visible_passes": 89,
+      "hidden_passes": 33
+    },
+    "B3": {
+      "runs": 120,
+      "visible_passes": 92,
+      "hidden_passes": 37
+    },
+    "B4": {
+      "runs": 120,
+      "visible_passes": 101,
+      "hidden_passes": 63
+    },
+    "B5": {
+      "runs": 120,
+      "visible_passes": 106,
+      "hidden_passes": 86
+    },
+    "B6": {
+      "runs": 120,
+      "visible_passes": 112,
+      "hidden_passes": 96
+    }
+  },
+  "primary_execution_boundaries": {
+    "trusted-fixtures": 720
+  },
+  "primary_docker_verified_records": 0,
+  "traceability_hashes_verified": 3600,
+  "traceability_hash_failures": [],
+  "open_weight_raw_files_in_documented_directory": 0,
+  "open_weight_summary_rows": 1440,
+  "pdf_compilation": "BLOCKED: built-in compiler refused execution because Windows restricted-token sandbox could not enforce split writable root sets",
+  "pdf_visual_review": "Not performed; no PDF was produced"
+}

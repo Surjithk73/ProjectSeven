@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "evidence_kind": "fixture_replay",
+  "task_id": "TASK-SHIP-029",
+  "config_id": "B5",
+  "model_requested": null,
+  "model_resolved_snapshot": null,
+  "git_commit_sha": "80e7bbe0c01b58fa6615098c1bc56c6534a830eb",
+  "git_commit_identifies_run": false,
+  "runtime_s": 0.5904917,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "token_accounting": "no_model_invoked",
+  "repair_attempts": 1,
+  "hidden_invariants_status": {
+    "evaluated": true,
+    "checks": {
+      "parcel_identity": true,
+      "exact_weight": true,
+      "idempotency_key": false
+    }
+  },
+  "oracle_verdict": "FAIL",
+  "original_record_path": "benchmarks/runs/qualification_verified/B5_TASK-SHIP-029_rep1.json"
+}

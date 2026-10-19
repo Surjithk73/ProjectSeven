@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Gauge } from 'lucide-react';
+import { repairPresentation } from '../repair-state';
 
 function CircularGauge({ score, isHealed }) {
   const [displayScore, setDisplayScore] = useState(0);
@@ -33,7 +34,7 @@ function CircularGauge({ score, isHealed }) {
           strokeWidth="10"
           strokeLinecap="round"
           strokeDasharray={`${isHealed ? progress : 0} ${circumference}`}
-          strokeDashoffset={circumference * 0.25}
+          transform="rotate(-90 60 60)"
           style={{ transition: 'stroke-dasharray 0.1s linear' }}
         />
         <text x="60" y="57" textAnchor="middle" fontSize="22" fontWeight="700" fill={isHealed ? color : '#9ca3af'}>
@@ -42,18 +43,18 @@ function CircularGauge({ score, isHealed }) {
         <text x="60" y="72" textAnchor="middle" fontSize="9" fill="#9ca3af">out of 100</text>
       </svg>
       <p className={`text-xs font-semibold mt-1 ${isHealed ? (displayScore >= 80 ? 'text-emerald-600' : 'text-amber-600') : 'text-gray-400'}`}>
-        {isHealed ? (displayScore >= 80 ? 'Intent Preserved!' : 'Intent Partially Preserved') : 'Awaiting Agent Run'}
+        {isHealed ? (displayScore >= 80 ? 'High model confidence' : 'Review required') : 'Awaiting Agent Run'}
       </p>
     </div>
   );
 }
 
 export default function IpsScorePanel({ score, agentStatus }) {
-  const isHealed = agentStatus === 'healed';
+  const isHealed = repairPresentation({agent_status: agentStatus, ips_score: score}).validated;
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex flex-col">
-      <div className="flex items-center gap-2 mb-4">
+    <div className="flex flex-col p-5 max-w-sm w-full mx-auto items-center">
+      <div className="flex items-center gap-2 mb-6 w-full justify-center">
         <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
           <Gauge className="w-4 h-4 text-emerald-600" />
         </div>
@@ -63,20 +64,22 @@ export default function IpsScorePanel({ score, agentStatus }) {
         </div>
       </div>
 
-      <CircularGauge score={score} isHealed={isHealed} />
+      {score === null || score === undefined ? (
+        <p className="text-sm text-gray-500 py-12">Judge score unavailable. Consult the actual test results.</p>
+      ) : <CircularGauge score={score} isHealed={isHealed} />}
 
-      <div className="mt-3 space-y-1.5 text-xs text-gray-500">
+      <div className="mt-6 space-y-2 text-xs text-gray-500 w-full flex flex-col items-center">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
-          <span>80–100: Business intent fully preserved</span>
+          <span>80-100: High model confidence</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block" />
-          <span>50–79: Partially preserved</span>
+          <span>50-79: Moderate model confidence</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-red-400 inline-block" />
-          <span>0–49: Intent likely broken</span>
+          <span>0-49: Low model confidence</span>
         </div>
       </div>
     </div>

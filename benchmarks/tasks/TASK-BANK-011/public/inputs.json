@@ -1,0 +1,10 @@
+[
+  {
+    "source": "acct_orig_task-bank-011",
+    "destination": "acct_benef_task-bank-011",
+    "amount_cents": 16375,
+    "currency": "EUR",
+    "idempotency_key": "idem-fin-pub-task-bank-011",
+    "extra_token": "tok_account_id_uuid_type_11"
+  }
+]

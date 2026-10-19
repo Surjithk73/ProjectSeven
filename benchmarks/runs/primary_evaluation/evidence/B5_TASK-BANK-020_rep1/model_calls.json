@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "bd3400fe5db37384346d8b6cf034fd2174f53590e224dd4eaab6c31877b11fa0",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-020: Split combined routing into separate account_number and bic fields\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iban_bic_transfer\": {\"type\": \"object\"}}, \"required\": [\"iban_bic_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-020 (iban_bic_restructure).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-020: Split combined routing into separate account_number and bic fields\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-020\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2786,
+    "cached_tokens": 0,
+    "output_tokens": 466,
+    "reasoning_tokens": 324,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:20:28 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-020 (iban_bic_restructure)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iban_bic_restructure/task-bank-020':\\n            return False\\n        blk = o.get('body', {}).get('iban_bic_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iban_bic_restructure: Split combined routing into separate account_number and bic fields\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-020\"}",
+                "thought": null,
+                "thought_signature": "e3056c0d95c9de14e9901203deee206088e34add68bed11e57f49eedeef2e95e",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T16:20:28.191453Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_4f2bdc47e20ba89e4dff3a",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 466,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 466
+          }
+        ],
+        "prompt_token_count": 2786,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2786
+          }
+        ],
+        "thoughts_token_count": 324,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3576,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-020 (iban_bic_restructure)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iban_bic_restructure/task-bank-020':\\n            return False\\n        blk = o.get('body', {}).get('iban_bic_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iban_bic_restructure: Split combined routing into separate account_number and bic fields\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-020\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-020: Split combined routing into separate account_number and bic fields\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iban_bic_transfer\": {\"type\": \"object\"}}, \"required\": [\"iban_bic_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-020 (iban_bic_restructure).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-020: Split combined routing into separate account_number and bic fields\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-020\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:20:28 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-020 (iban_bic_restructure)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iban_bic_restructure/task-bank-020':\\n            return False\\n        blk = o.get('body', {}).get('iban_bic_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iban_bic_restructure: Split combined routing into separate account_number and bic fields\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-020\"}",
+                "thoughtSignature": "e3056c0d95c9de14e9901203deee206088e34add68bed11e57f49eedeef2e95e"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T16:20:28.191453Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_4f2bdc47e20ba89e4dff3a",
+      "usageMetadata": {
+        "candidatesTokenCount": 466,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 466
+          }
+        ],
+        "promptTokenCount": 2786,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2786
+          }
+        ],
+        "thoughtsTokenCount": 324,
+        "totalTokenCount": 3576,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.3178,
+    "wall_seconds": 41.3178,
+    "timestamp_utc": "2026-10-15T16:20:28.191453+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "e96f55e2408df78168f0ee42bf84e69d196e62a04c83de89cf6ac78f4ce9bdc3",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-020 (iban_bic_restructure)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iban_bic_restructure/task-bank-020':\\n            return False\\n        blk = o.get('body', {}).get('iban_bic_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iban_bic_restructure: Split combined routing into separate account_number and bic fields\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-020\"}, \"new_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-020: Split combined routing into separate account_number and bic fields\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iban_bic_transfer\": {\"type\": \"object\"}}, \"required\": [\"iban_bic_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-020 (iban_bic_restructure).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iban_bic_restructure/task-bank-020' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('iban_bic_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-020: Split combined routing into separate account_number and bic fields\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-020\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3154,
+    "cached_tokens": 0,
+    "output_tokens": 475,
+    "reasoning_tokens": 301,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:21:09 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:execute_debit\"], \"source\": \"# Candidate (B5) for TASK-BANK-020 (iban_bic_restructure)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'iban_bic_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "c9741c20676c462a5defeef7905e212364031206c48bf467e261f76f49ab8629",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T16:21:09.509253Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_7b236b009140006af27a32",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 475,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 475
+          }
+        ],
+        "prompt_token_count": 3154,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3154
+          }
+        ],
+        "thoughts_token_count": 301,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3930,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:execute_debit\"], \"source\": \"# Candidate (B5) for TASK-BANK-020 (iban_bic_restructure)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'iban_bic_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-020 (iban_bic_restructure)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iban_bic_restructure/task-bank-020':\\n            return False\\n        blk = o.get('body', {}).get('iban_bic_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iban_bic_restructure: Split combined routing into separate account_number and bic fields\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-020\"}, \"new_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-020: Split combined routing into separate account_number and bic fields\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iban_bic_transfer\": {\"type\": \"object\"}}, \"required\": [\"iban_bic_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split combined routing into separate account_number and bic fields\", \"title\": \"TASK-BANK-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iban_bic_restructure/task-bank-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-020 (iban_bic_restructure).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iban_bic_restructure/task-bank-020' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('iban_bic_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-020: Split combined routing into separate account_number and bic fields\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-020\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:21:09 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:execute_debit\"], \"source\": \"# Candidate (B5) for TASK-BANK-020 (iban_bic_restructure)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iban_bic_restructure/task-bank-020',\\n        'body': {\\n            'iban_bic_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "c9741c20676c462a5defeef7905e212364031206c48bf467e261f76f49ab8629"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T16:21:09.509253Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_7b236b009140006af27a32",
+      "usageMetadata": {
+        "candidatesTokenCount": 475,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 475
+          }
+        ],
+        "promptTokenCount": 3154,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3154
+          }
+        ],
+        "thoughtsTokenCount": 301,
+        "totalTokenCount": 3930,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 44.094,
+    "wall_seconds": 44.094,
+    "timestamp_utc": "2026-10-15T16:21:09.509253+00:00"
+  }
+]

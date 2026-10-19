@@ -1,0 +1,10 @@
+{
+  "task_id": "TASK-SHIP-007",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "address_component_decomposition",
+  "coupled_ast_nodes": [
+    "client.py:calculate_rate",
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

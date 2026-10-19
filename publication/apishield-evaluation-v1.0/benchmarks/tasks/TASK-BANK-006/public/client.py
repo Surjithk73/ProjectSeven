@@ -1,0 +1,15 @@
+# TASK-BANK-006: Split recipient_name into given_name and family_name
+def build_request(data):
+    return {
+        'path': '/v1/banking/beneficiary_name_structure/task-bank-006',
+        'body': {
+            'amount_cents': data['amount_cents'],
+            'source': data['source'],
+            'destination': data['destination'],
+            'legacy_token': data['extra_token']
+        },
+        'headers': {}
+    }
+
+def get_health_status():
+    return {'path': '/health', 'status': 'ok'}

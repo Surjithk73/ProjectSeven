@@ -1,0 +1,6 @@
+{
+  "origin": "trusted_fixture_not_model_output",
+  "source": null,
+  "abstain_reason": "Scripted abstention for harness qualification",
+  "checks_source": "def check(inputs, outputs):\n    return all(isinstance(o['body'], dict) for o in outputs)\n"
+}

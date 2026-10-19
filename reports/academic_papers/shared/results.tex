@@ -1,0 +1,121 @@
+\section{Results}
+Table~\ref{tab:primary} reports task-level outcomes for all six treatments. The analysis includes unsuccessful repairs in both the correctness denominator and the cost numerator.
+
+\begin{table*}[!t]\centering\small
+\caption{Primary benchmark: 120 tasks per treatment. Visible and hidden rates use the same task denominator; intervals are 95\% Wilson CIs.}\label{tab:primary}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lrrrrr@{}}\toprule
+Treatment & Visible passes & Visible rate [CI] & Hidden passes & Hidden rate [CI] & Mean attempts\\\midrule
+B1 & 76/120 & 63.3\% [54.4,71.4] & 26/120 & 21.7\% [15.2,29.9] & 1.00\\
+B2 & 90/120 & 75.0\% [66.6,81.9] & 34/120 & 28.3\% [21.0,37.0] & 1.60\\
+B3 & 93/120 & 77.5\% [69.2,84.1] & 36/120 & 30.0\% [22.5,38.7] & 1.50\\
+B4 & 100/120 & 83.3\% [75.7,88.9] & 62/120 & 51.7\% [42.8,60.4] & 1.45\\
+B5 & 105/120 & 87.5\% [80.4,92.3] & 87/120 & 72.5\% [63.9,79.7] & 1.35\\
+B6 & 111/120 & 92.5\% [86.4,96.0] & 97/120 & 80.8\% [72.9,86.9] & 1.25\\\bottomrule
+\end{tabular*}
+\end{table*}
+
+\begin{table*}[!t]\centering\small
+\caption{Failure-inclusive API accounting for 120 tasks. Tokens are mean $\pm$ SD. Estimates use USD 0.75/M prompt and USD 3.75/M completion and reasoning tokens.}\label{tab:cost}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lrrrrr@{}}\toprule
+Treatment & Prompt tokens & Completion + reasoning & Total USD & USD/task & USD/correct\\\midrule
+B1 & $1800\pm540$ & $750\pm262$ & .4995 & .00416 & .01921\\
+B2 & $2600\pm780$ & $840\pm294$ & .6120 & .00510 & .01800\\
+B3 & $3200\pm960$ & $960\pm336$ & .7200 & .00600 & .02000\\
+B4 & $4000\pm1200$ & $1050\pm368$ & .8325 & .00694 & .01343\\
+B5 & $4600\pm1380$ & $1200\pm420$ & .9540 & .00795 & .01097\\
+B6 & $5400\pm1620$ & $1500\pm525$ & 1.1610 & .00968 & .01197\\\bottomrule
+\end{tabular*}
+\end{table*}
+
+\subsection{RQ1: Impact localization}
+Table~\ref{tab:localization} reports exact-match localization against task annotations. Each task contributes an affected location and an unaffected distractor. B6 records 101 true positives, 14 false positives and 19 false negatives, yielding 87.8\% precision, 84.2\% recall and F1 0.860. B2 records 65.0\% precision and recall. False alarms decrease from 35.0\% for B2 to 11.7\% for B6.
+
+These outcomes concern the annotated call-site unit. They do not measure arbitrary wrappers, dynamic dispatch or generated SDK coverage. The treatment-aware harness can use candidate localization predictions, so this endpoint is broader than a static-scanner-only measurement.
+
+\begin{table}[t]\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Localization. P, R and FA denote precision, recall and false-alarm rate (\%).}\label{tab:localization}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrr@{}}\toprule
+ID & TP/FP/FN & P & R & FA & F1\\\midrule
+B1 & 70/50/50 & 58.3 & 58.3 & 41.7 & .583\\
+B2 & 78/42/42 & 65.0 & 65.0 & 35.0 & .650\\
+B3 & 94/25/26 & 79.0 & 78.3 & 20.8 & .787\\
+B4 & 98/21/22 & 82.4 & 81.7 & 17.5 & .820\\
+B5 & 99/17/21 & 85.3 & 82.5 & 14.2 & .839\\
+B6 & 101/14/19 & 87.8 & 84.2 & 11.7 & .860\\\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{RQ2: Visible passage and hidden correctness}
+B2 passes visible tests on 90/120 tasks (75.0\%) and the independent hidden oracle on 34/120 (28.3\%). B6 records 111/120 visible passes (92.5\%) and 97/120 hidden-correct outcomes (80.8\%). The gap between visible and hidden rates is 46.7 percentage points for B2 and 11.7 for B6. Figure~\ref{fig:correctness} shows both endpoints and the reported hidden-correctness intervals.
+
+\begin{figure*}[!t]\centering
+\includegraphics[width=.485\textwidth]{figures/correctness.pdf}\hfill
+\includegraphics[width=.485\textwidth]{figures/cost_tradeoff.pdf}
+\caption{Correctness and resource trade-off. Left: visible and hidden success; error bars are 95\% Wilson intervals for hidden correctness. Right: hidden correctness against estimated API cost per task. B6 has the highest correctness; B5 has the lowest cost per correct repair.}\label{fig:correctness}\label{fig:cost}
+\end{figure*}
+
+Pairing reveals overlap that marginal percentages omit. B6 succeeds where B2 fails on 67 tasks, while B2 succeeds where B6 fails on four. Thirty tasks succeed under both and 19 under neither. The difference is 63/120, or 52.5 percentage points, with the reported bootstrap interval [42.5,62.5]. Table~\ref{tab:paired} also compares B6 with B3. B6 therefore does not subsume every baseline success.
+
+\begin{table*}[!t]\centering\small
+\caption{Paired hidden-correctness contrasts. Counts are full-only / baseline-only / both / neither. CIs use 20,000 domain-stratified paired bootstrap draws.}\label{tab:paired}
+\begin{tabularx}{\textwidth}{@{}lXXr@{}}\toprule
+Contrast & Risk difference, pp [95\% CI] & Binary $\delta$ [95\% CI] & Paired counts\\\midrule
+B6--B2 & $+52.5$ [42.5,62.5] & .525 [.425,.625] & 67 / 4 / 30 / 19\\
+B6--B3 & $+50.8$ [40.8,60.8] & .508 [.408,.608] & 66 / 5 / 31 / 18\\\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection{RQ3: Component ablations}
+B3 and B4 differ in contextual representation while retaining test-only feedback. Hidden correctness rises from 36 to 62 tasks, a descriptive gain of 21.7 percentage points. With inferred checks present, changing B5 to B6 raises the count from 87 to 97, a gain of 8.3 points. Adding inferred checks gives 42.5 points in structural context (B5--B3) and 29.2 in SIG context (B6--B4).
+
+Both mechanisms are associated with improved outcomes in this release, but their contributions overlap. The risk-scale interaction is negative: the gain from SIG context is smaller when inferred checks are present. This is consistent with the mechanisms addressing some of the same failures. It neither establishes the cause of an individual success nor justifies treating the gains as additive.
+
+\begin{table}[t]\centering\small
+\caption{Descriptive factorial contrasts derived from supplied counts; no additional intervals or significance tests are asserted.}\label{tab:factorial}
+\begin{tabularx}{\columnwidth}{@{}Xr@{}}\toprule
+Comparison & Difference (pp)\\\midrule
+SIG with test-only validation (B4--B3) & $+21.7$\\
+SIG with inferred checks (B6--B5) & $+8.3$\\
+Checks with AST context (B5--B3) & $+42.5$\\
+Checks with SIG context (B6--B4) & $+29.2$\\
+Risk-scale interaction & $-13.3$\\\bottomrule
+\end{tabularx}
+\end{table}
+
+The interaction is $(97-87-62+36)/120=-13.3$ percentage points. Ceiling effects can reduce marginal gains as correctness approaches one, and the richer treatments also use more inference. A budget-matched comparison would help separate those explanations; the present contrasts are descriptive.
+
+B5 includes structural context and B4 retains public tests; neither is a component operating alone. B2 is the test-feedback baseline implemented in this harness, not a reproduction of every test-driven APR system in the literature. These operational definitions matter when transferring conclusions to other tools.
+
+\subsection{RQ4: Financial invariant preservation}
+Table~\ref{tab:financial} reports minor-unit, idempotency and routing preservation on 60 banking/payment tasks. B6 preserves all obligations on 52/60 (86.7\%), compared with 19/60 (31.7\%) for B2. Its marginal counts are 56 for minor units, 57 for keys and 58 for routing.
+
+Joint preservation is below each marginal rate because different candidates can violate different obligations. High destination preservation cannot compensate for losing an idempotency key. This financial endpoint is also distinct from whole-benchmark hidden correctness: it covers a task subset and selected assertions.
+
+\begin{table}[t]\centering\small\setlength{\tabcolsep}{3pt}
+\caption{Financial preservation ($N=60$). Cells are count (\%).}\label{tab:financial}
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrr@{}}\toprule
+ID & Minor units & Key & Routing & All\\\midrule
+B1 & 26 (43.3) & 35 (58.3) & 45 (75.0) & 15 (25.0)\\
+B2 & 29 (48.3) & 40 (66.7) & 48 (80.0) & 19 (31.7)\\
+B3 & 32 (53.3) & 44 (73.3) & 50 (83.3) & 21 (35.0)\\
+B4 & 43 (71.7) & 48 (80.0) & 53 (88.3) & 34 (56.7)\\
+B5 & 53 (88.3) & 55 (91.7) & 57 (95.0) & 46 (76.7)\\
+B6 & 56 (93.3) & 57 (95.0) & 58 (96.7) & 52 (86.7)\\\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{RQ5: Attempts and estimated API cost}
+The summary reports 1.25 mean repair attempts for B6 and 1.60 for B2. Mean prompt tokens increase from 2,600 to 5,400; completion and reasoning tokens increase from 840 to 1,500. B6 thus has higher total estimated API cost: USD 1.1610 across 120 tasks versus USD 0.6120 for B2.
+
+Including failed tasks in the numerator and dividing by hidden successes gives USD 0.01197 per correct repair for B6 and USD 0.01800 for B2, a 33.5\% reduction. The improvement concerns cost per correct result; spending per attempted task increases. B5 has the lowest cost per correct repair (USD 0.01097), while B6 has the highest hidden correctness. Neither dominates both objectives.
+
+
+
+Table~\ref{tab:cost} keeps expenditure per task separate from expenditure per correct repair. Figure~\ref{fig:cost} places the correctness gains alongside their API cost.
+
+\ifAccess
+
+The lower ratio for B6 relative to B2 arises because hidden successes increase faster than aggregate cost. Richer context, intent calls and candidate trajectories can all contribute; the aggregate endpoint does not attribute the saving to a particular mechanism.
+
+Token SDs describe dispersion across the supplied records, not repeated invocations of the same task. The release does not value staff time, subscription commitments or production incidents. Its economic result is a token-accounting comparison under explicit fixed rates.
+\fi

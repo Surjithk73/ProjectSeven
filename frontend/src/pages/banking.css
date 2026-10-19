@@ -1,0 +1,119 @@
+.guided-shell.nexus-bank { display: block; background: var(--background); color: var(--foreground); }
+.nexus-bank .bank-topbar { display: flex; align-items: center; gap: 28px; padding: 20px max(24px, calc((100vw - 1280px) / 2)); border-bottom: 1px solid var(--border); }
+.bank-brand, .bank-brand-mark, .bank-simulation, .bank-workspace, .bank-tabs button, .bank-account-label, .bank-account-footer, .bank-form-note, .bank-footer, .bank-footer > span { display: flex; align-items: center; gap: 10px; }
+.nexus-bank .bank-brand { color: var(--foreground); text-decoration: none; font-size: 23px; font-weight: 750; letter-spacing: -.025em; }
+.bank-brand-mark { background: var(--primary); color: var(--primary-foreground); padding: 10px; border-radius: 12px; }
+.bank-simulation { color: var(--wb-muted); font-size: 13px; }
+.nexus-bank .bank-workspace { margin-left: auto; font-size: 14px; font-weight: 650; color: var(--wb-blue); text-decoration: none; }
+.bank-workspace-body { max-width: 1280px; margin: auto; padding: 42px 24px 24px; }
+.bank-page-heading, .bank-navigation, .bank-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.nexus-bank .bank-page-heading h1 { margin: 0 0 8px; font-size: 30px; font-weight: 750; }
+.nexus-bank .bank-page-heading p, .nexus-bank .bank-section-heading p { margin: 0; color: var(--wb-muted); font-size: 14px; }
+.bank-navigation { margin: 30px 0; border-bottom: 1px solid var(--border); }
+.bank-tabs { display: flex; gap: 24px; }
+.nexus-bank .bank-tabs button { border: 0; border-radius: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--wb-muted); min-height: 58px; padding: 10px 2px; font-size: 15px; font-weight: 650; transition: color 180ms, border-color 180ms; }
+.nexus-bank .bank-tabs button[aria-selected="true"] { color: var(--wb-blue); border-bottom-color: var(--wb-blue); }
+.nexus-bank .bank-tabs button:hover { color: var(--foreground); }
+.bank-version { color: var(--wb-muted); font-size: 13px; }
+.bank-version strong { margin-left: 8px; padding: 5px 10px; color: var(--wb-blue); background: var(--wb-blue-soft); border-radius: 6px; }
+.bank-panel:not([hidden]) { animation: bank-panel-reveal 200ms ease-out; }
+@keyframes bank-panel-reveal { from { opacity: .65; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.nexus-bank .bank-section-heading h2 { font-size: 19px; font-weight: 700; margin: 0 0 5px; }
+.bank-section-heading { margin-bottom: 22px; }
+.bank-account-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-bottom: 36px; }
+.bank-account { padding: 26px 28px; border-radius: 16px; background: #172543; color: #fff; }
+.bank-account-1 { background: #244fc4; }
+.bank-account-label { justify-content: space-between; font-size: 16px; font-weight: 550; }
+.bank-account > strong { display: block; margin: 24px 0; font-size: 38px; font-weight: 650; letter-spacing: -.025em; font-variant-numeric: tabular-nums; }
+.bank-account-footer { justify-content: space-between; color: #e1e9ff; font-size: 13px; }
+.bank-account-footer code { font: inherit; font-size: 11px; letter-spacing: .08em; }
+.bank-client-grid { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1.5fr); gap: 36px; }
+.bank-transfer { padding-right: 36px; border-right: 1px solid var(--border); }
+.nexus-bank fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.bank-transfer fieldset { display: grid; gap: 18px; }
+.bank-transfer label { display: grid; gap: 8px; font-size: 14px; font-weight: 650; }
+.nexus-bank select, .nexus-bank input { font: inherit; color: var(--foreground); caret-color: var(--primary); }
+.nexus-bank .bank-transfer select { width: 100%; min-height: 46px; padding: 9px 12px; border: 1px solid var(--border); background: var(--input); border-radius: 9px; }
+.bank-amount { display: flex; gap: 10px; align-items: center; border: 1px solid var(--border); border-radius: 9px; padding: 0 13px; background: var(--input); }
+.bank-amount input { width: 100%; min-width: 0; border: 0; background: transparent; height: 48px; font-size: 20px; font-variant-numeric: tabular-nums; }
+.bank-amount span { color: var(--wb-muted); font-size: 13px; }
+.bank-amount:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }
+.nexus-bank .bank-amount input:focus-visible { outline: none; }
+.bank-transfer .primary-button { justify-content: space-between; min-height: 48px; margin-top: 3px; }
+.nexus-bank .bank-form-note { color: var(--wb-muted); font-size: 12px; margin-top: 16px; }
+.bank-count { background: var(--muted); color: var(--wb-muted); padding: 5px 10px; border-radius: 6px; font-size: 12px; white-space: nowrap; }
+.bank-empty { min-height: 270px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: var(--muted); border-radius: 12px; padding: 28px; }
+.bank-empty > svg { color: var(--wb-blue); margin-bottom: 15px; }
+.nexus-bank .bank-empty h3 { margin: 0 0 8px; font-size: 17px; }
+.nexus-bank .bank-empty p { max-width: 40ch; font-size: 14px; color: var(--wb-muted); margin: 0; }
+.bank-transaction-list, .bank-endpoints ul { list-style: none; padding: 0; margin: 0; }
+.bank-transaction-list li { display: flex; align-items: center; gap: 13px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.bank-transfer-icon { flex-shrink: 0; display: flex; padding: 11px; background: var(--wb-blue-soft); color: var(--wb-blue); border-radius: 10px; }
+.bank-transaction-description { flex: 1; min-width: 0; }
+.bank-transaction-description strong { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; font-size: 14px; }
+.bank-transaction-description code { color: var(--wb-muted); font-size: 12px; }
+.bank-transaction-amount { display: grid; justify-items: end; gap: 4px; font-size: 15px; font-variant-numeric: tabular-nums; }
+.nexus-bank .bank-transaction-amount .text-button { padding: 2px 0; font-size: 13px; }
+.bank-refunded { display: flex; align-items: center; gap: 4px; color: var(--wb-green); font-size: 12px; }
+.bank-provider-grid { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1.25fr); gap: 48px; }
+.bank-provider-settings { padding-right: 36px; border-right: 1px solid var(--border); }
+.nexus-bank .bank-version-options { display: grid; gap: 12px; }
+.bank-version-options label { display: flex; align-items: flex-start; gap: 12px; border: 1px solid var(--border); border-radius: 12px; padding: 18px; cursor: pointer; }
+.bank-version-options label:has(:checked) { border-color: var(--primary); background: var(--wb-blue-soft); }
+.bank-version-options input { accent-color: var(--primary); margin-top: 5px; width: 16px; height: 16px; flex-shrink: 0; }
+.bank-version-options strong { display: block; font-size: 15px; margin-bottom: 5px; }
+.bank-version-options label span span { display: block; color: var(--wb-muted); font-size: 13px; }
+.bank-provider-status { display: flex; gap: 12px; margin: 26px 0; color: var(--wb-blue); }
+.bank-provider-status strong { color: var(--foreground); font-size: 14px; }
+.nexus-bank .bank-provider-status p, .nexus-bank .bank-reset-note { font-size: 13px; color: var(--wb-muted); margin: 5px 0 0; }
+.nexus-bank .bank-reset-note { margin-top: 10px; max-width: 45ch; }
+.bank-endpoints li { display: flex; align-items: flex-start; gap: 13px; padding: 15px 0; border-bottom: 1px solid var(--border); }
+.bank-endpoints code { font-size: 13px; overflow-wrap: anywhere; }
+.nexus-bank .bank-endpoints li p { font-size: 12px; color: var(--wb-muted); margin: 5px 0 0; }
+.bank-method { font-size: 10px; font-weight: 750; color: var(--wb-blue); background: var(--wb-blue-soft); padding: 4px 7px; border-radius: 5px; min-width: 44px; text-align: center; }
+.bank-method-post { color: var(--wb-green); background: var(--wb-green-bg); }
+.bank-endpoints > a { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 20px; color: var(--wb-blue); text-decoration: none; }
+.bank-migration-guide { margin-top: 36px; padding: 24px; background: var(--muted); border-radius: 12px; }
+.nexus-bank .bank-migration-guide h2 { font-size: 16px; margin: 0 0 14px; }
+.bank-migration-guide ol { padding-left: 20px; margin: 0; font-size: 14px; line-height: 1.8; }
+.bank-notice { display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px; margin-bottom: 24px; border-radius: 10px; font-size: 14px; }
+.bank-notice > svg { flex-shrink: 0; margin-top: 2px; }
+.bank-notice-error { color: var(--wb-red); background: var(--wb-red-bg); }
+.bank-notice-success { color: var(--wb-green); background: var(--wb-green-bg); }
+.nexus-bank .bank-notice p { color: inherit; margin: 4px 0 0; }
+.bank-notice .text-button { margin-left: auto; }
+.bank-footer { justify-content: space-between; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px; color: var(--wb-muted); font-size: 12px; }
+.bank-loading { padding: 20px; color: var(--wb-muted); }
+.nexus-bank button:disabled, .nexus-bank fieldset:disabled { opacity: .6; cursor: wait; }
+.nexus-bank :is(a, button, input, select):focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.bank-refreshing { animation: bank-spin 1s linear infinite; }
+@keyframes bank-spin { to { transform: rotate(360deg); } }
+@media (max-width: 850px) {
+  .bank-client-grid, .bank-provider-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .bank-transfer, .bank-provider-settings { border-right: 0; padding-right: 0; }
+  .bank-simulation { display: none; }
+  .bank-page-heading { align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .nexus-bank .bank-topbar { padding: 16px; gap: 12px; }
+  .nexus-bank .bank-brand { font-size: 19px; }
+  .nexus-bank .bank-workspace { font-size: 12px; gap: 5px; }
+  .bank-workspace-body { padding: 28px 16px 20px; }
+  .bank-page-heading { flex-direction: column; gap: 18px; }
+  .nexus-bank .bank-page-heading h1 { font-size: 25px; }
+  .bank-tabs { gap: 18px; }
+  .nexus-bank .bank-tabs button { font-size: 13px; gap: 6px; }
+  .bank-navigation { align-items: flex-start; flex-wrap: wrap-reverse; gap: 10px; }
+  .bank-version { margin-left: auto; }
+  .bank-account-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .bank-account { padding: 22px; }
+  .bank-account > strong { font-size: 32px; margin: 18px 0; }
+  .bank-section-heading { gap: 10px; }
+  .bank-section-heading .secondary-button { font-size: 12px; padding: 9px; }
+  .bank-transfer-icon { display: none; }
+  .bank-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bank-panel:not([hidden]), .bank-refreshing { animation: none; }
+  .nexus-bank .bank-tabs button { transition: none; }
+}

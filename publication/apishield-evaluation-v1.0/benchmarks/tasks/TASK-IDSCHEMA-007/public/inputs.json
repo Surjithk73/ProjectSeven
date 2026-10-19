@@ -1,0 +1,10 @@
+[
+  {
+    "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.task-idschema-007.pub",
+    "subject_id": "usr_task-idschema-007_01",
+    "tenant_id": "org_workspace_7",
+    "scope_str": "openid profile email read:ledger",
+    "cursor_token": "cur_task-idschema-007_next",
+    "ttl_seconds": 4020
+  }
+]

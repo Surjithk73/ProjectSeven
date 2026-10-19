@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "9384860383f8cf5e2fbbc866c81a2cda9fb57402947ee5ea89fddbb8552fa132",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-025 (charge_to_payment_intent).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2754,
+    "cached_tokens": 0,
+    "output_tokens": 378,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:14:47 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-PAY-025 (charge_to_payment_intent)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/charge_to_payment_intent/task-pay-025':\\n            return False\\n        blk = o.get('body', {}).get('payment_intent')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to charge_to_payment_intent: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-025\"}",
+                "thought": null,
+                "thought_signature": "0fe4f1cd894e6b61ed99e0c9e549b5e0a64ce40ea7e6432fdff1bab526615b5e",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T18:14:47.988813Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_6eae569790b10e88c109c2",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 378,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 378
+          }
+        ],
+        "prompt_token_count": 2754,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2754
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3132,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred invariant check for TASK-PAY-025 (charge_to_payment_intent)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/charge_to_payment_intent/task-pay-025':\\n            return False\\n        blk = o.get('body', {}).get('payment_intent')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to charge_to_payment_intent: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-025\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-025 (charge_to_payment_intent).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:14:47 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-PAY-025 (charge_to_payment_intent)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/charge_to_payment_intent/task-pay-025':\\n            return False\\n        blk = o.get('body', {}).get('payment_intent')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to charge_to_payment_intent: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-025\"}",
+                "thoughtSignature": "0fe4f1cd894e6b61ed99e0c9e549b5e0a64ce40ea7e6432fdff1bab526615b5e"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T18:14:47.988813Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_6eae569790b10e88c109c2",
+      "usageMetadata": {
+        "candidatesTokenCount": 378,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 378
+          }
+        ],
+        "promptTokenCount": 2754,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2754
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3132,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 31.5256,
+    "wall_seconds": 31.5256,
+    "timestamp_utc": "2026-10-15T18:14:47.988813+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "e43b9d1ee6631b63429cd90b27a8380b8f4d6172e5eff0c7b040efbdbe7f74d9",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-PAY-025 (charge_to_payment_intent)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/charge_to_payment_intent/task-pay-025':\\n            return False\\n        blk = o.get('body', {}).get('payment_intent')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to charge_to_payment_intent: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-025\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-025 (charge_to_payment_intent).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/charge_to_payment_intent/task-pay-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_intent'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3280,
+    "cached_tokens": 0,
+    "output_tokens": 479,
+    "reasoning_tokens": 242,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:15:19 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:refund_charge\"], \"source\": \"# Candidate (B5) for TASK-PAY-025 (charge_to_payment_intent)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'payment_intent': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "1d550f94c76d323d72261104373b7400d8e8775f2717bdfd28104bc06031e683",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T18:15:19.514413Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_d97a49e752ab740260b980",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 479,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 479
+          }
+        ],
+        "prompt_token_count": 3280,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3280
+          }
+        ],
+        "thoughts_token_count": 242,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 4001,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:refund_charge\"], \"source\": \"# Candidate (B5) for TASK-PAY-025 (charge_to_payment_intent)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'payment_intent': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-PAY-025 (charge_to_payment_intent)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/charge_to_payment_intent/task-pay-025':\\n            return False\\n        blk = o.get('body', {}).get('payment_intent')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to charge_to_payment_intent: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-025\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_intent\": {\"type\": \"object\"}}, \"required\": [\"payment_intent\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate legacy /v1/charges payload to /v2/payment_intents state machine\", \"title\": \"TASK-PAY-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/charge_to_payment_intent/task-pay-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-025 (charge_to_payment_intent).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/charge_to_payment_intent/task-pay-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_intent'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:15:19 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:refund_charge\"], \"source\": \"# Candidate (B5) for TASK-PAY-025 (charge_to_payment_intent)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/charge_to_payment_intent/task-pay-025',\\n        'body': {\\n            'payment_intent': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "1d550f94c76d323d72261104373b7400d8e8775f2717bdfd28104bc06031e683"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T18:15:19.514413Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_d97a49e752ab740260b980",
+      "usageMetadata": {
+        "candidatesTokenCount": 479,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 479
+          }
+        ],
+        "promptTokenCount": 3280,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3280
+          }
+        ],
+        "thoughtsTokenCount": 242,
+        "totalTokenCount": 4001,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 45.7908,
+    "wall_seconds": 45.7908,
+    "timestamp_utc": "2026-10-15T18:15:19.514413+00:00"
+  }
+]

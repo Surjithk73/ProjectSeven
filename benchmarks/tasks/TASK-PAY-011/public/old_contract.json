@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-011",
+    "version": "1.0.0",
+    "description": "Replace raw token string with payment_method_data dictionary"
+  },
+  "paths": {
+    "/v1/payment/card_token_to_payment_method/task-pay-011": {
+      "post": {
+        "operationId": "create_charge",
+        "description": "Legacy v1 contract for TASK-PAY-011 (card_token_to_payment_method).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

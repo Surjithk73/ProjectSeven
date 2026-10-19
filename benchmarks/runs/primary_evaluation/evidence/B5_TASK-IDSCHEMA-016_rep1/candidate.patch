@@ -1,0 +1,28 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,18 @@
+-# TASK-IDSCHEMA-016: Move tenant_id from URL query string to X-Tenant-Context header
++# Candidate (B5) for TASK-IDSCHEMA-016 (tenant_workspace_routing)
+ def build_request(data):
+     return {
+-        'path': '/v1/identity/tenant_workspace_routing/task-idschema-016',
++        'path': '/v2/identity/tenant_workspace_routing/task-idschema-016',
+         'body': {
+-            'subject_id': data['subject_id'],
+-            'tenant_id': data['tenant_id'],
+-            'scopes': data['scope_str'],
+-            'ttl': data['ttl_seconds']
++            'workspace_session_payload': {
++                'sub': data['subject_id'],
++                'permissions': data['scope_str'].split(' '),
++                'next_cursor': data['cursor_token'],
++                'ttl_seconds': int(data['ttl_seconds'])
++            }
+         },
+         'headers': {
+-            'Authorization': 'Token ' + data['access_token']
++            'Authorization': 'Bearer ' + data['access_token'],
++            'X-Tenant-Context': data['tenant_id']
+         }
+     }
+ 

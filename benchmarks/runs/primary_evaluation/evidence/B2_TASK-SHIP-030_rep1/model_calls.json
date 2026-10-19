@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "559373d6730d13503364f24e9db39d9c3a233f25a5b83cf8ff1471af3fa98988",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"shipment_milestone_envelope\": {\"type\": \"object\"}}, \"required\": [\"shipment_milestone_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-030 (tracking_endpoint_path_migration).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/tracking_endpoint_path_migration/task-ship-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('shipment_milestone_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-030\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2315,
+    "cached_tokens": 0,
+    "output_tokens": 381,
+    "reasoning_tokens": 335,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:05:07 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B2) for TASK-SHIP-030\\ndef build_request(data):\\n    return {'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030', 'body': {'shipment_milestone_envelope': data['parcel_id']}, 'headers': {}}\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "c6960042827f3219a89bbf527bcac37eac399e54474efb9f4e00f10ad1977a62",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T10:05:07.614213Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_41bbacd208884de2114179",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 381,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 381
+          }
+        ],
+        "prompt_token_count": 2315,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2315
+          }
+        ],
+        "thoughts_token_count": 335,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3031,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B2) for TASK-SHIP-030\\ndef build_request(data):\\n    return {'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030', 'body': {'shipment_milestone_envelope': data['parcel_id']}, 'headers': {}}\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"shipment_milestone_envelope\": {\"type\": \"object\"}}, \"required\": [\"shipment_milestone_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-030 (tracking_endpoint_path_migration).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/tracking_endpoint_path_migration/task-ship-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('shipment_milestone_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-030\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:05:07 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B2) for TASK-SHIP-030\\ndef build_request(data):\\n    return {'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030', 'body': {'shipment_milestone_envelope': data['parcel_id']}, 'headers': {}}\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "c6960042827f3219a89bbf527bcac37eac399e54474efb9f4e00f10ad1977a62"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T10:05:07.614213Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_41bbacd208884de2114179",
+      "usageMetadata": {
+        "candidatesTokenCount": 381,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 381
+          }
+        ],
+        "promptTokenCount": 2315,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2315
+          }
+        ],
+        "thoughtsTokenCount": 335,
+        "totalTokenCount": 3031,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 45.8772,
+    "wall_seconds": 45.8772,
+    "timestamp_utc": "2026-10-15T10:05:07.614213+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "5d06daf90a9159989f1aa02e798e4f603eff641d5f7dd0b2988b35cc14d855f8",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"shipment_milestone_envelope\": {\"type\": \"object\"}}, \"required\": [\"shipment_milestone_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-030 (tracking_endpoint_path_migration).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/tracking_endpoint_path_migration/task-ship-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('shipment_milestone_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-030\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2501,
+    "cached_tokens": 0,
+    "output_tokens": 495,
+    "reasoning_tokens": 122,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:05:53 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B2) for TASK-SHIP-030 (tracking_endpoint_path_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'shipment_milestone_envelope': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\\n        }\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "825c3427b3ca9c8a4ae1c18aa83e0108d80ca16432eb4f32f0bba359446b8bef",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T10:05:53.491413Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_06557182d842669f135370",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 495,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 495
+          }
+        ],
+        "prompt_token_count": 2501,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2501
+          }
+        ],
+        "thoughts_token_count": 122,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3118,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B2) for TASK-SHIP-030 (tracking_endpoint_path_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'shipment_milestone_envelope': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\\n        }\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"shipment_milestone_envelope\": {\"type\": \"object\"}}, \"required\": [\"shipment_milestone_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\", \"title\": \"TASK-SHIP-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/tracking_endpoint_path_migration/task-ship-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-030 (tracking_endpoint_path_migration).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/tracking_endpoint_path_migration/task-ship-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('shipment_milestone_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-030\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:05:53 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B2) for TASK-SHIP-030 (tracking_endpoint_path_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/tracking_endpoint_path_migration/task-ship-030',\\n        'body': {\\n            'shipment_milestone_envelope': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\\n        }\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "825c3427b3ca9c8a4ae1c18aa83e0108d80ca16432eb4f32f0bba359446b8bef"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T10:05:53.491413Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_06557182d842669f135370",
+      "usageMetadata": {
+        "candidatesTokenCount": 495,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 495
+          }
+        ],
+        "promptTokenCount": 2501,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2501
+          }
+        ],
+        "thoughtsTokenCount": 122,
+        "totalTokenCount": 3118,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 39.8164,
+    "wall_seconds": 39.8164,
+    "timestamp_utc": "2026-10-15T10:05:53.491413+00:00"
+  }
+]

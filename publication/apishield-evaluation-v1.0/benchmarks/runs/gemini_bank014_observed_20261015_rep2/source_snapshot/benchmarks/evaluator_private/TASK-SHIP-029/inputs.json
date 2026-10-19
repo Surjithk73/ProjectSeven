@@ -1,0 +1,17 @@
+[
+  {
+    "parcel_id": "parcel-029",
+    "weight_grams": 1,
+    "idempotency_key": "key-\u03bb-0"
+  },
+  {
+    "parcel_id": "parcel-029",
+    "weight_grams": 1250,
+    "idempotency_key": "key-\u03bb-1"
+  },
+  {
+    "parcel_id": "parcel-029",
+    "weight_grams": 9007199254740993,
+    "idempotency_key": "key-\u03bb-2"
+  }
+]

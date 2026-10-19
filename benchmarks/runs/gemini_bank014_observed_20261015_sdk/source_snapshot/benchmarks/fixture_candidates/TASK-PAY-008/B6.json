@@ -1,0 +1,6 @@
+{
+  "origin": "trusted_fixture_not_model_output",
+  "source": "def build_request(data):\n    return {'path': '/refunds/create', 'body': {'refund': {'transaction_id': data['transaction_id'], 'amount_cents': data['amount_cents'], 'currency': data['currency']}}, 'headers': {'Idempotency-Key': data['idempotency_key']}}\n",
+  "abstain_reason": null,
+  "checks_source": "def check(inputs, outputs):\n    return all(isinstance(o['body'], dict) for o in outputs)\n"
+}

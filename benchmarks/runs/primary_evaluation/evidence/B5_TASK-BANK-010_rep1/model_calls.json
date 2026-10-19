@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "a2c28974fcf789160a225eb6448d48ff23f9bbc38c81789598dc6abf4cd3a2c2",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-010 (iso20022_pacs008_wrap).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-010\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2973,
+    "cached_tokens": 0,
+    "output_tokens": 468,
+    "reasoning_tokens": 62,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:01:22 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iso20022_pacs008_wrap/task-bank-010':\\n            return False\\n        blk = o.get('body', {}).get('pacs008_document')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-010\"}",
+                "thought": null,
+                "thought_signature": "74e4b116c5e3f0c1cfff6fe35e0785dacf9008aa1dbf16acac59aa326674e9a0",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T16:01:22.408675Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_67615de3ac499fbb12e088",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 468,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 468
+          }
+        ],
+        "prompt_token_count": 2973,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2973
+          }
+        ],
+        "thoughts_token_count": 62,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3503,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iso20022_pacs008_wrap/task-bank-010':\\n            return False\\n        blk = o.get('body', {}).get('pacs008_document')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-010\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-010 (iso20022_pacs008_wrap).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-010\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:01:22 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iso20022_pacs008_wrap/task-bank-010':\\n            return False\\n        blk = o.get('body', {}).get('pacs008_document')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-010\"}",
+                "thoughtSignature": "74e4b116c5e3f0c1cfff6fe35e0785dacf9008aa1dbf16acac59aa326674e9a0"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T16:01:22.408675Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_67615de3ac499fbb12e088",
+      "usageMetadata": {
+        "candidatesTokenCount": 468,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 468
+          }
+        ],
+        "promptTokenCount": 2973,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2973
+          }
+        ],
+        "thoughtsTokenCount": 62,
+        "totalTokenCount": 3503,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 37.8835,
+    "wall_seconds": 37.8835,
+    "timestamp_utc": "2026-10-15T16:01:22.408675+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "0dac08312de0c8cc07c1b68277f356fd6d0eb66861dfd557c7963a947c037040",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iso20022_pacs008_wrap/task-bank-010':\\n            return False\\n        blk = o.get('body', {}).get('pacs008_document')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-010\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-010 (iso20022_pacs008_wrap).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-010' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('pacs008_document'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-010\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3327,
+    "cached_tokens": 0,
+    "output_tokens": 460,
+    "reasoning_tokens": 395,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:02:00 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:execute_debit\"], \"source\": \"# Candidate (B5) for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'pacs008_document': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "6626df68dd72dfab5a263fe27e0eadb156390e0eb05762ecb2e65a723f9fa5f8",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T16:02:00.292175Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_077740fbfb004a443d6634",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 460,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 460
+          }
+        ],
+        "prompt_token_count": 3327,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3327
+          }
+        ],
+        "thoughts_token_count": 395,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 4182,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:execute_debit\"], \"source\": \"# Candidate (B5) for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'pacs008_document': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/iso20022_pacs008_wrap/task-bank-010':\\n            return False\\n        blk = o.get('body', {}).get('pacs008_document')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-010\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-010\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-010\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-010 (iso20022_pacs008_wrap).\", \"operationId\": \"execute_debit\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-010' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('pacs008_document'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"execute_debit\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-010\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 16:02:00 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:execute_debit\"], \"source\": \"# Candidate (B5) for TASK-BANK-010 (iso20022_pacs008_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-010',\\n        'body': {\\n            'pacs008_document': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef execute_debit(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "6626df68dd72dfab5a263fe27e0eadb156390e0eb05762ecb2e65a723f9fa5f8"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T16:02:00.292175Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_077740fbfb004a443d6634",
+      "usageMetadata": {
+        "candidatesTokenCount": 460,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 460
+          }
+        ],
+        "promptTokenCount": 3327,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3327
+          }
+        ],
+        "thoughtsTokenCount": 395,
+        "totalTokenCount": 4182,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 44.7163,
+    "wall_seconds": 44.7163,
+    "timestamp_utc": "2026-10-15T16:02:00.292175+00:00"
+  }
+]

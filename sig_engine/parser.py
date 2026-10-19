@@ -34,7 +34,7 @@ def get_http_call_sites(file_path: str):
             func_node = node.child_by_field_name('function')
             if func_node:
                 func_text = src[func_node.start_byte:func_node.end_byte].decode('utf-8')
-                if func_text in ('httpx.post', 'requests.post'):
+                if func_text in ('httpx.post', 'requests.post', 'httpx.get', 'requests.get'):
                     site_info = {
                         'file': file_path,
                         'call_code': src[node.start_byte:node.end_byte].decode('utf-8'),

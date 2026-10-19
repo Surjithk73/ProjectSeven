@@ -1,0 +1,738 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "a430684825dd027f112b4069d2003aa763deb560cc1127a86680f713ce5c05c7",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2815,
+    "cached_tokens": 0,
+    "output_tokens": 225,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:28:22 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}",
+                "thought": null,
+                "thought_signature": "144336977b7d4acecdd7af9f6e850349de455278857775298606bd8f9d26b8b6",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:28:22.157414Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_9fb401111e9b1ba72df2e5",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 225,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 225
+          }
+        ],
+        "prompt_token_count": 2815,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2815
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3040,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:28:22 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}",
+                "thoughtSignature": "144336977b7d4acecdd7af9f6e850349de455278857775298606bd8f9d26b8b6"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:28:22.157414Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_9fb401111e9b1ba72df2e5",
+      "usageMetadata": {
+        "candidatesTokenCount": 225,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 225
+          }
+        ],
+        "promptTokenCount": 2815,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2815
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3040,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 31.7243,
+    "wall_seconds": 31.7243,
+    "timestamp_utc": "2026-10-15T20:28:22.157414+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "a060987f6759b3fffed93ea924f8609007ab6fa54ca85de9a152d65f25acf913",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2902,
+    "cached_tokens": 0,
+    "output_tokens": 467,
+    "reasoning_tokens": 261,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:28:53 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}",
+                "thought": null,
+                "thought_signature": "3a1f05c54e3f070a819136784755c5b2275e39d0eb09f034399637d3140b32c1",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:28:53.881714Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_d76a7fd914f8d95a6338ef",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 467,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 467
+          }
+        ],
+        "prompt_token_count": 2902,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2902
+          }
+        ],
+        "thoughts_token_count": 261,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3630,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:28:53 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}",
+                "thoughtSignature": "3a1f05c54e3f070a819136784755c5b2275e39d0eb09f034399637d3140b32c1"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:28:53.881714Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_d76a7fd914f8d95a6338ef",
+      "usageMetadata": {
+        "candidatesTokenCount": 467,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 467
+          }
+        ],
+        "promptTokenCount": 2902,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2902
+          }
+        ],
+        "thoughtsTokenCount": 261,
+        "totalTokenCount": 3630,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 40.5197,
+    "wall_seconds": 40.5197,
+    "timestamp_utc": "2026-10-15T20:28:53.881714+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "593ab767adbc90128154ae0873b75d3f10d801086d42f4f4d40a1050a48c1bd3",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/pagination_cursor_migration/task-idschema-002' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('cursor_page_request'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3389,
+    "cached_tokens": 0,
+    "output_tokens": 378,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:29:34 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_user_profile\"], \"source\": \"# Attempt 1 candidate (B6) for TASK-IDSCHEMA-002\\ndef build_request(data):\\n    return {'path': '/v1/identity/pagination_cursor_migration/task-idschema-002', 'body': {'cursor_page_request': data['subject_id']}, 'headers': {}}\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "3f5f33a23b95f23e759dd1fcec37f5a60e4ad282e793c55cc4821d08e977fdd7",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:29:34.401414Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_3b4cd263e419a35619ca60",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 378,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 378
+          }
+        ],
+        "prompt_token_count": 3389,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3389
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3767,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_user_profile\"], \"source\": \"# Attempt 1 candidate (B6) for TASK-IDSCHEMA-002\\ndef build_request(data):\\n    return {'path': '/v1/identity/pagination_cursor_migration/task-idschema-002', 'body': {'cursor_page_request': data['subject_id']}, 'headers': {}}\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/pagination_cursor_migration/task-idschema-002' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('cursor_page_request'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:29:34 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_user_profile\"], \"source\": \"# Attempt 1 candidate (B6) for TASK-IDSCHEMA-002\\ndef build_request(data):\\n    return {'path': '/v1/identity/pagination_cursor_migration/task-idschema-002', 'body': {'cursor_page_request': data['subject_id']}, 'headers': {}}\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "3f5f33a23b95f23e759dd1fcec37f5a60e4ad282e793c55cc4821d08e977fdd7"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:29:34.401414Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_3b4cd263e419a35619ca60",
+      "usageMetadata": {
+        "candidatesTokenCount": 378,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 378
+          }
+        ],
+        "promptTokenCount": 3389,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3389
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3767,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 31.4311,
+    "wall_seconds": 31.4311,
+    "timestamp_utc": "2026-10-15T20:29:34.401414+00:00"
+  },
+  {
+    "call_index": 4,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "629a34f2d8e897d4cfb1dba88a4f5354fbb93bb7d36e7f947b1dba39da84ea5f",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/pagination_cursor_migration/task-idschema-002' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('cursor_page_request'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3210,
+    "cached_tokens": 0,
+    "output_tokens": 438,
+    "reasoning_tokens": 360,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:30:05 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_user_profile\"], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'cursor_page_request': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "68b563dba6d84870c2b4c4b8055198cc9a3aa4ced28aaf962fcecb7ff07e605f",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:30:05.832514Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_17fa06c90fe865555ac6e2",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 438,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 438
+          }
+        ],
+        "prompt_token_count": 3210,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3210
+          }
+        ],
+        "thoughts_token_count": 360,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 4008,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_user_profile\"], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'cursor_page_request': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/pagination_cursor_migration/task-idschema-002':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('cursor_page_request')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to pagination_cursor_migration: Migrate page/per_page offset query parameters to next_cursor/limit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"cursor_page_request\": {\"type\": \"object\"}}, \"required\": [\"cursor_page_request\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate page/per_page offset query parameters to next_cursor/limit\", \"title\": \"TASK-IDSCHEMA-002\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/pagination_cursor_migration/task-idschema-002\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-002 (pagination_cursor_migration).\", \"operationId\": \"get_user_profile\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/pagination_cursor_migration/task-idschema-002' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('cursor_page_request'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"pagination_cursor_migration\", \"coupled_ast_nodes\": [\"client.py:get_user_profile\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-002\"}, \"source\": \"# TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"get_user_profile\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-002\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:30:05 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_user_profile\"], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-002 (pagination_cursor_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/pagination_cursor_migration/task-idschema-002',\\n        'body': {\\n            'cursor_page_request': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef get_user_profile(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "68b563dba6d84870c2b4c4b8055198cc9a3aa4ced28aaf962fcecb7ff07e605f"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:30:05.832514Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_17fa06c90fe865555ac6e2",
+      "usageMetadata": {
+        "candidatesTokenCount": 438,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 438
+          }
+        ],
+        "promptTokenCount": 3210,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3210
+          }
+        ],
+        "thoughtsTokenCount": 360,
+        "totalTokenCount": 4008,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 42.3561,
+    "wall_seconds": 42.3561,
+    "timestamp_utc": "2026-10-15T20:30:05.832514+00:00"
+  }
+]

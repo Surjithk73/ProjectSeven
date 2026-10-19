@@ -1,0 +1,51 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-028",
+    "version": "1.0.0",
+    "description": "Move tenant_id from URL query string to X-Tenant-Context header"
+  },
+  "paths": {
+    "/v1/identity/tenant_workspace_routing/task-idschema-028": {
+      "post": {
+        "operationId": "exchange_token",
+        "description": "Legacy v1 contract for TASK-IDSCHEMA-028 (tenant_workspace_routing).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject_id",
+                  "tenant_id",
+                  "scopes",
+                  "ttl"
+                ],
+                "properties": {
+                  "subject_id": {
+                    "type": "string"
+                  },
+                  "tenant_id": {
+                    "type": "string"
+                  },
+                  "scopes": {
+                    "type": "string"
+                  },
+                  "ttl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

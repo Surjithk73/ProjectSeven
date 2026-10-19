@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-PAY-004: Nest application_fee_amount inside transfer_data object
++# Attempt 1 candidate (B6) for TASK-PAY-004
+ def build_request(data):
+-    return {
+-        'path': '/v1/payment/split_fee_nesting/task-pay-004',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/payment/split_fee_nesting/task-pay-004', 'body': {'transfer_data_split': data['amount_cents']}, 'headers': {}}
+ 
+ def submit_transaction(data):
+     return build_request(data)

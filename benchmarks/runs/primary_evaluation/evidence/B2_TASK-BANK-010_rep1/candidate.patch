@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-BANK-010: Wrap transfer payload in standard pacs.008 document envelope
++# Candidate (B2) for TASK-BANK-010 (iso20022_pacs008_wrap)
+ def build_request(data):
+     return {
+-        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-010',
++        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-010',
+         'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
++            'pacs008_document': {
++                'amount_subunits': int(data['amount_cents']),
++                'currency': data['currency'],
++                'source_route': data['source'],
++                'destination_route': 'unverified_route_task-bank-010',
++                'token_ref': data['extra_token']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'Idempotency-Key': 'dropped-idem-b2-task-bank-010'
++        }
+     }
+ 
+ def execute_debit(data):

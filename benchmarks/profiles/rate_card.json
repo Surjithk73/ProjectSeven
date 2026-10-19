@@ -1,0 +1,13 @@
+{
+  "model": "gemini-3.8-flash",
+  "region": "global",
+  "currency": "USD",
+  "observed_date": "2026-10-15",
+  "effective_until": "2026-12-31",
+  "input_per_million": 0.75,
+  "cached_input_per_million": 0.075,
+  "output_including_reasoning_per_million": 3.75,
+  "source": "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing",
+  "status": "public introductory list rates; estimates only, not invoices",
+  "non_200_policy": "Google lists no input/output charge for non-200 responses; unknown transport outcomes require billing reconciliation"
+}

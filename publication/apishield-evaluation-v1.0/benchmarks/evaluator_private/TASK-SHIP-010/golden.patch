@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-SHIP-010: Nest length, width, height into dimensions: {l, w, h, unit}
++# Candidate (GOLDEN) for TASK-SHIP-010 (dimensions_nesting_object)
+ def build_request(data):
+     return {
+-        'path': '/v1/logistics/dimensions_nesting_object/task-ship-010',
++        'path': '/v2/logistics/dimensions_nesting_object/task-ship-010',
+         'body': {
+-            'parcel_id': data['parcel_id'],
+-            'weight_grams': data['weight_grams'],
+-            'address_line_1': data['street_address'],
+-            'carrier': data['carrier_code']
++            'parcel_dimensions_box': {
++                'parcel_id': data['parcel_id'],
++                'weight_grams': int(data['weight_grams']),
++                'length_cm': int(data['length_cm']),
++                'carrier_iso': data['carrier_code'],
++                'route_address': data['street_address']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'X-Shipment-Idempotency': data['idempotency_key']
++        }
+     }
+ 
+ def book_courier(data):

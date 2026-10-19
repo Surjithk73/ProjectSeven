@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-005",
+    "version": "2.0.0",
+    "description": "Replace raw token string with payment_method_data dictionary"
+  },
+  "paths": {
+    "/v2/payment/card_token_to_payment_method/task-pay-005": {
+      "post": {
+        "operationId": "refund_charge",
+        "description": "Updated v2 contract for TASK-PAY-005: Replace raw token string with payment_method_data dictionary",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "payment_method_charge"
+                ],
+                "properties": {
+                  "payment_method_charge": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

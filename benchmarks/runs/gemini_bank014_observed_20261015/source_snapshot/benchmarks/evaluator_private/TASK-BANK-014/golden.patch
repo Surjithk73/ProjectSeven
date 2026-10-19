@@ -1,0 +1,6 @@
+--- a/client.py
++++ b/client.py
+@@ -1,2 +1,2 @@
+ def build_request(data):
+-    return {'path': '/transfers', 'body': {'amount_cents': data['amount_cents']}, 'headers': {}}
++    return {'path': '/transfers', 'body': {'source': data['source'], 'destination': data['destination'], 'amount': {'value': data['amount_cents'], 'currency': data['currency']}}, 'headers': {'Idempotency-Key': data['idempotency_key']}}

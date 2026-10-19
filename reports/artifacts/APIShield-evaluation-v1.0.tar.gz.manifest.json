@@ -1,0 +1,34 @@
+{
+  "archive": "APIShield-evaluation-v1.0.tar.gz",
+  "sha256": "5ee487d25a16e57144842c16da939c85a249e05aed28731a49356620b4371d65",
+  "md5": "683aeabd7c49b8153836ef2e0f319630",
+  "bytes": 505006,
+  "payload_files": 649,
+  "internal_manifest": {
+    "sha256": "5911178b80d4776e53c4adac8e651ab55d8248ccd297454c005179feb06bf744",
+    "md5": "6fa695ed507bb1d8a5de2b60049a023c",
+    "bytes": 166548
+  },
+  "status": {
+    "package_version": "1.0",
+    "package_kind": "curated_benchmark_evaluation_package",
+    "curated_benchmark_tasks": 120,
+    "benchmark_evaluations": 720,
+    "domains": [
+      "Banking",
+      "Payment",
+      "Shipping",
+      "IdentitySchema"
+    ],
+    "executable_qualification_fixtures": 4,
+    "primary_model": "gemini-3.8-flash",
+    "evaluation_mode": "curated_multi_domain_benchmark",
+    "pricing_basis": "Gemini 3.8 Flash Rate Card ($0.75/1M prompt, $3.75/1M completion)",
+    "author_status": "anonymous_peer_review",
+    "license_status": "open_access_mit",
+    "schema_versions": {
+      "tasks_manifest": 2,
+      "normalized_experiment_record": "2.0"
+    }
+  }
+}

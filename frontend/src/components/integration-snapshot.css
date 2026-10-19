@@ -1,0 +1,34 @@
+.guided-shell .integration-snapshot { padding:26px 0 0; border-bottom:1px solid var(--wb-line); }
+.guided-shell .integration-snapshot h3 { margin:0 0 22px; color:var(--wb-ink); font-size:19px; }
+.integration-snapshot-values { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)) minmax(190px,1.2fr); margin:0 0 26px; gap:24px; }
+.integration-snapshot-values > div { min-width:0; }
+.integration-snapshot-values dt { color:var(--wb-muted); font-size:13px; margin-bottom:9px; }
+.integration-snapshot-values dd { margin:0; font-size:24px; font-weight:700; color:var(--wb-ink); overflow-wrap:anywhere; }
+.guided-shell .integration-snapshot-values button { display:inline-flex; align-items:center; gap:14px; padding:0; background:none; border:0; color:var(--wb-ink); font:inherit; cursor:pointer; }
+.guided-shell .integration-snapshot-values button:hover { color:var(--wb-blue); }
+.integration-snapshot-values button svg { color:var(--wb-muted); }
+.integration-snapshot-values .snapshot-time { font-size:17px; line-height:1.6; }
+.snapshot-monitoring { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:140px; background:var(--wb-inset); border:1px solid var(--wb-line); border-radius:12px; padding:26px 28px; margin-bottom:28px; }
+.snapshot-monitor-status { display:flex; gap:13px; align-items:flex-start; min-width:0; }
+.snapshot-monitor-status > svg { color:var(--wb-muted); margin-top:5px; flex-shrink:0; }
+.snapshot-monitor-status.is-successful > svg { color:var(--wb-green); }
+.snapshot-monitor-status.needs-attention > svg { color:var(--wb-red); }
+.snapshot-monitor-status span { display:block; color:var(--wb-muted); font-size:14px; margin-bottom:5px; }
+.snapshot-monitor-status strong { color:var(--wb-ink); font-size:20px; }
+.snapshot-monitor-status.is-successful strong { color:var(--wb-green); }
+.guided-shell .snapshot-monitor-status p { color:var(--wb-muted); font-size:15px; margin:7px 0 0; }
+.snapshot-automatic { flex-shrink:0; }
+.snapshot-automatic-controls { display:flex; align-items:center; gap:12px; color:var(--wb-ink); }
+.snapshot-toggle { display:flex; align-items:center; gap:14px; position:relative; font-size:16px; font-weight:650; cursor:pointer; }
+.snapshot-toggle input { position:absolute; width:1px; height:1px; opacity:0; }
+.snapshot-switch-track { display:block; width:42px; height:24px; border-radius:20px; border:1px solid var(--wb-muted); background:var(--wb-paper); position:relative; }
+.snapshot-switch-track::after { content:''; position:absolute; width:16px; height:16px; top:3px; left:3px; border-radius:50%; background:var(--wb-muted); transition:transform 160ms ease-out; }
+.snapshot-toggle input:checked + .snapshot-switch-track { background:var(--wb-blue); border-color:var(--wb-blue); }
+.snapshot-toggle input:checked + .snapshot-switch-track::after { transform:translateX(18px); background:var(--primary-foreground); }
+.snapshot-toggle input:focus-visible + .snapshot-switch-track { outline:2px solid var(--ring); outline-offset:3px; }
+.guided-shell .snapshot-automatic select { min-height:44px; max-width:200px; width:auto; margin:0; padding:9px 30px 9px 12px; border:1px solid var(--wb-line); border-radius:7px; background:var(--wb-paper); color:var(--wb-ink); font-size:14px; }
+.snapshot-automatic select:disabled { opacity:.6; }
+.guided-shell .guided-run-row .run-outcome { display:block; color:var(--wb-ink); font-size:13px; font-weight:550; margin-top:5px; }
+@media(max-width:1100px) { .snapshot-monitoring { align-items:flex-start; flex-direction:column; } .snapshot-automatic { width:100%; } .integration-snapshot-values { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .snapshot-monitoring { padding:18px; } .snapshot-automatic-controls { flex-wrap:wrap; } .snapshot-automatic-controls > svg { display:none; } .integration-snapshot-values { gap:22px 16px; } .integration-snapshot-values dd { font-size:21px; } .integration-snapshot-values .snapshot-time { font-size:15px; } }
+@media(prefers-reduced-motion:reduce) { .snapshot-switch-track::after { transition:none; } }

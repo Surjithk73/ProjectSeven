@@ -16,6 +16,15 @@ build/
 # Node / Frontend
 frontend/node_modules/
 frontend/dist/
+swiftpay_frontend/node_modules/
+swiftpay_frontend/dist/
+.demo-logs/
+.app-logs/
+.superpowers/
+.impeccable/review/
+.impeccable/build/
+.impeccable/questions/
+.apishield/
 
 # Tools (binary)
 tools/oasdiff.exe
@@ -24,3 +33,9 @@ tools/oasdiff.exe
 *.log
 dashboard_state.json
 sig_engine/sig_store.json
+
+# Archived original source and private local configuration
+.project-backups/
+benchmarks/.venv/
+benchmarks/_work/
+benchmarks/models/

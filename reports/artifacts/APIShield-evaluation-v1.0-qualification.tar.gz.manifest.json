@@ -1,0 +1,38 @@
+{
+  "archive": "APIShield-evaluation-v1.0-qualification.tar.gz",
+  "sha256": "2c6e71f81b50f9a83394dff6e1cf8be3e578466b29801936dd7b830e707634e1",
+  "md5": "c4b77d5693380776d67e08c268f33b62",
+  "bytes": 402311,
+  "payload_files": 638,
+  "internal_manifest": {
+    "sha256": "740a9d94d0c12ad3abc0077b89aa452dd36839e92c938d5b190f85bdd962fe91",
+    "md5": "ffbe286f4c8184ac301b9466c540fafc",
+    "bytes": 164219
+  },
+  "status": {
+    "package_version": "1.0",
+    "package_kind": "synthetic_layout_and_actual_inference_diagnostics",
+    "empirical_120_task_evaluation_complete": false,
+    "synthetic_outcome_rows": 720,
+    "executable_qualification_tasks": 4,
+    "original_diagnostic_task_traces": 18,
+    "normalized_completed_inference_records": 6,
+    "fixture_qualification_traces": 24,
+    "model_requested": "gemini-3.8-flash",
+    "immutable_model_snapshot_verified": false,
+    "source_git_head": "80e7bbe0c01b58fa6615098c1bc56c6534a830eb",
+    "source_head_identifies_artifact": false,
+    "public_archive_deposited": false,
+    "doi_status": "not_assigned",
+    "artifact_badge_status": "not_awarded",
+    "author_status": "anonymous_structural_review",
+    "license_status": "owner_confirmation_required_before_public_distribution",
+    "schema_versions": {
+      "normalized_experiment_record": "1.0",
+      "raw_run_columns": 56,
+      "qualification_task_manifest": 1
+    },
+    "container_evaluation_observed": false,
+    "local_open_weight_inference_observed": false
+  }
+}

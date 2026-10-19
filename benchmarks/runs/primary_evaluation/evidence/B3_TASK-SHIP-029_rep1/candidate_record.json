@@ -1,0 +1,1 @@
+{"abstain_reason": null, "checks_source": null, "predicted_locations": ["client.py:generate_label"], "source": "# Candidate repair (B3) for TASK-SHIP-029\ndef build_request(data):\n    return {'path': '/labels/create', 'body': {'parcel': {'id': data['parcel_id'], 'weight_grams': int(data['weight_grams'])}}, 'headers': {'Idempotency-Key': data['idempotency_key']}}\n"}

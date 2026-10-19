@@ -1,0 +1,17 @@
+[
+  {
+    "stage": "semantic_clustering",
+    "retry_index": 0,
+    "prompt_sha256": "89bc0e674fd341a18f9b4ea6578cbfd99b80c4fad0ee484a92d2a0e1567ff656",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"new_contract\": {\"info\": {\"title\": \"TASK-BANK-014\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/transfers\": {\"post\": {\"description\": \"Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount\": {\"type\": \"object\"}}, \"required\": [\"amount\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"Accepted\"}}}}}}, \"old_contract\": {\"info\": {\"title\": \"TASK-BANK-014\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/transfers\": {\"post\": {\"description\": \"Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"integer\"}}, \"required\": [\"amount_cents\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"Accepted\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {'endpoint': all(o.get('path') == '/transfers' for o in outputs), 'payload_shape': all(isinstance(o.get('body', {}).get('amount'), dict) for o in outputs)}\\n\", \"source\": \"def build_request(data):\\n    return {'path': '/transfers', 'body': {'amount_cents': data['amount_cents']}, 'headers': {}}\\n\", \"structural_graph\": {\"basis\": \"python_ast; unresolved dynamic paths excluded\", \"functions\": [\"build_request\"], \"literal_paths\": [\"/transfers\"]}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "elapsed_seconds": 23.34672169999976,
+    "http_status": null,
+    "error_category": "TimeoutError"
+  }
+]

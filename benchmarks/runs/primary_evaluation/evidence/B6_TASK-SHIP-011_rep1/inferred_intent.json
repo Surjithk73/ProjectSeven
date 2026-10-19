@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-011",
+  "rules": [
+    "Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred logistics invariant check for TASK-SHIP-011 (hazmat_declaration_subschema)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/logistics/hazmat_declaration_subschema/task-ship-011':\n            return False\n        pkg = o.get('body', {}).get('hazmat_shipping_declaration')\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\n            return False\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\n            return False\n    return True\n"
+}

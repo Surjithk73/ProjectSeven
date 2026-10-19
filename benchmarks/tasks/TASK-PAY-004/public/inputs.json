@@ -1,0 +1,10 @@
+[
+  {
+    "source": "acct_orig_task-pay-004",
+    "destination": "acct_benef_task-pay-004",
+    "amount_cents": 15500,
+    "currency": "USD",
+    "idempotency_key": "idem-fin-pub-task-pay-004",
+    "extra_token": "tok_split_fee_nesting_4"
+  }
+]

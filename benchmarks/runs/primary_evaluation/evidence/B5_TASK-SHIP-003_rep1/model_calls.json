@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "0bf6a3257feca664e97a2dea3aa3319ccb63a7286918c915348198e3deb59860",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iso_carrier_dispatch\": {\"type\": \"object\"}}, \"required\": [\"iso_carrier_dispatch\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-003 (carrier_code_enum_standardization).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-003\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2773,
+    "cached_tokens": 0,
+    "output_tokens": 404,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:27:46 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}",
+                "thought": null,
+                "thought_signature": "e172f2da1f0a5af2be7ac5475f537a56dbe26c53df290a1f9b73d764df4643bf",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T18:27:46.989797Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_086053dd5cf11faffd10a3",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 404,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 404
+          }
+        ],
+        "prompt_token_count": 2773,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2773
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3177,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iso_carrier_dispatch\": {\"type\": \"object\"}}, \"required\": [\"iso_carrier_dispatch\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-003 (carrier_code_enum_standardization).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-003\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:27:46 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}",
+                "thoughtSignature": "e172f2da1f0a5af2be7ac5475f537a56dbe26c53df290a1f9b73d764df4643bf"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T18:27:46.989797Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_086053dd5cf11faffd10a3",
+      "usageMetadata": {
+        "candidatesTokenCount": 404,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 404
+          }
+        ],
+        "promptTokenCount": 2773,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2773
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3177,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 27.4534,
+    "wall_seconds": 27.4534,
+    "timestamp_utc": "2026-10-15T18:27:46.989797+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "408cb26493240622388d5b61250264c247664faf296cd9f26c6de24c7aa34557",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}, \"new_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iso_carrier_dispatch\": {\"type\": \"object\"}}, \"required\": [\"iso_carrier_dispatch\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-003 (carrier_code_enum_standardization).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/carrier_code_enum_standardization/task-ship-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('iso_carrier_dispatch'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-003\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3237,
+    "cached_tokens": 0,
+    "output_tokens": 446,
+    "reasoning_tokens": 302,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:28:14 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\", \"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-SHIP-003\\ndef build_request(data):\\n    return {'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003', 'body': {'iso_carrier_dispatch': data['parcel_id']}, 'headers': {}}\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "07670b1b71f62e6d8317b3a16e3b17f70bcb3bd116a5109d844035a7c90e9784",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T18:28:14.443197Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_356f42db00a175e726df33",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 446,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 446
+          }
+        ],
+        "prompt_token_count": 3237,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3237
+          }
+        ],
+        "thoughts_token_count": 302,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3985,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\", \"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-SHIP-003\\ndef build_request(data):\\n    return {'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003', 'body': {'iso_carrier_dispatch': data['parcel_id']}, 'headers': {}}\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}, \"new_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iso_carrier_dispatch\": {\"type\": \"object\"}}, \"required\": [\"iso_carrier_dispatch\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-003 (carrier_code_enum_standardization).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/carrier_code_enum_standardization/task-ship-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('iso_carrier_dispatch'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-003\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:28:14 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\", \"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-SHIP-003\\ndef build_request(data):\\n    return {'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003', 'body': {'iso_carrier_dispatch': data['parcel_id']}, 'headers': {}}\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "07670b1b71f62e6d8317b3a16e3b17f70bcb3bd116a5109d844035a7c90e9784"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T18:28:14.443197Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_356f42db00a175e726df33",
+      "usageMetadata": {
+        "candidatesTokenCount": 446,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 446
+          }
+        ],
+        "promptTokenCount": 3237,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3237
+          }
+        ],
+        "thoughtsTokenCount": 302,
+        "totalTokenCount": 3985,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 45.6902,
+    "wall_seconds": 45.6902,
+    "timestamp_utc": "2026-10-15T18:28:14.443197+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "d1459a71c51eef65e0f7c39c8603197e03fb072209fb0e6f1bf48bd44a787f9a",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}, \"new_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iso_carrier_dispatch\": {\"type\": \"object\"}}, \"required\": [\"iso_carrier_dispatch\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-003 (carrier_code_enum_standardization).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/carrier_code_enum_standardization/task-ship-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('iso_carrier_dispatch'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-003\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3295,
+    "cached_tokens": 0,
+    "output_tokens": 448,
+    "reasoning_tokens": 78,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:29:00 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B5) for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'iso_carrier_dispatch': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "150ef21cd4061b879d1d6936cfe8572f64ad463787ec52cf3c08ff9be7c8478b",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T18:29:00.133397Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_83ae3bb691fc37ed4b9984",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 448,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 448
+          }
+        ],
+        "prompt_token_count": 3295,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3295
+          }
+        ],
+        "thoughts_token_count": 78,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3821,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B5) for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'iso_carrier_dispatch': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\\n            return False\\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to carrier_code_enum_standardization: Standardize proprietary carrier codes to ISO carrier codes\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-003\"}, \"new_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"iso_carrier_dispatch\": {\"type\": \"object\"}}, \"required\": [\"iso_carrier_dispatch\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Standardize proprietary carrier codes to ISO carrier codes\", \"title\": \"TASK-SHIP-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/carrier_code_enum_standardization/task-ship-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-003 (carrier_code_enum_standardization).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/carrier_code_enum_standardization/task-ship-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('iso_carrier_dispatch'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-003\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 18:29:00 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B5) for TASK-SHIP-003 (carrier_code_enum_standardization)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/carrier_code_enum_standardization/task-ship-003',\\n        'body': {\\n            'iso_carrier_dispatch': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "150ef21cd4061b879d1d6936cfe8572f64ad463787ec52cf3c08ff9be7c8478b"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T18:29:00.133397Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_83ae3bb691fc37ed4b9984",
+      "usageMetadata": {
+        "candidatesTokenCount": 448,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 448
+          }
+        ],
+        "promptTokenCount": 3295,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3295
+          }
+        ],
+        "thoughtsTokenCount": 78,
+        "totalTokenCount": 3821,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 35.1687,
+    "wall_seconds": 35.1687,
+    "timestamp_utc": "2026-10-15T18:29:00.133397+00:00"
+  }
+]

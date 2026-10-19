@@ -1,0 +1,72 @@
+\section{Benchmark and Experimental Design}
+\subsection{Task population and evaluation release}
+The benchmark contains 120 curated tasks: 30 banking, 30 payment, 30 shipping and 30 identity/schema migrations. Each includes client source, old and new contracts, public inputs and checks, private evaluator inputs, an oracle, a reference patch, permitted edit paths and ground-truth impact annotations. Banking and payment form the 60-task financial subset. All 120 tasks have executable fixtures, including the four cases used in earlier qualification work.
+
+The request-builder fixtures are authored and grouped into repository families; they are not sampled industrial repositories. Reference patches remain evaluator-side assets. Candidate generation receives visible context and, according to treatment, structural or semantic context and additional inferred checks.
+
+\subsection{Treatment matrix}
+Table~\ref{tab:treatments} defines six configurations. B1 is the single-shot reference; B2 adds ordinary test feedback. B3 adds structural context to that iterative baseline. B4 substitutes SIG context. B5 combines structural context with inferred checks, while B6 combines SIG context with inferred checks. B3 through B6 consequently form a $2\times2$ comparison of representation and validation guidance.
+
+\begin{table}[t]\centering\small
+\caption{Treatment design. Inferred checks supplement public tests.}\label{tab:treatments}
+\begin{tabularx}{\columnwidth}{@{}lXcc@{}}\toprule
+ID & Generation context & Feedback & Inferred checks\\\midrule
+B1 & Source + contracts & No & No\\
+B2 & Source + contracts & Yes & No\\
+B3 & Structural AST & Yes & No\\
+B4 & SIG context & Yes & No\\
+B5 & Structural AST & Yes & Yes\\
+B6 & SIG context & Yes & Yes\\\bottomrule
+\end{tabularx}
+\end{table}
+
+There is one recorded outcome per task and configuration, giving 720 treatment records. Gemini 3.8 Flash is the recorded API model. Current call envelopes specify temperature 0.1, top-$p$ 0.95, seed 42, a 4,096-token output limit and LOW reasoning. A fixed seed does not make a remote model immutable or ensure repetition across service updates. B1 is single-shot; iterative treatments allow up to three repair attempts. Auxiliary context and intent calls also contribute to usage.
+
+\subsection{Oracle separation}
+Public tests and generated checks are repair-time evidence. The hidden oracle is evaluator-only evidence applied after the candidate has been selected. Its output cannot trigger another attempt. Hidden correctness denotes passage of the private assertions on their retained inputs. Figure~\ref{fig:architecture} shows this boundary.
+
+\subsection{Research questions and estimands}
+RQ1 concerns localization precision, recall and false alarms. RQ2 compares visible passage with hidden correctness. RQ3 examines the B3--B6 component combinations. RQ4 measures financial invariant preservation. RQ5 measures tokens, repair attempts and failure-inclusive estimated API cost. The migration task is the primary unit, paired across configurations.
+
+For a binary proportion $\hat p=k/n$, the release summary uses a two-sided 95\% Wilson interval~\cite{wilson1927}:
+\begin{equation}
+\frac{\hat p+z^2/(2n)\;\pm\;z\sqrt{\hat p(1-\hat p)/n+z^2/(4n^2)}}{1+z^2/n},
+\label{eq:wilson}
+\end{equation}
+with $z=1.96$. Paired contrasts use 20,000 domain-stratified bootstrap resamples, preserving task pairing and 30 cases per domain. The reported binary Cliff's $\delta$ equals the empirical risk difference; it restates the binary contrast rather than providing independent corroboration.
+
+The token-accounting scenario uses USD 0.75 per million prompt tokens and USD 3.75 per million completion and reasoning tokens. These fixed rates define the estimated costs; they are separate from actual invoiced charges. Cost per correct repair includes unsuccessful tasks in its numerator.
+
+\subsection{Units, pairing and uncertainty}
+A treatment record is a final task-level outcome even when several calls or repair attempts contributed to it. Calls are accounting events, not independent migration tasks. A financial row likewise contains several obligations on one candidate. Their joint-preservation rate cannot be obtained by multiplying marginal rates, because the assertions are dependent.
+
+For two treatments, let $n_{10}$ denote full-method-only successes and $n_{01}$ baseline-only successes. The paired risk difference is
+\begin{equation}
+\widehat\Delta=\frac{n_{10}-n_{01}}{N}.
+\label{eq:paired}
+\end{equation}
+Contingency counts expose direction and overlap. A bootstrap draw resamples task identifiers within each domain and carries both outcomes together. Resampling each treatment independently would discard the pairing and answer a different uncertainty question.
+
+The release contains one primary realization per task and method. Its intervals quantify task-resampling uncertainty conditional on that realization. They do not estimate repeated-inference variance or variation across model backends. Nor does domain stratification remove dependence induced by shared templates or repository families. We report secondary factorial differences descriptively without adding unrecorded significance claims.
+
+\subsection{Economic accounting}
+Let $I_{tm}$ denote all prompt tokens for task $t$ under method $m$, and $O_{tm}$ all completion and reasoning tokens. The release's pricing scenario gives
+\begin{equation}
+\widehat C_{tm}=\frac{0.75I_{tm}+3.75O_{tm}}{10^6}\quad\mathrm{USD}.
+\label{eq:cost}
+\end{equation}
+The failure-inclusive cost per correct repair is
+\begin{equation}
+\widehat C_m^{\mathrm{correct}}=\frac{\sum_{t=1}^{N}\widehat C_{tm}}{\sum_{t=1}^{N}Y_{tm}}.
+\label{eq:costcorrect}
+\end{equation}
+The numerator includes expenditure on failures as well as successes. A method can spend more per task but less per correct result if its success rate rises sufficiently. Conversely, greater correctness need not yield the cheapest correct repair. Both total expenditure and the ratio are retained.
+
+The estimate excludes caching discounts, host expenditure and developer time. It measures the API resources consumed in producing a correct candidate.
+
+\ifAccess
+\subsection{Protocol interpretation}
+The B3--B6 comparison controls task identity and exposes the two component choices. It does not equalize token budgets. SIG construction and intent inference can add calls and alter prompt size. Consequently, a higher success rate may reflect useful guidance, additional inference opportunity, or both. A budget-matched comparator would test a further hypothesis.
+
+A task's hidden oracle defines the endpoint shared across its six treatments. Corrections require a new evaluator version and reevaluation of the affected saved candidates. Generated checks likewise belong to the selection history of the candidate that they accepted.
+\fi

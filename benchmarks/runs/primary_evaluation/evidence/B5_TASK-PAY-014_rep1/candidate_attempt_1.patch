@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-PAY-014: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation
++# Attempt 1 candidate (B5) for TASK-PAY-014
+ def build_request(data):
+-    return {
+-        'path': '/v1/payment/currency_minor_units_enforcement/task-pay-014',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/payment/currency_minor_units_enforcement/task-pay-014', 'body': {'minor_unit_settlement': data['amount_cents']}, 'headers': {}}
+ 
+ def submit_transaction(data):
+     return build_request(data)

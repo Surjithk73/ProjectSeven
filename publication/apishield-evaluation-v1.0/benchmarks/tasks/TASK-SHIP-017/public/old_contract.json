@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-017",
+    "version": "1.0.0",
+    "description": "Add required hazardous_materials boolean and classification code"
+  },
+  "paths": {
+    "/v1/logistics/hazmat_declaration_subschema/task-ship-017": {
+      "post": {
+        "operationId": "calculate_rate",
+        "description": "Legacy v1 contract for TASK-SHIP-017 (hazmat_declaration_subschema).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "parcel_id",
+                  "weight_grams",
+                  "address_line_1"
+                ],
+                "properties": {
+                  "parcel_id": {
+                    "type": "string"
+                  },
+                  "weight_grams": {
+                    "type": "string"
+                  },
+                  "address_line_1": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

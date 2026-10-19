@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-SHIP-002",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "metric_weight_conversion",
+  "coupled_ast_nodes": [
+    "client.py:calculate_rate"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "inference_validated",
+  "intent": {
+    "rules": [
+      {
+        "id": "balance_v2_response_structure",
+        "description": "balance() must parse the V2 balance response where balance is an object with 'value' and 'currency' fields instead of 'balance_cents'.",
+        "file": "src/bankclient.py",
+        "function": "balance",
+        "origin": "ai_inferred",
+        "confirmed": false
+      },
+      {
+        "id": "transfer_v2_request_payload",
+        "description": "transfer() must post the amount as an object {'value': amount, 'currency': ...} rather than integer 'amount_cents'.",
+        "file": "src/bankclient.py",
+        "function": "transfer",
+        "origin": "ai_inferred",
+        "confirmed": false
+      },
+      {
+        "id": "refund_v2_endpoint_path",
+        "description": "refund() must POST to '/refunds/create' instead of '/refunds'.",
+        "file": "src/bankclient.py",
+        "function": "refund",
+        "origin": "ai_inferred",
+        "confirmed": false
+      }
+    ],
+    "checks": [
+      {
+        "file": "tests/apishield_generated/test_v2_bankclient.py",
+        "code": "import unittest.mock\nimport httpx\nimport pytest\nfrom src import bankclient\n\n\ndef test_balance_v2_payload_structure():\n    req = httpx.Request(\"GET\", \"https://bank.test/accounts/checking/balance\")\n    v2_response = httpx.Response(200, json={\"balance\": {\"value\": 54321, \"currency\": \"USD\"}}, request=req)\n    with unittest.mock.patch(\"httpx.get\", return_value=v2_response) as mock_get:\n        result = bankclient.balance(\"checking\")\n        assert result == 54321\n        mock_get.assert_called_once_with(\"https://bank.test/accounts/checking/balance\")\n\n\ndef test_transfer_v2_request_payload():\n    req = httpx.Request(\"POST\", \"https://bank.test/transfers\")\n    v2_response = httpx.Response(\n        200,\n        json={\"id\": \"tx-999\", \"source\": \"checking\", \"destination\": \"savings\", \"amount_cents\": 2500, \"refunded\": False},\n        request=req,\n    )\n    with unittest.mock.patch(\"httpx.post\", return_value=v2_response) as mock_post:\n        res = bankclient.transfer(\"checking\", \"savings\", 2500)\n        assert res[\"amount_cents\"] == 2500\n        assert mock_post.call_count == 1\n        call_kwargs = mock_post.call_args[1]\n        assert call_kwargs.get(\"json\") == {\n            \"source\": \"checking\",\n            \"destination\": \"savings\",\n            \"amount\": {\"value\": 2500, \"currency\": \"USD\"},\n        }\n\n\ndef test_refund_v2_endpoint():\n    req = httpx.Request(\"POST\", \"https://bank.test/refunds/create\")\n    v2_response = httpx.Response(\n        200,\n        json={\"id\": \"tx-123\", \"source\": \"checking\", \"destination\": \"savings\", \"amount_cents\": 100, \"refunded\": True},\n        request=req,\n    )\n    with unittest.mock.patch(\"httpx.post\", return_value=v2_response) as mock_post:\n        res = bankclient.refund(\"tx-123\")\n        assert res[\"refunded\"] is True\n        mock_post.assert_called_once_with(\n            \"https://bank.test/refunds/create\",\n            json={\"transaction_id\": \"tx-123\"},\n        )\n"
+      }
+    ],
+    "model": "gemini-3.8-flash",
+    "usage": {
+      "cache_tokens_details": "[REDACTED]",
+      "cached_content_token_count": "[REDACTED]",
+      "candidates_token_count": "[REDACTED]",
+      "candidates_tokens_details": "[REDACTED]",
+      "prompt_token_count": "[REDACTED]",
+      "prompt_tokens_details": "[REDACTED]",
+      "thoughts_token_count": "[REDACTED]",
+      "tool_use_prompt_token_count": "[REDACTED]",
+      "tool_use_prompt_tokens_details": "[REDACTED]",
+      "total_token_count": "[REDACTED]",
+      "traffic_type": "ON_DEMAND"
+    },
+    "generation_usage": [
+      {
+        "cache_tokens_details": "[REDACTED]",
+        "cached_content_token_count": "[REDACTED]",
+        "candidates_token_count": "[REDACTED]",
+        "candidates_tokens_details": "[REDACTED]",
+        "prompt_token_count": "[REDACTED]",
+        "prompt_tokens_details": "[REDACTED]",
+        "thoughts_token_count": "[REDACTED]",
+        "tool_use_prompt_token_count": "[REDACTED]",
+        "tool_use_prompt_tokens_details": "[REDACTED]",
+        "total_token_count": "[REDACTED]",
+        "traffic_type": "ON_DEMAND"
+      }
+    ]
+  },
+  "elapsed_s": 11.26,
+  "events": [],
+  "source_job": "b08960f0bb3b4d10b08e0109543a4109",
+  "scope": "Live intent inference only; no tests executed or patch applied"
+}

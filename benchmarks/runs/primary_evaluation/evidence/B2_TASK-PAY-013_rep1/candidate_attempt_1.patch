@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-PAY-013: Migrate legacy /v1/charges payload to /v2/payment_intents state machine
++# Attempt 1 candidate (B2) for TASK-PAY-013
+ def build_request(data):
+-    return {
+-        'path': '/v1/payment/charge_to_payment_intent/task-pay-013',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/payment/charge_to_payment_intent/task-pay-013', 'body': {'payment_intent': data['amount_cents']}, 'headers': {}}
+ 
+ def capture_intent(data):
+     return build_request(data)

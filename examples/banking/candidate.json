@@ -1,0 +1,5 @@
+{"patches":[
+  {"file":"src/bankclient.py","old_code_snippet":"return response.json()['balance_cents']","new_code_snippet":"return response.json()['balance']['value']"},
+  {"file":"src/bankclient.py","old_code_snippet":"'amount_cents': amount_cents","new_code_snippet":"'amount': {'value': amount_cents, 'currency': 'USD'}"},
+  {"file":"src/bankclient.py","old_code_snippet":"f'{API_BASE}/refunds'","new_code_snippet":"f'{API_BASE}/refunds/create'"}
+]}

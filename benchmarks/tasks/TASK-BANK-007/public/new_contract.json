@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-007",
+    "version": "2.0.0",
+    "description": "Convert flat amount_cents (int) to nested amount object {value: int, currency: str}"
+  },
+  "paths": {
+    "/v2/banking/amount_cents_to_currency_object/task-bank-007": {
+      "post": {
+        "operationId": "transfer_funds",
+        "description": "Updated v2 contract for TASK-BANK-007: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "currency_transfer"
+                ],
+                "properties": {
+                  "currency_transfer": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

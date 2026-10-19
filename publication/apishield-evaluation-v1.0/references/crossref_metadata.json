@@ -1,0 +1,2500 @@
+{
+  "asap2024": {
+    "indexed": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          19
+        ]
+      ],
+      "date-time": "2025-06-19T05:03:17Z",
+      "timestamp": 1750309397073,
+      "version": "3.41.0"
+    },
+    "publisher-location": "New York, NY, USA",
+    "reference-count": 15,
+    "publisher": "ACM",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2024,
+              4,
+              20
+            ]
+          ],
+          "date-time": "2024-04-20T00:00:00Z",
+          "timestamp": 1713571200000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "dl.acm.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [],
+    "published-print": {
+      "date-parts": [
+        [
+          2024,
+          4,
+          20
+        ]
+      ]
+    },
+    "DOI": "10.1145/3643788.3648011",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          11
+        ]
+      ],
+      "date-time": "2024-09-11T15:29:37Z",
+      "timestamp": 1726068577000
+    },
+    "page": "1-4",
+    "update-policy": "https://doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "ASAP-Repair: API-Specific Automated Program Repair Based on API Usage Graphs"
+    ],
+    "prefix": "10.1145",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-0147-3526",
+        "authenticated-orcid": false,
+        "given": "Sebastian",
+        "family": "Nielebock",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Otto-von-Guericke-University Magdeburg, Magdeburg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6910-9475",
+        "authenticated-orcid": false,
+        "given": "Paul",
+        "family": "Blockhaus",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Otto-von-Guericke-University Magdeburg, Magdeburg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-0283-248X",
+        "authenticated-orcid": false,
+        "given": "Jacob",
+        "family": "Kruger",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Eindhoven University of Technology, Eindhoven, Netherlands"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-6186-4142",
+        "authenticated-orcid": false,
+        "given": "Frank",
+        "family": "Ortmeier",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Otto-von-Guericke-University Magdeburg, Magdeburg, Germany"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "member": "320",
+    "published-online": {
+      "date-parts": [
+        [
+          2024,
+          9,
+          11
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_3_2_1_1_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2901739.2903506"
+      },
+      {
+        "key": "e_1_3_2_1_2_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSE.2018.2827384"
+      },
+      {
+        "key": "e_1_3_2_1_3_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/MSR.2019.00053"
+      },
+      {
+        "key": "e_1_3_2_1_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/503272.503275"
+      },
+      {
+        "key": "e_1_3_2_1_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-00768-2_26"
+      },
+      {
+        "key": "e_1_3_2_1_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3372123"
+      },
+      {
+        "key": "e_1_3_2_1_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSE.2021.3069978"
+      },
+      {
+        "key": "e_1_3_2_1_8_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSE.2021.3067156"
+      },
+      {
+        "key": "e_1_3_2_1_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3105906"
+      },
+      {
+        "key": "e_1_3_2_1_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1137/0105003"
+      },
+      {
+        "key": "e_1_3_2_1_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/SCAM52516.2021.00034"
+      },
+      {
+        "key": "e_1_3_2_1_12_1",
+        "unstructured": "Sebastian Nielebock Paul Blockhaus Jacob Krüger and Frank Ortmeier. 2022. Automated Change Rule Inference for Distance-Based API Misuse Detection. arXiv:2207.06665 [cs.SE]"
+      },
+      {
+        "key": "e_1_3_2_1_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3377816.3381735"
+      },
+      {
+        "key": "e_1_3_2_1_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-540-31980-1_30"
+      },
+      {
+        "key": "e_1_3_2_1_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-03013-0_15"
+      }
+    ],
+    "event": {
+      "name": "APR '24: 5th ACM/IEEE International Workshop on Automated Program Repair",
+      "sponsor": [
+        "SIGSOFT ACM Special Interest Group on Software Engineering",
+        "IEEE CS",
+        "Faculty of Engineering of University of Porto"
+      ],
+      "location": "Lisbon Portugal",
+      "acronym": "APR '24"
+    },
+    "container-title": [
+      "Proceedings of the 5th ACM/IEEE International Workshop on Automated Program Repair"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "https://dl.acm.org/doi/10.1145/3643788.3648011",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://dl.acm.org/doi/pdf/10.1145/3643788.3648011",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          19
+        ]
+      ],
+      "date-time": "2025-06-19T00:57:45Z",
+      "timestamp": 1750294665000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://dl.acm.org/doi/10.1145/3643788.3648011"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          4,
+          20
+        ]
+      ]
+    },
+    "references-count": 15,
+    "alternative-id": [
+      "10.1145/3643788.3648011",
+      "10.1145/3643788"
+    ],
+    "URL": "https://doi.org/10.1145/3643788.3648011",
+    "relation": {},
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2024,
+          4,
+          20
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2024-09-11",
+        "order": 3,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  },
+  "apifix2021": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          8
+        ]
+      ],
+      "date-time": "2026-10-08T11:37:10Z",
+      "timestamp": 1791459430400,
+      "version": "4.3.4"
+    },
+    "reference-count": 31,
+    "publisher": "Association for Computing Machinery (ACM)",
+    "issue": "OOPSLA",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2021,
+              10,
+              15
+            ]
+          ],
+          "date-time": "2021-10-15T00:00:00Z",
+          "timestamp": 1634256000000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "dl.acm.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Proc. ACM Program. Lang."
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          20
+        ]
+      ]
+    },
+    "abstract": "<jats:p>Use of third-party libraries is extremely common in application software. The libraries evolve to accommodate new features or mitigate security vulnerabilities, thereby breaking the Application Programming Interface(API) used by the software. Such breaking changes in the libraries may discourage client code from using the new library versions thereby keeping the application vulnerable and not up-to-date. We propose a novel output-oriented program synthesis algorithm to automate API usage adaptations via program transformation. Our aim is not only to rely on the few example human adaptations of the clients from the old library version to the new library version, since this can lead to over-fitting transformation rules. Instead, we also rely on example usages of the new updated library in clients, which provide valuable context for synthesizing and applying the transformation rules. Our tool APIFix provides an automated mechanism to transform application code using the old library versions to code using the new library versions - thereby achieving automated API usage adaptation to fix the effect of breaking changes. Our evaluation shows that the transformation rules inferred by APIFix achieve 98.7% precision and 91.5% recall. By comparing our approach to state-of-the-art program synthesis approaches, we show that our approach significantly reduces over-fitting while synthesizing transformation rules for API usage adaptations.</jats:p>",
+    "DOI": "10.1145/3485538",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          15
+        ]
+      ],
+      "date-time": "2021-10-15T19:18:28Z",
+      "timestamp": 1634325508000
+    },
+    "page": "1-27",
+    "update-policy": "https://doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 19,
+    "title": [
+      "APIfix: output-oriented program synthesis for combating breaking changes in libraries"
+    ],
+    "prefix": "10.1145",
+    "volume": "5",
+    "author": [
+      {
+        "given": "Xiang",
+        "family": "Gao",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "National University of Singapore, Singapore"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Arjun",
+        "family": "Radhakrishna",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Microsoft, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gustavo",
+        "family": "Soares",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Microsoft, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5409-4864",
+        "authenticated-orcid": false,
+        "given": "Ridwan",
+        "family": "Shariffdeen",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National University of Singapore, Singapore"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sumit",
+        "family": "Gulwani",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Microsoft, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7127-1137",
+        "authenticated-orcid": false,
+        "given": "Abhik",
+        "family": "Roychoudhury",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National University of Singapore, Singapore"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "320",
+    "published-online": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          15
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_2_2_1_1",
+        "unstructured": "2020. Refazer: Program Synthesis Tool. https://www.nuget.org/packages/Microsoft.ProgramSynthesis  2020. Refazer: Program Synthesis Tool. https://www.nuget.org/packages/Microsoft.ProgramSynthesis"
+      },
+      {
+        "key": "e_1_2_2_2_1",
+        "unstructured": "2021. Github Dependency Graph. https://docs.github.com/en/code-security/supply-chain-security/about-the-dependency-graph  2021. Github Dependency Graph. https://docs.github.com/en/code-security/supply-chain-security/about-the-dependency-graph"
+      },
+      {
+        "key": "e_1_2_2_3_1",
+        "unstructured": "2021. Micrsoft MSBuild. https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-api  2021. Micrsoft MSBuild. https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-api"
+      },
+      {
+        "key": "e_1_2_2_4_1",
+        "unstructured": "2021. Roslyn Framework. https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview  2021. Roslyn Framework. https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview"
+      },
+      {
+        "key": "e_1_2_2_5_1",
+        "volume-title": "Mukund Raghothaman, Sanjit A Seshia, Rishabh Singh, Armando Solar-Lezama, Emina Torlak, and Abhishek Udupa.",
+        "author": "Alur Rajeev",
+        "year": "2013"
+      },
+      {
+        "key": "e_1_2_2_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3360585"
+      },
+      {
+        "key": "e_1_2_2_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3338906.3338952"
+      },
+      {
+        "key": "e_1_2_2_8_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-642-22110-1_20"
+      },
+      {
+        "key": "e_1_2_2_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICSE.2009.5070565"
+      },
+      {
+        "key": "e_1_2_2_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2000799.2000805"
+      },
+      {
+        "key": "e_1_2_2_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2642937.2642982"
+      },
+      {
+        "key": "e_1_2_2_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3293882.3330571"
+      },
+      {
+        "key": "e_1_2_2_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3140587.3062351"
+      },
+      {
+        "key": "e_1_2_2_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3428287"
+      },
+      {
+        "key": "e_1_2_2_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1925844.1926423"
+      },
+      {
+        "key": "e_1_2_2_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3387904.3389285"
+      },
+      {
+        "key": "e_1_2_2_17_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICSE.2005.1553570"
+      },
+      {
+        "key": "e_1_2_2_18_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10664-017-9521-5"
+      },
+      {
+        "key": "e_1_2_2_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3106237.3106253"
+      },
+      {
+        "key": "e_1_2_2_20_1",
+        "volume-title": "Proceedings of the 32Nd ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI). ACM",
+        "author": "Meng Na"
+      },
+      {
+        "key": "e_1_2_2_21_1",
+        "volume-title": "McKinley",
+        "author": "Meng Na",
+        "year": "2013"
+      },
+      {
+        "key": "e_1_2_2_22_1",
+        "volume-title": "OOPSLA",
+        "author": "Miltner Anders",
+        "year": "2019"
+      },
+      {
+        "key": "e_1_2_2_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1932682.1869486"
+      },
+      {
+        "key": "e_1_2_2_24_1",
+        "volume-title": "A note on inductive generalization. Machine intelligence, 5, 1",
+        "author": "Plotkin Gordon D",
+        "year": "1970"
+      },
+      {
+        "key": "e_1_2_2_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICSE.2017.44"
+      },
+      {
+        "key": "e_1_2_2_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.14778/2977797.2977807"
+      },
+      {
+        "key": "e_1_2_2_27_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2025113.2025153"
+      },
+      {
+        "key": "e_1_2_2_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1375581.1375599"
+      },
+      {
+        "key": "e_1_2_2_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1065010.1065045"
+      },
+      {
+        "key": "e_1_2_2_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/SANER.2017.7884616"
+      },
+      {
+        "key": "e_1_2_2_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICPC.2019.00052"
+      }
+    ],
+    "container-title": [
+      "Proceedings of the ACM on Programming Languages"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://dl.acm.org/doi/10.1145/3485538",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://dl.acm.org/doi/pdf/10.1145/3485538",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          17
+        ]
+      ],
+      "date-time": "2025-06-17T20:18:40Z",
+      "timestamp": 1750191520000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://dl.acm.org/doi/10.1145/3485538"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          15
+        ]
+      ]
+    },
+    "references-count": 31,
+    "journal-issue": {
+      "issue": "OOPSLA",
+      "published-print": {
+        "date-parts": [
+          [
+            2021,
+            10,
+            20
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1145/3485538"
+    ],
+    "URL": "https://doi.org/10.1145/3485538",
+    "relation": {},
+    "ISSN": [
+      "2475-1421"
+    ],
+    "issn-type": [
+      {
+        "value": "2475-1421",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2021,
+          10,
+          15
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2021-10-15",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  },
+  "classinvgen2025": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          2
+        ]
+      ],
+      "date-time": "2026-10-02T13:33:14Z",
+      "timestamp": 1790947994485,
+      "version": "4.1.0"
+    },
+    "publisher-location": "Cham",
+    "reference-count": 45,
+    "publisher": "Springer Nature Switzerland",
+    "isbn-type": [
+      {
+        "value": "9783031999901",
+        "type": "print"
+      },
+      {
+        "value": "9783031999918",
+        "type": "electronic"
+      }
+    ],
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              10,
+              28
+            ]
+          ],
+          "date-time": "2025-10-28T00:00:00Z",
+          "timestamp": 1761609600000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2025,
+              10,
+              28
+            ]
+          ],
+          "date-time": "2025-10-28T00:00:00Z",
+          "timestamp": 1761609600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "link.springer.com"
+      ],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [],
+    "published-print": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "DOI": "10.1007/978-3-031-99991-8_4",
+    "type": "book-chapter",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          27
+        ]
+      ],
+      "date-time": "2025-10-27T05:36:01Z",
+      "timestamp": 1761543361000
+    },
+    "page": "64-96",
+    "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 4,
+    "title": [
+      "ClassInvGen: Class Invariant Synthesis Using Large Language Models"
+    ],
+    "prefix": "10.1007",
+    "author": [
+      {
+        "given": "Chuyue",
+        "family": "Sun",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Viraj",
+        "family": "Agashe",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Saikat",
+        "family": "Chakraborty",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jubi",
+        "family": "Taneja",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Clark",
+        "family": "Barrett",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "David",
+        "family": "Dill",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xiaokang",
+        "family": "Qiu",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Shuvendu K.",
+        "family": "Lahiri",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "297",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          28
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "4_CR1",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Ammons, G., Bodík, R., Larus, J.R.: Mining specifications. In: Proceedings of the 29th ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages, POPL ’02, pp. 4–16. Association for Computing Machinery, New York (2002). https://doi.org/10.1145/503272.503275",
+        "DOI": "10.1145/503272.503275"
+      },
+      {
+        "key": "4_CR2",
+        "doi-asserted-by": "publisher",
+        "first-page": "143",
+        "DOI": "10.1007/978-3-031-57259-3_7",
+        "volume-title": "Fundamental Approaches to Software Engineering",
+        "author": "JH Boockmann",
+        "year": "2024",
+        "unstructured": "Boockmann, J.H., Lüttgen, G.: Comprehending object state via dynamic class invariant learning. In: Beyer, D., Cavalcanti, A. (eds.) Fundamental Approaches to Software Engineering, pp. 143–164. Springer, Cham (2024). https://doi.org/10.1007/978-3-031-57259-3_7"
+      },
+      {
+        "key": "4_CR3",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Brunsfeld, M., et al.: Kolja: tree-sitter/tree-sitter: v0.24.4 (2024). https://doi.org/10.5281/zenodo.14061403",
+        "DOI": "10.5281/zenodo.14061403"
+      },
+      {
+        "key": "4_CR4",
+        "doi-asserted-by": "publisher",
+        "first-page": "212",
+        "DOI": "10.1007/s10009-004-0167-4",
+        "volume": "7",
+        "author": "L Burdy",
+        "year": "2005",
+        "unstructured": "Burdy, L., et al.: An overview of jml tools and applications. Int. J. Softw. Tools Technol. Transfer 7, 212–232 (2005)",
+        "journal-title": "Int. J. Softw. Tools Technol. Transfer"
+      },
+      {
+        "key": "4_CR5",
+        "unstructured": "Cadar, C., Dunbar, D., Engler, D.: Klee: unassisted and automatic generation of high-coverage tests for complex systems programs. In: Proceedings of the 8th USENIX Conference on Operating Systems Design and Implementation, OSDI’08, pp. 209–224. USENIX Association (2008)"
+      },
+      {
+        "key": "4_CR6",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Cousot, P., Cousot, R.: Abstract interpretation: a unified lattice model for static analysis of programs by construction or approximation of fixpoints. In: Proceedings of the 4th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages, pp. 238–252 (1977)",
+        "DOI": "10.1145/512950.512973"
+      },
+      {
+        "key": "4_CR7",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Csallner, C., Tillmann, N., Smaragdakis, Y.: Dysy: dynamic symbolic execution for invariant inference. In: Proceedings of the 30th International Conference on Software Engineering, ICSE ’08, pp. 281–290. Association for Computing Machinery, New York (2008). https://doi.org/10.1145/1368088.1368127",
+        "DOI": "10.1145/1368088.1368127"
+      },
+      {
+        "key": "4_CR8",
+        "unstructured": "Dimitrios, A.: Algorithms and data structures (2023). https://github.com/djeada/Algorithms-And-Data-Structures/tree/master/src/collections_and_containers/cpp"
+      },
+      {
+        "key": "4_CR9",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Endres, M., Fakhoury, S., Chakraborty, S., Lahiri, S.K.: Can large language models transform natural language intent into formal method postconditions? Proc. ACM Softw. Eng. 1(FSE) (2024). https://doi.org/10.1145/3660791",
+        "DOI": "10.1145/3660791"
+      },
+      {
+        "issue": "1–3",
+        "key": "4_CR10",
+        "doi-asserted-by": "publisher",
+        "first-page": "35",
+        "DOI": "10.1016/j.scico.2007.01.015",
+        "volume": "69",
+        "author": "MD Ernst",
+        "year": "2007",
+        "unstructured": "Ernst, M.D., et al.: The Daikon system for dynamic detection of likely invariants. Sci. Comput. Program. 69(1–3), 35–45 (2007)",
+        "journal-title": "Sci. Comput. Program."
+      },
+      {
+        "key": "4_CR11",
+        "series-title": "Lecture Notes in Computer Science",
+        "doi-asserted-by": "publisher",
+        "first-page": "2",
+        "DOI": "10.1007/978-3-642-15769-1_2",
+        "volume-title": "Static Analysis",
+        "author": "M Fähndrich",
+        "year": "2010",
+        "unstructured": "Fähndrich, M.: Static verification for code contracts. In: Cousot, R., Martel, M. (eds.) SAS 2010. LNCS, vol. 6337, pp. 2–5. Springer, Heidelberg (2010). https://doi.org/10.1007/978-3-642-15769-1_2"
+      },
+      {
+        "key": "4_CR12",
+        "unstructured": "Gao, Y., et al.: Retrieval-augmented generation for large language models: a survey. arXiv preprint arXiv:2312.10997 (2023)"
+      },
+      {
+        "key": "4_CR13",
+        "series-title": "Lecture Notes in Computer Science",
+        "doi-asserted-by": "publisher",
+        "first-page": "69",
+        "DOI": "10.1007/978-3-319-08867-9_5",
+        "volume-title": "Computer Aided Verification",
+        "author": "P Garg",
+        "year": "2014",
+        "unstructured": "Garg, P., Löding, C., Madhusudan, P., Neider, D.: ICE: a robust framework for learning invariants. In: Biere, A., Bloem, R. (eds.) CAV 2014. LNCS, vol. 8559, pp. 69–87. Springer, Cham (2014). https://doi.org/10.1007/978-3-319-08867-9_5"
+      },
+      {
+        "key": "4_CR14",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Garg, P., Neider, D., Madhusudan, P., Roth, D.: Learning invariants using decision trees and implication counterexamples. In: Proceedings of the 43rd Annual ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages, POPL ’16, pp. 499–512. Association for Computing Machinery, New York (2016). https://doi.org/10.1145/2837614.2837664",
+        "DOI": "10.1145/2837614.2837664"
+      },
+      {
+        "key": "4_CR15",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Greiner, S., Bühlmann, N., Ohrndorf, M., Tsigkanos, C., Nierstrasz, O., Kehrer, T.: Automated generation of code contracts: Generative ai to the rescue? In: Proceedings of the 23rd ACM SIGPLAN International Conference on Generative Programming: Concepts and Experiences, pp. 1–14 (2024)",
+        "DOI": "10.1145/3689484.3690738"
+      },
+      {
+        "key": "4_CR16",
+        "unstructured": "Hellendoorn, V.J., Devanbu, P.T., Polozov, A., Marron, M.: Are my invariants valid? a learning approach. arXiv preprint (2019). https://www.microsoft.com/en-us/research/publication/are-my-invariants-valid-a-learning-approach/"
+      },
+      {
+        "key": "4_CR17",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Henzinger, T.A., Jhala, R., Majumdar, R., McMillan, K.L.: Abstractions from proofs. In: Proceedings of the 31st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages, pp. 232–244 (2004)",
+        "DOI": "10.1145/964001.964021"
+      },
+      {
+        "key": "4_CR18",
+        "unstructured": "Kamath, A., et al.: Finding inductive loop invariants using large language models (2023). https://arxiv.org/abs/2311.07948"
+      },
+      {
+        "issue": "3",
+        "key": "4_CR19",
+        "doi-asserted-by": "publisher",
+        "first-page": "573",
+        "DOI": "10.1007/s00165-014-0326-7",
+        "volume": "27",
+        "author": "F Kirchner",
+        "year": "2015",
+        "unstructured": "Kirchner, F., Kosmatov, N., Prevosto, V., Signoles, J., Yakobowski, B.: Frama-c: a software analysis perspective. Formal Aspects Comput. 27(3), 573–609 (2015)",
+        "journal-title": "Formal Aspects Comput."
+      },
+      {
+        "key": "4_CR20",
+        "unstructured": "Lahiri, S.: Evaluating llm-driven user-intent formalization for verification-aware languages. In: Formal Methods in Computer-Aided Design (FMCAD’24) (2024). https://www.microsoft.com/en-us/research/publication/evaluating-llm-driven-user-intent-formalization-for-verification-aware-languages/"
+      },
+      {
+        "key": "4_CR21",
+        "series-title": "Lecture Notes in Computer Science",
+        "doi-asserted-by": "publisher",
+        "first-page": "493",
+        "DOI": "10.1007/978-3-642-02658-4_37",
+        "volume-title": "Computer Aided Verification",
+        "author": "SK Lahiri",
+        "year": "2009",
+        "unstructured": "Lahiri, S.K., Qadeer, S., Galeotti, J.P., Voung, J.W., Wies, T.: Intra-module inference. In: Bouajjani, A., Maler, O. (eds.) CAV 2009. LNCS, vol. 5643, pp. 493–508. Springer, Heidelberg (2009). https://doi.org/10.1007/978-3-642-02658-4_37"
+      },
+      {
+        "key": "4_CR22",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Lattner, C., Adve, V.: Llvm: a compilation framework for lifelong program analysis & transformation. In: International Symposium on Code Generation and Optimization, 2004, CGO 2004, pp. 75–86 (2004). https://doi.org/10.1109/CGO.2004.1281665",
+        "DOI": "10.1109/CGO.2004.1281665"
+      },
+      {
+        "issue": "OOPSLA1",
+        "key": "4_CR23",
+        "doi-asserted-by": "publisher",
+        "first-page": "286",
+        "DOI": "10.1145/3586037",
+        "volume": "7",
+        "author": "A Lattuada",
+        "year": "2023",
+        "unstructured": "Lattuada, A., et al.: Verus: verifying rust programs using linear ghost types. Proc. ACM Program. Lang. 7(OOPSLA1), 286–315 (2023)",
+        "journal-title": "Proc. ACM Program. Lang."
+      },
+      {
+        "key": "4_CR24",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Le, T.C., Zheng, G., Nguyen, T.: Sling: using dynamic analysis to infer program invariants in separation logic. In: Proceedings of the 40th ACM SIGPLAN Conference on Programming Language Design and Implementation, PLDI 2019, pp. 788–801. Association for Computing Machinery, New York (2019). https://doi.org/10.1145/3314221.3314634",
+        "DOI": "10.1145/3314221.3314634"
+      },
+      {
+        "key": "4_CR25",
+        "series-title": "Lecture Notes in Computer Science (Lecture Notes in Artificial Intelligence)",
+        "doi-asserted-by": "publisher",
+        "first-page": "348",
+        "DOI": "10.1007/978-3-642-17511-4_20",
+        "volume-title": "Logic for Programming, Artificial Intelligence, and Reasoning",
+        "author": "KRM Leino",
+        "year": "2010",
+        "unstructured": "Leino, K.R.M.: Dafny: an automatic program verifier for functional correctness. In: Clarke, E.M., Voronkov, A. (eds.) LPAR 2010. LNCS (LNAI), vol. 6355, pp. 348–370. Springer, Heidelberg (2010). https://doi.org/10.1007/978-3-642-17511-4_20"
+      },
+      {
+        "key": "4_CR26",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Lemieux, C., Inala, J.P., Lahiri, S.K., Sen, S.: Codamosa: escaping coverage plateaus in test generation with pre-trained large language models. In: Proceedings of the 45th International Conference on Software Engineering, ICSE ’23, pp. 919–931. IEEE Press (2023). https://doi.org/10.1109/ICSE48619.2023.00085",
+        "DOI": "10.1109/ICSE48619.2023.00085"
+      },
+      {
+        "key": "4_CR27",
+        "doi-asserted-by": "publisher",
+        "first-page": "157",
+        "DOI": "10.1162/tacl_a_00638",
+        "volume": "12",
+        "author": "NF Liu",
+        "year": "2024",
+        "unstructured": "Liu, N.F., et al.: Lost in the middle: how language models use long contexts. Trans. Assoc. Comput. Linguist. 12, 157–173 (2024)",
+        "journal-title": "Trans. Assoc. Comput. Linguist."
+      },
+      {
+        "key": "4_CR28",
+        "unstructured": "Lohmann, N., et al.: mutate_cpp - mutation testing tool for c++ (2017). https://github.com/nlohmann/mutate_cpp"
+      },
+      {
+        "key": "4_CR29",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Ma, L., Liu, S., Li, Y., Xie, X., Bu, L.: Specgen: automated generation of formal program specifications via large language models. CoRR arxiv:2401.08807 (2024). https://doi.org/10.48550/ARXIV.2401.08807",
+        "DOI": "10.48550/ARXIV.2401.08807"
+      },
+      {
+        "key": "4_CR30",
+        "series-title": "Lecture Notes in Computer Science",
+        "doi-asserted-by": "publisher",
+        "first-page": "16",
+        "DOI": "10.1007/978-3-540-24730-2_2",
+        "volume-title": "Tools and Algorithms for the Construction and Analysis of Systems",
+        "author": "KL McMillan",
+        "year": "2004",
+        "unstructured": "McMillan, K.L.: An interpolating theorem prover. In: Jensen, K., Podelski, A. (eds.) TACAS 2004. LNCS, vol. 2988, pp. 16–30. Springer, Heidelberg (2004). https://doi.org/10.1007/978-3-540-24730-2_2"
+      },
+      {
+        "key": "4_CR31",
+        "unstructured": "Meyer, B.: The eiffel programming language (1992). http://www.eiffel.com"
+      },
+      {
+        "key": "4_CR32",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Molina, F., d’Amorim, M., Aguirre, N.: Fuzzing class specifications. In: Proceedings of the 44th International Conference on Software Engineering, ICSE ’22, pp. 1008–1020. Association for Computing Machinery, New York (2022). https://doi.org/10.1145/3510003.3510120",
+        "DOI": "10.1145/3510003.3510120"
+      },
+      {
+        "key": "4_CR33",
+        "doi-asserted-by": "crossref",
+        "unstructured": "de Moura, L., Bjørner, N.: Z3: an efficient smt solver. In: 2008 Tools and Algorithms for Construction and Analysis of Systems, pp. 337–340. Springer, Heidelberg (2008). https://www.microsoft.com/en-us/research/publication/z3-an-efficient-smt-solver/",
+        "DOI": "10.1007/978-3-540-78800-3_24"
+      },
+      {
+        "key": "4_CR34",
+        "unstructured": "Newcomb, J.L., Bodik, R.: Using human-in-the-loop synthesis to author functional reactive programs (2019). https://arxiv.org/abs/1909.11206"
+      },
+      {
+        "key": "4_CR35",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Nguyen, T., Kapur, D., Weimer, W., Forrest, S.: Using dynamic analysis to discover polynomial and array invariants. In: 2012 34th International Conference on Software Engineering (ICSE), pp. 683–693 (2012). https://doi.org/10.1109/ICSE.2012.6227149",
+        "DOI": "10.1109/ICSE.2012.6227149"
+      },
+      {
+        "key": "4_CR36",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Padhi, S., Sharma, R., Millstein, T.D.: Data-driven precondition inference with learned features. In: Proceedings of the 37th ACM SIGPLAN Conference on Programming Language Design and Implementation, PLDI 2016, Santa Barbara, CA, USA, 13–17 June 2016, pp. 42–56 (2016). https://doi.org/10.1145/2908080.2908099",
+        "DOI": "10.1145/2908080.2908099"
+      },
+      {
+        "key": "4_CR37",
+        "unstructured": "Pei, K., Bieber, D., Shi, K., Sutton, C., Yin, P.: Can large language models reason about program invariants? In: Krause, A., Brunskill, E., Cho, K., Engelhardt, B., Sabato, S., Scarlett, J. (eds.) Proceedings of the 40th International Conference on Machine Learning. Proceedings of Machine Learning Research, vol. 202, pp. 27496–27520. PMLR (2023). https://proceedings.mlr.press/v202/pei23a.html"
+      },
+      {
+        "key": "4_CR38",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Polikarpova, N., Ciupa, I., Meyer, B.: A comparative study of programmer-written and automatically inferred contracts. In: Proceedings of the Eighteenth International Symposium on Software Testing and Analysis, pp. 93–104 (2009)",
+        "DOI": "10.1145/1572272.1572284"
+      },
+      {
+        "key": "4_CR39",
+        "unstructured": "Schäfer, M., Nadi, S., Eghbali, A., Tip, F.: An empirical evaluation of using large language models for automated unit test generation (2023). https://arxiv.org/abs/2302.06527"
+      },
+      {
+        "issue": "9",
+        "key": "4_CR40",
+        "doi-asserted-by": "publisher",
+        "first-page": "266",
+        "DOI": "10.1145/2034574.2034811",
+        "volume": "46",
+        "author": "N Swamy",
+        "year": "2011",
+        "unstructured": "Swamy, N., Chen, J., Fournet, C., Strub, P.Y., Bhargavan, K., Yang, J.: Secure distributed programming with value-dependent types. ACM SIGPLAN Not. 46(9), 266–278 (2011)",
+        "journal-title": "ACM SIGPLAN Not."
+      },
+      {
+        "key": "4_CR41",
+        "doi-asserted-by": "publisher",
+        "first-page": "302",
+        "DOI": "10.1007/978-3-031-65630-9_16",
+        "volume-title": "Computer Aided Verification",
+        "author": "C Wen",
+        "year": "2024",
+        "unstructured": "Wen, C., et al.: Enchanting program specification synthesis by large language models using static analysis and program verification. In: Gurfinkel, A., Ganesh, V. (eds.) Computer Aided Verification, pp. 302–328. Springer, Cham (2024). https://doi.org/10.1007/978-3-031-65630-9_16"
+      },
+      {
+        "key": "4_CR42",
+        "unstructured": "Wikipedia contributors: Avl tree—Wikipedia, the free encyclopedia (2024). https://en.wikipedia.org/w/index.php?title=AVL_tree&oldid=1255561501. Accessed 15 Nov 2024"
+      },
+      {
+        "key": "4_CR43",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Wu, G., Cao, W., Yao, Y., Wei, H., Chen, T., Ma, X.: Llm meets bounded model checking: Neuro-symbolic loop invariant inference. In: Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering, ASE ’24, pp. 406–417. Association for Computing Machinery, New York (2024). https://doi.org/10.1145/3691620.3695014",
+        "DOI": "10.1145/3691620.3695014"
+      },
+      {
+        "issue": "OOPSLA2",
+        "key": "4_CR44",
+        "doi-asserted-by": "publisher",
+        "first-page": "709",
+        "DOI": "10.1145/3689736",
+        "volume": "8",
+        "author": "C Yang",
+        "year": "2024",
+        "unstructured": "Yang, C., et al.: Whitefox: white-box compiler fuzzing empowered by large language models. Proc. ACM Program. Lang. 8(OOPSLA2), 709–735 (2024)",
+        "journal-title": "Proc. ACM Program. Lang."
+      },
+      {
+        "key": "4_CR45",
+        "unstructured": "z3Prover: z3prover util classes (2024). https://github.com/Z3Prover/z3/tree/master/src/util"
+      }
+    ],
+    "container-title": [
+      "Lecture Notes in Computer Science",
+      "AI Verification"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://link.springer.com/content/pdf/10.1007/978-3-031-99991-8_4",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          8,
+          19
+        ]
+      ],
+      "date-time": "2026-08-19T10:14:09Z",
+      "timestamp": 1787134449000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://link.springer.com/10.1007/978-3-031-99991-8_4"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          28
+        ]
+      ]
+    },
+    "ISBN": [
+      "9783031999901",
+      "9783031999918"
+    ],
+    "references-count": 45,
+    "URL": "https://doi.org/10.1007/978-3-031-99991-8_4",
+    "relation": {},
+    "ISSN": [
+      "0302-9743",
+      "1611-3349"
+    ],
+    "issn-type": [
+      {
+        "value": "0302-9743",
+        "type": "print"
+      },
+      {
+        "value": "1611-3349",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          10,
+          28
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "28 October 2025",
+        "order": 1,
+        "name": "first_online",
+        "label": "First Online",
+        "group": {
+          "name": "ChapterHistory",
+          "label": "Chapter History"
+        }
+      },
+      {
+        "value": "SAIV",
+        "order": 1,
+        "name": "conference_acronym",
+        "label": "Conference Acronym",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "International Symposium on AI Verification",
+        "order": 2,
+        "name": "conference_name",
+        "label": "Conference Name",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "Zagreb",
+        "order": 3,
+        "name": "conference_city",
+        "label": "Conference City",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "Croatia",
+        "order": 4,
+        "name": "conference_country",
+        "label": "Conference Country",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "2025",
+        "order": 5,
+        "name": "conference_year",
+        "label": "Conference Year",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "21 July 2025",
+        "order": 7,
+        "name": "conference_start_date",
+        "label": "Conference Start Date",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "22 July 2025",
+        "order": 8,
+        "name": "conference_end_date",
+        "label": "Conference End Date",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "2",
+        "order": 9,
+        "name": "conference_number",
+        "label": "Conference Number",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "saiv2025",
+        "order": 10,
+        "name": "conference_id",
+        "label": "Conference ID",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      },
+      {
+        "value": "https://www.aiverification.org/2025/",
+        "order": 11,
+        "name": "conference_url",
+        "label": "Conference URL",
+        "group": {
+          "name": "ConferenceInfo",
+          "label": "Conference Information"
+        }
+      }
+    ]
+  },
+  "daikon2007": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          10
+        ]
+      ],
+      "date-time": "2026-10-10T00:20:08Z",
+      "timestamp": 1791591608906,
+      "version": "4.3.4"
+    },
+    "reference-count": 40,
+    "publisher": "Elsevier BV",
+    "issue": "1-3",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2007,
+              12,
+              1
+            ]
+          ],
+          "date-time": "2007-12-01T00:00:00Z",
+          "timestamp": 1196467200000
+        },
+        "content-version": "tdm",
+        "delay-in-days": 0,
+        "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+      },
+      {
+        "start": {
+          "date-parts": [
+            [
+              2013,
+              8,
+              22
+            ]
+          ],
+          "date-time": "2013-08-22T00:00:00Z",
+          "timestamp": 1377129600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 2091,
+        "URL": "https://www.elsevier.com/open-access/userlicense/1.0/"
+      }
+    ],
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "short-container-title": [
+      "Science of Computer Programming"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2007,
+          12
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.scico.2007.01.015",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2007,
+          11,
+          8
+        ]
+      ],
+      "date-time": "2007-11-08T12:35:58Z",
+      "timestamp": 1194525358000
+    },
+    "page": "35-45",
+    "source": "Crossref",
+    "is-referenced-by-count": 820,
+    "title": [
+      "The Daikon system for dynamic detection of likely invariants"
+    ],
+    "prefix": "10.1016",
+    "volume": "69",
+    "author": [
+      {
+        "given": "Michael D.",
+        "family": "Ernst",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Jeff H.",
+        "family": "Perkins",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Philip J.",
+        "family": "Guo",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Stephen",
+        "family": "McCamant",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Carlos",
+        "family": "Pacheco",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Matthew S.",
+        "family": "Tschantz",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Chen",
+        "family": "Xiao",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "78",
+    "reference": [
+      {
+        "key": "10.1016/j.scico.2007.01.015_b1",
+        "unstructured": "N. Dodoo, L. Lin, M.D. Ernst, Selecting, refining, and evaluating predicates for program analysis, Tech. Rep. MIT-LCS-TR-914, MIT Lab for Computer Science, 21 July, 2003"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "B. Demsky, M.D. Ernst, P.J. Guo, S. McCamant, J.H. Perkins, M. Rinard, Inference and enforcement of data structure consistency specifications, ISSTA (2006) 233–243",
+        "DOI": "10.1145/1146238.1146266"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b3",
+        "doi-asserted-by": "crossref",
+        "unstructured": "P.J. Guo, J.H. Perkins, S. McCamant, M.D. Ernst, Dynamic inference of abstract types, ISSTA (2006) 255–265",
+        "DOI": "10.1145/1146238.1146268"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b4",
+        "unstructured": "Parasoft Corporation, Jtest version 4.5. http://www.parasoft.com/"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b5",
+        "doi-asserted-by": "crossref",
+        "first-page": "234",
+        "DOI": "10.1145/512529.512558",
+        "article-title": "Extended static checking for Java",
+        "author": "Flanagan",
+        "year": "2002",
+        "journal-title": "PLDI"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b6",
+        "series-title": "Behavioral Specifications of Businesses and Systems",
+        "first-page": "175",
+        "article-title": "JML: A notation for detailed design",
+        "author": "Leavens",
+        "year": "1999"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.scico.2007.01.015_b7",
+        "doi-asserted-by": "crossref",
+        "first-page": "212",
+        "DOI": "10.1007/s10009-004-0167-4",
+        "article-title": "An overview of JML tools and applications",
+        "volume": "7",
+        "author": "Burdy",
+        "year": "2005",
+        "journal-title": "STTT"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b8",
+        "unstructured": "D. Detlefs, G. Nelson, J.B. Saxe, Simplify: A theorem prover for program checking, Tech. Rep. HPL-2003-148, HP Labs, Palo Alto, CA, 23 Jul., 2003"
+      },
+      {
+        "issue": "4",
+        "key": "10.1016/j.scico.2007.01.015_b9",
+        "first-page": "432",
+        "article-title": "The use of self checks and voting in software error detection: An empirical study",
+        "volume": "16",
+        "author": "Leveson",
+        "year": "1990",
+        "journal-title": "IEEE TSE"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b10",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. Ohba, X.-M. Chou, Does imperfect debugging affect software reliability growth? ICSE (1989) 237–244",
+        "DOI": "10.1145/74587.74619"
+      },
+      {
+        "issue": "7",
+        "key": "10.1016/j.scico.2007.01.015_b11",
+        "first-page": "653",
+        "article-title": "Predicting fault incidence using software change history",
+        "volume": "26",
+        "author": "Graves",
+        "year": "2000",
+        "journal-title": "IEEE TSE"
+      },
+      {
+        "issue": "2",
+        "key": "10.1016/j.scico.2007.01.015_b12",
+        "first-page": "99",
+        "article-title": "Dynamically discovering likely program invariants to support program evolution",
+        "volume": "27",
+        "author": "Ernst",
+        "year": "2001",
+        "journal-title": "IEEE TSE"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b13",
+        "doi-asserted-by": "crossref",
+        "unstructured": "O. Raz, P. Koopman, M. Shaw, Semantic anomaly detection in online data sources, ICSE (2002) 302–312",
+        "DOI": "10.1109/ICSE.2002.1007977"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b14",
+        "doi-asserted-by": "crossref",
+        "unstructured": "S. Hangal, M.S. Lam, Tracking down software bugs using automatic anomaly detection, ICSE (2002) 291–301",
+        "DOI": "10.1109/ICSE.2002.1007976"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b15",
+        "unstructured": "B. Pytlik, M. Renieris, S. Krishnamurthi, S.P. Reiss, Automated fault localization using potential invariants, AADEBUG (2003) 273–276"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b16",
+        "doi-asserted-by": "crossref",
+        "unstructured": "L. Mariani, M. Pezzè, A technique for verifying component-based software, TACoS (2004) 17–30",
+        "DOI": "10.1016/j.entcs.2004.02.089"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b17",
+        "unstructured": "A. Groce, W. Visser, What went wrong: Explaining counterexamples, SPIN (2003) 121–135"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b18",
+        "unstructured": "T. Xie, D. Notkin, Checking inside the black box: Regression testing based on value spectra differences, ICSM (2004) 28–37"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b19",
+        "doi-asserted-by": "crossref",
+        "unstructured": "B. Liblit, A. Aiken, A.X. Zheng, M.I. Jordan, Bug isolation via remote program sampling, PLDI (2003) 141–154",
+        "DOI": "10.1145/781147.781148"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b20",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Y. Brun, M.D. Ernst, Finding latent code errors via machine learning over program executions, ICSE (2004) 480–490",
+        "DOI": "10.1109/ICSE.2004.1317470"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b21",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. Harder, J. Mellen, M.D. Ernst, Improving test suites via operational abstraction, ICSE (2003) 60–71",
+        "DOI": "10.1109/ICSE.2003.1201188"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b22",
+        "doi-asserted-by": "crossref",
+        "unstructured": "T. Xie, D. Notkin, Tool-assisted unit test selection based on operational violations, ASE (2003) 40–48",
+        "DOI": "10.1109/ASE.2003.1240293"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b23",
+        "unstructured": "C. Pacheco, M.D. Ernst, Eclat: Automatic generation and classification of test inputs, ECOOP (2005) 504–527"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b24",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J.W. Nimmer, M.D. Ernst, Automatic generation of program specifications, ISSTA (2002) 232–242",
+        "DOI": "10.1145/566210.566213"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b25",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J.W. Nimmer, M.D. Ernst, Invariant inference for static checking: An empirical evaluation, FSE (2002) 11–20",
+        "DOI": "10.1145/587052.587054"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b26",
+        "doi-asserted-by": "crossref",
+        "unstructured": "T. Ne Win, M.D. Ernst, S.J. Garland, D. Kırlı, N. Lynch, Using simulated execution in verifying distributed algorithms, VMCAI (2003) 283–297, New York, NY",
+        "DOI": "10.1007/3-540-36384-X_23"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b27",
+        "doi-asserted-by": "crossref",
+        "unstructured": "L. Lin, M.D. Ernst, Improving adaptability via program steering, ISSTA (2004) 206–216",
+        "DOI": "10.1145/1013886.1007540"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b28",
+        "doi-asserted-by": "crossref",
+        "unstructured": "N. Gupta, Z.V. Heidepriem, A new structural coverage criterion for dynamic detection of program invariants, ASE (2003) 49–58",
+        "DOI": "10.1109/ASE.2003.1240294"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b29",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J.H. Perkins, M.D. Ernst, Efficient incremental algorithms for dynamic detection of likely invariants, FSE (2004) 23–32",
+        "DOI": "10.1145/1029894.1029901"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b30",
+        "doi-asserted-by": "crossref",
+        "unstructured": "S. McCamant, M.D. Ernst, Early identification of incompatibilities in multi-component upgrades, ECOOP (2004) 440–464",
+        "DOI": "10.1007/978-3-540-24851-4_20"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b31",
+        "doi-asserted-by": "crossref",
+        "unstructured": "M. Boshernitsan, R. Doong, A. Savoia, From Daikon to Agitator: Lessons and challenges in building a commercial tool for developer testing, ISSTA (2006) 169–179",
+        "DOI": "10.1145/1146238.1146258"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b32",
+        "doi-asserted-by": "crossref",
+        "unstructured": "S. Hangal, N. Chandra, S. Narayanan, S. Chakravorty, Iodine: A tool to automatically infer dynamic invariants for hardware designs, DAC (2005) 775–778",
+        "DOI": "10.1145/1065579.1065786"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b33",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J. Henkel, A. Diwan, Discovering algebraic specifications from Java classes, ECOOP (2003) 431–456",
+        "DOI": "10.1007/978-3-540-45070-2_19"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b34",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J. Henkel, A. Diwan, A tool for writing and debugging algebraic specifications, ICSE (2004) 449–458",
+        "DOI": "10.1109/ICSE.2004.1317467"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b35",
+        "unstructured": "M. Vaziri, G. Holzmann, Automatic detection of invariants in Spin, SPIN (1998) 129–138"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b36",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J.E. Cook, A.L. Wolf, Event-based detection of concurrency, FSE (1998) 35–45",
+        "DOI": "10.1145/288195.288214"
+      },
+      {
+        "issue": "3",
+        "key": "10.1016/j.scico.2007.01.015_b37",
+        "doi-asserted-by": "crossref",
+        "first-page": "215",
+        "DOI": "10.1145/287000.287001",
+        "article-title": "Discovering models of software processes from event-based data",
+        "volume": "7",
+        "author": "Cook",
+        "year": "1998",
+        "journal-title": "ACM TOSEM"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b38",
+        "doi-asserted-by": "crossref",
+        "unstructured": "G. Ammons, R. Bodík, J.R. Larus, Mining specifications, POPL (2002) 4–16",
+        "DOI": "10.1145/503272.503275"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b39",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J. Whaley, M. Martin, M. Lam, Automatic extraction of object-oriented component interfaces, ISSTA (2002) 218–228",
+        "DOI": "10.1145/566210.566212"
+      },
+      {
+        "key": "10.1016/j.scico.2007.01.015_b40",
+        "doi-asserted-by": "crossref",
+        "unstructured": "J. Yang, D. Evans, D. Bhardwaj, T. Bhat, M. Das, Perracotta: Mining temporal API rules from imperfect traces, ICSE (2006) 282–291",
+        "DOI": "10.1145/1134285.1134325"
+      }
+    ],
+    "container-title": [
+      "Science of Computer Programming"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S016764230700161X?httpAccept=text/xml",
+        "content-type": "text/xml",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://api.elsevier.com/content/article/PII:S016764230700161X?httpAccept=text/plain",
+        "content-type": "text/plain",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          1,
+          22
+        ]
+      ],
+      "date-time": "2025-01-22T05:09:37Z",
+      "timestamp": 1737522577000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://linkinghub.elsevier.com/retrieve/pii/S016764230700161X"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2007,
+          12
+        ]
+      ]
+    },
+    "references-count": 40,
+    "journal-issue": {
+      "issue": "1-3",
+      "published-print": {
+        "date-parts": [
+          [
+            2007,
+            12
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "S016764230700161X"
+    ],
+    "URL": "https://doi.org/10.1016/j.scico.2007.01.015",
+    "relation": {},
+    "ISSN": [
+      "0167-6423"
+    ],
+    "issn-type": [
+      {
+        "value": "0167-6423",
+        "type": "print"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2007,
+          12
+        ]
+      ]
+    }
+  },
+  "plausibility2015": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          8
+        ]
+      ],
+      "date-time": "2026-10-08T20:35:03Z",
+      "timestamp": 1791491703002,
+      "version": "4.3.4"
+    },
+    "publisher-location": "New York, NY, USA",
+    "reference-count": 51,
+    "publisher": "ACM",
+    "license": [
+      {
+        "start": {
+          "date-parts": [
+            [
+              2015,
+              7,
+              13
+            ]
+          ],
+          "date-time": "2015-07-13T00:00:00Z",
+          "timestamp": 1436745600000
+        },
+        "content-version": "vor",
+        "delay-in-days": 0,
+        "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+      }
+    ],
+    "funder": [
+      {
+        "DOI": "10.13039/100000185",
+        "name": "Defense Advanced Research Projects Agency",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "FA8650-11-C-7192"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "FA8650-11-C-7192"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/100000185",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "dl.acm.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [],
+    "published-print": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          13
+        ]
+      ]
+    },
+    "DOI": "10.1145/2771783.2771791",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          10
+        ]
+      ],
+      "date-time": "2015-07-10T10:10:55Z",
+      "timestamp": 1436523055000
+    },
+    "page": "24-36",
+    "update-policy": "https://doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 331,
+    "title": [
+      "An analysis of patch plausibility and correctness for generate-and-validate patch generation systems"
+    ],
+    "prefix": "10.1145",
+    "author": [
+      {
+        "given": "Zichao",
+        "family": "Qi",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Massachusetts Institute of Technology, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Fan",
+        "family": "Long",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Massachusetts Institute of Technology, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sara",
+        "family": "Achour",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Massachusetts Institute of Technology, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Martin",
+        "family": "Rinard",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Massachusetts Institute of Technology, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "320",
+    "published-online": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          13
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_3_2_1_1_1",
+        "unstructured": "AE results. http://dijkstra.cs.virginia.edu/ genprog/resources/genprog-ase2013-results.zip.  AE results. http://dijkstra.cs.virginia.edu/ genprog/resources/genprog-ase2013-results.zip."
+      },
+      {
+        "key": "e_1_3_2_1_2_1",
+        "unstructured": "CVE-2006-2025. http://cve.mitre.org/cgi-bin/ cvename.cgi?name=CVE-2006-2025.  CVE-2006-2025. http://cve.mitre.org/cgi-bin/ cvename.cgi?name=CVE-2006-2025."
+      },
+      {
+        "key": "e_1_3_2_1_3_1",
+        "unstructured": "GenProg benchmarks. http://dijkstra.cs.virginia.edu/genprog/ resources/genprog-icse2012-benchmarks/.  GenProg benchmarks. http://dijkstra.cs.virginia.edu/genprog/ resources/genprog-icse2012-benchmarks/."
+      },
+      {
+        "key": "e_1_3_2_1_4_1",
+        "unstructured": "GenProg results. http://dijkstra.cs.virginia.edu/ genprog/resources/genprog-icse2012-results.zip.  GenProg results. http://dijkstra.cs.virginia.edu/ genprog/resources/genprog-icse2012-results.zip."
+      },
+      {
+        "key": "e_1_3_2_1_5_1",
+        "unstructured": "GenProg source code. http://dijkstra.cs.virginia.edu/genprog/ resources/genprog-source-v3.0.zip.  GenProg source code. http://dijkstra.cs.virginia.edu/genprog/ resources/genprog-source-v3.0.zip."
+      },
+      {
+        "key": "e_1_3_2_1_6_1",
+        "unstructured": "GenProg virtual machine. http://dijkstra.cs. virginia.edu/genprog/resources/genprog_images.  GenProg virtual machine. http://dijkstra.cs. virginia.edu/genprog/resources/genprog_images."
+      },
+      {
+        "key": "e_1_3_2_1_7_1",
+        "unstructured": "RSRepair results. http: //sourceforge.net/projects/rsrepair/files/.  RSRepair results. http: //sourceforge.net/projects/rsrepair/files/."
+      },
+      {
+        "key": "e_1_3_2_1_8_1",
+        "volume-title": "May",
+        "author": "Goues Claire Le",
+        "year": "2015",
+        "unstructured": "Claire Le Goues , personal communication , May 2015 . Claire Le Goues, personal communication, May 2015."
+      },
+      {
+        "key": "e_1_3_2_1_9_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1133255.1134000"
+      },
+      {
+        "key": "e_1_3_2_1_10_1",
+        "first-page": "633",
+        "volume-title": "ECOOP 2011–Object-Oriented Programming",
+        "author": "Carbin M.",
+        "unstructured": "M. Carbin , S. Misailovic , M. Kling , and M. C. Rinard . Detecting and escaping infinite loops with jolt . In ECOOP 2011–Object-Oriented Programming , pages 609– 633 . Springer, 2011. M. Carbin, S. Misailovic, M. Kling, and M. C. Rinard. Detecting and escaping infinite loops with jolt. In ECOOP 2011–Object-Oriented Programming, pages 609–633. Springer, 2011."
+      },
+      {
+        "key": "e_1_3_2_1_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICST.2010.66"
+      },
+      {
+        "key": "e_1_3_2_1_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2593735.2593740"
+      },
+      {
+        "key": "e_1_3_2_1_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1146238.1146266"
+      },
+      {
+        "key": "e_1_3_2_1_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/949305.949314"
+      },
+      {
+        "key": "e_1_3_2_1_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1062455.1062499"
+      },
+      {
+        "key": "e_1_3_2_1_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/951952.952351"
+      },
+      {
+        "key": "e_1_3_2_1_17_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ISSRE.2008.59"
+      },
+      {
+        "key": "e_1_3_2_1_18_1",
+        "volume-title": "Automatic repair of real bugs: An experience report on the defects4j dataset. arXiv, abs/1505.07002",
+        "author": "Durieux T.",
+        "year": "2015",
+        "unstructured": "T. Durieux , M. Martinez , M. Monperrus , R. Sommerard , and J. Xuan . Automatic repair of real bugs: An experience report on the defects4j dataset. arXiv, abs/1505.07002 , 2015 . T. Durieux, M. Martinez, M. Monperrus, R. Sommerard, and J. Xuan. Automatic repair of real bugs: An experience report on the defects4j dataset. arXiv, abs/1505.07002, 2015."
+      },
+      {
+        "key": "e_1_3_2_1_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1321631.1321643"
+      },
+      {
+        "key": "e_1_3_2_1_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1830483.1830654"
+      },
+      {
+        "key": "e_1_3_2_1_21_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1569901.1570031"
+      },
+      {
+        "key": "e_1_3_2_1_22_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2338965.2336775"
+      },
+      {
+        "key": "e_1_3_2_1_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2568225.2568250"
+      },
+      {
+        "key": "e_1_3_2_1_24_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/2818754.2818812"
+      },
+      {
+        "key": "e_1_3_2_1_25_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/2337223.2337225"
+      },
+      {
+        "key": "e_1_3_2_1_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2610384.2628055"
+      },
+      {
+        "key": "e_1_3_2_1_27_1",
+        "first-page": "811",
+        "volume-title": "Proceedings of the 2013 International Conference on Software Engineering",
+        "author": "Kim D.",
+        "unstructured": "D. Kim , J. Nam , J. Song , and S. Kim . Automatic patch generation learned from human-written patches . In Proceedings of the 2013 International Conference on Software Engineering , pages 802– 811 . IEEE Press, 2013. D. Kim, J. Nam, J. Song, and S. Kim. Automatic patch generation learned from human-written patches. In Proceedings of the 2013 International Conference on Software Engineering, pages 802–811. IEEE Press, 2013."
+      },
+      {
+        "key": "e_1_3_2_1_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2398857.2384648"
+      },
+      {
+        "key": "e_1_3_2_1_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/TSE.2011.104"
+      },
+      {
+        "key": "e_1_3_2_1_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2330163.2330296"
+      },
+      {
+        "key": "e_1_3_2_1_33_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2786805.2786811"
+      },
+      {
+        "key": "e_1_3_2_1_34_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2594291.2594337"
+      },
+      {
+        "key": "e_1_3_2_1_36_1",
+        "volume-title": "Software Engineering. Universite Lille, (tel-01078911)",
+        "author": "Martinez M.",
+        "year": "2014",
+        "unstructured": "M. Martinez . Extraction and analysis of knowledge for automatic software repair. Software Engineering. Universite Lille, (tel-01078911) , 2014 . M. Martinez. Extraction and analysis of knowledge for automatic software repair. Software Engineering. Universite Lille, (tel-01078911), 2014."
+      },
+      {
+        "key": "e_1_3_2_1_37_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10664-013-9282-8"
+      },
+      {
+        "key": "e_1_3_2_1_38_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2591062.2591114"
+      },
+      {
+        "key": "e_1_3_2_1_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICSE.2015.63"
+      },
+      {
+        "key": "e_1_3_2_1_40_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2568225.2568324"
+      },
+      {
+        "key": "e_1_3_2_1_41_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1542431.1542439"
+      },
+      {
+        "key": "e_1_3_2_1_42_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/2486788.2486890"
+      },
+      {
+        "key": "e_1_3_2_1_43_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1296907.1296912"
+      },
+      {
+        "key": "e_1_3_2_1_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1629575.1629585"
+      },
+      {
+        "key": "e_1_3_2_1_45_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2568225.2568254"
+      },
+      {
+        "key": "e_1_3_2_1_46_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2483760.2483785"
+      },
+      {
+        "key": "e_1_3_2_1_47_1",
+        "unstructured": "Z. Qi F. Long S. Achour and M. Rinard. An Analysis of Patch Plausibility and Correctness for Generate-And-Validate Patch Generation Systems (Supplementary Material). http://hdl.handle.net/1721.1/97051.  Z. Qi F. Long S. Achour and M. Rinard. An Analysis of Patch Plausibility and Correctness for Generate-And-Validate Patch Generation Systems (Supplementary Material). http://hdl.handle.net/1721.1/97051."
+      },
+      {
+        "key": "e_1_3_2_1_49_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/CSAC.2004.2"
+      },
+      {
+        "key": "e_1_3_2_1_50_1",
+        "first-page": "21",
+        "volume-title": "OSDI",
+        "volume": "4",
+        "author": "Rinard M. C.",
+        "year": "2004",
+        "unstructured": "M. C. Rinard , C. Cadar , D. Dumitran , D. M. Roy , T. Leu , and W. S. Beebee . Enhancing server availability and security through failure-oblivious computing . In OSDI , volume 4 , pages 21– 21 , 2004 . M. C. Rinard, C. Cadar, D. Dumitran, D. M. Roy, T. Leu, and W. S. Beebee. Enhancing server availability and security through failure-oblivious computing. In OSDI, volume 4, pages 21–21, 2004."
+      },
+      {
+        "key": "e_1_3_2_1_51_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.5555/2337223.2337257"
+      },
+      {
+        "key": "e_1_3_2_1_53_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/2737924.2737988"
+      },
+      {
+        "key": "e_1_3_2_1_55_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/1831708.1831716"
+      },
+      {
+        "key": "e_1_3_2_1_56_1",
+        "first-page": "366",
+        "volume-title": "Automated Software Engineering (ASE), 2013 IEEE/ACM 28th International Conference on",
+        "author": "Weimer W.",
+        "unstructured": "W. Weimer , Z. P. Fry , and S. Forrest . Leveraging program equivalence for adaptive program repair: Models and first results . In Automated Software Engineering (ASE), 2013 IEEE/ACM 28th International Conference on , pages 356– 366 . IEEE, 2013. W. Weimer, Z. P. Fry, and S. Forrest. Leveraging program equivalence for adaptive program repair: Models and first results. In Automated Software Engineering (ASE), 2013 IEEE/ACM 28th International Conference on, pages 356–366. IEEE, 2013."
+      },
+      {
+        "key": "e_1_3_2_1_57_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ICSE.2009.5070536"
+      }
+    ],
+    "event": {
+      "name": "ISSTA '15: International Symposium on Software Testing and Analysis",
+      "location": "Baltimore MD USA",
+      "acronym": "ISSTA '15",
+      "sponsor": [
+        "SIGSOFT ACM Special Interest Group on Software Engineering",
+        "SIGPLAN ACM Special Interest Group on Programming Languages"
+      ]
+    },
+    "container-title": [
+      "Proceedings of the 2015 International Symposium on Software Testing and Analysis"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "https://dl.acm.org/doi/10.1145/2771783.2771791",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "text-mining"
+      },
+      {
+        "URL": "https://dl.acm.org/doi/pdf/10.1145/2771783.2771791",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          6,
+          18
+        ]
+      ],
+      "date-time": "2025-06-18T03:01:14Z",
+      "timestamp": 1750215674000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://dl.acm.org/doi/10.1145/2771783.2771791"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          13
+        ]
+      ]
+    },
+    "references-count": 51,
+    "alternative-id": [
+      "10.1145/2771783.2771791",
+      "10.1145/2771783"
+    ],
+    "URL": "https://doi.org/10.1145/2771783.2771791",
+    "relation": {},
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          13
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2015-07-13",
+        "order": 2,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

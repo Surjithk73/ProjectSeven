@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B5) for TASK-IDSCHEMA-002 (pagination_cursor_migration)\ndef build_request(data):\n    return {\n        'path': '/v2/identity/pagination_cursor_migration/task-idschema-002',\n        'body': {\n            'cursor_page_request': {\n                'sub': data['subject_id'],\n                'permissions': data['scope_str'].split(' '),\n                'next_cursor': data['cursor_token'],\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\n            }\n        },\n        'headers': {\n            'Authorization': 'Token ' + data['access_token'],\n            'X-Tenant-Context': data['tenant_id']\n        }\n    }\n\ndef get_user_profile(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": "# Inferred structural contract check (B5) for TASK-IDSCHEMA-002\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/identity/pagination_cursor_migration/task-idschema-002' and isinstance(o.get('body', {}).get('cursor_page_request'), dict) and len(o['body']['cursor_page_request']) >= 2 for o in outputs)\n",
+  "predicted_locations": [
+    "client.py:get_user_profile"
+  ]
+}

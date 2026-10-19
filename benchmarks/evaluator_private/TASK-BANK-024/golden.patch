@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-BANK-024: Split recipient_name into given_name and family_name
++# Candidate (GOLDEN) for TASK-BANK-024 (beneficiary_name_structure)
+ def build_request(data):
+     return {
+-        'path': '/v1/banking/beneficiary_name_structure/task-bank-024',
++        'path': '/v2/banking/beneficiary_name_structure/task-bank-024',
+         'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
++            'beneficiary_transfer': {
++                'amount_subunits': int(data['amount_cents']),
++                'currency': data['currency'],
++                'source_route': data['source'],
++                'destination_route': data['destination'],
++                'token_ref': data['extra_token']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'Idempotency-Key': data['idempotency_key']
++        }
+     }
+ 
+ def dispatch_settlement(data):

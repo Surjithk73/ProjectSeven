@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "57f6dc3c4d82171a859b29a83d78720bbc39b92015ebd7ef497f5f1e1dab0a9c",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"merchant_charge_v2\": {\"type\": \"object\"}}, \"required\": [\"merchant_charge_v2\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-021 (merchant_idempotency_v2).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-021\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2755,
+    "cached_tokens": 0,
+    "output_tokens": 166,
+    "reasoning_tokens": 279,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:36:08 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}",
+                "thought": null,
+                "thought_signature": "639b72ab8c24601d0fb531836246759f852b36eccb4d7a312e0c513fba4d9ab7",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:36:08.693887Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_f95f5441814f7a00bf8e76",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 166,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 166
+          }
+        ],
+        "prompt_token_count": 2755,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2755
+          }
+        ],
+        "thoughts_token_count": 279,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3200,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"merchant_charge_v2\": {\"type\": \"object\"}}, \"required\": [\"merchant_charge_v2\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-021 (merchant_idempotency_v2).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-021\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:36:08 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}",
+                "thoughtSignature": "639b72ab8c24601d0fb531836246759f852b36eccb4d7a312e0c513fba4d9ab7"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:36:08.693887Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_f95f5441814f7a00bf8e76",
+      "usageMetadata": {
+        "candidatesTokenCount": 166,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 166
+          }
+        ],
+        "promptTokenCount": 2755,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2755
+          }
+        ],
+        "thoughtsTokenCount": 279,
+        "totalTokenCount": 3200,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 30.5037,
+    "wall_seconds": 30.5037,
+    "timestamp_utc": "2026-10-15T14:36:08.693887+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "6f8d6db1ecc13ee7f3656751d6d51896251d42656d2a4a63fdf9c9dea4d95aa4",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"merchant_charge_v2\": {\"type\": \"object\"}}, \"required\": [\"merchant_charge_v2\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-021 (merchant_idempotency_v2).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/merchant_idempotency_v2/task-pay-021' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('merchant_charge_v2'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}, \"source\": \"# TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-021\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3021,
+    "cached_tokens": 0,
+    "output_tokens": 424,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:36:39 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B4) for TASK-PAY-021\\ndef build_request(data):\\n    return {'path': '/v1/payment/merchant_idempotency_v2/task-pay-021', 'body': {'merchant_charge_v2': data['amount_cents']}, 'headers': {}}\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "5ed487d50ddd7abddcd4356bb46ac0e811ec32a0f39eb0bca4b0dcf27761c859",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:36:39.197587Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_50680c1875c163deea10e9",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 424,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 424
+          }
+        ],
+        "prompt_token_count": 3021,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3021
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3445,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B4) for TASK-PAY-021\\ndef build_request(data):\\n    return {'path': '/v1/payment/merchant_idempotency_v2/task-pay-021', 'body': {'merchant_charge_v2': data['amount_cents']}, 'headers': {}}\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"merchant_charge_v2\": {\"type\": \"object\"}}, \"required\": [\"merchant_charge_v2\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-021 (merchant_idempotency_v2).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/merchant_idempotency_v2/task-pay-021' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('merchant_charge_v2'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}, \"source\": \"# TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-021\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:36:39 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B4) for TASK-PAY-021\\ndef build_request(data):\\n    return {'path': '/v1/payment/merchant_idempotency_v2/task-pay-021', 'body': {'merchant_charge_v2': data['amount_cents']}, 'headers': {}}\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "5ed487d50ddd7abddcd4356bb46ac0e811ec32a0f39eb0bca4b0dcf27761c859"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:36:39.197587Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_50680c1875c163deea10e9",
+      "usageMetadata": {
+        "candidatesTokenCount": 424,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 424
+          }
+        ],
+        "promptTokenCount": 3021,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3021
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3445,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 38.9601,
+    "wall_seconds": 38.9601,
+    "timestamp_utc": "2026-10-15T14:36:39.197587+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "4c50de5e923032a305d74fac4fd78558fd8c2b1d0760971c9b56b1e8682f669a",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"merchant_charge_v2\": {\"type\": \"object\"}}, \"required\": [\"merchant_charge_v2\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-021 (merchant_idempotency_v2).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/merchant_idempotency_v2/task-pay-021' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('merchant_charge_v2'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}, \"source\": \"# TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-021\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2752,
+    "cached_tokens": 0,
+    "output_tokens": 404,
+    "reasoning_tokens": 367,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:37:18 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B4) for TASK-PAY-021 (merchant_idempotency_v2)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'merchant_charge_v2': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "bc4f1b9c02edd0524ba80737200d1c3d4536c45950894d05c366eee8113a969a",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:37:18.157687Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_77cb966932bdf056b40d62",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 404,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 404
+          }
+        ],
+        "prompt_token_count": 2752,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2752
+          }
+        ],
+        "thoughts_token_count": 367,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3523,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B4) for TASK-PAY-021 (merchant_idempotency_v2)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'merchant_charge_v2': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"merchant_charge_v2\": {\"type\": \"object\"}}, \"required\": [\"merchant_charge_v2\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Preserve caller idempotency hash across automatic network retry headers\", \"title\": \"TASK-PAY-021\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/merchant_idempotency_v2/task-pay-021\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-021 (merchant_idempotency_v2).\", \"operationId\": \"create_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/merchant_idempotency_v2/task-pay-021' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('merchant_charge_v2'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"merchant_idempotency_v2\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-021\"}, \"source\": \"# TASK-PAY-021: Preserve caller idempotency hash across automatic network retry headers\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-021\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:37:18 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B4) for TASK-PAY-021 (merchant_idempotency_v2)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/merchant_idempotency_v2/task-pay-021',\\n        'body': {\\n            'merchant_charge_v2': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "bc4f1b9c02edd0524ba80737200d1c3d4536c45950894d05c366eee8113a969a"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:37:18.157687Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_77cb966932bdf056b40d62",
+      "usageMetadata": {
+        "candidatesTokenCount": 404,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 404
+          }
+        ],
+        "promptTokenCount": 2752,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2752
+          }
+        ],
+        "thoughtsTokenCount": 367,
+        "totalTokenCount": 3523,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.9806,
+    "wall_seconds": 41.9806,
+    "timestamp_utc": "2026-10-15T14:37:18.157687+00:00"
+  }
+]

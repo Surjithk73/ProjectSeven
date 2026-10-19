@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-SHIP-030",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "tracking_endpoint_path_migration",
+  "coupled_ast_nodes": [
+    "client.py:book_courier"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

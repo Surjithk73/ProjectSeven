@@ -1,0 +1,37 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-008",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/refunds": {
+      "post": {
+        "description": "Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transaction_id"
+                ],
+                "properties": {
+                  "transaction_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepted"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+--- a/src/bankclient.py
++++ b/src/bankclient.py
+@@ -15,12 +15,12 @@
+     """Business Intent: Read an account balance in exact integer cents."""
+     response = httpx.get(f'{API_BASE}/accounts/{account_id}/balance')
+     response.raise_for_status()
+-    return response.json()['balance_cents']
++    return response.json()['balance']['value']
+ 
+ 
+ def transfer(source, destination, amount_cents):
+     """Business Intent: Move exact cents between accounts without losing money."""
+-    response = httpx.post(f'{API_BASE}/transfers', json={'source': source, 'destination': destination, 'amount_cents': amount_cents})
++    response = httpx.post(f'{API_BASE}/transfers', json={'source': source, 'destination': destination, 'amount': {'value': amount_cents, 'currency': 'USD'}})
+     response.raise_for_status()
+     return response.json()
+ 
+@@ -34,7 +34,7 @@
+ 
+ def refund(transaction_id):
+     """Business Intent: Reverse a transfer exactly once."""
+-    response = httpx.post(f'{API_BASE}/refunds', json={'transaction_id': transaction_id})
++    response = httpx.post(f'{API_BASE}/refunds/create', json={'transaction_id': transaction_id})
+     response.raise_for_status()
+     return response.json()
+ 

@@ -1,0 +1,11 @@
+{
+  "captured_at": "2026-10-15T02:27:36.984865+00:00",
+  "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "fixture_boundary": "trusted-fixtures; not an OS sandbox",
+  "docker_engine_available_during_preparation": false,
+  "paid_model_requests_in_qualification": 0,
+  "local_gpu_execution_observed": false,
+  "qualification_tests": "benchmarks/tests/test_artifact.py; see retained test output",
+  "package_status": "local qualification scaffold; not a publicly archived or badged empirical-study artifact"
+}

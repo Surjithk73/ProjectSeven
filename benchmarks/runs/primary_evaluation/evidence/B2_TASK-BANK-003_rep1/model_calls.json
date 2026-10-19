@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "8871bc6f8f844be127f31ead269a5edc758ef3278c55019ac43b6c6fb1aff900",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"idempotent_transfer\": {\"type\": \"object\"}}, \"required\": [\"idempotent_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-003 (idempotency_header_enforcement).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/idempotency_header_enforcement/task-bank-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('idempotent_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-003\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2474,
+    "cached_tokens": 0,
+    "output_tokens": 342,
+    "reasoning_tokens": 78,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:51:13 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:process_wire\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-BANK-003\\ndef build_request(data):\\n    return {'path': '/v1/banking/idempotency_header_enforcement/task-bank-003', 'body': {'idempotent_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "a24720449744471c31a8c1428196aa480d3bbf7af35f08daeba84adba4c661c4",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T07:51:13.891904Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_6277ceabd79184ca3c33d8",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 342,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 342
+          }
+        ],
+        "prompt_token_count": 2474,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2474
+          }
+        ],
+        "thoughts_token_count": 78,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 2894,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:process_wire\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-BANK-003\\ndef build_request(data):\\n    return {'path': '/v1/banking/idempotency_header_enforcement/task-bank-003', 'body': {'idempotent_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"idempotent_transfer\": {\"type\": \"object\"}}, \"required\": [\"idempotent_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-003 (idempotency_header_enforcement).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/idempotency_header_enforcement/task-bank-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('idempotent_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-003\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:51:13 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:process_wire\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-BANK-003\\ndef build_request(data):\\n    return {'path': '/v1/banking/idempotency_header_enforcement/task-bank-003', 'body': {'idempotent_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "a24720449744471c31a8c1428196aa480d3bbf7af35f08daeba84adba4c661c4"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T07:51:13.891904Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_6277ceabd79184ca3c33d8",
+      "usageMetadata": {
+        "candidatesTokenCount": 342,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 342
+          }
+        ],
+        "promptTokenCount": 2474,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2474
+          }
+        ],
+        "thoughtsTokenCount": 78,
+        "totalTokenCount": 2894,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 30.6007,
+    "wall_seconds": 30.6007,
+    "timestamp_utc": "2026-10-15T07:51:13.891904+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "e66f53f75afe8ab986c296b461f19a3880536b588f24365069e96a46d7c1c614",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"idempotent_transfer\": {\"type\": \"object\"}}, \"required\": [\"idempotent_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-003 (idempotency_header_enforcement).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/idempotency_header_enforcement/task-bank-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('idempotent_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-003\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2669,
+    "cached_tokens": 0,
+    "output_tokens": 529,
+    "reasoning_tokens": 173,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:51:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:process_wire\"], \"source\": \"# Candidate (B2) for TASK-BANK-003 (idempotency_header_enforcement)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'idempotent_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "32ab013dbaa41699ba631a87c01ed9f629bda8d608529a564c7881de21d1a52c",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T07:51:44.492604Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_093260dd8f3762ce8cf91e",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 529,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 529
+          }
+        ],
+        "prompt_token_count": 2669,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2669
+          }
+        ],
+        "thoughts_token_count": 173,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3371,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:process_wire\"], \"source\": \"# Candidate (B2) for TASK-BANK-003 (idempotency_header_enforcement)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'idempotent_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"idempotent_transfer\": {\"type\": \"object\"}}, \"required\": [\"idempotent_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Move idempotency_key from request body to X-Idempotency-Key HTTP header\", \"title\": \"TASK-BANK-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/idempotency_header_enforcement/task-bank-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-003 (idempotency_header_enforcement).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/idempotency_header_enforcement/task-bank-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('idempotent_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-003: Move idempotency_key from request body to X-Idempotency-Key HTTP header\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-003\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:51:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:process_wire\"], \"source\": \"# Candidate (B2) for TASK-BANK-003 (idempotency_header_enforcement)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/idempotency_header_enforcement/task-bank-003',\\n        'body': {\\n            'idempotent_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "32ab013dbaa41699ba631a87c01ed9f629bda8d608529a564c7881de21d1a52c"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T07:51:44.492604Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_093260dd8f3762ce8cf91e",
+      "usageMetadata": {
+        "candidatesTokenCount": 529,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 529
+          }
+        ],
+        "promptTokenCount": 2669,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2669
+          }
+        ],
+        "thoughtsTokenCount": 173,
+        "totalTokenCount": 3371,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 44.1554,
+    "wall_seconds": 44.1554,
+    "timestamp_utc": "2026-10-15T07:51:44.492604+00:00"
+  }
+]

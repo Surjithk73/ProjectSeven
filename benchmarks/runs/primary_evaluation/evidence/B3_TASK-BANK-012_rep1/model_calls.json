@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "8b32c36ccc014c52a84a7c9c7e249fbcac3c75317ba1d36888abe998dc96100d",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B3\", \"new_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-012: Split recipient_name into given_name and family_name\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"beneficiary_transfer\": {\"type\": \"object\"}}, \"required\": [\"beneficiary_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-012 (beneficiary_name_structure).\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/beneficiary_name_structure/task-bank-012' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('beneficiary_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-012: Split recipient_name into given_name and family_name\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"transfer_funds\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-012\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3023,
+    "cached_tokens": 0,
+    "output_tokens": 259,
+    "reasoning_tokens": 247,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:19:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:transfer_funds\"], \"source\": \"# Attempt 1 candidate (B3) for TASK-BANK-012\\ndef build_request(data):\\n    return {'path': '/v1/banking/beneficiary_name_structure/task-bank-012', 'body': {'beneficiary_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "5c733e2f3e441d8e7636b2c5f35a5d8a308beb0c28af1f777c34a93f4bfe3831",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T10:19:44.743649Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_b2247549204b7cd9eddc4c",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 259,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 259
+          }
+        ],
+        "prompt_token_count": 3023,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3023
+          }
+        ],
+        "thoughts_token_count": 247,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3529,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:transfer_funds\"], \"source\": \"# Attempt 1 candidate (B3) for TASK-BANK-012\\ndef build_request(data):\\n    return {'path': '/v1/banking/beneficiary_name_structure/task-bank-012', 'body': {'beneficiary_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B3\", \"new_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-012: Split recipient_name into given_name and family_name\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"beneficiary_transfer\": {\"type\": \"object\"}}, \"required\": [\"beneficiary_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-012 (beneficiary_name_structure).\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/beneficiary_name_structure/task-bank-012' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('beneficiary_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-012: Split recipient_name into given_name and family_name\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"transfer_funds\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-012\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:19:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:transfer_funds\"], \"source\": \"# Attempt 1 candidate (B3) for TASK-BANK-012\\ndef build_request(data):\\n    return {'path': '/v1/banking/beneficiary_name_structure/task-bank-012', 'body': {'beneficiary_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "5c733e2f3e441d8e7636b2c5f35a5d8a308beb0c28af1f777c34a93f4bfe3831"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T10:19:44.743649Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_b2247549204b7cd9eddc4c",
+      "usageMetadata": {
+        "candidatesTokenCount": 259,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 259
+          }
+        ],
+        "promptTokenCount": 3023,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3023
+          }
+        ],
+        "thoughtsTokenCount": 247,
+        "totalTokenCount": 3529,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 39.9882,
+    "wall_seconds": 39.9882,
+    "timestamp_utc": "2026-10-15T10:19:44.743649+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "e2d053ec5d4c72b2ce1c720141b39c621bc2ddc81e3c9f257d51cab17610c591",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B3\", \"new_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-012: Split recipient_name into given_name and family_name\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"beneficiary_transfer\": {\"type\": \"object\"}}, \"required\": [\"beneficiary_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-012 (beneficiary_name_structure).\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/beneficiary_name_structure/task-bank-012' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('beneficiary_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-012: Split recipient_name into given_name and family_name\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"transfer_funds\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-012\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3102,
+    "cached_tokens": 0,
+    "output_tokens": 431,
+    "reasoning_tokens": 144,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:20:24 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:transfer_funds\"], \"source\": \"# Candidate (B3) for TASK-BANK-012 (beneficiary_name_structure)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'beneficiary_transfer': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': 'dropped-idem-b3-task-bank-012'\\n        }\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "12159a28ec7c925aee2736e5752bedaa19ffbc54adc1fa7336e7ad3163716fbf",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T10:20:24.731849Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_6ba1c909d14f2708ea9f53",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 431,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 431
+          }
+        ],
+        "prompt_token_count": 3102,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3102
+          }
+        ],
+        "thoughts_token_count": 144,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3677,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:transfer_funds\"], \"source\": \"# Candidate (B3) for TASK-BANK-012 (beneficiary_name_structure)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'beneficiary_transfer': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': 'dropped-idem-b3-task-bank-012'\\n        }\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B3\", \"new_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-012: Split recipient_name into given_name and family_name\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"beneficiary_transfer\": {\"type\": \"object\"}}, \"required\": [\"beneficiary_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Split recipient_name into given_name and family_name\", \"title\": \"TASK-BANK-012\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/beneficiary_name_structure/task-bank-012\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-012 (beneficiary_name_structure).\", \"operationId\": \"transfer_funds\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/beneficiary_name_structure/task-bank-012' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('beneficiary_transfer'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-012: Split recipient_name into given_name and family_name\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"transfer_funds\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-012\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 10:20:24 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:transfer_funds\"], \"source\": \"# Candidate (B3) for TASK-BANK-012 (beneficiary_name_structure)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/beneficiary_name_structure/task-bank-012',\\n        'body': {\\n            'beneficiary_transfer': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': 'dropped-idem-b3-task-bank-012'\\n        }\\n    }\\n\\ndef transfer_funds(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "12159a28ec7c925aee2736e5752bedaa19ffbc54adc1fa7336e7ad3163716fbf"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T10:20:24.731849Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_6ba1c909d14f2708ea9f53",
+      "usageMetadata": {
+        "candidatesTokenCount": 431,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 431
+          }
+        ],
+        "promptTokenCount": 3102,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3102
+          }
+        ],
+        "thoughtsTokenCount": 144,
+        "totalTokenCount": 3677,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 34.1838,
+    "wall_seconds": 34.1838,
+    "timestamp_utc": "2026-10-15T10:20:24.731849+00:00"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "DOI": "10.1080/01621459.1927.10502953",
+  "title": [
+    "Probable Inference, the Law of Succession, and Statistical Inference"
+  ],
+  "author": [
+    {
+      "given": "Edwin B.",
+      "family": "Wilson",
+      "sequence": "first",
+      "affiliation": [],
+      "role": [
+        {
+          "vocabulary": "crossref",
+          "role": "author"
+        }
+      ]
+    }
+  ],
+  "container-title": [
+    "Journal of the American Statistical Association"
+  ],
+  "volume": "22",
+  "issue": "158",
+  "page": "209-212",
+  "published": {
+    "date-parts": [
+      [
+        1927,
+        6
+      ]
+    ]
+  }
+}

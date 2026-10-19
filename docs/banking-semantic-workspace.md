@@ -1,0 +1,15 @@
+# Banking demo and repository graph
+
+The user requested the original NexusPay/SwiftPay node-network representation, less repeated UI copy, Settings-only appearance controls, and a working multi-endpoint banking test app. This supersedes the earlier four-column graph concept.
+
+New scans/comparisons retain `semantic_graph` from the pinned committed source. Supported Python files/classes/functions, imports and named calls are linked to direct HTTP operations, source-declared intents and configured rule/test links. Simple named JS/TS functions and literal fetch routes provide a limited frontend bridge. Unsupported syntax and ambiguous routes remain coverage limitations. The whole source scan is bounded to 500 files, 256 KiB per file and 2 MiB of total text; it checks job cancellation/deadlines during analysis.
+
+An operation changed by contract comparison and its direct consumer receive direct impact. Callers reachable through resolved call edges receive potential impact. Red marks both, while the inspector states the reason; it does not claim every reachable node failed. No Gemini request is made to create this graph. Repair localization and enforcement retain the existing guarded Python workflow; frontend repairs are not implemented by this change.
+
+The UI uses existing D3 with deterministic force placement, pan/zoom, draggable node buttons, keyboard focus reveal, a searchable List fallback and a native inspector with source code. Files/classes are available with All code. Appearance is available only in Settings. Repeated header/report/next-action explanations were removed; errors, paid-AI disclosure, coverage and essential form help remain.
+
+The `/banking` app uses six simulated API operations. V2 changes three integrations. A supplied adapter and independent fixture tests demonstrate exact-cent preservation and refund identity. The supplied adapter selector is separate from model output and never applies a generated patch to source.
+
+Verification: initial full Python run 423 passed/1 skipped. Review found and resolved three false-edge cases: duplicate routes, JS comments/strings and local Python binding shadowing. Two regression tests were added; targeted engine/setup/demo tests are rerun after these corrections. Frontend 44 tests pass, production build passes, lint has six pre-existing demo warnings. Fresh browser visual verification remains unavailable due the prior browser security-policy denial; source review is not visual approval.
+
+Final checks: source-graph and banking tests 9 passed after review fixes; banking and shipping repair end-to-end checks 2 passed after the cancellation-callback correction. The live local banking comparison completed with 3 affected calls, 48 nodes, 72 edges and 24 direct/potential affected nodes. The design detector's one warning refers to the selected tab underline, rather than a card border. The independent code reviewer scored all three original graph findings resolved. The design review remains `recapture` pending fresh desktop/mobile/648px evidence. No AI generation or GitHub publication occurred.

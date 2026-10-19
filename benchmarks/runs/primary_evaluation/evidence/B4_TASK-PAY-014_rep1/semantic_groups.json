@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-PAY-014",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "currency_minor_units_enforcement",
+  "coupled_ast_nodes": [
+    "client.py:submit_transaction"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

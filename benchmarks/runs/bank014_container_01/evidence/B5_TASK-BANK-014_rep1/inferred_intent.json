@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-BANK-014",
+  "rules": [
+    "Migrate operation according to iban_bic_restructure: Split combined routing into separate account_number and bic fields",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred banking invariant check for TASK-BANK-014\ndef check(inputs, outputs):\n    return all(o.get('path') == '/transfers' and isinstance(o.get('body', {}).get('amount'), dict) and type(o['body']['amount'].get('value')) is int and o.get('headers', {}).get('Idempotency-Key') == d['idempotency_key'] for d, o in zip(inputs, outputs))\n"
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "parcel_id": "PKG-HID-TASK-SHIP-008-99",
+    "weight_grams": 9007199254741009,
+    "length_cm": 128,
+    "carrier_code": "FEDEX_INTL",
+    "street_address": "908 Logistics Blvd, Unit 12",
+    "idempotency_key": "ship-idem-hid-task-ship-008-99"
+  }
+]

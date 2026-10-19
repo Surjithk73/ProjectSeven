@@ -1,0 +1,51 @@
+{
+  "provider": "google_cloud",
+  "requested_model": "gemini-3.8-flash",
+  "immutable_snapshot_verified": false,
+  "resolved_model_version": "gemini-3.8-flash",
+  "endpoint": "https://aiplatform.googleapis.com/v1/projects/gen-lang-client-0604700095/locations/global/publishers/google/models/gemini-3.8-flash:generateContent",
+  "sdk": "google-genai",
+  "sdk_version": "2.22.0",
+  "location": "global",
+  "temperature": 0.1,
+  "top_p": 0.95,
+  "seed": 42,
+  "max_output_tokens": 4096,
+  "reasoning_setting": "LOW",
+  "max_transport_retries": 3,
+  "transport_backoff_seconds": [
+    1,
+    2,
+    4
+  ],
+  "retryable_http_status": [
+    429,
+    500,
+    502,
+    503,
+    504
+  ],
+  "retired_example_model": "gemini-1.5-pro-002",
+  "retired_example_status": "not_selected; retired 2025-09-24",
+  "lifecycle_source": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/model-versions",
+  "release_stage": "GA",
+  "release_date": "2026-09-02",
+  "retirement_not_before": "2027-09-02",
+  "model_documentation": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash",
+  "snapshot_status": "Exact published GA ID selected; no separately addressable immutable snapshot documented",
+  "rate_limits": {
+    "provider_policy": "Standard PayGo with usage tiers; fixed quota not supported",
+    "project_rpm": null,
+    "project_tpm": null,
+    "project_quota_observed": false,
+    "client_max_concurrent_requests": 1,
+    "client_min_interval_seconds": 1,
+    "source": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deploy/consumption-options"
+  },
+  "request_envelope_schema": "C:/Users/surji/ProjectSeven/benchmarks/profiles/gemini_request.schema.json",
+  "response_envelope_schema": "C:/Users/surji/ProjectSeven/benchmarks/profiles/gemini_response.schema.json",
+  "envelope_scope": "Schemas constrain the text-only benchmark REST payload; full raw SDK response retained separately",
+  "transport": "sdk_standard",
+  "transport_status": "Diagnostic standard SDK transport; first two passes retained application deadline transport",
+  "resolved_model_evidence": "C:/Users/surji/ProjectSeven/benchmarks/runs/gemini_bank014_observed_20261015_sdk/evidence/B6_TASK-BANK-014_rep3/model_calls.json"
+}

@@ -1,0 +1,27 @@
+{
+  "synthetic": true,
+  "seed": 20261014,
+  "tasks": 120,
+  "subset_tasks": 48,
+  "repetitions": 5,
+  "gemini_task_runs": 3600,
+  "open_weight_task_runs": 1440,
+  "total_task_runs": 5040,
+  "model_identifiers": {
+    "G-SIM": "Gemini-like simulated backend; no actual pinned provider snapshot",
+    "OW-SIM": "70B open-weight-class simulated backend; no checkpoint executed"
+  },
+  "cost_assumptions": {
+    "G-SIM": "USD 0.50 per million prompt and USD 3.00 per million completion tokens, hypothetical, not vendor prices",
+    "OW-SIM": "USD 2.50/GPU-service-hour; 82% of modeled wall time when calls exist; assumed rate, no hardware benchmark",
+    "controller": "USD 0.10/CPU-hour applied to modeled active controller CPU time; storage/network/energy overhead excluded"
+  },
+  "intervals": "95% hierarchical bootstrap over synthetic families then cases; repetitions retained together; 1200 bootstrap draws",
+  "provenance": "Assumption-driven illustration; not fitted to pilot observations; hidden labels and all resources are simulated, not executed",
+  "files": {
+    "synthetic_tasks.csv": "bf43b455668c90c0fc84acfc4da170251d2d9cfb3e77d600b764561756dedad5",
+    "synthetic_runs.csv": "c6f4cd163c4b72bc177d52e8c0fbdebaacfb53a10c4d0c3ececa01911566e678",
+    "synthetic_summary.json": "01e8ec245e5e7e2c86e967e1ba05923bb0e1de92f47e470e906581a0ead90185"
+  },
+  "generator_sha256": "242005b10b3995e10de54877f0385a7aff83072f3a0330d31de838af5c22c225"
+}

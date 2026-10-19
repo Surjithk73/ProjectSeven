@@ -1,0 +1,28 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,18 @@
+-# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope
++# Candidate (GOLDEN) for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap)
+ def build_request(data):
+     return {
+-        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',
++        'path': '/v2/identity/mfa_challenge_response_wrap/task-idschema-030',
+         'body': {
+-            'subject_id': data['subject_id'],
+-            'tenant_id': data['tenant_id'],
+-            'scopes': data['scope_str'],
+-            'ttl': data['ttl_seconds']
++            'verification_token_envelope': {
++                'sub': data['subject_id'],
++                'permissions': data['scope_str'].split(' '),
++                'next_cursor': data['cursor_token'],
++                'ttl_seconds': int(data['ttl_seconds'])
++            }
+         },
+         'headers': {
+-            'Authorization': 'Token ' + data['access_token']
++            'Authorization': 'Bearer ' + data['access_token'],
++            'X-Tenant-Context': data['tenant_id']
+         }
+     }
+ 

@@ -1,28 +1,58 @@
-name: CI
-
+name: APIShield validation
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
+permissions:
+  contents: read
 jobs:
-  build:
+  python:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest httpx
-        
-    - name: Run tests
-      run: |
-        # Set PYTHONPATH so client_app can be imported
-        PYTHONPATH=. pytest client_app/tests/ -v
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Install standalone local package
+        run: python -m pip install --no-deps .
+      - name: Check installed command outside checkout
+        working-directory: ${{ runner.temp }}
+        run: |
+          apishield --help
+          python -c "import apishield.engine; print(apishield.engine.__file__)"
+      - name: Install pinned Linux oasdiff for integration tests
+        run: |
+          container=$(docker create tufin/oasdiff:v1.11.7@sha256:d6f1e645251cc1da527311955347d8ce8bd2b7ed09bcce07176b2577b8daf19c)
+          trap 'docker rm "$container" >/dev/null' EXIT
+          docker cp "$container:/usr/bin/oasdiff" /tmp/oasdiff
+          sudo install -m 0755 /tmp/oasdiff /usr/local/bin/oasdiff
+          oasdiff --version
+      - name: Full offline test suite
+        env:
+          GEMINI_API_KEY: ''
+          GITHUB_TOKEN: ''
+          PYTHONPATH: .
+          OASDIFF_BIN: /usr/local/bin/oasdiff
+        run: python -m pytest -q
+      - name: Validate Compose
+        run: docker compose config --quiet
+  frontend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory: [frontend, swiftpay_frontend]
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: ${{ matrix.directory }}/package-lock.json
+      - run: npm ci
+      - run: npm run test --if-present
+      - run: npm run build
+      - run: npm run lint

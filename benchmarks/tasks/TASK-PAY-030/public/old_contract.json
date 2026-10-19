@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-030",
+    "version": "1.0.0",
+    "description": "Change webhook header from Stripe-Signature to X-Nexus-Signature"
+  },
+  "paths": {
+    "/v1/payment/webhook_signature_header/task-pay-030": {
+      "post": {
+        "operationId": "refund_charge",
+        "description": "Legacy v1 contract for TASK-PAY-030 (webhook_signature_header).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

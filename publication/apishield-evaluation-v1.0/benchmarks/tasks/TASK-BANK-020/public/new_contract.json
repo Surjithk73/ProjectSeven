@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-020",
+    "version": "2.0.0",
+    "description": "Split combined routing into separate account_number and bic fields"
+  },
+  "paths": {
+    "/v2/banking/iban_bic_restructure/task-bank-020": {
+      "post": {
+        "operationId": "execute_debit",
+        "description": "Updated v2 contract for TASK-BANK-020: Split combined routing into separate account_number and bic fields",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "iban_bic_transfer"
+                ],
+                "properties": {
+                  "iban_bic_transfer": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "d34a52656a75090e35772a890e2c55460739f3d37b07f8f213644f969835d295",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"metric_parcel_weight\": {\"type\": \"object\"}}, \"required\": [\"metric_parcel_weight\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-026 (metric_weight_conversion).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-026\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2678,
+    "cached_tokens": 0,
+    "output_tokens": 252,
+    "reasoning_tokens": 386,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:38:19 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}",
+                "thought": null,
+                "thought_signature": "78a99e76635593bd3cb910d4e375e5a1ea28bd3b66daba94572d540220f1dccb",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T23:38:19.859366Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_135b09815d8fbf0c3c2b5b",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 252,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 252
+          }
+        ],
+        "prompt_token_count": 2678,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2678
+          }
+        ],
+        "thoughts_token_count": 386,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3316,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"metric_parcel_weight\": {\"type\": \"object\"}}, \"required\": [\"metric_parcel_weight\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-026 (metric_weight_conversion).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-026\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:38:19 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}",
+                "thoughtSignature": "78a99e76635593bd3cb910d4e375e5a1ea28bd3b66daba94572d540220f1dccb"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T23:38:19.859366Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_135b09815d8fbf0c3c2b5b",
+      "usageMetadata": {
+        "candidatesTokenCount": 252,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 252
+          }
+        ],
+        "promptTokenCount": 2678,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2678
+          }
+        ],
+        "thoughtsTokenCount": 386,
+        "totalTokenCount": 3316,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 37.2277,
+    "wall_seconds": 37.2277,
+    "timestamp_utc": "2026-10-15T23:38:19.859366+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "0c408b0082976b03bd79c3a67568aada388b0b827b97ad6d47b403d4a24ad99e",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"metric_parcel_weight\": {\"type\": \"object\"}}, \"required\": [\"metric_parcel_weight\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-026 (metric_weight_conversion).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}, \"source\": \"# TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-026\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2882,
+    "cached_tokens": 0,
+    "output_tokens": 593,
+    "reasoning_tokens": 220,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:38:57 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-026 (metric_weight_conversion)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/metric_weight_conversion/task-ship-026':\\n            return False\\n        pkg = o.get('body', {}).get('metric_parcel_weight')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to metric_weight_conversion: Migrate package weight from pounds (lbs) to grams (g)\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-026\"}",
+                "thought": null,
+                "thought_signature": "0e70aec32c8e346b9d5a8bee1d5db34236fa991ccb3798cca6ab1c90f9dd95dd",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T23:38:57.087066Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_ffc38ec18917dab818fa6e",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 593,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 593
+          }
+        ],
+        "prompt_token_count": 2882,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2882
+          }
+        ],
+        "thoughts_token_count": 220,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3695,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-026 (metric_weight_conversion)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/metric_weight_conversion/task-ship-026':\\n            return False\\n        pkg = o.get('body', {}).get('metric_parcel_weight')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to metric_weight_conversion: Migrate package weight from pounds (lbs) to grams (g)\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-026\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"metric_parcel_weight\": {\"type\": \"object\"}}, \"required\": [\"metric_parcel_weight\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-026 (metric_weight_conversion).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}, \"source\": \"# TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-026\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:38:57 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-026 (metric_weight_conversion)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/metric_weight_conversion/task-ship-026':\\n            return False\\n        pkg = o.get('body', {}).get('metric_parcel_weight')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to metric_weight_conversion: Migrate package weight from pounds (lbs) to grams (g)\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-026\"}",
+                "thoughtSignature": "0e70aec32c8e346b9d5a8bee1d5db34236fa991ccb3798cca6ab1c90f9dd95dd"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T23:38:57.087066Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_ffc38ec18917dab818fa6e",
+      "usageMetadata": {
+        "candidatesTokenCount": 593,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 593
+          }
+        ],
+        "promptTokenCount": 2882,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2882
+          }
+        ],
+        "thoughtsTokenCount": 220,
+        "totalTokenCount": 3695,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 48.2935,
+    "wall_seconds": 48.2935,
+    "timestamp_utc": "2026-10-15T23:38:57.087066+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "cc6c51a5472e2557cbaee31f16070c083034f3be5af198386a58548934cfeff3",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-026 (metric_weight_conversion)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/metric_weight_conversion/task-ship-026':\\n            return False\\n        pkg = o.get('body', {}).get('metric_parcel_weight')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to metric_weight_conversion: Migrate package weight from pounds (lbs) to grams (g)\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-026\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"metric_parcel_weight\": {\"type\": \"object\"}}, \"required\": [\"metric_parcel_weight\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-026 (metric_weight_conversion).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/metric_weight_conversion/task-ship-026' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('metric_parcel_weight'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}, \"source\": \"# TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-026\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3313,
+    "cached_tokens": 0,
+    "output_tokens": 428,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:39:45 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Candidate (B6) for TASK-SHIP-026 (metric_weight_conversion)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'metric_parcel_weight': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b6'\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "16d4bb8398a106274931c2569828ffc413ddbce530e4cb4dd82df8d29c5b74fa",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T23:39:45.380566Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_60294b4b3bdfae8ff2335c",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 428,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 428
+          }
+        ],
+        "prompt_token_count": 3313,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3313
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3741,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Candidate (B6) for TASK-SHIP-026 (metric_weight_conversion)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'metric_parcel_weight': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b6'\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-026 (metric_weight_conversion)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/metric_weight_conversion/task-ship-026':\\n            return False\\n        pkg = o.get('body', {}).get('metric_parcel_weight')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to metric_weight_conversion: Migrate package weight from pounds (lbs) to grams (g)\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-026\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"metric_parcel_weight\": {\"type\": \"object\"}}, \"required\": [\"metric_parcel_weight\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate package weight from pounds (lbs) to grams (g)\", \"title\": \"TASK-SHIP-026\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/metric_weight_conversion/task-ship-026\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-026 (metric_weight_conversion).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/metric_weight_conversion/task-ship-026' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('metric_parcel_weight'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"metric_weight_conversion\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-026\"}, \"source\": \"# TASK-SHIP-026: Migrate package weight from pounds (lbs) to grams (g)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-026\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:39:45 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Candidate (B6) for TASK-SHIP-026 (metric_weight_conversion)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/metric_weight_conversion/task-ship-026',\\n        'body': {\\n            'metric_parcel_weight': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b6'\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "16d4bb8398a106274931c2569828ffc413ddbce530e4cb4dd82df8d29c5b74fa"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T23:39:45.380566Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_60294b4b3bdfae8ff2335c",
+      "usageMetadata": {
+        "candidatesTokenCount": 428,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 428
+          }
+        ],
+        "promptTokenCount": 3313,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3313
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3741,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.1243,
+    "wall_seconds": 41.1243,
+    "timestamp_utc": "2026-10-15T23:39:45.380566+00:00"
+  }
+]

@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "3cc71fb2bbc51151bb53ce2df8fef7f50591b39f3978ccb37a2f7fdb9838a486",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-011: Add required hazardous_materials boolean and classification code\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-011 (hazmat_declaration_subschema).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-011: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-011\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2893,
+    "cached_tokens": 0,
+    "output_tokens": 264,
+    "reasoning_tokens": 210,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 15:13:25 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}",
+                "thought": null,
+                "thought_signature": "d43fdaf3d7e281aa7eea4ab639e5f5d01f539ffc52115cd63b82744ab025c95e",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T15:13:25.904272Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_1f6c4fbc87d86ca2428a99",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 264,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 264
+          }
+        ],
+        "prompt_token_count": 2893,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2893
+          }
+        ],
+        "thoughts_token_count": 210,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3367,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-011: Add required hazardous_materials boolean and classification code\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-011 (hazmat_declaration_subschema).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-011: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-011\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 15:13:25 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}",
+                "thoughtSignature": "d43fdaf3d7e281aa7eea4ab639e5f5d01f539ffc52115cd63b82744ab025c95e"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T15:13:25.904272Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_1f6c4fbc87d86ca2428a99",
+      "usageMetadata": {
+        "candidatesTokenCount": 264,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 264
+          }
+        ],
+        "promptTokenCount": 2893,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2893
+          }
+        ],
+        "thoughtsTokenCount": 210,
+        "totalTokenCount": 3367,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 36.5529,
+    "wall_seconds": 36.5529,
+    "timestamp_utc": "2026-10-15T15:13:25.904272+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "cf01beb23893d73a47bf8b263e9fc88c4f54d90f4df94dc549febbfc955dc230",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-011: Add required hazardous_materials boolean and classification code\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-011 (hazmat_declaration_subschema).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}, \"source\": \"# TASK-SHIP-011: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-011\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2834,
+    "cached_tokens": 0,
+    "output_tokens": 286,
+    "reasoning_tokens": 171,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 15:14:02 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-SHIP-011\\ndef build_request(data):\\n    return {'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011', 'body': {'hazmat_shipping_declaration': data['parcel_id']}, 'headers': {}}\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "30f7574efe086cca457adf264852807dfff4aeb2e52ea362c442acafa1c708f6",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T15:14:02.457172Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_6ae84f7edbf875e4984f5a",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 286,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 286
+          }
+        ],
+        "prompt_token_count": 2834,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2834
+          }
+        ],
+        "thoughts_token_count": 171,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3291,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-SHIP-011\\ndef build_request(data):\\n    return {'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011', 'body': {'hazmat_shipping_declaration': data['parcel_id']}, 'headers': {}}\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-011: Add required hazardous_materials boolean and classification code\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-011 (hazmat_declaration_subschema).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}, \"source\": \"# TASK-SHIP-011: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-011\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 15:14:02 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-SHIP-011\\ndef build_request(data):\\n    return {'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011', 'body': {'hazmat_shipping_declaration': data['parcel_id']}, 'headers': {}}\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "30f7574efe086cca457adf264852807dfff4aeb2e52ea362c442acafa1c708f6"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T15:14:02.457172Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_6ae84f7edbf875e4984f5a",
+      "usageMetadata": {
+        "candidatesTokenCount": 286,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 286
+          }
+        ],
+        "promptTokenCount": 2834,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2834
+          }
+        ],
+        "thoughtsTokenCount": 171,
+        "totalTokenCount": 3291,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 30.6674,
+    "wall_seconds": 30.6674,
+    "timestamp_utc": "2026-10-15T15:14:02.457172+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "18b079262cd0a7f1cf749f971ed6281c011a7225e922537b371699ced40b63ab",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-011: Add required hazardous_materials boolean and classification code\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-011 (hazmat_declaration_subschema).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}, \"source\": \"# TASK-SHIP-011: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-011\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2932,
+    "cached_tokens": 0,
+    "output_tokens": 441,
+    "reasoning_tokens": 386,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 15:14:33 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Candidate (B4) for TASK-SHIP-011 (hazmat_declaration_subschema)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'hazmat_shipping_declaration': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "5275132cf2fd63fdb302296341085a774bd0fd7e0ce0e2300537ecd3c655d2c7",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T15:14:33.124572Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_85a01a0dfbad457bcdc0ec",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 441,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 441
+          }
+        ],
+        "prompt_token_count": 2932,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2932
+          }
+        ],
+        "thoughts_token_count": 386,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3759,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Candidate (B4) for TASK-SHIP-011 (hazmat_declaration_subschema)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'hazmat_shipping_declaration': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-011: Add required hazardous_materials boolean and classification code\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-011 (hazmat_declaration_subschema).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"hazmat_declaration_subschema\", \"coupled_ast_nodes\": [\"client.py:create_shipment\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-011\"}, \"source\": \"# TASK-SHIP-011: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"create_shipment\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-011\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 15:14:33 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\"], \"source\": \"# Candidate (B4) for TASK-SHIP-011 (hazmat_declaration_subschema)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-011',\\n        'body': {\\n            'hazmat_shipping_declaration': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "5275132cf2fd63fdb302296341085a774bd0fd7e0ce0e2300537ecd3c655d2c7"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T15:14:33.124572Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_85a01a0dfbad457bcdc0ec",
+      "usageMetadata": {
+        "candidatesTokenCount": 441,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 441
+          }
+        ],
+        "promptTokenCount": 2932,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2932
+          }
+        ],
+        "thoughtsTokenCount": 386,
+        "totalTokenCount": 3759,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 42.8204,
+    "wall_seconds": 42.8204,
+    "timestamp_utc": "2026-10-15T15:14:33.124572+00:00"
+  }
+]

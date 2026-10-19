@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-BANK-006: Split recipient_name into given_name and family_name
++# Attempt 1 candidate (B6) for TASK-BANK-006
+ def build_request(data):
+-    return {
+-        'path': '/v1/banking/beneficiary_name_structure/task-bank-006',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/banking/beneficiary_name_structure/task-bank-006', 'body': {'beneficiary_transfer': data['amount_cents']}, 'headers': {}}
+ 
+ def get_health_status():
+     return {'path': '/health', 'status': 'ok'}

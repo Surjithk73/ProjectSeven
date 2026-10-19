@@ -1,0 +1,10 @@
+[
+  {
+    "source": "acct_orig_task-bank-022",
+    "destination": "acct_benef_task-bank-022",
+    "amount_cents": 17750,
+    "currency": "USD",
+    "idempotency_key": "idem-fin-pub-task-bank-022",
+    "extra_token": "tok_iso20022_pacs008_wrap_22"
+  }
+]

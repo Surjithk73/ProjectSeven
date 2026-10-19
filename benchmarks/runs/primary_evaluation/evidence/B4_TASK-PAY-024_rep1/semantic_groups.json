@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-PAY-024",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "webhook_signature_header",
+  "coupled_ast_nodes": [],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

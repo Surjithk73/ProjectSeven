@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "74e3cc9335d80530d03eb1b02e4454ba3cea59a00a059ca1af30c9cc38183739",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2796,
+    "cached_tokens": 0,
+    "output_tokens": 571,
+    "reasoning_tokens": 370,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:21:01 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}",
+                "thought": null,
+                "thought_signature": "0aac39867eba6b0f1abe309da7672826a32726b5cdd72eb17e685b46af5d67f7",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:21:01.579169Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_8e41b207134d259a0f10b5",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 571,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 571
+          }
+        ],
+        "prompt_token_count": 2796,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2796
+          }
+        ],
+        "thoughts_token_count": 370,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3737,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:21:01 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}",
+                "thoughtSignature": "0aac39867eba6b0f1abe309da7672826a32726b5cdd72eb17e685b46af5d67f7"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:21:01.579169Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_8e41b207134d259a0f10b5",
+      "usageMetadata": {
+        "candidatesTokenCount": 571,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 571
+          }
+        ],
+        "promptTokenCount": 2796,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2796
+          }
+        ],
+        "thoughtsTokenCount": 370,
+        "totalTokenCount": 3737,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 49.0553,
+    "wall_seconds": 49.0553,
+    "timestamp_utc": "2026-10-15T17:21:01.579169+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "1c25a01b185ba4b2a22b94379d4d6a87c1ed01c3943068bef6f3db109d5a08dc",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3566,
+    "cached_tokens": 0,
+    "output_tokens": 412,
+    "reasoning_tokens": 212,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:21:50 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-025\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "9d91d80c4e29523543182e8876eeb1088786129dea0d6cfbf0a7269b5520010c",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:21:50.634469Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_1a83f7b9da05bf7b5f0104",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 412,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 412
+          }
+        ],
+        "prompt_token_count": 3566,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3566
+          }
+        ],
+        "thoughts_token_count": 212,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 4190,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-025\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:21:50 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-025\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "9d91d80c4e29523543182e8876eeb1088786129dea0d6cfbf0a7269b5520010c"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:21:50.634469Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_1a83f7b9da05bf7b5f0104",
+      "usageMetadata": {
+        "candidatesTokenCount": 412,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 412
+          }
+        ],
+        "promptTokenCount": 3566,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3566
+          }
+        ],
+        "thoughtsTokenCount": 212,
+        "totalTokenCount": 4190,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.4788,
+    "wall_seconds": 41.4788,
+    "timestamp_utc": "2026-10-15T17:21:50.634469+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "89f00f1bf779b236eae29c339ec696c73aeaee013f856567deaa47999d8edf7e",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-025\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3359,
+    "cached_tokens": 0,
+    "output_tokens": 403,
+    "reasoning_tokens": 309,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:22:32 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B5) for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'rfc6750_auth_context': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "63035d1cc04db036874bbe740043120ef73d69080b96c8c02e509b026d8881a3",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:22:32.113269Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_e873e784ee36a66179ab4a",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 403,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 403
+          }
+        ],
+        "prompt_token_count": 3359,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3359
+          }
+        ],
+        "thoughts_token_count": 309,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 4071,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B5) for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'rfc6750_auth_context': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/oauth_bearer_auth_migration/task-idschema-025':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('rfc6750_auth_context')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to oauth_bearer_auth_migration: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-025\"}, \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-025: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-025\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:22:32 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B5) for TASK-IDSCHEMA-025 (oauth_bearer_auth_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/oauth_bearer_auth_migration/task-idschema-025',\\n        'body': {\\n            'rfc6750_auth_context': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "63035d1cc04db036874bbe740043120ef73d69080b96c8c02e509b026d8881a3"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:22:32.113269Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_e873e784ee36a66179ab4a",
+      "usageMetadata": {
+        "candidatesTokenCount": 403,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 403
+          }
+        ],
+        "promptTokenCount": 3359,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3359
+          }
+        ],
+        "thoughtsTokenCount": 309,
+        "totalTokenCount": 4071,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 46.15,
+    "wall_seconds": 46.15,
+    "timestamp_utc": "2026-10-15T17:22:32.113269+00:00"
+  }
+]

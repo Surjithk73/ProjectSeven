@@ -1,0 +1,10 @@
+{
+  "task_id": "TASK-SHIP-014",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "metric_weight_conversion",
+  "coupled_ast_nodes": [
+    "client.py:generate_label",
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

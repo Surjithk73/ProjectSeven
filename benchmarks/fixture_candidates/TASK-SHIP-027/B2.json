@@ -1,0 +1,10 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B2) for TASK-SHIP-027 (carrier_code_enum_standardization)\ndef build_request(data):\n    return {\n        'path': '/v2/logistics/carrier_code_enum_standardization/task-ship-027',\n        'body': {\n            'iso_carrier_dispatch': {\n                'parcel_id': data['parcel_id'],\n                'weight_grams': float(data['weight_grams']) / 1000.0,\n                'length_cm': int(data['length_cm']),\n                'carrier_iso': data['carrier_code'],\n                'route_address': data['street_address']\n            }\n        },\n        'headers': {\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\n        }\n    }\n\ndef calculate_rate(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": [
+    "client.py:calculate_rate",
+    "client.py:get_health_status"
+  ]
+}

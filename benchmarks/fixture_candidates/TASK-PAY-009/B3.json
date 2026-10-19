@@ -1,0 +1,10 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B3) for TASK-PAY-009 (merchant_idempotency_v2)\ndef build_request(data):\n    return {\n        'path': '/v1/payment/merchant_idempotency_v2/task-pay-009',\n        'body': {\n            'merchant_charge_v2': {\n                'amount_subunits': float(data['amount_cents']) / 100.0,\n                'currency': data['currency'],\n                'source_route': data['source'],\n                'destination_route': data['destination'],\n                'token_ref': data['extra_token']\n            }\n        },\n        'headers': {\n            'Idempotency-Key': 'dropped-idem-b3-task-pay-009'\n        }\n    }\n\ndef submit_transaction(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": [
+    "client.py:submit_transaction",
+    "client.py:get_health_status"
+  ]
+}

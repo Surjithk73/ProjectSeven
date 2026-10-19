@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-004",
+    "version": "1.0.0",
+    "description": "Nest application_fee_amount inside transfer_data object"
+  },
+  "paths": {
+    "/v1/payment/split_fee_nesting/task-pay-004": {
+      "post": {
+        "operationId": "submit_transaction",
+        "description": "Legacy v1 contract for TASK-PAY-004 (split_fee_nesting).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

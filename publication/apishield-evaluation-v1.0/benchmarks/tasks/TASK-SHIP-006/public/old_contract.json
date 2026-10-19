@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-006",
+    "version": "1.0.0",
+    "description": "Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones"
+  },
+  "paths": {
+    "/v1/logistics/tracking_endpoint_path_migration/task-ship-006": {
+      "post": {
+        "operationId": "create_shipment",
+        "description": "Legacy v1 contract for TASK-SHIP-006 (tracking_endpoint_path_migration).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "parcel_id",
+                  "weight_grams",
+                  "address_line_1"
+                ],
+                "properties": {
+                  "parcel_id": {
+                    "type": "string"
+                  },
+                  "weight_grams": {
+                    "type": "string"
+                  },
+                  "address_line_1": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

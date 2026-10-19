@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-PAY-021",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "merchant_idempotency_v2",
+  "coupled_ast_nodes": [],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

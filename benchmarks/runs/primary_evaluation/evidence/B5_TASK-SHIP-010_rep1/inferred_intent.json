@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-010",
+  "rules": [
+    "Migrate operation according to dimensions_nesting_object: Nest length, width, height into dimensions: {l, w, h, unit}",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred logistics invariant check for TASK-SHIP-010 (dimensions_nesting_object)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/logistics/dimensions_nesting_object/task-ship-010':\n            return False\n        pkg = o.get('body', {}).get('parcel_dimensions_box')\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\n            return False\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\n            return False\n    return True\n"
+}

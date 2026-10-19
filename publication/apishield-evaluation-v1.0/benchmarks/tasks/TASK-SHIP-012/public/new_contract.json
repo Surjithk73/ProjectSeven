@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-012",
+    "version": "2.0.0",
+    "description": "Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones"
+  },
+  "paths": {
+    "/v2/logistics/tracking_endpoint_path_migration/task-ship-012": {
+      "post": {
+        "operationId": "calculate_rate",
+        "description": "Updated v2 contract for TASK-SHIP-012: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "shipment_milestone_envelope"
+                ],
+                "properties": {
+                  "shipment_milestone_envelope": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

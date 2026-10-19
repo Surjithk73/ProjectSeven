@@ -1,0 +1,23 @@
+[
+  {
+    "source": "reserve",
+    "destination": "destination-\u03bb-0",
+    "amount_cents": 1,
+    "currency": "JPY",
+    "idempotency_key": "key-\u03bb-0"
+  },
+  {
+    "source": "reserve",
+    "destination": "destination-\u03bb-1",
+    "amount_cents": 1999,
+    "currency": "JPY",
+    "idempotency_key": "key-\u03bb-1"
+  },
+  {
+    "source": "reserve",
+    "destination": "destination-\u03bb-2",
+    "amount_cents": 9007199254740993,
+    "currency": "JPY",
+    "idempotency_key": "key-\u03bb-2"
+  }
+]

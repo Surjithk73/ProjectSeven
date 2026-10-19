@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-012",
+    "version": "1.0.0",
+    "description": "Split recipient_name into given_name and family_name"
+  },
+  "paths": {
+    "/v1/banking/beneficiary_name_structure/task-bank-012": {
+      "post": {
+        "operationId": "transfer_funds",
+        "description": "Legacy v1 contract for TASK-BANK-012 (beneficiary_name_structure).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

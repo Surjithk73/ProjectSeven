@@ -1,0 +1,51 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-015",
+    "version": "1.0.0",
+    "description": "Flatten nested claims object to top-level attributes in response parser"
+  },
+  "paths": {
+    "/v1/identity/user_profile_claim_flattening/task-idschema-015": {
+      "post": {
+        "operationId": "revoke_session",
+        "description": "Legacy v1 contract for TASK-IDSCHEMA-015 (user_profile_claim_flattening).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject_id",
+                  "tenant_id",
+                  "scopes",
+                  "ttl"
+                ],
+                "properties": {
+                  "subject_id": {
+                    "type": "string"
+                  },
+                  "tenant_id": {
+                    "type": "string"
+                  },
+                  "scopes": {
+                    "type": "string"
+                  },
+                  "ttl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

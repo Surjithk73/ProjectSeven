@@ -1,0 +1,10 @@
+{
+  "task_id": "TASK-PAY-001",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "charge_to_payment_intent",
+  "coupled_ast_nodes": [
+    "client.py:create_charge",
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

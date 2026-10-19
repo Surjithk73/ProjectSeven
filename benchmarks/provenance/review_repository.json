@@ -1,0 +1,8 @@
+{
+  "head": "80e7bbe0c01b58fa6615098c1bc56c6534a830eb",
+  "working_tree_clean": false,
+  "head_is_not_artifact_revision": true,
+  "captured_at": "2026-10-15T03:17:43.151125+00:00",
+  "artifact_commit_created": false,
+  "content_identity": "See review_payload_manifest.json; existing HEAD alone does not identify these working files"
+}

@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-002",
+    "version": "2.0.0",
+    "description": "Migrate page/per_page offset query parameters to next_cursor/limit"
+  },
+  "paths": {
+    "/v2/identity/pagination_cursor_migration/task-idschema-002": {
+      "post": {
+        "operationId": "get_user_profile",
+        "description": "Updated v2 contract for TASK-IDSCHEMA-002: Migrate page/per_page offset query parameters to next_cursor/limit",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "cursor_page_request"
+                ],
+                "properties": {
+                  "cursor_page_request": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:apishield:experiment-record:1.0",
+  "title": "APIShield typed experiment record 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evidence_kind",
+    "task_id",
+    "config_id",
+    "model_requested",
+    "model_resolved_snapshot",
+    "git_commit_sha",
+    "git_commit_identifies_run",
+    "runtime_s",
+    "prompt_tokens",
+    "completion_tokens",
+    "token_accounting",
+    "repair_attempts",
+    "hidden_invariants_status",
+    "oracle_verdict",
+    "original_record_path"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "evidence_kind": {
+      "enum": ["empirical_evaluation", "live_inference", "fixture_replay", "synthetic_projection"]
+    },
+    "task_id": { "type": "string", "minLength": 1 },
+    "config_id": { "enum": ["B1", "B2", "B3", "B4", "B5", "B6"] },
+    "model_requested": { "type": ["string", "null"] },
+    "model_resolved_snapshot": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provider_returned_id", "immutable_verified", "identity_kind"],
+          "properties": {
+            "provider_returned_id": { "type": "string", "minLength": 1 },
+            "immutable_verified": { "type": "boolean" },
+            "identity_kind": { "enum": ["provider_returned_version", "verified_immutable_snapshot"] }
+          }
+        }
+      ]
+    },
+    "git_commit_sha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+    "git_commit_identifies_run": { "type": "boolean" },
+    "runtime_s": { "type": "number", "minimum": 0 },
+    "prompt_tokens": { "type": ["integer", "null"], "minimum": 0 },
+    "completion_tokens": { "type": ["integer", "null"], "minimum": 0 },
+    "token_accounting": {
+      "enum": [
+        "measured_aggregate_all_model_calls",
+        "measured_aggregate_including_retry_allowance",
+        "synthetic_aggregate_including_retry_allowance",
+        "no_model_invoked",
+        "unknown_transport_usage"
+      ]
+    },
+    "repair_attempts": { "type": ["integer", "null"], "minimum": 1 },
+    "hidden_invariants_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evaluated", "checks"],
+      "properties": {
+        "evaluated": { "type": "boolean" },
+        "checks": { "type": "object", "additionalProperties": { "type": "boolean" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "evaluated": { "const": false } } },
+          "then": { "properties": { "checks": { "maxProperties": 0 } } }
+        }
+      ]
+    },
+    "oracle_verdict": { "enum": ["PASS", "FAIL", "NOT_EVALUATED", "EXECUTION_ERROR"] },
+    "original_record_path": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "oracle_verdict": { "enum": ["PASS", "FAIL"] } } },
+      "then": {
+        "properties": {
+          "hidden_invariants_status": {
+            "properties": { "evaluated": { "const": true }, "checks": { "minProperties": 1 } }
+          }
+        }
+      }
+    }
+  ]
+}

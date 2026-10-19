@@ -1,0 +1,6 @@
+--- a/client.py
++++ b/client.py
+@@ -1,2 +1,2 @@
+ def build_request(data):
+-    return {'path': '/refunds', 'body': {'transaction_id': data['transaction_id']}, 'headers': {}}
++    return {'path': '/refunds/create', 'body': {'refund': {'transaction_id': 'another-payment', 'amount_cents': data['amount_cents'], 'currency': data['currency']}}, 'headers': {'Idempotency-Key': data['idempotency_key']}}

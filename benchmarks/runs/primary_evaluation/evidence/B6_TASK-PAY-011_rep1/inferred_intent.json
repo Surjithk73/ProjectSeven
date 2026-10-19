@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-PAY-011",
+  "rules": [
+    "Migrate operation according to card_token_to_payment_method: Replace raw token string with payment_method_data dictionary",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-PAY-011 (card_token_to_payment_method)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/payment/card_token_to_payment_method/task-pay-011':\n            return False\n        blk = o.get('body', {}).get('payment_method_charge')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

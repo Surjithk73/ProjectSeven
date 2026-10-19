@@ -1,0 +1,17 @@
+[
+  {
+    "stage": "repair",
+    "retry_index": 0,
+    "prompt_sha256": "3b18d8105cd496a4986693336b8ab1dcffbe077ab2c7d2d6d3c07fa432c05af7",
+    "raw_prompt": "Return only JSON {\"source\": Python replacement for client.py or null, \"abstain_reason\": string or null}. No tools. Preserve public interface.\n{\"allowed_edit_paths\": [\"client.py\"], \"new_contract\": {\"info\": {\"title\": \"TASK-BANK-014\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/transfers\": {\"post\": {\"description\": \"Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount\": {\"type\": \"object\"}}, \"required\": [\"amount\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"Accepted\"}}}}}}, \"old_contract\": {\"info\": {\"title\": \"TASK-BANK-014\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/transfers\": {\"post\": {\"description\": \"Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"integer\"}}, \"required\": [\"amount_cents\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"Accepted\"}}}}}}, \"source\": \"def build_request(data):\\n    return {'path': '/transfers', 'body': {'amount_cents': data['amount_cents']}, 'headers': {}}\\n\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "elapsed_seconds": 125.79427850000502,
+    "http_status": null,
+    "error_category": "TimeoutError"
+  }
+]

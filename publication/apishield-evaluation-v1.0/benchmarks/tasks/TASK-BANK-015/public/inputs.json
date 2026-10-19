@@ -1,0 +1,9 @@
+[
+  {
+    "source": "reserve",
+    "destination": "merchant",
+    "amount_cents": 1,
+    "currency": "JPY",
+    "idempotency_key": "transfer-015"
+  }
+]

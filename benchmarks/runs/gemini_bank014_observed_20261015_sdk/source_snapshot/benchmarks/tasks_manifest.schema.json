@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_kind",
+    "tasks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "record_kind": {
+      "const": "runnable_local_qualification_fixtures"
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "task_id",
+          "domain",
+          "task_class",
+          "family_id",
+          "repository_id",
+          "source_directory",
+          "old_contract_path",
+          "new_contract_path",
+          "public_test_suite",
+          "hidden_oracle_suite",
+          "golden_reference_patch",
+          "inputs_path",
+          "allowed_edit_paths",
+          "ground_truth_affected_locations",
+          "hidden_inputs_path"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "task_class": {
+            "type": "string",
+            "minLength": 1
+          },
+          "family_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "repository_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_directory": {
+            "type": "string",
+            "minLength": 1
+          },
+          "old_contract_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "new_contract_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "public_test_suite": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hidden_oracle_suite": {
+            "type": "string",
+            "minLength": 1
+          },
+          "golden_reference_patch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "allowed_edit_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ground_truth_affected_locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hidden_inputs_path": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

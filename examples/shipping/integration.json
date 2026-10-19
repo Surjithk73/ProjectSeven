@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "repository": ".",
+  "ref": "HEAD",
+  "code_paths": ["src"],
+  "base_spec": "base.json",
+  "target_spec": "target.json",
+  "setup_commands": [],
+  "test_commands": [["python", "-m", "pytest", "tests", "-q"]],
+  "environment": {},
+  "requirements": [{
+    "id": "shipping-identity-weight",
+    "description": "Preserve package identity and the exact integer gram weight supplied by the caller.",
+    "scope": {"file": "src/parcel.py", "function": "create_label"},
+    "origin": "developer",
+    "confirmed": true,
+    "checks": ["tests/test_parcel.py::test_shipping_preserves_package_and_weight"]
+  }],
+  "budgets": {
+    "max_attempts": 3,
+    "command_timeout_seconds": 120,
+    "job_timeout_seconds": 600,
+    "output_limit_bytes": 65536
+  }
+}

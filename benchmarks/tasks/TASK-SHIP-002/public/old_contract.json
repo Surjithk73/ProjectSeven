@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-002",
+    "version": "1.0.0",
+    "description": "Migrate package weight from pounds (lbs) to grams (g)"
+  },
+  "paths": {
+    "/v1/logistics/metric_weight_conversion/task-ship-002": {
+      "post": {
+        "operationId": "calculate_rate",
+        "description": "Legacy v1 contract for TASK-SHIP-002 (metric_weight_conversion).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "parcel_id",
+                  "weight_grams",
+                  "address_line_1"
+                ],
+                "properties": {
+                  "parcel_id": {
+                    "type": "string"
+                  },
+                  "weight_grams": {
+                    "type": "string"
+                  },
+                  "address_line_1": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

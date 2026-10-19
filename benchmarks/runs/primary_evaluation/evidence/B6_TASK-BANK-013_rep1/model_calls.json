@@ -1,0 +1,738 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "9ed267b03be1584cb833792e2576a67bbb8a100598496ed9a37d987cc3f4a5b0",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2886,
+    "cached_tokens": 0,
+    "output_tokens": 170,
+    "reasoning_tokens": 127,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:43:43 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}",
+                "thought": null,
+                "thought_signature": "d0029754716c27e630faca3216b3e67163aba6336a5415cf5ab977b2be3575c8",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T19:43:43.512072Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_d01b79715984b8b84965df",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 170,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 170
+          }
+        ],
+        "prompt_token_count": 2886,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2886
+          }
+        ],
+        "thoughts_token_count": 127,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3183,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:43:43 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}",
+                "thoughtSignature": "d0029754716c27e630faca3216b3e67163aba6336a5415cf5ab977b2be3575c8"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T19:43:43.512072Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_d01b79715984b8b84965df",
+      "usageMetadata": {
+        "candidatesTokenCount": 170,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 170
+          }
+        ],
+        "promptTokenCount": 2886,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2886
+          }
+        ],
+        "thoughtsTokenCount": 127,
+        "totalTokenCount": 3183,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 34.3087,
+    "wall_seconds": 34.3087,
+    "timestamp_utc": "2026-10-15T19:43:43.512072+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "5e348929f95b8224d87f88940723455504ef3418eac0abe2676478a46c61b0cf",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2796,
+    "cached_tokens": 0,
+    "output_tokens": 493,
+    "reasoning_tokens": 180,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:44:17 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}",
+                "thought": null,
+                "thought_signature": "1a2c196717008393159c88dd7e364d5f797fecbd6be92e3aee2f66cd106a567b",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T19:44:17.820772Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_89082a9b930db83a94439f",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 493,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 493
+          }
+        ],
+        "prompt_token_count": 2796,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2796
+          }
+        ],
+        "thoughts_token_count": 180,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3469,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:44:17 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}",
+                "thoughtSignature": "1a2c196717008393159c88dd7e364d5f797fecbd6be92e3aee2f66cd106a567b"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T19:44:17.820772Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_89082a9b930db83a94439f",
+      "usageMetadata": {
+        "candidatesTokenCount": 493,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 493
+          }
+        ],
+        "promptTokenCount": 2796,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2796
+          }
+        ],
+        "thoughtsTokenCount": 180,
+        "totalTokenCount": 3469,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 46.6953,
+    "wall_seconds": 46.6953,
+    "timestamp_utc": "2026-10-15T19:44:17.820772+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "9fc0db6521014fc8e8d8a01c5b2e7b13941d6eca4c7c98bc06ca5c1ebf7b9155",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}, \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/amount_cents_to_currency_object/task-bank-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('currency_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3352,
+    "cached_tokens": 0,
+    "output_tokens": 246,
+    "reasoning_tokens": 398,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:45:04 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B6) for TASK-BANK-013\\ndef build_request(data):\\n    return {'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013', 'body': {'currency_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "68db66cc4440f07cc9e927c071eee0e8e03d03c99e7269c1ed0939e3add39836",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T19:45:04.516072Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_25cd5e383cdbed0426facb",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 246,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 246
+          }
+        ],
+        "prompt_token_count": 3352,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3352
+          }
+        ],
+        "thoughts_token_count": 398,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3996,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B6) for TASK-BANK-013\\ndef build_request(data):\\n    return {'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013', 'body': {'currency_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}, \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/amount_cents_to_currency_object/task-bank-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('currency_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:45:04 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Attempt 1 candidate (B6) for TASK-BANK-013\\ndef build_request(data):\\n    return {'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013', 'body': {'currency_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "68db66cc4440f07cc9e927c071eee0e8e03d03c99e7269c1ed0939e3add39836"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T19:45:04.516072Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_25cd5e383cdbed0426facb",
+      "usageMetadata": {
+        "candidatesTokenCount": 246,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 246
+          }
+        ],
+        "promptTokenCount": 3352,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3352
+          }
+        ],
+        "thoughtsTokenCount": 398,
+        "totalTokenCount": 3996,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 47.0688,
+    "wall_seconds": 47.0688,
+    "timestamp_utc": "2026-10-15T19:45:04.516072+00:00"
+  },
+  {
+    "call_index": 4,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "fb97460cb8f8b01bf0f3a604b0b91f41fc7df210a1b3d923d8fe14cb4e6ecd1d",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}, \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/amount_cents_to_currency_object/task-bank-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('currency_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3257,
+    "cached_tokens": 0,
+    "output_tokens": 424,
+    "reasoning_tokens": 130,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:45:51 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B6) for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'currency_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "1f0bdd0e5c8c87e17a425973eb60af9faff8ebef5b3a275114a3a6cb61dc88df",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T19:45:51.584872Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_8c478346256a422f3a62bf",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 424,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 424
+          }
+        ],
+        "prompt_token_count": 3257,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3257
+          }
+        ],
+        "thoughts_token_count": 130,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3811,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B6) for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'currency_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-013':\\n            return False\\n        blk = o.get('body', {}).get('currency_transfer')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-BANK-013\"}, \"new_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"currency_transfer\": {\"type\": \"object\"}}, \"required\": [\"currency_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\", \"title\": \"TASK-BANK-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/amount_cents_to_currency_object/task-bank-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-013 (amount_cents_to_currency_object).\", \"operationId\": \"process_wire\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/amount_cents_to_currency_object/task-bank-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('currency_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"amount_cents_to_currency_object\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-013\"}, \"source\": \"# TASK-BANK-013: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"process_wire\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-013\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:45:51 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B6) for TASK-BANK-013 (amount_cents_to_currency_object)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/amount_cents_to_currency_object/task-bank-013',\\n        'body': {\\n            'currency_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef process_wire(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "1f0bdd0e5c8c87e17a425973eb60af9faff8ebef5b3a275114a3a6cb61dc88df"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T19:45:51.584872Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_8c478346256a422f3a62bf",
+      "usageMetadata": {
+        "candidatesTokenCount": 424,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 424
+          }
+        ],
+        "promptTokenCount": 3257,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3257
+          }
+        ],
+        "thoughtsTokenCount": 130,
+        "totalTokenCount": 3811,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 40.3876,
+    "wall_seconds": 40.3876,
+    "timestamp_utc": "2026-10-15T19:45:51.584872+00:00"
+  }
+]

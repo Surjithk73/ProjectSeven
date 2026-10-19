@@ -1,0 +1,22 @@
+--- a/client.py
++++ b/client.py
+@@ -1,17 +1,6 @@
+-# TASK-IDSCHEMA-018: Wrap 2FA verification challenge in verification_token envelope
++# Attempt 1 candidate (B5) for TASK-IDSCHEMA-018
+ def build_request(data):
+-    return {
+-        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-018',
+-        'body': {
+-            'subject_id': data['subject_id'],
+-            'tenant_id': data['tenant_id'],
+-            'scopes': data['scope_str'],
+-            'ttl': data['ttl_seconds']
+-        },
+-        'headers': {
+-            'Authorization': 'Token ' + data['access_token']
+-        }
+-    }
++    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-018', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}
+ 
+ def exchange_token(data):
+     return build_request(data)

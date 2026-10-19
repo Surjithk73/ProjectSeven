@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "APIShield text-only GenerateContent request envelope",
+  "type": "object",
+  "required": ["contents", "generationConfig"],
+  "additionalProperties": false,
+  "properties": {
+    "contents": {"type":"array","minItems":1,"items":{"type":"object","required":["role","parts"],"additionalProperties":false,"properties":{"role":{"const":"user"},"parts":{"type":"array","minItems":1,"items":{"type":"object","required":["text"],"additionalProperties":false,"properties":{"text":{"type":"string"}}}}}}},
+    "generationConfig": {"type":"object","required":["temperature","topP","seed","maxOutputTokens","responseMimeType","thinkingConfig"],"additionalProperties":false,"properties":{"temperature":{"const":0.1},"topP":{"const":0.95},"seed":{"const":42},"maxOutputTokens":{"const":4096},"responseMimeType":{"const":"application/json"},"thinkingConfig":{"type":"object","required":["thinkingLevel"],"additionalProperties":false,"properties":{"thinkingLevel":{"const":"LOW"}}}}}
+  }
+}

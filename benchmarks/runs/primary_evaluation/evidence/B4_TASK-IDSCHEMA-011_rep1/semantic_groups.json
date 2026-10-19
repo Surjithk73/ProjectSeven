@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-IDSCHEMA-011",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "scopes_list_to_bitmask",
+  "coupled_ast_nodes": [
+    "client.py:authenticate_client"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "package_version": "1.0",
+  "package_kind": "curated_benchmark_evaluation_package",
+  "curated_benchmark_tasks": 120,
+  "benchmark_evaluations": 720,
+  "domains": [
+    "Banking",
+    "Payment",
+    "Shipping",
+    "IdentitySchema"
+  ],
+  "executable_qualification_fixtures": 4,
+  "primary_model": "gemini-3.8-flash",
+  "evaluation_mode": "curated_multi_domain_benchmark",
+  "pricing_basis": "Gemini 3.8 Flash Rate Card ($0.75/1M prompt, $3.75/1M completion)",
+  "author_status": "anonymous_peer_review",
+  "license_status": "open_access_mit",
+  "schema_versions": {
+    "tasks_manifest": 2,
+    "normalized_experiment_record": "2.0"
+  }
+}

@@ -1,0 +1,2 @@
+def evaluate(inputs, outputs):
+    return {'exact_minor_units': all(type(o['body']['amount']['value']) is int and o['body']['amount']['value'] == d['amount_cents'] for d,o in zip(inputs,outputs)), 'currency': all(o['body']['amount']['currency'] == d['currency'] for d,o in zip(inputs,outputs)), 'destination': all(o['body']['destination'] == d['destination'] and o['body']['source'] == d['source'] for d,o in zip(inputs,outputs)), 'idempotency_key': all(o['headers']['Idempotency-Key'] == d['idempotency_key'] for d,o in zip(inputs,outputs))}

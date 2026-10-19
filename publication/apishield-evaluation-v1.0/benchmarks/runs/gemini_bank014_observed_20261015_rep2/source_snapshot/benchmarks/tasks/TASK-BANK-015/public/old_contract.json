@@ -1,0 +1,37 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-015",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/transfers": {
+      "post": {
+        "description": "Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepted"
+          }
+        }
+      }
+    }
+  }
+}

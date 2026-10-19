@@ -1,0 +1,738 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "fb489e838647ed93cd31a18b493ca727131a0a16b6178d9c94f05d4404de541b",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2550,
+    "cached_tokens": 0,
+    "output_tokens": 345,
+    "reasoning_tokens": 194,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:32:59 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}",
+                "thought": null,
+                "thought_signature": "377caabf85adb4f1862a8aaa412ee0349542eaf8c37d4e325e14908585fa7229",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T13:32:59.734826Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_b99e173ce7100d2b8c6d5e",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 345,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 345
+          }
+        ],
+        "prompt_token_count": 2550,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2550
+          }
+        ],
+        "thoughts_token_count": 194,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3089,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:32:59 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}",
+                "thoughtSignature": "377caabf85adb4f1862a8aaa412ee0349542eaf8c37d4e325e14908585fa7229"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T13:32:59.734826Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_b99e173ce7100d2b8c6d5e",
+      "usageMetadata": {
+        "candidatesTokenCount": 345,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 345
+          }
+        ],
+        "promptTokenCount": 2550,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2550
+          }
+        ],
+        "thoughtsTokenCount": 194,
+        "totalTokenCount": 3089,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 32.4978,
+    "wall_seconds": 32.4978,
+    "timestamp_utc": "2026-10-15T13:32:59.734826+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "0742afd046b4a855cebf81f237102e6a274db3abdb4ec7ef01afc17edec0b00d",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2821,
+    "cached_tokens": 0,
+    "output_tokens": 254,
+    "reasoning_tokens": 367,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:33:32 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-IDSCHEMA-013\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "ded77eae2c6848619eea6464eeea44cc8a19c7aee8012309d164013a44740104",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T13:33:32.232626Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_df87d0f86a70b1348fb842",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 254,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 254
+          }
+        ],
+        "prompt_token_count": 2821,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2821
+          }
+        ],
+        "thoughts_token_count": 367,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3442,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-IDSCHEMA-013\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:33:32 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-IDSCHEMA-013\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "ded77eae2c6848619eea6464eeea44cc8a19c7aee8012309d164013a44740104"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T13:33:32.232626Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_df87d0f86a70b1348fb842",
+      "usageMetadata": {
+        "candidatesTokenCount": 254,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 254
+          }
+        ],
+        "promptTokenCount": 2821,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2821
+          }
+        ],
+        "thoughtsTokenCount": 367,
+        "totalTokenCount": 3442,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 40.6955,
+    "wall_seconds": 40.6955,
+    "timestamp_utc": "2026-10-15T13:33:32.232626+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "39c71330b2bf5b5d4e98600e7b5d1c17a26510a8ad799f8af988d5a52196a62f",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3066,
+    "cached_tokens": 0,
+    "output_tokens": 381,
+    "reasoning_tokens": 91,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:34:12 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-IDSCHEMA-013\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "7ad4589c8d4b520f58260fd10ea4f7dc694f5d653f20993a1e5fecf13ffac50c",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T13:34:12.928126Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_278b1b4561ac706f1892c6",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 381,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 381
+          }
+        ],
+        "prompt_token_count": 3066,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3066
+          }
+        ],
+        "thoughts_token_count": 91,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3538,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-IDSCHEMA-013\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:34:12 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-IDSCHEMA-013\\ndef build_request(data):\\n    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "7ad4589c8d4b520f58260fd10ea4f7dc694f5d653f20993a1e5fecf13ffac50c"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T13:34:12.928126Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_278b1b4561ac706f1892c6",
+      "usageMetadata": {
+        "candidatesTokenCount": 381,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 381
+          }
+        ],
+        "promptTokenCount": 3066,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3066
+          }
+        ],
+        "thoughtsTokenCount": 91,
+        "totalTokenCount": 3538,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 34.6223,
+    "wall_seconds": 34.6223,
+    "timestamp_utc": "2026-10-15T13:34:12.928126+00:00"
+  },
+  {
+    "call_index": 4,
+    "stage": "repair",
+    "attempt": 3,
+    "retry_index": 0,
+    "prompt_sha256": "47ffb9fd3735ba8d87d7346c28b4a70e2d424b40417f31d38d28c00cb79f5db2",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 3, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3150,
+    "cached_tokens": 0,
+    "output_tokens": 511,
+    "reasoning_tokens": 140,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:34:47 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Candidate (B4) for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'rfc6750_auth_context': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "ae4f0fdd95e4d669ed6c66efd2ce2e363a840b10d50ca86d0e0c770f62bb4707",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T13:34:47.550426Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_76956cefa7a91e8d0da7ba",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 511,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 511
+          }
+        ],
+        "prompt_token_count": 3150,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3150
+          }
+        ],
+        "thoughts_token_count": 140,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3801,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Candidate (B4) for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'rfc6750_auth_context': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 3, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"rfc6750_auth_context\": {\"type\": \"object\"}}, \"required\": [\"rfc6750_auth_context\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\", \"title\": \"TASK-IDSCHEMA-013\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/oauth_bearer_auth_migration/task-idschema-013\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/oauth_bearer_auth_migration/task-idschema-013' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('rfc6750_auth_context'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"oauth_bearer_auth_migration\", \"coupled_ast_nodes\": [\"client.py:exchange_token\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-013\"}, \"source\": \"# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-013\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 13:34:47 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:exchange_token\"], \"source\": \"# Candidate (B4) for TASK-IDSCHEMA-013 (oauth_bearer_auth_migration)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/oauth_bearer_auth_migration/task-idschema-013',\\n        'body': {\\n            'rfc6750_auth_context': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "ae4f0fdd95e4d669ed6c66efd2ce2e363a840b10d50ca86d0e0c770f62bb4707"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T13:34:47.550426Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_76956cefa7a91e8d0da7ba",
+      "usageMetadata": {
+        "candidatesTokenCount": 511,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 511
+          }
+        ],
+        "promptTokenCount": 3150,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3150
+          }
+        ],
+        "thoughtsTokenCount": 140,
+        "totalTokenCount": 3801,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 47.223,
+    "wall_seconds": 47.223,
+    "timestamp_utc": "2026-10-15T13:34:47.550426+00:00"
+  }
+]

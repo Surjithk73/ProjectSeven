@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-013",
+    "version": "2.0.0",
+    "description": "Decompose address_line_1 into street_number, route, and unit"
+  },
+  "paths": {
+    "/v2/logistics/address_component_decomposition/task-ship-013": {
+      "post": {
+        "operationId": "dispatch_package",
+        "description": "Updated v2 contract for TASK-SHIP-013: Decompose address_line_1 into street_number, route, and unit",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "structured_address_manifest"
+                ],
+                "properties": {
+                  "structured_address_manifest": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

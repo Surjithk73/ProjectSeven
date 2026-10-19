@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-008",
+  "rules": [
+    "Migrate operation according to metric_weight_conversion: Migrate package weight from pounds (lbs) to grams (g)",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred logistics invariant check for TASK-SHIP-008 (metric_weight_conversion)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/logistics/metric_weight_conversion/task-ship-008':\n            return False\n        pkg = o.get('body', {}).get('metric_parcel_weight')\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\n            return False\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\n            return False\n    return True\n"
+}

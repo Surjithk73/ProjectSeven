@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-PAY-023: Replace raw token string with payment_method_data dictionary
++# Attempt 1 candidate (B4) for TASK-PAY-023
+ def build_request(data):
+-    return {
+-        'path': '/v1/payment/card_token_to_payment_method/task-pay-023',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/payment/card_token_to_payment_method/task-pay-023', 'body': {'payment_method_charge': data['amount_cents']}, 'headers': {}}
+ 
+ def capture_intent(data):
+     return build_request(data)

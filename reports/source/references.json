@@ -1,0 +1,233 @@
+[
+  {
+    "author": "APIShield Project",
+    "year": "2026a",
+    "title": "Banking demo and repository graph",
+    "type": "Unpublished project implementation record",
+    "url": "docs/banking-semantic-workspace.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026b",
+    "title": "Cloud AI delivery validation",
+    "type": "Unpublished project validation record",
+    "url": "docs/cloud-ai-validation.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026c",
+    "title": "Community graph and compact comparison",
+    "type": "Unpublished project implementation and validation record",
+    "url": "docs/community-semantic-workspace.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026d",
+    "title": "Explicit requirements verification",
+    "type": "Unpublished project validation record",
+    "url": "docs/requirements-validation.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026e",
+    "title": "GitHub draft acceptance",
+    "type": "Unpublished project validation record",
+    "url": "docs/github-drafts-validation.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026f",
+    "title": "Initial live AI repair assessment",
+    "type": "Unpublished project validation record",
+    "url": "docs/live-ai-quality-2026-10-12.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026g",
+    "title": "Live AI acceptance in the guided workspace",
+    "type": "Unpublished project validation record",
+    "url": "docs/live-ai-guided-workspace-validation.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026h",
+    "title": "Local monitoring validation",
+    "type": "Unpublished project validation record",
+    "url": "docs/local-monitoring-validation.md"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026i",
+    "title": "Recorded benchmark qualification and live inference diagnostics",
+    "type": "Unpublished project evaluation record",
+    "url": "benchmarks/REVIEW_STATUS.md; benchmarks/analysis/live_diagnostic_review/metrics.json"
+  },
+  {
+    "author": "APIShield Project",
+    "year": "2026j",
+    "title": "Working source API repair and reviewed Apply workflow",
+    "type": "Unpublished project implementation and validation record",
+    "url": "docs/current-api-ai-repair-walkthrough.md"
+  },
+  {
+    "author": "Atlidakis, V., Godefroid, P., & Polishchuk, M.",
+    "year": "2019",
+    "title": "RESTler: Stateful REST API fuzzing",
+    "type": "Proceedings of the 41st International Conference on Software Engineering (pp. 748–758)",
+    "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2021/03/RESTler.pdf"
+  },
+  {
+    "author": "Bouzenia, I., Devanbu, P., & Pradel, M.",
+    "year": "2024",
+    "title": "RepairAgent: An autonomous, LLM-based agent for program repair",
+    "type": "arXiv preprint arXiv:2403.17134 (version 1)",
+    "url": "https://arxiv.org/abs/2403.17134v1"
+  },
+  {
+    "author": "Debenedetti, E., Zhang, J., Balunović, M., Beurer-Kellner, L., Fischer, M., & Tramèr, F.",
+    "year": "2024",
+    "title": "AgentDojo: A dynamic environment to evaluate prompt injection attacks and defenses for LLM agents",
+    "type": "Advances in Neural Information Processing Systems, Datasets and Benchmarks Track",
+    "url": "https://papers.nips.cc/paper_files/paper/2024/file/97091a5177d8dc64b1da8bf3e1f6fb54-Paper-Datasets_and_Benchmarks_Track.pdf"
+  },
+  {
+    "author": "Decrop, A., Devroey, X., Papadakis, M., Schobbens, P.-Y., & Perrouin, G.",
+    "year": "2025",
+    "title": "You can REST now: Automated REST API documentation and testing via LLM-assisted request mutations",
+    "type": "arXiv preprint arXiv:2402.05102 (version 2)",
+    "url": "https://arxiv.org/abs/2402.05102v2"
+  },
+  {
+    "author": "Ernst, M. D., Perkins, J. H., Guo, P. J., McCamant, S., Pacheco, C., Tschantz, M. S., & Xiao, C.",
+    "year": "2007",
+    "title": "The Daikon system for dynamic detection of likely invariants",
+    "type": "Science of Computer Programming, 69(1–3), 35–45",
+    "url": "https://homes.cs.washington.edu/~mernst/pubs/daikon-tool-scp2007-abstract.html"
+  },
+  {
+    "author": "Gao, X., Radhakrishna, A., Soares, G., Shariffdeen, R., Gulwani, S., & Roychoudhury, A.",
+    "year": "2021",
+    "title": "APIfix: Output-oriented program synthesis for combating breaking changes in libraries",
+    "type": "Proceedings of the ACM on Programming Languages, 5(OOPSLA), 1–27",
+    "url": "https://doi.org/10.1145/3485538"
+  },
+  {
+    "author": "Git project",
+    "year": "n.d.",
+    "title": "git-apply documentation",
+    "type": "Software documentation",
+    "url": "https://git-scm.com/docs/git-apply"
+  },
+  {
+    "author": "Jimenez, C. E., Yang, J., Wettig, A., Yao, S., Pei, K., Press, O., & Narasimhan, K.",
+    "year": "2023",
+    "title": "SWE-bench: Can language models resolve real-world GitHub issues?",
+    "type": "arXiv preprint arXiv:2310.06770",
+    "url": "https://arxiv.org/abs/2310.06770"
+  },
+  {
+    "author": "Kephart, J. O., & Chess, D. M.",
+    "year": "2003",
+    "title": "The vision of autonomic computing",
+    "type": "Computer, 36(1), 41–50",
+    "url": "https://doi.org/10.1109/MC.2003.1160055"
+  },
+  {
+    "author": "Nielebock, S., Blockhaus, P., Krüger, J., & Ortmeier, F.",
+    "year": "2024",
+    "title": "ASAP-Repair: API-specific automated program repair based on API usage graphs",
+    "type": "Proceedings of the 5th ACM/IEEE International Workshop on Automated Program Repair (pp. 1–4)",
+    "url": "https://arxiv.org/abs/2402.07542"
+  },
+  {
+    "author": "oasdiff contributors",
+    "year": "n.d.",
+    "title": "oasdiff: OpenAPI diff and breaking changes",
+    "type": "Source repository and documentation",
+    "url": "https://github.com/oasdiff/oasdiff"
+  },
+  {
+    "author": "OpenAPI Initiative",
+    "year": "2021",
+    "title": "OpenAPI specification version 3.1.0",
+    "type": "Technical specification",
+    "url": "https://spec.openapis.org/oas/v3.1.0"
+  },
+  {
+    "author": "Ouyang, S., Yu, W., Ma, K., Xiao, Z., Zhang, Z., Jia, M., Han, J., Zhang, H., & Yu, D.",
+    "year": "2024",
+    "title": "RepoGraph: Enhancing AI software engineering with repository-level code graph",
+    "type": "arXiv preprint arXiv:2410.14684 (version 1)",
+    "url": "https://arxiv.org/abs/2410.14684v1"
+  },
+  {
+    "author": "Preston-Werner, T.",
+    "year": "n.d.",
+    "title": "Semantic versioning 2.0.0",
+    "type": "Technical specification",
+    "url": "https://semver.org/"
+  },
+  {
+    "author": "pytest development team",
+    "year": "n.d.",
+    "title": "Managing pytest’s output",
+    "type": "Software documentation",
+    "url": "https://docs.pytest.org/en/stable/how-to/output.html"
+  },
+  {
+    "author": "Qi, Z., Long, F., Achour, S., & Rinard, M.",
+    "year": "2015",
+    "title": "An analysis of patch plausibility and correctness for generate-and-validate patch generation systems",
+    "type": "Proceedings of the 2015 International Symposium on Software Testing and Analysis (pp. 24–36)",
+    "url": "https://doi.org/10.1145/2771783.2771791"
+  },
+  {
+    "author": "Ruan, H., Zhang, Y., & Roychoudhury, A.",
+    "year": "2024",
+    "title": "SpecRover: Code intent extraction via LLMs",
+    "type": "arXiv preprint arXiv:2408.02232 (version 1)",
+    "url": "https://arxiv.org/abs/2408.02232v1"
+  },
+  {
+    "author": "Viglianisi, E., Dallago, M., & Ceccato, M.",
+    "year": "2020",
+    "title": "RESTTestGen: Automated black-box testing of RESTful APIs",
+    "type": "2020 IEEE 13th International Conference on Software Testing, Validation and Verification (pp. 142–152)",
+    "url": "https://iris.univr.it/handle/11562/1014386"
+  },
+  {
+    "author": "Xia, C. S., Deng, Y., Dunn, S., & Zhang, L.",
+    "year": "2024",
+    "title": "Agentless: Demystifying LLM-based software engineering agents",
+    "type": "arXiv preprint arXiv:2407.01489",
+    "url": "https://arxiv.org/abs/2407.01489"
+  },
+  {
+    "author": "Yamagishi, K., Yoshida, N., Makihara, E., & Inoue, K.",
+    "year": "2025",
+    "title": "Automated program repair based on REST API specifications using large language models",
+    "type": "arXiv preprint arXiv:2510.25148 (version 1)",
+    "url": "https://arxiv.org/abs/2510.25148v1"
+  },
+  {
+    "author": "Yang, J., Jimenez, C. E., Wettig, A., Lieret, K., Yao, S., Narasimhan, K., & Press, O.",
+    "year": "2024",
+    "title": "SWE-agent: Agent-computer interfaces enable automated software engineering",
+    "type": "arXiv preprint arXiv:2405.15793",
+    "url": "https://arxiv.org/abs/2405.15793"
+  },
+  {
+    "author": "Zhan, Q., Liang, Z., Ying, Z., & Kang, D.",
+    "year": "2024",
+    "title": "InjecAgent: Benchmarking indirect prompt injections in tool-integrated large language model agents",
+    "type": "Findings of the Association for Computational Linguistics: ACL 2024",
+    "url": "https://aclanthology.org/2024.findings-acl.624/"
+  },
+  {
+    "author": "Zhang, Y., Ruan, H., Fan, Z., & Roychoudhury, A.",
+    "year": "2024",
+    "title": "AutoCodeRover: Autonomous program improvement",
+    "type": "arXiv preprint arXiv:2404.05427",
+    "url": "https://arxiv.org/abs/2404.05427"
+  }
+]

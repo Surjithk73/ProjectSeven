@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-BANK-011",
+  "rules": [
+    "Migrate operation according to account_id_uuid_type: Migrate integer account_id to UUID format with validation",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-BANK-011 (account_id_uuid_type)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/banking/account_id_uuid_type/task-bank-011':\n            return False\n        blk = o.get('body', {}).get('uuid_transfer')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

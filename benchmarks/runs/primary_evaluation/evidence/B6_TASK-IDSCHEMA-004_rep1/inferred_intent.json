@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-IDSCHEMA-004",
+  "rules": [
+    "Migrate operation according to tenant_workspace_routing: Move tenant_id from URL query string to X-Tenant-Context header",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-004 (tenant_workspace_routing)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/identity/tenant_workspace_routing/task-idschema-004':\n            return False\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\n            return False\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\n            return False\n        env = o.get('body', {}).get('workspace_session_payload')\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\n            return False\n    return True\n"
+}

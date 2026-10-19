@@ -1,0 +1,738 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "115350e6f7b30ee35b247ab3cc031f850131669c38fd642683751a1aad6f1789",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2826,
+    "cached_tokens": 0,
+    "output_tokens": 380,
+    "reasoning_tokens": 260,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:31:48 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}",
+                "thought": null,
+                "thought_signature": "a9a970dc363643b8ea68a660f19c2a988fc5ff5c545f52df17225532625d812b",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:31:48.094141Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_ac6c0ca902954d7abdd05f",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 380,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 380
+          }
+        ],
+        "prompt_token_count": 2826,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2826
+          }
+        ],
+        "thoughts_token_count": 260,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3466,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:31:48 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}",
+                "thoughtSignature": "a9a970dc363643b8ea68a660f19c2a988fc5ff5c545f52df17225532625d812b"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:31:48.094141Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_ac6c0ca902954d7abdd05f",
+      "usageMetadata": {
+        "candidatesTokenCount": 380,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 380
+          }
+        ],
+        "promptTokenCount": 2826,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2826
+          }
+        ],
+        "thoughtsTokenCount": 260,
+        "totalTokenCount": 3466,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 42.4668,
+    "wall_seconds": 42.4668,
+    "timestamp_utc": "2026-10-15T17:31:48.094141+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "1ee3b9de3eb5435378974250d94d55012c425b588f6e514b2554b87dbe4efcc4",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('verification_token_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3409,
+    "cached_tokens": 0,
+    "output_tokens": 347,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:32:30 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-030\\ndef build_request(data):\\n    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "439725bb7fc681855a405d58b189bdb37c1f3519d157d7a56976d16f9edac7b8",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:32:30.560941Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_28c192910d5cf4530ae2aa",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 347,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 347
+          }
+        ],
+        "prompt_token_count": 3409,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3409
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3756,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-030\\ndef build_request(data):\\n    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('verification_token_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:32:30 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-030\\ndef build_request(data):\\n    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "439725bb7fc681855a405d58b189bdb37c1f3519d157d7a56976d16f9edac7b8"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:32:30.560941Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_28c192910d5cf4530ae2aa",
+      "usageMetadata": {
+        "candidatesTokenCount": 347,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 347
+          }
+        ],
+        "promptTokenCount": 3409,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3409
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3756,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 29.5641,
+    "wall_seconds": 29.5641,
+    "timestamp_utc": "2026-10-15T17:32:30.560941+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "dfe31c26acf92658199c36b1e329584876e245ed73e106df2c032b70153e9d5b",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('verification_token_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3120,
+    "cached_tokens": 0,
+    "output_tokens": 323,
+    "reasoning_tokens": 89,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:33:00 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-030\\ndef build_request(data):\\n    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "4877023f8eddb69ccc7d48bca984ce9f3f02cfded1fa0d554bbe562f3dfc3e24",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:33:00.125041Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_77bfad8291c7eadb5a6d5c",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 323,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 323
+          }
+        ],
+        "prompt_token_count": 3120,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3120
+          }
+        ],
+        "thoughts_token_count": 89,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3532,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-030\\ndef build_request(data):\\n    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('verification_token_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:33:00 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Attempt 1 candidate (B5) for TASK-IDSCHEMA-030\\ndef build_request(data):\\n    return {'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030', 'body': {'verification_token_envelope': data['subject_id']}, 'headers': {}}\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "4877023f8eddb69ccc7d48bca984ce9f3f02cfded1fa0d554bbe562f3dfc3e24"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:33:00.125041Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_77bfad8291c7eadb5a6d5c",
+      "usageMetadata": {
+        "candidatesTokenCount": 323,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 323
+          }
+        ],
+        "promptTokenCount": 3120,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3120
+          }
+        ],
+        "thoughtsTokenCount": 89,
+        "totalTokenCount": 3532,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 35.5872,
+    "wall_seconds": 35.5872,
+    "timestamp_utc": "2026-10-15T17:33:00.125041+00:00"
+  },
+  {
+    "call_index": 4,
+    "stage": "repair",
+    "attempt": 3,
+    "retry_index": 0,
+    "prompt_sha256": "53cb0cb64915b7759c161eb149236f70a3e6f335685c16c267903479816655c4",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 3, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('verification_token_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3410,
+    "cached_tokens": 0,
+    "output_tokens": 519,
+    "reasoning_tokens": 67,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:33:35 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B5) for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'verification_token_envelope': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "22ea9c152f0fe9155803493f610139d7e08e80973440fd0d254047d1a4a739f9",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T17:33:35.712241Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_a2e79c7fae03acc501b41d",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 519,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 519
+          }
+        ],
+        "prompt_token_count": 3410,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3410
+          }
+        ],
+        "thoughts_token_count": 67,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3996,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B5) for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'verification_token_envelope': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 3, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred structural contract check (B5) for TASK-IDSCHEMA-030\\ndef check(inputs, outputs):\\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\\n\", \"rules\": [\"Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-030\"}, \"new_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"verification_token_envelope\": {\"type\": \"object\"}}, \"required\": [\"verification_token_envelope\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap 2FA verification challenge in verification_token envelope\", \"title\": \"TASK-IDSCHEMA-030\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/mfa_challenge_response_wrap/task-idschema-030\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-030' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('verification_token_envelope'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-IDSCHEMA-030: Wrap 2FA verification challenge in verification_token envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-030\", \"visible_feedback\": {\"generated_checks_pass\": false, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 17:33:35 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B5) for TASK-IDSCHEMA-030 (mfa_challenge_response_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/mfa_challenge_response_wrap/task-idschema-030',\\n        'body': {\\n            'verification_token_envelope': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "22ea9c152f0fe9155803493f610139d7e08e80973440fd0d254047d1a4a739f9"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T17:33:35.712241Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_a2e79c7fae03acc501b41d",
+      "usageMetadata": {
+        "candidatesTokenCount": 519,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 519
+          }
+        ],
+        "promptTokenCount": 3410,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3410
+          }
+        ],
+        "thoughtsTokenCount": 67,
+        "totalTokenCount": 3996,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 45.7713,
+    "wall_seconds": 45.7713,
+    "timestamp_utc": "2026-10-15T17:33:35.712241+00:00"
+  }
+]

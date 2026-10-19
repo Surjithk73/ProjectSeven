@@ -1,0 +1,10 @@
+[
+  {
+    "source": "vault_orig_task-bank-030_99",
+    "destination": "vault_benef_task-bank-030_99",
+    "amount_cents": 9007199254741113,
+    "currency": "USD",
+    "idempotency_key": "idem-fin-hid-task-bank-030-99",
+    "extra_token": "tok_hid_beneficiary_name_structure_30"
+  }
+]

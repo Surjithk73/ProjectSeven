@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "129145e9a96202903695935874c78b4b6f5f8c4e9712a924bb9a65de6a9bbddd",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_address_manifest\": {\"type\": \"object\"}}, \"required\": [\"structured_address_manifest\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-025 (address_component_decomposition).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"book_courier\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2708,
+    "cached_tokens": 0,
+    "output_tokens": 193,
+    "reasoning_tokens": 125,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:36:26 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}",
+                "thought": null,
+                "thought_signature": "1999de3e42aa09b6ff6ebd4973f117044926a6ff92a17033c2dc1209fbea8074",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T23:36:26.493902Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_1f9af5ff0dee309bddf931",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 193,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 193
+          }
+        ],
+        "prompt_token_count": 2708,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2708
+          }
+        ],
+        "thoughts_token_count": 125,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3026,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_address_manifest\": {\"type\": \"object\"}}, \"required\": [\"structured_address_manifest\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-025 (address_component_decomposition).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"book_courier\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:36:26 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}",
+                "thoughtSignature": "1999de3e42aa09b6ff6ebd4973f117044926a6ff92a17033c2dc1209fbea8074"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T23:36:26.493902Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_1f9af5ff0dee309bddf931",
+      "usageMetadata": {
+        "candidatesTokenCount": 193,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 193
+          }
+        ],
+        "promptTokenCount": 2708,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2708
+          }
+        ],
+        "thoughtsTokenCount": 125,
+        "totalTokenCount": 3026,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 26.3755,
+    "wall_seconds": 26.3755,
+    "timestamp_utc": "2026-10-15T23:36:26.493902+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "ada71ec4232ad10085084b025971f8f80affef542d8240f28f7d4dcfd8df26fb",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_address_manifest\": {\"type\": \"object\"}}, \"required\": [\"structured_address_manifest\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-025 (address_component_decomposition).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}, \"source\": \"# TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"book_courier\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2666,
+    "cached_tokens": 0,
+    "output_tokens": 428,
+    "reasoning_tokens": 180,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:36:52 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-025 (address_component_decomposition)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/address_component_decomposition/task-ship-025':\\n            return False\\n        pkg = o.get('body', {}).get('structured_address_manifest')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to address_component_decomposition: Decompose address_line_1 into street_number, route, and unit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-025\"}",
+                "thought": null,
+                "thought_signature": "ab8bddeaeba1906e13ccfc9db6a67e104fd698e3081d386fafbdea37d7dad252",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T23:36:52.869402Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_5e18e541e99d47cc449f91",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 428,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 428
+          }
+        ],
+        "prompt_token_count": 2666,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2666
+          }
+        ],
+        "thoughts_token_count": 180,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3274,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-025 (address_component_decomposition)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/address_component_decomposition/task-ship-025':\\n            return False\\n        pkg = o.get('body', {}).get('structured_address_manifest')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to address_component_decomposition: Decompose address_line_1 into street_number, route, and unit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-025\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_address_manifest\": {\"type\": \"object\"}}, \"required\": [\"structured_address_manifest\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-025 (address_component_decomposition).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}, \"source\": \"# TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"book_courier\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:36:52 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-025 (address_component_decomposition)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/address_component_decomposition/task-ship-025':\\n            return False\\n        pkg = o.get('body', {}).get('structured_address_manifest')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to address_component_decomposition: Decompose address_line_1 into street_number, route, and unit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-025\"}",
+                "thoughtSignature": "ab8bddeaeba1906e13ccfc9db6a67e104fd698e3081d386fafbdea37d7dad252"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T23:36:52.869402Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_5e18e541e99d47cc449f91",
+      "usageMetadata": {
+        "candidatesTokenCount": 428,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 428
+          }
+        ],
+        "promptTokenCount": 2666,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2666
+          }
+        ],
+        "thoughtsTokenCount": 180,
+        "totalTokenCount": 3274,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 43.4703,
+    "wall_seconds": 43.4703,
+    "timestamp_utc": "2026-10-15T23:36:52.869402+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "5f3af946f510bae20d4f47033814347ba84e4b196f38dea539b6a8ba09e9386d",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-025 (address_component_decomposition)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/address_component_decomposition/task-ship-025':\\n            return False\\n        pkg = o.get('body', {}).get('structured_address_manifest')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to address_component_decomposition: Decompose address_line_1 into street_number, route, and unit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-025\"}, \"new_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_address_manifest\": {\"type\": \"object\"}}, \"required\": [\"structured_address_manifest\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-025 (address_component_decomposition).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/address_component_decomposition/task-ship-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('structured_address_manifest'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}, \"source\": \"# TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"book_courier\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-025\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3232,
+    "cached_tokens": 0,
+    "output_tokens": 469,
+    "reasoning_tokens": 195,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:37:36 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:book_courier\"], \"source\": \"# Candidate (B6) for TASK-SHIP-025 (address_component_decomposition)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'structured_address_manifest': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "7dd9623f96735ac7a7a2d17f1fc5a3cd921a975d004962b2529dc5ca7401ba52",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T23:37:36.339702Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_f7b0492054d889c7dbcbcf",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 469,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 469
+          }
+        ],
+        "prompt_token_count": 3232,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3232
+          }
+        ],
+        "thoughts_token_count": 195,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3896,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:book_courier\"], \"source\": \"# Candidate (B6) for TASK-SHIP-025 (address_component_decomposition)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'structured_address_manifest': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-025 (address_component_decomposition)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/address_component_decomposition/task-ship-025':\\n            return False\\n        pkg = o.get('body', {}).get('structured_address_manifest')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to address_component_decomposition: Decompose address_line_1 into street_number, route, and unit\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-025\"}, \"new_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_address_manifest\": {\"type\": \"object\"}}, \"required\": [\"structured_address_manifest\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Decompose address_line_1 into street_number, route, and unit\", \"title\": \"TASK-SHIP-025\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/address_component_decomposition/task-ship-025\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-025 (address_component_decomposition).\", \"operationId\": \"book_courier\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/address_component_decomposition/task-ship-025' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('structured_address_manifest'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"address_component_decomposition\", \"coupled_ast_nodes\": [\"client.py:book_courier\"], \"domain_cluster\": \"Shipping\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-SHIP-025\"}, \"source\": \"# TASK-SHIP-025: Decompose address_line_1 into street_number, route, and unit\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"book_courier\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-025\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 23:37:36 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:book_courier\"], \"source\": \"# Candidate (B6) for TASK-SHIP-025 (address_component_decomposition)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/address_component_decomposition/task-ship-025',\\n        'body': {\\n            'structured_address_manifest': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef book_courier(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "7dd9623f96735ac7a7a2d17f1fc5a3cd921a975d004962b2529dc5ca7401ba52"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T23:37:36.339702Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_f7b0492054d889c7dbcbcf",
+      "usageMetadata": {
+        "candidatesTokenCount": 469,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 469
+          }
+        ],
+        "promptTokenCount": 3232,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3232
+          }
+        ],
+        "thoughtsTokenCount": 195,
+        "totalTokenCount": 3896,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 40.8272,
+    "wall_seconds": 40.8272,
+    "timestamp_utc": "2026-10-15T23:37:36.339702+00:00"
+  }
+]

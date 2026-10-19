@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-SHIP-003: Standardize proprietary carrier codes to ISO carrier codes
++# Attempt 1 candidate (B4) for TASK-SHIP-003
+ def build_request(data):
+-    return {
+-        'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003',
+-        'body': {
+-            'parcel_id': data['parcel_id'],
+-            'weight_grams': data['weight_grams'],
+-            'address_line_1': data['street_address'],
+-            'carrier': data['carrier_code']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/logistics/carrier_code_enum_standardization/task-ship-003', 'body': {'iso_carrier_dispatch': data['parcel_id']}, 'headers': {}}
+ 
+ def dispatch_package(data):
+     return build_request(data)

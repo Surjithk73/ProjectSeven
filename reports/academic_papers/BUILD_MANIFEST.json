@@ -1,0 +1,58 @@
+{
+  "prepared": "2026-10-16",
+  "humanizer_skill": "C:/Users/surji/.agents/skills/humanizer/SKILL.md",
+  "new_experiments": false,
+  "evaluation_scope": "Author-supplied release; provenance limitations retained",
+  "papers": {
+    "ieee_conference": {
+      "pages": 8,
+      "references": 17,
+      "pdf_sha256": "6b135626a1dd4449ae3a2ea8c30c2e960fbad03678d3a87fa9563baf5fe216a1",
+      "compile": "success",
+      "overfull_boxes": 0,
+      "undefined_citations_or_references": 0,
+      "all_fonts_embedded": true,
+      "visual_review": "All final pages rendered and reviewed; architecture and final reference/biography pages also inspected at larger scale.",
+      "body_layout": "two columns",
+      "figures": 3,
+      "tables": 7,
+      "algorithms": 1,
+      "editor_compile": "success"
+    },
+    "ieee_access": {
+      "pages": 11,
+      "references": 18,
+      "pdf_sha256": "bb660769aa0c8203e782c202dabff7edf4b671404b435a35f780ec12f929a9d4",
+      "compile": "success",
+      "overfull_boxes": 0,
+      "undefined_citations_or_references": 0,
+      "all_fonts_embedded": true,
+      "visual_review": "All final pages rendered and reviewed; architecture and final reference/biography pages also inspected at larger scale.",
+      "body_layout": "two columns",
+      "figures": 4,
+      "tables": 8,
+      "algorithms": 1,
+      "editor_compile": "success"
+    }
+  },
+  "college_source_unchanged": true,
+  "source_sha256": {
+    "ieee_access/APIShield_IEEE_Access.tex": "6c367c828496cd54326bdd7802b943fe7163c55a8541af697b610fd6fa98d012",
+    "ieee_conference/APIShield_IEEE_Conference.tex": "d18f4d5b585f6c63606129c486942539e5917e15c46ff9f156b9f3e043461640",
+    "shared/design.tex": "d8352bc22a606e4c49cb5a873947d929dac8f5a2d5821090000b5e055b26ffc0",
+    "shared/discussion.tex": "19f23e0cb0a4429feff5574301bce29a2e4e208bea5cf46724c648f9ea513831",
+    "shared/introduction.tex": "30216b01f602bfc6bded2469864ca5ed0cc1a6ae5406279117eee816e5a437af",
+    "shared/manuscript_body.tex": "ccda7a16423a601412db5bf830f969b3e39569f888e932c07da8ba0b4718bfe0",
+    "shared/method.tex": "64c7c14da54824f517b507b0a0e84fce0ab6e5cbeb387fdd6443ce7308ac7ee0",
+    "shared/preamble.tex": "ecdfed451f8933d03d23e765ad6c712243d75cbc7b409c2eb5fd2ca51e52106f",
+    "shared/results.tex": "828d282ec7effce1262e77d17ce9af8b26dd7b4cd59cd0c727589eb3e28cf5be"
+  },
+  "revision": "Two-column layout, enlarged architecture/SIG, readable result and cost tables, paired plots, humanizer prose pass.",
+  "authors": [
+    "Dr. Anusha K",
+    "Surjith Khannan",
+    "Sadhana S",
+    "Mohammed Ashfaque"
+  ],
+  "affiliations_and_contacts": "Omitted at user request"
+}

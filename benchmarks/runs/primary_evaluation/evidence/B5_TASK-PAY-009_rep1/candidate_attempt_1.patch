@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-PAY-009: Preserve caller idempotency hash across automatic network retry headers
++# Attempt 1 candidate (B5) for TASK-PAY-009
+ def build_request(data):
+-    return {
+-        'path': '/v1/payment/merchant_idempotency_v2/task-pay-009',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/payment/merchant_idempotency_v2/task-pay-009', 'body': {'merchant_charge_v2': data['amount_cents']}, 'headers': {}}
+ 
+ def submit_transaction(data):
+     return build_request(data)

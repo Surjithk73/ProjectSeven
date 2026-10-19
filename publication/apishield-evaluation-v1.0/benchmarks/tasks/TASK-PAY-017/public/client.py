@@ -1,0 +1,18 @@
+# TASK-PAY-017: Replace raw token string with payment_method_data dictionary
+def build_request(data):
+    return {
+        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',
+        'body': {
+            'amount_cents': data['amount_cents'],
+            'source': data['source'],
+            'destination': data['destination'],
+            'legacy_token': data['extra_token']
+        },
+        'headers': {}
+    }
+
+def authorize_payment(data):
+    return build_request(data)
+
+def get_health_status():
+    return {'path': '/health', 'status': 'ok'}

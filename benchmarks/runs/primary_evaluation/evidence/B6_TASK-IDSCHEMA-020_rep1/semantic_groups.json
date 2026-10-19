@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-IDSCHEMA-020",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "pagination_cursor_migration",
+  "coupled_ast_nodes": [],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

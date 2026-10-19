@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-SHIP-001: Decompose address_line_1 into street_number, route, and unit
++# Candidate (B1) for TASK-SHIP-001 (address_component_decomposition)
+ def build_request(data):
+     return {
+-        'path': '/v1/logistics/address_component_decomposition/task-ship-001',
++        'path': '/v2/logistics/address_component_decomposition/task-ship-001',
+         'body': {
+-            'parcel_id': data['parcel_id'],
+-            'weight_grams': data['weight_grams'],
+-            'address_line_1': data['street_address'],
+-            'carrier': data['carrier_code']
++            'structured_address_manifest': {
++                'parcel_id': data['parcel_id'],
++                'weight_grams': float(data['weight_grams']) / 1000.0,
++                'length_cm': int(data['length_cm']),
++                'carrier_iso': data['carrier_code'],
++                'route_address': data['street_address']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'X-Shipment-Idempotency': 'missing-ship-idem-b1'
++        }
+     }
+ 
+ def create_shipment(data):

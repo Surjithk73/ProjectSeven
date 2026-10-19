@@ -1,0 +1,10 @@
+{
+  "task_id": "TASK-PAY-030",
+  "domain_cluster": "Payment",
+  "breaking_change_type": "webhook_signature_header",
+  "coupled_ast_nodes": [
+    "client.py:refund_charge",
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

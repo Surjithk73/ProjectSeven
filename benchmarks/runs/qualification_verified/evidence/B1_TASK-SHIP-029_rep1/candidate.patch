@@ -1,0 +1,7 @@
+--- a/client.py
++++ b/client.py
+@@ -1,2 +1,2 @@
+-def build_request(data):
+-    return {'path': '/labels', 'body': {'weight_grams': data['weight_grams']}, 'headers': {}}
++def build_request(data)
++    return {}

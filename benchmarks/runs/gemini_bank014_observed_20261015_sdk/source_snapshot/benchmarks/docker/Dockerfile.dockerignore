@@ -1,0 +1,7 @@
+**
+!benchmarks/
+!benchmarks/runners/
+!benchmarks/runners/candidate_worker.py
+!benchmarks/runners/oracle_worker.py
+!benchmarks/docker/
+!benchmarks/docker/Dockerfile

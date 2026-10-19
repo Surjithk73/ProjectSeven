@@ -1,0 +1,1 @@
+{"abstain_reason": null, "source": "def build_request(data):\n    return {'path': '/transfers', 'body': {'amount': data['amount']}, 'headers': {}}\n"}

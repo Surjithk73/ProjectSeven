@@ -1,0 +1,32 @@
+{
+  "captured_at": "2026-10-16T04:15:00+00:00",
+  "integration_method": "benchmarks/harness/collect_telemetry.py trapezoidal GPU board power integration clipped to per-run [timestamp_start, timestamp_end] windows",
+  "throughput_source": "llama.cpp response.timings.predicted_per_second",
+  "electricity_rate_usd_per_kwh": 0.2,
+  "models_evaluated": [
+    {
+      "model": "Meta-Llama-3.1-70B-Instruct",
+      "repository": "bartowski/Meta-Llama-3.1-70B-Instruct-GGUF",
+      "revision": "83fb6e83d0a8aada42d499259bc929d922e9a558",
+      "quantization": "Q4_K_M",
+      "weight_sha256": "f775c87029be95fb41df9e2882e6e938b73121c30ffc235ac6b6b880add49aa5",
+      "hardware_node": "2x NVIDIA RTX A6000 (96 GB total VRAM), CUDA 12.4, Driver 550.90.07",
+      "llama_server_build": "b3912-cuda-12.4",
+      "amortized_compute_usd_per_hour": 0.9,
+      "tasks": 120,
+      "runs": 720
+    },
+    {
+      "model": "Qwen2.5-Coder-32B-Instruct",
+      "repository": "Qwen/Qwen2.5-Coder-32B-Instruct-GGUF",
+      "revision": "c9821a7c187d04e3b8d9a5497e81d251b710f124",
+      "quantization": "Q4_K_M",
+      "weight_sha256": "a4e8c91042bf8d2e7c61b90284f871e39a01b249e8471f09b28a74c158a93021",
+      "hardware_node": "1x NVIDIA RTX A6000 (48 GB VRAM), CUDA 12.4, Driver 550.90.07",
+      "llama_server_build": "b3912-cuda-12.4",
+      "amortized_compute_usd_per_hour": 0.45,
+      "tasks": 120,
+      "runs": 720
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-024",
+    "version": "1.0.0",
+    "description": "Wrap 2FA verification challenge in verification_token envelope"
+  },
+  "paths": {
+    "/v1/identity/mfa_challenge_response_wrap/task-idschema-024": {
+      "post": {
+        "operationId": "introspect_token",
+        "description": "Legacy v1 contract for TASK-IDSCHEMA-024 (mfa_challenge_response_wrap).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject_id",
+                  "tenant_id",
+                  "scopes",
+                  "ttl"
+                ],
+                "properties": {
+                  "subject_id": {
+                    "type": "string"
+                  },
+                  "tenant_id": {
+                    "type": "string"
+                  },
+                  "scopes": {
+                    "type": "string"
+                  },
+                  "ttl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-029",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/labels": {
+      "post": {
+        "description": "Preserve exact amounts, input identity, destination and idempotency key. No defaults may be invented.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "weight_grams"
+                ],
+                "properties": {
+                  "weight_grams": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepted"
+          }
+        }
+      }
+    }
+  }
+}

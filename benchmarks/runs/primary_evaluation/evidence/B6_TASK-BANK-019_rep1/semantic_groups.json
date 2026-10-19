@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-BANK-019",
+  "domain_cluster": "Banking",
+  "breaking_change_type": "amount_cents_to_currency_object",
+  "coupled_ast_nodes": [
+    "client.py:dispatch_settlement"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

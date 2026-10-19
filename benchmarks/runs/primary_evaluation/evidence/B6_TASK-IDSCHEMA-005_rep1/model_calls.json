@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "3bf79e5cf62389c5b067b483d5fc9e8dad816020b358ac0f58e36ae0ecabe424",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_permissions\": {\"type\": \"object\"}}, \"required\": [\"structured_permissions\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-005 (scopes_list_to_bitmask).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-005\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2984,
+    "cached_tokens": 0,
+    "output_tokens": 264,
+    "reasoning_tokens": 313,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:34:58 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}",
+                "thought": null,
+                "thought_signature": "1b52c3963246ea23d446b9dc282215dddc043cbbdfab448c3cfd14809e4b7848",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:34:58.268634Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_3d6f1795c9c0b578704d21",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 264,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 264
+          }
+        ],
+        "prompt_token_count": 2984,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2984
+          }
+        ],
+        "thoughts_token_count": 313,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3561,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_permissions\": {\"type\": \"object\"}}, \"required\": [\"structured_permissions\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-005 (scopes_list_to_bitmask).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-005\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:34:58 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}",
+                "thoughtSignature": "1b52c3963246ea23d446b9dc282215dddc043cbbdfab448c3cfd14809e4b7848"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:34:58.268634Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_3d6f1795c9c0b578704d21",
+      "usageMetadata": {
+        "candidatesTokenCount": 264,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 264
+          }
+        ],
+        "promptTokenCount": 2984,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2984
+          }
+        ],
+        "thoughtsTokenCount": 313,
+        "totalTokenCount": 3561,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 36.6231,
+    "wall_seconds": 36.6231,
+    "timestamp_utc": "2026-10-15T20:34:58.268634+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "f526e4631d2e10fa16c0c23c159e38a7752a755ce9e1bf20c897bf6500a71b4c",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_permissions\": {\"type\": \"object\"}}, \"required\": [\"structured_permissions\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-005 (scopes_list_to_bitmask).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}, \"source\": \"# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-005\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2908,
+    "cached_tokens": 0,
+    "output_tokens": 553,
+    "reasoning_tokens": 81,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:35:34 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-005':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('structured_permissions')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to scopes_list_to_bitmask: Convert space-separated OAuth scope string to structured permission object list\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-005\"}",
+                "thought": null,
+                "thought_signature": "da7d6f692e3065927b476b8c7500bb7b9e2e8ea04745abc19de31689dce58247",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:35:34.891734Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_84a631c6bf493e843880b7",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 553,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 553
+          }
+        ],
+        "prompt_token_count": 2908,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2908
+          }
+        ],
+        "thoughts_token_count": 81,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3542,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-005':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('structured_permissions')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to scopes_list_to_bitmask: Convert space-separated OAuth scope string to structured permission object list\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-005\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_permissions\": {\"type\": \"object\"}}, \"required\": [\"structured_permissions\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-005 (scopes_list_to_bitmask).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}, \"source\": \"# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-005\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:35:34 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-005':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('structured_permissions')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to scopes_list_to_bitmask: Convert space-separated OAuth scope string to structured permission object list\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-005\"}",
+                "thoughtSignature": "da7d6f692e3065927b476b8c7500bb7b9e2e8ea04745abc19de31689dce58247"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:35:34.891734Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_84a631c6bf493e843880b7",
+      "usageMetadata": {
+        "candidatesTokenCount": 553,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 553
+          }
+        ],
+        "promptTokenCount": 2908,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2908
+          }
+        ],
+        "thoughtsTokenCount": 81,
+        "totalTokenCount": 3542,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 36.817,
+    "wall_seconds": 36.817,
+    "timestamp_utc": "2026-10-15T20:35:34.891734+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "bbf266bb7b60b6306e1dc2246ab5d24443e0bf3c3f07a729abd897bb070c6298",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-005':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('structured_permissions')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to scopes_list_to_bitmask: Convert space-separated OAuth scope string to structured permission object list\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-005\"}, \"new_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_permissions\": {\"type\": \"object\"}}, \"required\": [\"structured_permissions\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-005 (scopes_list_to_bitmask).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/scopes_list_to_bitmask/task-idschema-005' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('structured_permissions'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}, \"source\": \"# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-005\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3496,
+    "cached_tokens": 0,
+    "output_tokens": 377,
+    "reasoning_tokens": 105,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:36:11 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'structured_permissions': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "37cd83dfda7d044b0b57eac2fa33dfea3025f65fc68d49dafd258b46e013a132",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:36:11.708734Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_4ece4167488690a97a7e71",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 377,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 377
+          }
+        ],
+        "prompt_token_count": 3496,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3496
+          }
+        ],
+        "thoughts_token_count": 105,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3978,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'structured_permissions': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-005':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('structured_permissions')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to scopes_list_to_bitmask: Convert space-separated OAuth scope string to structured permission object list\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-005\"}, \"new_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"structured_permissions\": {\"type\": \"object\"}}, \"required\": [\"structured_permissions\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Convert space-separated OAuth scope string to structured permission object list\", \"title\": \"TASK-IDSCHEMA-005\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/scopes_list_to_bitmask/task-idschema-005\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-005 (scopes_list_to_bitmask).\", \"operationId\": \"revoke_session\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/scopes_list_to_bitmask/task-idschema-005' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('structured_permissions'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"scopes_list_to_bitmask\", \"coupled_ast_nodes\": [\"client.py:revoke_session\"], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-005\"}, \"source\": \"# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"revoke_session\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-005\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:36:11 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:revoke_session\"], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',\\n        'body': {\\n            'structured_permissions': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': float(data['ttl_seconds']) / 60.0\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef revoke_session(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "37cd83dfda7d044b0b57eac2fa33dfea3025f65fc68d49dafd258b46e013a132"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:36:11.708734Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_4ece4167488690a97a7e71",
+      "usageMetadata": {
+        "candidatesTokenCount": 377,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 377
+          }
+        ],
+        "promptTokenCount": 3496,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3496
+          }
+        ],
+        "thoughtsTokenCount": 105,
+        "totalTokenCount": 3978,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.5572,
+    "wall_seconds": 41.5572,
+    "timestamp_utc": "2026-10-15T20:36:11.708734+00:00"
+  }
+]

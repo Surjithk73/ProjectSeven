@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B5) for TASK-SHIP-022 (dimensions_nesting_object)\ndef build_request(data):\n    return {\n        'path': '/v2/logistics/dimensions_nesting_object/task-ship-022',\n        'body': {\n            'parcel_dimensions_box': {\n                'parcel_id': data['parcel_id'],\n                'weight_grams': float(data['weight_grams']) / 1000.0,\n                'length_cm': int(data['length_cm']),\n                'carrier_iso': data['carrier_code'],\n                'route_address': data['street_address']\n            }\n        },\n        'headers': {\n            'X-Shipment-Idempotency': 'missing-ship-idem-b5'\n        }\n    }\n\ndef calculate_rate(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": "# Inferred structural contract check (B5) for TASK-SHIP-022\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/logistics/dimensions_nesting_object/task-ship-022' and isinstance(o.get('body', {}).get('parcel_dimensions_box'), dict) and len(o['body']['parcel_dimensions_box']) >= 2 for o in outputs)\n",
+  "predicted_locations": [
+    "client.py:calculate_rate"
+  ]
+}

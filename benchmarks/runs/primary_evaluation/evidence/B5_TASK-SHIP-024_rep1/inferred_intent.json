@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-SHIP-024",
+  "rules": [
+    "Migrate operation according to tracking_endpoint_path_migration: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred structural contract check (B5) for TASK-SHIP-024\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/logistics/tracking_endpoint_path_migration/task-ship-024' and isinstance(o.get('body', {}).get('shipment_milestone_envelope'), dict) and len(o['body']['shipment_milestone_envelope']) >= 2 for o in outputs)\n"
+}

@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-003",
+    "version": "2.0.0",
+    "description": "Preserve caller idempotency hash across automatic network retry headers"
+  },
+  "paths": {
+    "/v2/payment/merchant_idempotency_v2/task-pay-003": {
+      "post": {
+        "operationId": "capture_intent",
+        "description": "Updated v2 contract for TASK-PAY-003: Preserve caller idempotency hash across automatic network retry headers",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "merchant_charge_v2"
+                ],
+                "properties": {
+                  "merchant_charge_v2": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

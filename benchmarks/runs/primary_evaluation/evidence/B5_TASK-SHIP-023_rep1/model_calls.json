@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "729a7ef5c9a55c5fa0c20e5bd4964a0acc924c3c31fe2b09b932a1a3f275a064",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-023: Add required hazardous_materials boolean and classification code\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-023 (hazmat_declaration_subschema).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-023: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-023\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2825,
+    "cached_tokens": 0,
+    "output_tokens": 596,
+    "reasoning_tokens": 283,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:05:57 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/hazmat_declaration_subschema/task-ship-023':\\n            return False\\n        pkg = o.get('body', {}).get('hazmat_shipping_declaration')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-023\"}",
+                "thought": null,
+                "thought_signature": "729f85c0a3b521080d3216722ff185254e4282e6c1269a1782f322df0600c4f5",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T19:05:57.366581Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_f86606cb52d1d4bcef9a99",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 596,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 596
+          }
+        ],
+        "prompt_token_count": 2825,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2825
+          }
+        ],
+        "thoughts_token_count": 283,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3704,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/hazmat_declaration_subschema/task-ship-023':\\n            return False\\n        pkg = o.get('body', {}).get('hazmat_shipping_declaration')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-023\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B5\", \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-023: Add required hazardous_materials boolean and classification code\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-023 (hazmat_declaration_subschema).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-SHIP-023: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-023\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:05:57 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/hazmat_declaration_subschema/task-ship-023':\\n            return False\\n        pkg = o.get('body', {}).get('hazmat_shipping_declaration')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-023\"}",
+                "thoughtSignature": "729f85c0a3b521080d3216722ff185254e4282e6c1269a1782f322df0600c4f5"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T19:05:57.366581Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_f86606cb52d1d4bcef9a99",
+      "usageMetadata": {
+        "candidatesTokenCount": 596,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 596
+          }
+        ],
+        "promptTokenCount": 2825,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2825
+          }
+        ],
+        "thoughtsTokenCount": 283,
+        "totalTokenCount": 3704,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 46.8709,
+    "wall_seconds": 46.8709,
+    "timestamp_utc": "2026-10-15T19:05:57.366581+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "94306edf58806d521057cace9396d4d5217ba128953814ac63aad7457e656897",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/hazmat_declaration_subschema/task-ship-023':\\n            return False\\n        pkg = o.get('body', {}).get('hazmat_shipping_declaration')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-023\"}, \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-023: Add required hazardous_materials boolean and classification code\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-023 (hazmat_declaration_subschema).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-023' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-023: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-023\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3349,
+    "cached_tokens": 0,
+    "output_tokens": 501,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:06:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\"], \"source\": \"# Candidate (B5) for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'hazmat_shipping_declaration': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "c5f6bb23bfb356d5c537cace995a85368a420f7acd92c360f61be9272f087c8b",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T19:06:44.237481Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_523892c3b884f2a3fd7339",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 501,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 501
+          }
+        ],
+        "prompt_token_count": 3349,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3349
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3850,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\"], \"source\": \"# Candidate (B5) for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'hazmat_shipping_declaration': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B5\", \"inferred_intent\": {\"checks_source\": \"# Inferred logistics invariant check for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/logistics/hazmat_declaration_subschema/task-ship-023':\\n            return False\\n        pkg = o.get('body', {}).get('hazmat_shipping_declaration')\\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\\n            return False\\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to hazmat_declaration_subschema: Add required hazardous_materials boolean and classification code\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-SHIP-023\"}, \"new_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-023: Add required hazardous_materials boolean and classification code\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"hazmat_shipping_declaration\": {\"type\": \"object\"}}, \"required\": [\"hazmat_shipping_declaration\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Add required hazardous_materials boolean and classification code\", \"title\": \"TASK-SHIP-023\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/hazmat_declaration_subschema/task-ship-023\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-023 (hazmat_declaration_subschema).\", \"operationId\": \"dispatch_package\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/hazmat_declaration_subschema/task-ship-023' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('hazmat_shipping_declaration'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-023: Add required hazardous_materials boolean and classification code\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"dispatch_package\", \"get_health_status\"]}, \"task_id\": \"TASK-SHIP-023\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 19:06:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:dispatch_package\"], \"source\": \"# Candidate (B5) for TASK-SHIP-023 (hazmat_declaration_subschema)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-023',\\n        'body': {\\n            'hazmat_shipping_declaration': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': int(data['weight_grams']),\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_package(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "c5f6bb23bfb356d5c537cace995a85368a420f7acd92c360f61be9272f087c8b"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T19:06:44.237481Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_523892c3b884f2a3fd7339",
+      "usageMetadata": {
+        "candidatesTokenCount": 501,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 501
+          }
+        ],
+        "promptTokenCount": 3349,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3349
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3850,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 42.9221,
+    "wall_seconds": 42.9221,
+    "timestamp_utc": "2026-10-15T19:06:44.237481+00:00"
+  }
+]

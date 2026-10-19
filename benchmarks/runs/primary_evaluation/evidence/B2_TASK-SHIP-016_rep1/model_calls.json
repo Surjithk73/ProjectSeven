@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "7dc6ccbe8897e190297aff70c9fcb8f588f2509883e93b669ec2b42e5965b814",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"parcel_dimensions_box\": {\"type\": \"object\"}}, \"required\": [\"parcel_dimensions_box\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-016 (dimensions_nesting_object).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/dimensions_nesting_object/task-ship-016' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('parcel_dimensions_box'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-016\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2331,
+    "cached_tokens": 0,
+    "output_tokens": 325,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 09:50:16 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\", \"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-SHIP-016\\ndef build_request(data):\\n    return {'path': '/v1/logistics/dimensions_nesting_object/task-ship-016', 'body': {'parcel_dimensions_box': data['parcel_id']}, 'headers': {}}\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "b29608592abe34898d058a05675ce3da6a9d3c21c57e6adcfb3b6a4fe8d1807e",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T09:50:16.105637Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_2f8c3988cdff389ebcd521",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 325,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 325
+          }
+        ],
+        "prompt_token_count": 2331,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2331
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 2656,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\", \"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-SHIP-016\\ndef build_request(data):\\n    return {'path': '/v1/logistics/dimensions_nesting_object/task-ship-016', 'body': {'parcel_dimensions_box': data['parcel_id']}, 'headers': {}}\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"parcel_dimensions_box\": {\"type\": \"object\"}}, \"required\": [\"parcel_dimensions_box\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-016 (dimensions_nesting_object).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/dimensions_nesting_object/task-ship-016' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('parcel_dimensions_box'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-016\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 09:50:16 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\", \"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-SHIP-016\\ndef build_request(data):\\n    return {'path': '/v1/logistics/dimensions_nesting_object/task-ship-016', 'body': {'parcel_dimensions_box': data['parcel_id']}, 'headers': {}}\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "b29608592abe34898d058a05675ce3da6a9d3c21c57e6adcfb3b6a4fe8d1807e"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T09:50:16.105637Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_2f8c3988cdff389ebcd521",
+      "usageMetadata": {
+        "candidatesTokenCount": 325,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 325
+          }
+        ],
+        "promptTokenCount": 2331,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2331
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 2656,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 31.6063,
+    "wall_seconds": 31.6063,
+    "timestamp_utc": "2026-10-15T09:50:16.105637+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "c8b066802796071b38f7be7105419e403195720a2a76bc61ce14c52e6475610c",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"parcel_dimensions_box\": {\"type\": \"object\"}}, \"required\": [\"parcel_dimensions_box\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-016 (dimensions_nesting_object).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/dimensions_nesting_object/task-ship-016' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('parcel_dimensions_box'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-016\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2667,
+    "cached_tokens": 0,
+    "output_tokens": 429,
+    "reasoning_tokens": 382,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 09:50:47 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-SHIP-016 (dimensions_nesting_object)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_dimensions_box': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "a9bbb77e1621d5fb3dccb1fb19739baafff453876d2d2772b4ffbe14114fc89f",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T09:50:47.711937Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_2f42528bd99f55cd2a2e76",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 429,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 429
+          }
+        ],
+        "prompt_token_count": 2667,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2667
+          }
+        ],
+        "thoughts_token_count": 382,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3478,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-SHIP-016 (dimensions_nesting_object)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_dimensions_box': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Updated v2 contract for TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"parcel_dimensions_box\": {\"type\": \"object\"}}, \"required\": [\"parcel_dimensions_box\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Nest length, width, height into dimensions: {l, w, h, unit}\", \"title\": \"TASK-SHIP-016\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/logistics/dimensions_nesting_object/task-ship-016\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-SHIP-016 (dimensions_nesting_object).\", \"operationId\": \"create_shipment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"address_line_1\": {\"type\": \"string\"}, \"parcel_id\": {\"type\": \"string\"}, \"weight_grams\": {\"type\": \"string\"}}, \"required\": [\"parcel_id\", \"weight_grams\", \"address_line_1\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/logistics/dimensions_nesting_object/task-ship-016' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('parcel_dimensions_box'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-SHIP-016: Nest length, width, height into dimensions: {l, w, h, unit}\\ndef build_request(data):\\n    return {\\n        'path': '/v1/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_id': data['parcel_id'],\\n            'weight_grams': data['weight_grams'],\\n            'address_line_1': data['street_address'],\\n            'carrier': data['carrier_code']\\n        },\\n        'headers': {}\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-SHIP-016\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 09:50:47 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:create_shipment\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-SHIP-016 (dimensions_nesting_object)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/logistics/dimensions_nesting_object/task-ship-016',\\n        'body': {\\n            'parcel_dimensions_box': {\\n                'parcel_id': data['parcel_id'],\\n                'weight_grams': float(data['weight_grams']) / 1000.0,\\n                'length_cm': int(data['length_cm']),\\n                'carrier_iso': data['carrier_code'],\\n                'route_address': data['street_address']\\n            }\\n        },\\n        'headers': {\\n            'X-Shipment-Idempotency': 'missing-ship-idem-b2'\\n        }\\n    }\\n\\ndef create_shipment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "a9bbb77e1621d5fb3dccb1fb19739baafff453876d2d2772b4ffbe14114fc89f"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T09:50:47.711937Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_2f42528bd99f55cd2a2e76",
+      "usageMetadata": {
+        "candidatesTokenCount": 429,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 429
+          }
+        ],
+        "promptTokenCount": 2667,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2667
+          }
+        ],
+        "thoughtsTokenCount": 382,
+        "totalTokenCount": 3478,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.4637,
+    "wall_seconds": 41.4637,
+    "timestamp_utc": "2026-10-15T09:50:47.711937+00:00"
+  }
+]

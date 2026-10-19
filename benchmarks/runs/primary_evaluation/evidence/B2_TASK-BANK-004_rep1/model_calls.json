@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "14254105c3f723f03074a0ecc1259162a089ca3d5196bbf80b63e47b308356a5",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-004 (iso20022_pacs008_wrap).\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-004' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('pacs008_document'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-004\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2442,
+    "cached_tokens": 0,
+    "output_tokens": 323,
+    "reasoning_tokens": 124,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:52:37 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-BANK-004\\ndef build_request(data):\\n    return {'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004', 'body': {'pacs008_document': data['amount_cents']}, 'headers': {}}\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "bfd0b87e9229f22a234ae4222406d0d6ae42a550cad26e0bb213796cec42b159",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T07:52:37.177515Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_27486a8e4606622ff37312",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 323,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 323
+          }
+        ],
+        "prompt_token_count": 2442,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2442
+          }
+        ],
+        "thoughts_token_count": 124,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 2889,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-BANK-004\\ndef build_request(data):\\n    return {'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004', 'body': {'pacs008_document': data['amount_cents']}, 'headers': {}}\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-004 (iso20022_pacs008_wrap).\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-004' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('pacs008_document'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-004\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:52:37 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Attempt 1 candidate (B2) for TASK-BANK-004\\ndef build_request(data):\\n    return {'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004', 'body': {'pacs008_document': data['amount_cents']}, 'headers': {}}\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "bfd0b87e9229f22a234ae4222406d0d6ae42a550cad26e0bb213796cec42b159"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T07:52:37.177515Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_27486a8e4606622ff37312",
+      "usageMetadata": {
+        "candidatesTokenCount": 323,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 323
+          }
+        ],
+        "promptTokenCount": 2442,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2442
+          }
+        ],
+        "thoughtsTokenCount": 124,
+        "totalTokenCount": 2889,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 30.2139,
+    "wall_seconds": 30.2139,
+    "timestamp_utc": "2026-10-15T07:52:37.177515+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "b86c9f7bc2a60179d3ecad4cf590aba883b2da4d7a1745ad9fa8fe2cdd382081",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-004 (iso20022_pacs008_wrap).\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-004' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('pacs008_document'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-004\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2443,
+    "cached_tokens": 0,
+    "output_tokens": 525,
+    "reasoning_tokens": 357,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:53:07 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-BANK-004 (iso20022_pacs008_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'pacs008_document': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "42d8308cd4d4c2eff1765e5f79b2bb6cf13a48a8b1efe2269e875a0e6794a023",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T07:53:07.391415Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_188b0e50df3a82c78e0404",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 525,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 525
+          }
+        ],
+        "prompt_token_count": 2443,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2443
+          }
+        ],
+        "thoughts_token_count": 357,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3325,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-BANK-004 (iso20022_pacs008_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'pacs008_document': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B2\", \"new_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"pacs008_document\": {\"type\": \"object\"}}, \"required\": [\"pacs008_document\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Wrap transfer payload in standard pacs.008 document envelope\", \"title\": \"TASK-BANK-004\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/iso20022_pacs008_wrap/task-bank-004\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-004 (iso20022_pacs008_wrap).\", \"operationId\": \"dispatch_settlement\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-004' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('pacs008_document'), dict) for o in outputs)\\n    }\\n\", \"source\": \"# TASK-BANK-004: Wrap transfer payload in standard pacs.008 document envelope\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"task_id\": \"TASK-BANK-004\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 07:53:07 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:get_health_status\"], \"source\": \"# Candidate (B2) for TASK-BANK-004 (iso20022_pacs008_wrap)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-004',\\n        'body': {\\n            'pacs008_document': {\\n                'amount_subunits': float(data['amount_cents']) / 100.0,\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef dispatch_settlement(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "42d8308cd4d4c2eff1765e5f79b2bb6cf13a48a8b1efe2269e875a0e6794a023"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T07:53:07.391415Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_188b0e50df3a82c78e0404",
+      "usageMetadata": {
+        "candidatesTokenCount": 525,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 525
+          }
+        ],
+        "promptTokenCount": 2443,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2443
+          }
+        ],
+        "thoughtsTokenCount": 357,
+        "totalTokenCount": 3325,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 44.7043,
+    "wall_seconds": 44.7043,
+    "timestamp_utc": "2026-10-15T07:53:07.391415+00:00"
+  }
+]

@@ -1,0 +1,30 @@
+export const theme = {
+  colors: {
+    bgDark: '#070B14',
+    bgCard: 'rgba(15, 23, 42, 0.75)',
+    bgCardHover: 'rgba(30, 41, 59, 0.85)',
+    border: 'rgba(148, 163, 184, 0.15)',
+    borderActive: 'rgba(56, 189, 248, 0.4)',
+    borderDanger: 'rgba(244, 63, 94, 0.4)',
+    textPrimary: '#F8FAFC',
+    textSecondary: '#94A3B8',
+    textMuted: '#64748B',
+    accentCyan: '#06B6D4',
+    accentBlue: '#3B82F6',
+    accentViolet: '#8B5CF6',
+    accentEmerald: '#10B981',
+    accentRose: '#F43F5E',
+    accentAmber: '#F59E0B',
+  },
+  glows: {
+    cyan: '0 0 25px rgba(6, 182, 212, 0.45)',
+    emerald: '0 0 25px rgba(16, 185, 129, 0.45)',
+    rose: '0 0 25px rgba(244, 63, 94, 0.45)',
+    violet: '0 0 25px rgba(139, 92, 246, 0.45)',
+    box: '0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+  },
+  fonts: {
+    sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    mono: '"JetBrains Mono", "Fira Code", Consolas, Monaco, "Courier New", monospace',
+  },
+};

@@ -1,0 +1,30 @@
+export const theme3d = {
+  colors: {
+    bg: '#08070F',
+    bgCard: 'rgba(20, 18, 34, 0.72)',
+    bgCardActive: 'rgba(32, 28, 54, 0.85)',
+    border: 'rgba(255, 255, 255, 0.1)',
+    borderGlow: 'rgba(139, 92, 246, 0.5)',
+    borderError: 'rgba(244, 63, 94, 0.6)',
+    textPrimary: '#FFFFFF',
+    textSecondary: '#A1A1AA',
+    textMuted: '#71717A',
+    violet: '#8B5CF6',
+    indigo: '#6366F1',
+    cyan: '#06B6D4',
+    emerald: '#10B981',
+    rose: '#F43F5E',
+    amber: '#F59E0B',
+  },
+  glow: {
+    violet: '0 0 50px rgba(139, 92, 246, 0.45)',
+    cyan: '0 0 50px rgba(6, 182, 212, 0.45)',
+    emerald: '0 0 50px rgba(16, 185, 129, 0.45)',
+    rose: '0 0 50px rgba(244, 63, 94, 0.45)',
+    card: '0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.2)',
+  },
+  fonts: {
+    sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    mono: '"JetBrains Mono", "Fira Code", monospace',
+  },
+};

@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-026",
+    "version": "1.0.0",
+    "description": "Split combined routing into separate account_number and bic fields"
+  },
+  "paths": {
+    "/v1/banking/iban_bic_restructure/task-bank-026": {
+      "post": {
+        "operationId": "build_request",
+        "description": "Legacy v1 contract for TASK-BANK-026 (iban_bic_restructure).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

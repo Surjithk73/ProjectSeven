@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B2) for TASK-BANK-002 (iban_bic_restructure)\ndef build_request(data):\n    return {\n        'path': '/v2/banking/iban_bic_restructure/task-bank-002',\n        'body': {\n            'iban_bic_transfer': {\n                'amount_subunits': float(data['amount_cents']) / 100.0,\n                'currency': data['currency'],\n                'source_route': data['source'],\n                'destination_route': 'unverified_route_task-bank-002',\n                'token_ref': data['extra_token']\n            }\n        },\n        'headers': {\n            'Idempotency-Key': data['idempotency_key']\n        }\n    }\n\ndef transfer_funds(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": [
+    "client.py:transfer_funds"
+  ]
+}

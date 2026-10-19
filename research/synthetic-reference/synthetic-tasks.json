@@ -1,0 +1,1277 @@
+[
+  {
+    "task": "T000",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Endpoint relocation",
+    "difficulty": 0.04550149373059004,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T001",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Request nesting",
+    "difficulty": -0.06503122794999279,
+    "properties": [
+      "identity",
+      "exact_units",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T002",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Response nesting",
+    "difficulty": 0.05363710097898597,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T003",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Exact units",
+    "difficulty": 0.061470062258211444,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T004",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Identity/currency",
+    "difficulty": 0.01820773558009084,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T005",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Duplicate/refund",
+    "difficulty": -0.03385116214592403,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T006",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Shared schema",
+    "difficulty": -0.028414651275455824,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T007",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Transitive caller",
+    "difficulty": 0.005248876444262862,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T008",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Endpoint relocation",
+    "difficulty": 0.05933921657850169,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T009",
+    "family": "F00",
+    "domain": "Banking/payments",
+    "category": "Request nesting",
+    "difficulty": 0.08683068982561432,
+    "properties": [
+      "identity",
+      "exact_units",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T010",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Response nesting",
+    "difficulty": -0.012776983066989753,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T011",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Exact units",
+    "difficulty": -0.03789369926716053,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T012",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Identity/currency",
+    "difficulty": -0.011420802127671423,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T013",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Duplicate/refund",
+    "difficulty": -0.04593405539318967,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T014",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Shared schema",
+    "difficulty": -0.08801158264365164,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T015",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Transitive caller",
+    "difficulty": 0.0681108555902655,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T016",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Endpoint relocation",
+    "difficulty": 0.041021410098971534,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T017",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Request nesting",
+    "difficulty": 0.09503963390121431,
+    "properties": [
+      "identity",
+      "exact_units",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T018",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Response nesting",
+    "difficulty": 0.0006483462293394721,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T019",
+    "family": "F01",
+    "domain": "Banking/payments",
+    "category": "Exact units",
+    "difficulty": 0.025028384601501086,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T020",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Identity/currency",
+    "difficulty": 0.02529303789576648,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T021",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Duplicate/refund",
+    "difficulty": -0.03709761532292176,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T022",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Shared schema",
+    "difficulty": -0.04727848804569623,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T023",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Transitive caller",
+    "difficulty": -0.015603674100753556,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T024",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Endpoint relocation",
+    "difficulty": -0.0598409608541233,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T025",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Request nesting",
+    "difficulty": -0.08511978432179619,
+    "properties": [
+      "identity",
+      "exact_units",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T026",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Response nesting",
+    "difficulty": -0.03287063357884912,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T027",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Exact units",
+    "difficulty": -0.07781429531899786,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T028",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Identity/currency",
+    "difficulty": -0.08045203534963585,
+    "properties": [
+      "identity",
+      "exact_units",
+      "no_duplicate"
+    ]
+  },
+  {
+    "task": "T029",
+    "family": "F02",
+    "domain": "Banking/payments",
+    "category": "Duplicate/refund",
+    "difficulty": 0.0707130577099705,
+    "properties": [
+      "identity",
+      "exact_units"
+    ]
+  },
+  {
+    "task": "T030",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Shared schema",
+    "difficulty": -0.09038923327632715,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T031",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Transitive caller",
+    "difficulty": -0.044611074936535336,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T032",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Endpoint relocation",
+    "difficulty": 0.08581657427639686,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T033",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Request nesting",
+    "difficulty": 0.0794311008371443,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T034",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Response nesting",
+    "difficulty": 0.09413321224025148,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T035",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Exact units",
+    "difficulty": -0.08202031384052677,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T036",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Identity/currency",
+    "difficulty": 0.09070807678700193,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T037",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Duplicate/refund",
+    "difficulty": -0.07140693839155683,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T038",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Shared schema",
+    "difficulty": 0.06145179843326956,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T039",
+    "family": "F03",
+    "domain": "Shipping",
+    "category": "Transitive caller",
+    "difficulty": 0.09707311374871008,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T040",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Endpoint relocation",
+    "difficulty": 0.04574721419936542,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T041",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Request nesting",
+    "difficulty": 0.06377426873511177,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T042",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Response nesting",
+    "difficulty": -0.027506367777282326,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T043",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Exact units",
+    "difficulty": -0.025059610836543775,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T044",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Identity/currency",
+    "difficulty": 0.03824116733431712,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T045",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Duplicate/refund",
+    "difficulty": -0.07322468600075889,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T046",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Shared schema",
+    "difficulty": -0.059221449481208534,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T047",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Transitive caller",
+    "difficulty": 0.08956171616385117,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T048",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Endpoint relocation",
+    "difficulty": 0.0038008012705084554,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T049",
+    "family": "F04",
+    "domain": "Shipping",
+    "category": "Request nesting",
+    "difficulty": -0.09901381879763341,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T050",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Response nesting",
+    "difficulty": 0.09869130228971082,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T051",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Exact units",
+    "difficulty": -0.04623361547115939,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T052",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Identity/currency",
+    "difficulty": -0.08245129381196088,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T053",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Duplicate/refund",
+    "difficulty": 0.00791255193579081,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T054",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Shared schema",
+    "difficulty": 0.05482169799276679,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T055",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Transitive caller",
+    "difficulty": -0.0018580798225369816,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T056",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Endpoint relocation",
+    "difficulty": -0.08042046308673208,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T057",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Request nesting",
+    "difficulty": -0.028277009715778068,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T058",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Response nesting",
+    "difficulty": -0.0474849253891416,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T059",
+    "family": "F05",
+    "domain": "Shipping",
+    "category": "Exact units",
+    "difficulty": -0.0774340737449792,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T060",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Identity/currency",
+    "difficulty": 0.01520184647953804,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T061",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Duplicate/refund",
+    "difficulty": 0.09056560201856687,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T062",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Shared schema",
+    "difficulty": -0.0965181988274263,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T063",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Transitive caller",
+    "difficulty": -0.0980145263166808,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T064",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Endpoint relocation",
+    "difficulty": 0.048849426458633494,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T065",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Request nesting",
+    "difficulty": -0.057116306492512696,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T066",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Response nesting",
+    "difficulty": -0.036816934212467886,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T067",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Exact units",
+    "difficulty": -0.054642656720641995,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T068",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Identity/currency",
+    "difficulty": 0.09834753032558188,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T069",
+    "family": "F06",
+    "domain": "Identity",
+    "category": "Duplicate/refund",
+    "difficulty": -0.0433864489190901,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T070",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Shared schema",
+    "difficulty": -0.057243238168375336,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T071",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Transitive caller",
+    "difficulty": -0.08080196090928818,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T072",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Endpoint relocation",
+    "difficulty": 0.04550548133483831,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T073",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Request nesting",
+    "difficulty": 0.01724495174547795,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T074",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Response nesting",
+    "difficulty": -0.051857174793159835,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T075",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Exact units",
+    "difficulty": 0.04277263166439871,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T076",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Identity/currency",
+    "difficulty": -0.027178254735446203,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T077",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Duplicate/refund",
+    "difficulty": 0.0062655327698663,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T078",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Shared schema",
+    "difficulty": -0.0479994646992376,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T079",
+    "family": "F07",
+    "domain": "Identity",
+    "category": "Transitive caller",
+    "difficulty": -0.06997087330239248,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T080",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Endpoint relocation",
+    "difficulty": 0.05672318280234598,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T081",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Request nesting",
+    "difficulty": -0.056359027116197204,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T082",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Response nesting",
+    "difficulty": -0.09539196636922818,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T083",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Exact units",
+    "difficulty": -0.009057513162687283,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T084",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Identity/currency",
+    "difficulty": 0.017595451352783037,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T085",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Duplicate/refund",
+    "difficulty": -0.005602995351285681,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T086",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Shared schema",
+    "difficulty": 0.02244141766665117,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T087",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Transitive caller",
+    "difficulty": 0.03310900599600511,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T088",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Endpoint relocation",
+    "difficulty": 0.040226697662659405,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T089",
+    "family": "F08",
+    "domain": "Identity",
+    "category": "Request nesting",
+    "difficulty": -0.09840040881778966,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T090",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Response nesting",
+    "difficulty": 0.0748453985589635,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T091",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Exact units",
+    "difficulty": 0.09901876071077736,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T092",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Identity/currency",
+    "difficulty": 0.05829324170741165,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T093",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Duplicate/refund",
+    "difficulty": -0.04706927653946158,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T094",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Shared schema",
+    "difficulty": 0.06757676717190486,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T095",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Transitive caller",
+    "difficulty": 0.06067080987565307,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T096",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Endpoint relocation",
+    "difficulty": -0.08472371429103834,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T097",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Request nesting",
+    "difficulty": 0.057133387620720816,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T098",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Response nesting",
+    "difficulty": -0.0015691915548717433,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T099",
+    "family": "F09",
+    "domain": "Multi-endpoint/schema",
+    "category": "Exact units",
+    "difficulty": -0.02596571028824579,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T100",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Identity/currency",
+    "difficulty": 0.01777597986168751,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T101",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Duplicate/refund",
+    "difficulty": 0.09766784820775065,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T102",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Shared schema",
+    "difficulty": -0.016640094677168496,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T103",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Transitive caller",
+    "difficulty": -0.04289066569338265,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T104",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Endpoint relocation",
+    "difficulty": -0.0022098124777349126,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T105",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Request nesting",
+    "difficulty": -0.020620546323817796,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T106",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Response nesting",
+    "difficulty": -0.05313795600077114,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T107",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Exact units",
+    "difficulty": 0.09336783652627098,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T108",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Identity/currency",
+    "difficulty": -0.03793929912855161,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T109",
+    "family": "F10",
+    "domain": "Multi-endpoint/schema",
+    "category": "Duplicate/refund",
+    "difficulty": -0.021742731554945063,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T110",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Shared schema",
+    "difficulty": -0.07877900924591037,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T111",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Transitive caller",
+    "difficulty": -0.055212921717023855,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T112",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Endpoint relocation",
+    "difficulty": 0.016487054032269938,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T113",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Request nesting",
+    "difficulty": 0.06600042527229563,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T114",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Response nesting",
+    "difficulty": -0.06549389521161542,
+    "properties": [
+      "identity",
+      "renesting"
+    ]
+  },
+  {
+    "task": "T115",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Exact units",
+    "difficulty": 0.054139657628774346,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T116",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Identity/currency",
+    "difficulty": -0.0225592925403465,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T117",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Duplicate/refund",
+    "difficulty": 0.09932972364713286,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T118",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Shared schema",
+    "difficulty": 0.07008637838431628,
+    "properties": [
+      "identity"
+    ]
+  },
+  {
+    "task": "T119",
+    "family": "F11",
+    "domain": "Multi-endpoint/schema",
+    "category": "Transitive caller",
+    "difficulty": -0.03562690616755308,
+    "properties": [
+      "identity"
+    ]
+  }
+]

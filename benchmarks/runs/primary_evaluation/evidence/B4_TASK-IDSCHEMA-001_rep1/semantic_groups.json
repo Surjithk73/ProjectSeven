@@ -1,0 +1,10 @@
+{
+  "task_id": "TASK-IDSCHEMA-001",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "oauth_bearer_auth_migration",
+  "coupled_ast_nodes": [
+    "client.py:authenticate_client",
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

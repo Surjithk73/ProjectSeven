@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-SHIP-017: Add required hazardous_materials boolean and classification code
++# Candidate (B2) for TASK-SHIP-017 (hazmat_declaration_subschema)
+ def build_request(data):
+     return {
+-        'path': '/v1/logistics/hazmat_declaration_subschema/task-ship-017',
++        'path': '/v2/logistics/hazmat_declaration_subschema/task-ship-017',
+         'body': {
+-            'parcel_id': data['parcel_id'],
+-            'weight_grams': data['weight_grams'],
+-            'address_line_1': data['street_address'],
+-            'carrier': data['carrier_code']
++            'hazmat_shipping_declaration': {
++                'parcel_id': data['parcel_id'],
++                'weight_grams': float(data['weight_grams']) / 1000.0,
++                'length_cm': int(data['length_cm']),
++                'carrier_iso': data['carrier_code'],
++                'route_address': data['street_address']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'X-Shipment-Idempotency': 'missing-ship-idem-b2'
++        }
+     }
+ 
+ def calculate_rate(data):

@@ -1,0 +1,2 @@
+def evaluate(inputs, outputs):
+    return {'parcel_identity': all(o['body']['parcel']['id'] == d['parcel_id'] for d,o in zip(inputs,outputs)), 'exact_weight': all(type(o['body']['parcel']['weight_grams']) is int and o['body']['parcel']['weight_grams'] == d['weight_grams'] for d,o in zip(inputs,outputs)), 'idempotency_key': all(o['headers']['Idempotency-Key'] == d['idempotency_key'] for d,o in zip(inputs,outputs))}

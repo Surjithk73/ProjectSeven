@@ -1,0 +1,25 @@
+\usepackage[T1]{fontenc}
+\usepackage{cite,amsmath,amssymb,graphicx,booktabs,tabularx,array,xurl,tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage{algorithm,algpseudocode}
+\ifAccess
+\else
+\usepackage{newtxtext,newtxmath}
+\usepackage[hidelinks]{hyperref}
+\fi
+\definecolor{navy}{HTML}{203C55}
+\definecolor{teal}{HTML}{167F82}
+\setlength{\emergencystretch}{1.2em}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\tabularxcolumn}[1]{p{#1}}
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{10pt plus 2pt minus 2pt}
+\renewcommand{\arraystretch}{1.15}
+% Keep the body in two columns even when an editor changes class defaults.
+\makeatletter
+\AtBeginDocument{\if@twocolumn\else\twocolumn\fi
+\typeout{APISHIELD-LAYOUT: two-column body; column=\the\columnwidth; text=\the\textwidth}}
+\makeatother
+\widowpenalty=10000\clubpenalty=10000

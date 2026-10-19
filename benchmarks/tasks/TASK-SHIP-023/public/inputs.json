@@ -1,0 +1,10 @@
+[
+  {
+    "parcel_id": "PKG-TASK-SHIP-023-01",
+    "weight_grams": 5650,
+    "length_cm": 53,
+    "carrier_code": "DHL_EXPRESS",
+    "street_address": "123 Harbor Way, Suite 4B",
+    "idempotency_key": "ship-idem-pub-task-ship-023"
+  }
+]

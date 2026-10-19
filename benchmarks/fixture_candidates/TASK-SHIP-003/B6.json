@@ -1,0 +1,10 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B6) for TASK-SHIP-003 (carrier_code_enum_standardization)\ndef build_request(data):\n    return {\n        'path': '/v2/logistics/carrier_code_enum_standardization/task-ship-003',\n        'body': {\n            'iso_carrier_dispatch': {\n                'parcel_id': data['parcel_id'],\n                'weight_grams': int(data['weight_grams']),\n                'length_cm': int(data['length_cm']),\n                'carrier_iso': data['carrier_code'],\n                'route_address': data['street_address']\n            }\n        },\n        'headers': {\n            'X-Shipment-Idempotency': data['idempotency_key']\n        }\n    }\n\ndef dispatch_package(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": "# Inferred logistics invariant check for TASK-SHIP-003 (carrier_code_enum_standardization)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/logistics/carrier_code_enum_standardization/task-ship-003':\n            return False\n        pkg = o.get('body', {}).get('iso_carrier_dispatch')\n        if not isinstance(pkg, dict) or type(pkg.get('weight_grams')) is not int:\n            return False\n        if pkg.get('parcel_id') != d['parcel_id'] or o.get('headers', {}).get('X-Shipment-Idempotency') != d['idempotency_key']:\n            return False\n    return True\n",
+  "predicted_locations": [
+    "client.py:dispatch_package",
+    "client.py:get_health_status"
+  ]
+}

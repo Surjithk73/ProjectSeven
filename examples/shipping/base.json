@@ -1,0 +1,19 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Parcel API", "version": "1"},
+  "paths": {
+    "/labels": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {"application/json": {"schema": {
+            "type": "object",
+            "required": ["package_id", "weight_grams"],
+            "properties": {"package_id": {"type": "string"}, "weight_grams": {"type": "integer"}}
+          }}}
+        },
+        "responses": {"200": {"description": "Label created"}}
+      }
+    }
+  }
+}

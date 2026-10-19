@@ -1,0 +1,2 @@
+def evaluate(inputs, outputs):
+    return {'original_transaction': all(o['body']['refund']['transaction_id'] == d['transaction_id'] for d,o in zip(inputs,outputs)), 'exact_minor_units': all(o['body']['refund']['amount_cents'] == d['amount_cents'] for d,o in zip(inputs,outputs)), 'currency': all(o['body']['refund']['currency'] == d['currency'] for d,o in zip(inputs,outputs)), 'idempotency_key': all(o['headers']['Idempotency-Key'] == d['idempotency_key'] for d,o in zip(inputs,outputs))}

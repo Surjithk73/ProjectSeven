@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-PAY-009",
+  "rules": [
+    "Migrate operation according to merchant_idempotency_v2: Preserve caller idempotency hash across automatic network retry headers",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-PAY-009 (merchant_idempotency_v2)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/payment/merchant_idempotency_v2/task-pay-009':\n            return False\n        blk = o.get('body', {}).get('merchant_charge_v2')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

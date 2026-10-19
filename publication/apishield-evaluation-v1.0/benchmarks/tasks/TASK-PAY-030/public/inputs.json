@@ -1,0 +1,10 @@
+[
+  {
+    "source": "acct_orig_task-pay-030",
+    "destination": "acct_benef_task-pay-030",
+    "amount_cents": 18750,
+    "currency": "USD",
+    "idempotency_key": "idem-fin-pub-task-pay-030",
+    "extra_token": "tok_webhook_signature_header_30"
+  }
+]

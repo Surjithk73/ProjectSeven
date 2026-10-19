@@ -1,0 +1,10 @@
+[
+  {
+    "source": "vault_orig_task-pay-030_99",
+    "destination": "vault_benef_task-pay-030_99",
+    "amount_cents": 9007199254741113,
+    "currency": "USD",
+    "idempotency_key": "idem-fin-hid-task-pay-030-99",
+    "extra_token": "tok_hid_webhook_signature_header_30"
+  }
+]

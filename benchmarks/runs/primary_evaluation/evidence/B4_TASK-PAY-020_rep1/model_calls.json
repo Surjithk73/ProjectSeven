@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "17dc88b1b8e558d7b1b8da79c5c686c2e58895edde0d464bba21cf173af7c881",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"minor_unit_settlement\": {\"type\": \"object\"}}, \"required\": [\"minor_unit_settlement\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-020 (currency_minor_units_enforcement).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-020\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2861,
+    "cached_tokens": 0,
+    "output_tokens": 348,
+    "reasoning_tokens": 196,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:34:58 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"currency_minor_units_enforcement\", \"coupled_ast_nodes\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [], \"task_id\": \"TASK-PAY-020\"}",
+                "thought": null,
+                "thought_signature": "2f3de632fcd06ff8efac75f73e2250e20f262e3b5e5d5bd8e37003163fbf5b35",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:34:58.067381Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_bb6e5f12a7c62fc37b6ae6",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 348,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 348
+          }
+        ],
+        "prompt_token_count": 2861,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2861
+          }
+        ],
+        "thoughts_token_count": 196,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3405,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"currency_minor_units_enforcement\", \"coupled_ast_nodes\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [], \"task_id\": \"TASK-PAY-020\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"minor_unit_settlement\": {\"type\": \"object\"}}, \"required\": [\"minor_unit_settlement\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-020 (currency_minor_units_enforcement).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-020\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:34:58 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"currency_minor_units_enforcement\", \"coupled_ast_nodes\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [], \"task_id\": \"TASK-PAY-020\"}",
+                "thoughtSignature": "2f3de632fcd06ff8efac75f73e2250e20f262e3b5e5d5bd8e37003163fbf5b35"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:34:58.067381Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_bb6e5f12a7c62fc37b6ae6",
+      "usageMetadata": {
+        "candidatesTokenCount": 348,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 348
+          }
+        ],
+        "promptTokenCount": 2861,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2861
+          }
+        ],
+        "thoughtsTokenCount": 196,
+        "totalTokenCount": 3405,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 37.7941,
+    "wall_seconds": 37.7941,
+    "timestamp_utc": "2026-10-15T14:34:58.067381+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "fb8f14caa98c3395ac07dbad65edd8dd659cbb00ec6ef49897c048b0a2fa3daf",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"minor_unit_settlement\": {\"type\": \"object\"}}, \"required\": [\"minor_unit_settlement\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-020 (currency_minor_units_enforcement).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/currency_minor_units_enforcement/task-pay-020' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('minor_unit_settlement'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"currency_minor_units_enforcement\", \"coupled_ast_nodes\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [], \"task_id\": \"TASK-PAY-020\"}, \"source\": \"# TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-020\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2772,
+    "cached_tokens": 0,
+    "output_tokens": 395,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:35:35 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B4) for TASK-PAY-020 (currency_minor_units_enforcement)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'minor_unit_settlement': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "c1235b1306cdb68064a20a32c0befeaeaed487724b7c141510fac0a178421d2c",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:35:35.861481Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_003b1fc0c505411ef211e7",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 395,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 395
+          }
+        ],
+        "prompt_token_count": 2772,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2772
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3167,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B4) for TASK-PAY-020 (currency_minor_units_enforcement)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'minor_unit_settlement': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"minor_unit_settlement\": {\"type\": \"object\"}}, \"required\": [\"minor_unit_settlement\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\", \"title\": \"TASK-PAY-020\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/currency_minor_units_enforcement/task-pay-020\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-020 (currency_minor_units_enforcement).\", \"operationId\": \"refund_charge\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/currency_minor_units_enforcement/task-pay-020' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('minor_unit_settlement'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"currency_minor_units_enforcement\", \"coupled_ast_nodes\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [], \"task_id\": \"TASK-PAY-020\"}, \"source\": \"# TASK-PAY-020: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"refund_charge\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-020\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:35:35 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:refund_charge\", \"client.py:get_health_status\"], \"source\": \"# Candidate (B4) for TASK-PAY-020 (currency_minor_units_enforcement)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/currency_minor_units_enforcement/task-pay-020',\\n        'body': {\\n            'minor_unit_settlement': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef refund_charge(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "c1235b1306cdb68064a20a32c0befeaeaed487724b7c141510fac0a178421d2c"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:35:35.861481Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_003b1fc0c505411ef211e7",
+      "usageMetadata": {
+        "candidatesTokenCount": 395,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 395
+          }
+        ],
+        "promptTokenCount": 2772,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2772
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3167,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 30.0267,
+    "wall_seconds": 30.0267,
+    "timestamp_utc": "2026-10-15T14:35:35.861481+00:00"
+  }
+]

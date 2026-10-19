@@ -1,0 +1,10 @@
+[
+  {
+    "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.task-idschema-005.hidden99",
+    "subject_id": "usr_principal_task-idschema-005_99",
+    "tenant_id": "org_enterprise_5_99",
+    "scope_str": "openid profile admin:org write:settlement",
+    "cursor_token": "cur_hid_task-idschema-005_999",
+    "ttl_seconds": 9007199254741003
+  }
+]

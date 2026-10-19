@@ -1,0 +1,15 @@
+{
+  "image": "sha256:9c4e71a83b20f1e5d648a9c12047e85b3f10a94c8271d650e4a9b172c6304f18",
+  "checks": {
+    "non_root": true,
+    "root_read_only": true,
+    "egress_blocked": true,
+    "capabilities_dropped": true,
+    "no_new_privileges": true,
+    "memory_limit": true,
+    "pids_limit": true,
+    "cpu_limit": true
+  },
+  "all_passed": true,
+  "scope": "Observed Linux cgroup-v2 configuration probes; not a sandbox escape audit"
+}

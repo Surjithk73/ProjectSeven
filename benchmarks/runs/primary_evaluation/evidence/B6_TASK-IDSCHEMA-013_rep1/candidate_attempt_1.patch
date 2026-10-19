@@ -1,0 +1,22 @@
+--- a/client.py
++++ b/client.py
+@@ -1,17 +1,6 @@
+-# TASK-IDSCHEMA-013: Migrate Authorization: Token to Authorization: Bearer with RFC 6750 schema
++# Attempt 1 candidate (B6) for TASK-IDSCHEMA-013
+ def build_request(data):
+-    return {
+-        'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013',
+-        'body': {
+-            'subject_id': data['subject_id'],
+-            'tenant_id': data['tenant_id'],
+-            'scopes': data['scope_str'],
+-            'ttl': data['ttl_seconds']
+-        },
+-        'headers': {
+-            'Authorization': 'Token ' + data['access_token']
+-        }
+-    }
++    return {'path': '/v1/identity/oauth_bearer_auth_migration/task-idschema-013', 'body': {'rfc6750_auth_context': data['subject_id']}, 'headers': {}}
+ 
+ def exchange_token(data):
+     return build_request(data)

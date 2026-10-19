@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-017",
+    "version": "1.0.0",
+    "description": "Migrate integer account_id to UUID format with validation"
+  },
+  "paths": {
+    "/v1/banking/account_id_uuid_type/task-bank-017": {
+      "post": {
+        "operationId": "transfer_funds",
+        "description": "Legacy v1 contract for TASK-BANK-017 (account_id_uuid_type).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

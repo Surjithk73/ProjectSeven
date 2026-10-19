@@ -1,0 +1,10 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B6) for TASK-IDSCHEMA-029 (scopes_list_to_bitmask)\ndef build_request(data):\n    return {\n        'path': '/v2/identity/scopes_list_to_bitmask/task-idschema-029',\n        'body': {\n            'structured_permissions': {\n                'sub': data['subject_id'],\n                'permissions': data['scope_str'].split(' '),\n                'next_cursor': data['cursor_token'],\n                'ttl_seconds': int(data['ttl_seconds'])\n            }\n        },\n        'headers': {\n            'Authorization': 'Bearer ' + data['access_token'],\n            'X-Tenant-Context': data['tenant_id']\n        }\n    }\n\ndef introspect_token(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": "# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-029 (scopes_list_to_bitmask)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-029':\n            return False\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\n            return False\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\n            return False\n        env = o.get('body', {}).get('structured_permissions')\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\n            return False\n    return True\n",
+  "predicted_locations": [
+    "client.py:introspect_token",
+    "client.py:get_health_status"
+  ]
+}

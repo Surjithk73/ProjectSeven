@@ -1,0 +1,148 @@
+\section{Problem Definition and Evidence Model}
+Let $P$ be a client at revision $r$, and let $C_o,C_n$ be its previous and updated contracts. A task supplies an allowed edit region $A$, public tests $T_v$, and application obligations $R$. A patch $\pi$ produces $P'=\pi(P)$. A useful migration satisfies the updated interface while preserving obligations applicable to the affected operation.
+
+We express operational acceptance as
+\begin{equation}
+\mathcal A(\pi)=S(\pi,A)\land T_v(P')\land T_g(P',R),
+\label{eq:accept}
+\end{equation}
+where $S$ checks syntax, permitted files and edit integrity, and $T_g$ denotes applicable generated or confirmed requirement checks. This rule summarizes available evidence. It does not imply universal semantic equivalence between $P$ and $P'$.
+
+Independent evaluation uses a different suite $T_h$, applied only after selection. We define $Y_{tm}=1$ when task $t$ under method $m$ satisfies that hidden evaluator. Unsuccessful tasks remain in the denominator. Public and hidden passage are distinct outcomes. When a needed field cannot be recovered from available inputs, an actionable diagnostic may be more appropriate than an invented default.
+
+\ifAccess
+\subsection{Relational preservation obligations}
+An obligation identifies a source scope, a behavioral statement and the evidence used to check it. Monetary preservation can require an integer minor-unit amount equal to the caller's input. Routing preservation relates an input destination to the destination sent in the request. Idempotency preservation relates the caller's key to the outgoing header. These are relations over inputs and outputs, not simply tests for field presence.
+
+Representative predicates for an amount and key are
+\begin{align}
+R_a(d,o)&:\;\operatorname{type}(o.a)=\mathrm{int}\land o.a=d.a,\\
+R_k(d,o)&:\;o.k=d.k,
+\end{align}
+where $d$ is an evaluator input and $o$ the constructed request. Field paths depend on the updated contract. A type assertion alone does not establish equality, and a present header does not establish preservation of its value.
+
+An inferred obligation can preserve a pre-existing bug. Developer confirmation and independent assertions address different parts of that problem. Confirmation records the requirement accepted by the developer. An oracle checks its selected behavioral consequences. Neither establishes that the specification is complete.
+
+\subsection{Evidence identities}
+A run associates source and contract identities with treatment, prompts, candidates and validation outputs. This lets reviewers distinguish the edit that was tested from a later edit with similar text. The retained patch should be derived from checked source bytes. Changes to source, tests or requirement definitions create a new evaluation context even when the task identifier stays the same.
+
+The quantitative analysis uses the supplied evaluation release. Reproducible publication requires a frozen version in which run-time source, inferred checks and original responses correspond to the reported outputs. A checksum establishes a file's byte identity; it does not independently establish its execution history.
+\fi
+
+\section{APIShield Method}
+\subsection{Contract comparison and impact scope}
+APIShield captures selected source and compares the supplied OpenAPI versions. The implementation uses oasdiff for contract-level changes~\cite{oasdiff}. A conservative Python scanner recovers supported direct HTTP calls and surrounding functions. Unresolved targets remain explicit limitations of the analysis rather than silently becoming unaffected code.
+
+The impact scope connects changed operations with consuming functions. Structural context contains observed source relationships; semantic context adds interpretations of the operations and their values. The research harness implements a compact representation for request-builder fixtures. The browser can display a broader repository graph, whose whole-repository scalability is not measured by this experiment.
+
+\subsection{Semantic Intent Graph}
+Write the SIG as $G=(V,E_s,E_i)$, with source and operation nodes $V$, observed structural edges $E_s$, and declared or inferred intent edges $E_i$. Edges retain their origin. A payload field can be related to a caller input and an obligation to preserve its unit, while a separate edge identifies the function issuing the changed request.
+
+The graph selects context relevant to the changed operation and explains why each source region or obligation was included (Fig.~\ref{fig:sig}). Structural edges record observed relationships; intent edges retain their declared or inferred origin. An inferred interpretation remains a hypothesis until its behavioral consequences are checked.
+
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[>=Stealth,
+box/.style={draw=navy,rounded corners=2pt,fill=navy!4,align=center,font=\small,text width=43mm,minimum height=14mm,inner sep=3mm},
+arr/.style={->,thick,draw=navy},note/.style={font=\footnotesize,align=center}]
+\node[box](source)at(0,0){\textbf{1. Capture}\newline Client source and contract versions};
+\node[box](impact)at(5.6,0){\textbf{2. Localize}\newline Contract differences and affected AST scope};
+\node[box](intent)at(11.2,0){\textbf{3. Infer intent}\newline SIG context and executable obligations};
+\node[box](generate)at(0,-2.4){\textbf{4. Propose repair}\newline Candidate patch within permitted files};
+\node[box](validate)at(5.6,-2.4){\textbf{5. Validate}\newline Public tests and inferred checks};
+\node[box](retain)at(11.2,-2.4){\textbf{6. Retain proposal}\newline Patch, check outcomes and developer review};
+\draw[arr](source)--(impact);\draw[arr](impact)--(intent);
+\draw[arr](intent.south)--++(0,-.35)-|([xshift=-5mm]generate.north);
+\draw[arr](generate)--(validate);\draw[arr](validate)--node[above,note]{pass}(retain);
+\draw[arr](validate.south)--++(0,-.35)-|node[pos=.25,below,note]{failed visible check: retry within budget}(generate.south);
+\draw[dashed,gray](-2.6,-4.15)--(13.8,-4.15);
+\node[note,anchor=west,text width=95mm,align=left]at(-2.5,-4.85){\textbf{Independent evaluation}\newline Hidden inputs and assertions are excluded from repair prompts and retry feedback.};
+\node[box,draw=teal,fill=teal!6](oracle)at(11.2,-5.1){\textbf{Hidden oracle}\newline Evaluate the selected candidate once};
+\draw[arr,draw=teal](retain)--(oracle);
+\end{tikzpicture}
+\caption{APIShield architecture and evaluation boundary. The repair loop uses visible feedback. The evaluator receives the selected candidate after the loop ends.}\label{fig:architecture}
+\end{figure*}
+
+\subsection{Intent extraction and executable checks}
+Intent inference proposes bounded statements and executable checks for the affected scope. The application distinguishes inferred rules from developer-confirmed requirements. Generated tests use a separate location, and existing repository tests are protected from replacement. The assistant therefore cannot satisfy validation by weakening the original suite.
+
+A generated check can reject a migration that ordinary regression tests overlook. Its adequacy remains a separate concern. A shape assertion may miss the exact amount, destination or token. We retain individual outcomes and use independently authored hidden assertions for the quantitative endpoint. Passing the generated suite establishes only that suite's assertions on its selected inputs.
+
+\subsection{Bounded repair and acceptance}
+The engine creates a disposable workspace from the captured baseline. An attempt proposes an edit within permitted files, validates structure and runs public tests and applicable requirement checks. Failed visible checks can enter a later prompt. Hidden assertions and outputs stay outside the retry context. The loop terminates with an accepted proposal, failure, or request for missing information.
+
+Accepted candidates remain reviewable patches. Application to working source requires freshness and integrity checks. Publication through a draft-pull-request workflow is a separate explicit action. The benchmark measures candidate behavior rather than production deployment or acceptance by maintainers.
+
+\subsection{Repair procedure and outcome states}
+Algorithm~\ref{alg:repair} summarizes the control boundary. Public tests and generated checks are evaluated separately because they answer different questions. A failed visible check can trigger another attempt. An unresolved requirement or missing input can terminate without an edit. A scan with no detected impact is also a distinct outcome; it does not count as a repaired migration.
+
+\begin{algorithm}[t]
+\caption{Bounded repair and final-only independent evaluation}\label{alg:repair}
+\begin{algorithmic}[1]
+\Require $P,C_o,C_n$, edit region $A$, tests $T_v$, budget $K$
+\State $D\gets\operatorname{Diff}(C_o,C_n)$
+\State $G\gets\operatorname{Context}(P,D)$
+\State $R,T_g\gets\operatorname{InferOrConfirm}(P,D,G)$
+\For{$j=1,\ldots,K$}
+ \State $W\gets\operatorname{FreshCopy}(P)$
+ \State $\pi\gets\operatorname{Generate}(W,D,G,R,\text{visible feedback})$
+ \If{required information is unavailable}
+  \State \Return missing-information diagnostic
+ \EndIf
+ \If{$S(\pi,A)\land T_v(\pi(W))\land T_g(\pi(W),R)$}
+  \State retain candidate and evidence; end repair loop
+  \State apply $T_h$ once for independent evaluation
+  \State \Return patch and separate evaluator outcome
+ \EndIf
+ \State update feedback from visible checks only
+\EndFor
+\State \Return unsuccessful repair with retained evidence
+\end{algorithmic}
+\end{algorithm}
+
+The product also distinguishes cancellation, provider failure and stale-source rejection. These states affect end-to-end availability. Asking whether a model can construct a correct patch differs from asking whether an application delivered a proposal despite infrastructure failures. Evaluation denominators must state which population they describe.
+
+\subsection{Implementation boundary}
+The Python engine coordinates source capture, comparison, generation, edit validation and durable records. FastAPI exposes this workflow to the React workspace. The CLI and browser share the engine, so acceptance does not depend on browser-only checks. Repository commands execute trusted local code. A temporary directory protects the original checkout from accidental writes, but is not an operating-system sandbox.
+
+The primary evaluation executes trusted fixtures. Temporary workspaces separate edits from the original source; they do not provide operating-system isolation. The accounting endpoint is API usage.
+
+\begin{figure}[t]\centering
+\begin{tikzpicture}[>=Stealth,n/.style={draw=navy,fill=navy!4,rounded corners,align=center,font=\small,text width=29mm,minimum height=12mm},node distance=7mm]
+\node[n](i){Caller input\\amount, key};\node[n,right=of i](s){Request builder\\source node};
+\node[n,below=of s](o){Changed operation\\payload/header};\node[n,left=of o,draw=teal,fill=teal!5](r){Preservation rule\\executable check};
+\draw[->](i)--(s);\draw[->](s)--(o);\draw[->,dashed](i)--(r);\draw[->,dashed](r)--(o);
+\end{tikzpicture}
+\caption{Conceptual SIG fragment. Solid edges denote observed structure; dashed edges denote declared or inferred preservation relationships.}\label{fig:sig}
+\end{figure}
+
+\ifAccess
+\subsection{Bounded model interaction}
+The application's intent interface constrains both the form and size of an inference response. Rules must identify a known Python source file and function. Their origin remains AI-inferred until a developer adopts and confirms a definition. Generated checks must use distinct test paths and cannot overwrite existing files. These checks make an answer structurally usable; they do not establish the truth of the inferred requirement.
+
+The current interface permits at most 16 rule descriptions and between one and 12 check files, with a 32 KiB aggregate generated-code limit. Rule descriptions are bounded to 800 characters. The request-builder harness uses a separate compact response schema. These application limits constrain response admission; their optimal values are not tested here.
+
+Validation also distinguishes source admissibility from behavioral adequacy. Parsing a check, resolving its referenced scope and rejecting unknown names can prevent malformed test code from entering validation. A syntactically valid assertion can still be vacuous or test the wrong relation. The separate private oracle is consequently needed even after response validation succeeds.
+
+\begin{table}[t]\centering\small
+\caption{Distinct validation responsibilities in the application and benchmark.}\label{tab:boundaries}
+\begin{tabularx}{\columnwidth}{@{}lXX@{}}\toprule
+Boundary & What it establishes & What remains open\\\midrule
+Response schema & Required fields and bounded output & Whether inferred intent is correct\\
+Scope checks & Known source/function and allowed paths & Whether all affected code was found\\
+Public tests & Available regression assertions pass & Unasserted behavioral obligations\\
+Generated checks & Inferred assertions pass & Assertion completeness and accuracy\\
+Hidden oracle & Private assertions pass on held-out inputs & General correctness and deployed behavior\\\bottomrule
+\end{tabularx}
+\end{table}
+
+When the attempt budget is exhausted, the engine retains the failed candidate and its visible outcomes. The record distinguishes missing inputs, unsupported analysis, provider errors and unsuccessful edits. Table~\ref{tab:boundaries} identifies the validation boundary associated with each result; diagnostic accuracy is outside the measured endpoints.
+
+\subsection{Review interface}
+The review workspace separates ordinary tests from inferred rules and exposes each outcome beside the candidate (Fig.~\ref{fig:interface}). Developers can inspect the proposed edit and its supporting checks before applying it. This interface capture documents the application workflow; benchmark outcomes come from the separate evaluator.
+
+\begin{figure*}[t]\centering
+\includegraphics[width=.76\textwidth,trim=290bp 0 0 0,clip]{figures/review_interface.png}
+\caption{Implemented review interface showing tests and inferred rules. The quantitative analysis uses the separate benchmark release, not this application capture.}\label{fig:interface}
+\end{figure*}
+\fi

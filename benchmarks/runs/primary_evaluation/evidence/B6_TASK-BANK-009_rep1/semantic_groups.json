@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-BANK-009",
+  "domain_cluster": "Banking",
+  "breaking_change_type": "idempotency_header_enforcement",
+  "coupled_ast_nodes": [
+    "client.py:dispatch_settlement"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

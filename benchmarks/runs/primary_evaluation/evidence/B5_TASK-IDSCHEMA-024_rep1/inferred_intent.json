@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-IDSCHEMA-024",
+  "rules": [
+    "Migrate operation according to mfa_challenge_response_wrap: Wrap 2FA verification challenge in verification_token envelope",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred structural contract check (B5) for TASK-IDSCHEMA-024\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/identity/mfa_challenge_response_wrap/task-idschema-024' and isinstance(o.get('body', {}).get('verification_token_envelope'), dict) and len(o['body']['verification_token_envelope']) >= 2 for o in outputs)\n"
+}

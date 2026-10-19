@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="1.178" timestamp="2026-10-15T11:08:42.051694+05:30" hostname="SK73"><testcase classname="reports.banking-repair-verification-2026-10-15.53012bcc7d2845d7953e01c5d7d97205.workspace.tests.apishield_generated.test_bankclient_v2" name="test_v2_balance_handling" time="0.003"><failure message="KeyError: 'balance_cents'">def test_v2_balance_handling():
+        v2_response = httpx.Response(200, json={"balance": {"value": 5000, "currency": "USD"}}, request=httpx.Request("GET", "https://bank.test/accounts/acc1/balance"))
+        with patch("httpx.get", return_value=v2_response) as mock_get:
+&gt;           res = bankclient.balance("acc1")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\apishield_generated\test_bankclient_v2.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+account_id = 'acc1'
+
+    def balance(account_id):
+        """Business Intent: Read an account balance in exact integer cents."""
+        response = httpx.get(f'{API_BASE}/accounts/{account_id}/balance')
+        response.raise_for_status()
+&gt;       return response.json()['balance_cents']
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'balance_cents'
+
+src\bankclient.py:18: KeyError</failure></testcase><testcase classname="reports.banking-repair-verification-2026-10-15.53012bcc7d2845d7953e01c5d7d97205.workspace.tests.apishield_generated.test_bankclient_v2" name="test_v2_transfer_payload_format" time="0.003"><failure message="AssertionError: assert {'source': 'a..._cents': 2500} == {'source': 'a...ency': 'USD'}}&#10;  &#10;  Omitting 2 identical items, use -vv to show&#10;  Left contains 1 more item:&#10;  {'amount_cents': 2500}&#10;  Right contains 1 more item:&#10;  {'amount': {'currency': 'USD', 'value': 2500}}&#10;  Use -v to get more diff">def test_v2_transfer_payload_format():
+        v2_response = httpx.Response(200, json={"id": "t1", "source": "acc1", "destination": "acc2", "amount_cents": 2500, "refunded": False}, request=httpx.Request("POST", "https://bank.test/transfers"))
+        with patch("httpx.post", return_value=v2_response) as mock_post:
+            res = bankclient.transfer("acc1", "acc2", 2500)
+            assert mock_post.call_count == 1
+            call_args, call_kwargs = mock_post.call_args
+            assert call_args[0] == "https://bank.test/transfers"
+&gt;           assert call_kwargs.get("json") == {"source": "acc1", "destination": "acc2", "amount": {"value": 2500, "currency": "USD"}}
+E           AssertionError: assert {'source': 'a..._cents': 2500} == {'source': 'a...ency': 'USD'}}
+E             
+E             Omitting 2 identical items, use -vv to show
+E             Left contains 1 more item:
+E             {'amount_cents': 2500}
+E             Right contains 1 more item:
+E             {'amount': {'currency': 'USD', 'value': 2500}}
+E             Use -v to get more diff
+
+tests\apishield_generated\test_bankclient_v2.py:19: AssertionError</failure></testcase><testcase classname="reports.banking-repair-verification-2026-10-15.53012bcc7d2845d7953e01c5d7d97205.workspace.tests.apishield_generated.test_bankclient_v2" name="test_v2_refund_endpoint" time="0.002"><failure message="AssertionError: expected call not found.&#10;Expected: post('https://bank.test/refunds/create', json={'transaction_id': 'tx-123'})&#10;  Actual: post('https://bank.test/refunds', json={'transaction_id': 'tx-123'})">def test_v2_refund_endpoint():
+        v2_response = httpx.Response(200, json={"id": "r1", "source": "acc1", "destination": "acc2", "amount_cents": 2500, "refunded": True}, request=httpx.Request("POST", "https://bank.test/refunds/create"))
+        with patch("httpx.post", return_value=v2_response) as mock_post:
+            res = bankclient.refund("tx-123")
+&gt;           mock_post.assert_called_once_with("https://bank.test/refunds/create", json={"transaction_id": "tx-123"})
+
+tests\apishield_generated\test_bankclient_v2.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\surji\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py:991: in assert_called_once_with
+    return self.assert_called_with(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;MagicMock name='post' id='1565360428368'&gt;
+args = ('https://bank.test/refunds/create',)
+kwargs = {'json': {'transaction_id': 'tx-123'}}
+
+    def assert_called_with(self, /, *args, **kwargs):
+        """assert that the last call was made with the specified arguments.
+    
+        Raises an AssertionError if the args and keyword args passed in are
+        different to the last call to the mock."""
+        if self.call_args is None:
+            expected = self._format_mock_call_signature(args, kwargs)
+            actual = 'not called.'
+            error_message = ('expected call not found.\nExpected: %s\n  Actual: %s'
+                    % (expected, actual))
+            raise AssertionError(error_message)
+    
+        def _error_message():
+            msg = self._format_mock_failure_message(args, kwargs)
+            return msg
+        expected = self._call_matcher(_Call((args, kwargs), two=True))
+        actual = self._call_matcher(self.call_args)
+        if actual != expected:
+            cause = expected if isinstance(expected, Exception) else None
+&gt;           raise AssertionError(_error_message()) from cause
+E           AssertionError: expected call not found.
+E           Expected: post('https://bank.test/refunds/create', json={'transaction_id': 'tx-123'})
+E             Actual: post('https://bank.test/refunds', json={'transaction_id': 'tx-123'})
+
+C:\Users\surji\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py:979: AssertionError</failure></testcase></testsuite></testsuites>

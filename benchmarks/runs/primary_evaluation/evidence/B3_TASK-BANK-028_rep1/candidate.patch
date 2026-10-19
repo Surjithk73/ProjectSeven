@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-BANK-028: Wrap transfer payload in standard pacs.008 document envelope
++# Candidate (B3) for TASK-BANK-028 (iso20022_pacs008_wrap)
+ def build_request(data):
+     return {
+-        'path': '/v1/banking/iso20022_pacs008_wrap/task-bank-028',
++        'path': '/v2/banking/iso20022_pacs008_wrap/task-bank-028',
+         'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
++            'pacs008_document': {
++                'amount_subunits': float(data['amount_cents']) / 100.0,
++                'currency': data['currency'],
++                'source_route': data['source'],
++                'destination_route': 'unverified_route_task-bank-028',
++                'token_ref': data['extra_token']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'Idempotency-Key': 'dropped-idem-b3-task-bank-028'
++        }
+     }
+ 
+ def process_wire(data):

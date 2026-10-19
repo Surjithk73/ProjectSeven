@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-BANK-019",
+  "rules": [
+    "Migrate operation according to amount_cents_to_currency_object: Convert flat amount_cents (int) to nested amount object {value: int, currency: str}",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-BANK-019 (amount_cents_to_currency_object)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/banking/amount_cents_to_currency_object/task-bank-019':\n            return False\n        blk = o.get('body', {}).get('currency_transfer')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

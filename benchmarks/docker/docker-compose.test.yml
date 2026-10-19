@@ -1,0 +1,41 @@
+name: apishield-evaluation
+x-isolation: &isolation
+  image: ${APISHIELD_EVAL_IMAGE:?Supply built image content digest}
+  user: "65534:65534"
+  network_mode: none
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 64
+  mem_limit: 512m
+  memswap_limit: 512m
+  cpus: 1
+  tmpfs: [/tmp:rw,noexec,nosuid,size=64m]
+  stdin_open: true
+  logging:
+    driver: none
+services:
+  candidate:
+    <<: *isolation
+    volumes:
+      - type: bind
+        source: ${APISHIELD_CANDIDATE_DIR:?Supply candidate directory only}
+        target: /work
+        read_only: true
+    command: [python, -I, -B, /opt/apishield/candidate_worker.py]
+  public-oracle:
+    <<: *isolation
+    volumes:
+      - type: bind
+        source: ${APISHIELD_PUBLIC_SUITE:?Supply public test file}
+        target: /oracle.py
+        read_only: true
+    command: [python, -I, -B, /opt/apishield/oracle_worker.py]
+  hidden-oracle:
+    <<: *isolation
+    volumes:
+      - type: bind
+        source: ${APISHIELD_HIDDEN_SUITE:?Supply hidden oracle file}
+        target: /oracle.py
+        read_only: true
+    command: [python, -I, -B, /opt/apishield/oracle_worker.py]

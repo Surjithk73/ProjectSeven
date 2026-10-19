@@ -1,0 +1,38 @@
+{
+  "archive": "APIShield-evaluation-v1.0.tar.gz",
+  "archive_sha256": "7d74cc45b0de0b0525a13338de8656677bdee6469207f489c67b8bd9b81634a0",
+  "payload_files": 642,
+  "extracted_outside_git": true,
+  "synthetic_analysis_reproduced_byte_for_byte": true,
+  "observed_correctness_stays_unknown": true,
+  "single_authored_fixture_passed": true,
+  "schema_validated_records": 30,
+  "paid_requests_during_verification": 0,
+  "tex_compilation_verified": false,
+  "commands": [
+    {
+      "entry_point": "scripts/verify_environment.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"python\": \"3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]\",\n  \"platform\": \"Windows-11-10.0.26300-SP0\",\n  \"dependencies\": {\n    \"numpy\": \"2.5.4\",\n    \"pandas\": \"2.3.3\",\n    \"scipy\": \"1.16.3\"\n  },\n  \"payload_files_verified\": 641,\n  \"docker_engine_available\": false,\n  \"llama_server_available\": false,\n  \"nvidia_smi_available\": false,\n  \"empirical_120_task_evaluation_present\": false,\n  \"evidence_status\": \"synthetic manuscript layout plus observed diagnostics and authored fixtures\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "entry_point": "scripts/analyze.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"synthetic_records\": 720,\n  \"output\": \"C:\\\\Users\\\\surji\\\\AppData\\\\Local\\\\Temp\\\\apishield-final-archive-check-406g6ufs\\\\analysis-reproduced\",\n  \"effects\": [\n    {\n      \"contrast\": \"B6-B2\",\n      \"paired_tasks\": 120,\n      \"risk_difference\": 0.525,\n      \"paired_stratified_bootstrap_95\": [\n        0.425,\n        0.625\n      ],\n      \"cliffs_delta\": 0.525,\n      \"cliffs_delta_paired_stratified_bootstrap_95\": [\n        0.425,\n        0.625\n      ],\n      \"baseline_only\": 4,\n      \"full_only\": 67,\n      \"both_correct\": 30,\n      \"neither_correct\": 19\n    },\n    {\n      \"contrast\": \"B6-B3\",\n      \"paired_tasks\": 120,\n      \"risk_difference\": 0.5083333333333333,\n      \"paired_stratified_bootstrap_95\": [\n        0.4083333333333333,\n        0.6083333333333333\n      ],\n      \"cliffs_delta\": 0.5083333333333333,\n      \"cliffs_delta_paired_stratified_bootstrap_95\": [\n        0.4083333333333333,\n        0.6083333333333333\n      ],\n      \"baseline_only\": 5,\n      \"full_only\": 66,\n      \"both_correct\": 31,\n      \"neither_correct\": 18\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "entry_point": "scripts/headless.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"run_id\": \"B6_TASK-BANK-014_rep1\",\n  \"evidence_kind\": \"fixture_replay\",\n  \"classification\": \"PASS\",\n  \"independent_correct\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "entry_point": "benchmarks/harness/aggregate_metrics.py",
+      "exit_code": 0,
+      "stdout": "{\"raw_traces\": 6, \"output\": \"C:\\\\Users\\\\surji\\\\AppData\\\\Local\\\\Temp\\\\apishield-final-archive-check-406g6ufs\\\\observed-analysis\", \"record_kind\": \"live_model_execution\"}\n",
+      "stderr": ""
+    }
+  ]
+}

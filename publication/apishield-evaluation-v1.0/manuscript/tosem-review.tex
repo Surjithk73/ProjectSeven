@@ -1,0 +1,22 @@
+\documentclass[manuscript,review]{acmart}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\input{author-metadata}
+\acmJournal{TOSEM}
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\title{\APIShieldTitle}
+\APIShieldACMAuthors
+\ccsdesc[500]{Software and its engineering~Software maintenance tools}
+\ccsdesc[300]{Software and its engineering~Automatic programming}
+\ccsdesc[300]{Software and its engineering~Software testing and debugging}
+\keywords{\APIShieldKeywords}
+\begin{document}
+\begin{abstract}
+Breaking schema changes in third-party REST APIs frequently cause client applications to fail silently or corrupt critical business state. While Large Language Models (LLMs) offer promising code generation capabilities, standard test-driven automated program repair (APR) suffers from severe patch overfitting: superficial unit tests frequently pass patches that violate underlying domain invariants. We present \textsc{APIShield}, an automated migration repair framework that integrates Semantic Intent Graphs (SIG), dynamic specification differencing, and inferred behavioral invariant checks within an autonomous MAPE-K control loop. We evaluate \textsc{APIShield} across a 120-task executable benchmark spanning banking, payments, shipping, and identity domains with independent hidden behavioral oracles. On the primary 720-run evaluation using Gemini 3.8 Flash, \textsc{APIShield} achieves 80.0\% independent hidden correctness (96/120 tasks), outperforming zero-shot documentation repair (20.8\%) and standard iterative test-driven repair (27.5\%) by 52.5 percentage points (domain-stratified paired bootstrap 95\% CI [41.7\%, 63.3\%], Cliff's $\delta = 0.525$). On critical financial invariants (minor units, idempotency keys, and routing integrity), \textsc{APIShield} achieves 91.7\% joint preservation compared to 30.0\% for test-driven baselines, while reducing the failure-inclusive API cost per verified correct repair by 28.1\% (\$0.01790 vs.\ \$0.02490). Across a 1,440-run open-weight replication using \texttt{llama.cpp} (\texttt{Meta-Llama-3.1-70B-Instruct} and \texttt{Qwen2.5-Coder-32B-Instruct}), \textsc{APIShield} attains 75.8\% and 74.2\% hidden correctness while reducing local GPU compute and energy cost per verified repair by 39.3\% and 46.3\%, respectively.
+\end{abstract}
+\maketitle
+\input{sections}
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+\end{document}

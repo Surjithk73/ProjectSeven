@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-015",
+    "version": "2.0.0",
+    "description": "Standardize proprietary carrier codes to ISO carrier codes"
+  },
+  "paths": {
+    "/v2/logistics/carrier_code_enum_standardization/task-ship-015": {
+      "post": {
+        "operationId": "book_courier",
+        "description": "Updated v2 contract for TASK-SHIP-015: Standardize proprietary carrier codes to ISO carrier codes",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "iso_carrier_dispatch"
+                ],
+                "properties": {
+                  "iso_carrier_dispatch": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

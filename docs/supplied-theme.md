@@ -1,0 +1,11 @@
+# User-supplied theme
+
+The user supplied a complete black/warm-white/yellow theme, including light and dark tokens, font families, shadows, radius, spacing and pastel chart colors. It replaces the forest brand palette without changing the home composition or actions.
+
+Implementation: frontend/src/theme.css stores supplied tokens and equivalent native CSS aliases for inline Tailwind mappings, imported once from App.jsx after page style dependencies. Existing wb-prefixed role aliases map to the supplied palette; semantic repair/rule pass/failure colors remain independent evidence. Black light-mode/white dark-mode primary actions, yellow sidebar/menu/row/tab selections, neutral repository marks, stronger supplied borders/radii, readable paired foregrounds in yellow surfaces. Native Details menu and job-selection guards unchanged. Theme still uses existing Settings selector and data-workspace-theme attribute, with .dark support as provided.
+
+Fonts are self-hosted from google/fonts official OFL folders with licenses: DM Sans light, Plus Jakarta Sans dark, Roboto Mono code, Source Serif4 registered for serif role. Sources: https://github.com/google/fonts/tree/main/ofl/dmsans , ofl/plusjakartasans , ofl/robotomono , ofl/sourceserif4 . No external font calls at runtime. The obsolete SourceSans3 registration is removed; its historical source asset remains on disk. Graph community palette uses all five supplied chart colors; pastel community circles have dark number text, with red impact outlines retaining independent recorded meaning.
+
+User-pinned type choices take precedence over file-detector generic overused-font warnings. The new theme is supplied, not a new direction round. No extra component dependencies or backend/AI changes. Build and lint verified. Browser policy still prohibits fresh rendered captures, so visual verification remains recapture pending.
+
+Final secondary controls use supplied secondary foreground/background (black/white Light, yellow/black Dark). Node inspector uses supplied popover/border/radius. Final production build passed and index-DObpN8sE.js is served HTTP200. Two targeted community tests passed; lint retains six incumbent warnings. Exact theme documentation was validated; fresh render verification remains unavailable.

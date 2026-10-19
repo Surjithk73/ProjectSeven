@@ -1,0 +1,8 @@
+.github-local-preview { margin:24px 0; }
+.github-preview-heading { display:flex; gap:14px; align-items:flex-start; padding-bottom:20px; border-bottom:1px solid var(--wb-line); }
+.github-preview-heading > svg { color:var(--wb-blue); flex-shrink:0; margin-top:3px; }
+.guided-shell .github-preview-heading h4 { color:var(--wb-ink); font-size:20px; margin:0 0 6px; overflow-wrap:anywhere; }
+.guided-shell .github-preview-heading p { color:var(--wb-muted); font-size:14px; margin:0; }
+.guided-shell .github-local-preview > h4 { color:var(--wb-ink); font-size:16px; margin:22px 0 12px; }
+.guided-shell .github-draft-description { margin:0 0 20px; padding:20px; white-space:pre-wrap; overflow-wrap:anywhere; color:var(--wb-ink); background:var(--wb-inset); border:1px solid var(--wb-line); border-radius:10px; font-family:var(--font-sans); font-size:14px; line-height:1.7; }
+.github-local-preview > details > summary { cursor:pointer; padding:12px 0; }

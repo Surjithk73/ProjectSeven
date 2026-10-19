@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-BANK-030",
+  "rules": [
+    "Migrate operation according to beneficiary_name_structure: Split recipient_name into given_name and family_name",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred invariant check for TASK-BANK-030 (beneficiary_name_structure)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/banking/beneficiary_name_structure/task-bank-030':\n            return False\n        blk = o.get('body', {}).get('beneficiary_transfer')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n"
+}

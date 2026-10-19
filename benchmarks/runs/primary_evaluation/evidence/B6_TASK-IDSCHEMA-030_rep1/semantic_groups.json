@@ -1,0 +1,10 @@
+{
+  "task_id": "TASK-IDSCHEMA-030",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "mfa_challenge_response_wrap",
+  "coupled_ast_nodes": [
+    "client.py:revoke_session",
+    "client.py:get_health_status"
+  ],
+  "isolated_distractors": []
+}

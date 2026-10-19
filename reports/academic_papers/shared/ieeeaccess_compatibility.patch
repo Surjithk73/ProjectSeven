@@ -1,0 +1,110 @@
+--- ieeeaccess.original.cls
++++ ieeeaccess.cls
+@@ -276,11 +276,16 @@
+   \definecolor{accessblue}{cmyk}{.24,1,1,0}
+   \definecolor{greycolor}{cmyk}{0,0,0,1}
+ \else
++  % XeTeX compatibility: equivalent process CMYK blue, no pdfTeX primitives.
++  \ifdefined\XeTeXversion
++  \definecolor{accessblue}{cmyk}{1,0.3,0,0.2}
++  \else
+   \RequirePackage{spotcolor}
+   \NewSpotColorSpace{PANTONE}
+   \AddSpotColor{PANTONE} {PANTONE3015C} {PANTONE\SpotSpace 3015\SpotSpace C} {1 0.3 0 0.2}
+   \SetPageColorSpace{PANTONE}%
+   \definecolor{accessblue}{spotcolor}{PANTONE3015C,1.0}%
++  \fi
+   \definecolor{greycolor}{cmyk}{0,0,0,.8}
+ \fi
+ \definecolor{grey}{cmyk}{0,0,0,.1}
+@@ -522,14 +527,14 @@
+        \hfill{\raisebox{5pt}{{\titlepageheaderfont\color{accessblue}\headName}}}%
+        \vspace*{-3.5mm}\par\mbox{}\hfill\rule{30.54pc}{.3pt}}}
+      \def\@oddfoot{\raisebox{3pt}{%%
+-       \hbox to 0pc{\hbox to \textwidth{{\footervolfont VOLUME\ \thevol, \theyear}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\@artnum}}}%\hspace*{1.8pc}
++       \makebox[0pt][l]{\hbox to \textwidth{{\footervolfont AUTHOR REVIEW DRAFT}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\@artnum}}}%\hspace*{1.8pc}
+        }}
+      \def\@evenfoot{\raisebox{3pt}{%
+-       \hbox to 0pc{\hbox to \textwidth{{\footerpagefont\@artnum}}\hfill\mbox{}}\hspace*{1.8pc}%\hspace*{-1.8pc}
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont VOLUME\ \thevol, \theyear}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{{\footerpagefont\@artnum}}\hfill\mbox{}}\hspace*{1.8pc}%\hspace*{-1.8pc}
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont AUTHOR REVIEW DRAFT}}}%
+      }}
+   }
+ % normal page
+@@ -541,12 +546,12 @@
+        \headerlogo\hfill{\raisebox{5pt}{\headerfont\leftmark}}\vspace*{-3.55mm}\par%
+        \mbox{}\hfill\rule{30.54pc}{.3pt}}}
+      \def\@oddfoot{\raisebox{8pt}{%
+-       \hbox to 0pc{\hbox to \textwidth{{\footervolfont VOLUME\ \thevol, \theyear}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\@artnum}}}%\hspace*{1.8pc}
++       \makebox[0pt][l]{\hbox to \textwidth{{\footervolfont AUTHOR REVIEW DRAFT}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\@artnum}}}%\hspace*{1.8pc}
+        }}
+      \def\@evenfoot{\raisebox{8pt}{%
+-       \hbox to 0pc{\hbox to \textwidth{{\footerpagefont\@artnum}\mbox{}\hfill}}%\hspace*{1.8pc}%\hspace*{-1.8pc}
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont VOLUME\ \thevol, \theyear}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{{\footerpagefont\@artnum}\mbox{}\hfill}}%\hspace*{1.8pc}%\hspace*{-1.8pc}
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont AUTHOR REVIEW DRAFT}}}%
+      }}
+   }
+ \else
+@@ -556,14 +561,14 @@
+     \def\@oddhead{\parbox[t]{\textwidth}{\mbox{}\\[-6.3mm]\mbox{}\nheaderfont\color{accessblue}\headName\hfill\headerlogo{\raisebox{-2pt}{\,}}\color{black}\vspace*{-1.5mm}\par\hrulefill}}
+     \def\@evenhead{\parbox[t]{\textwidth}{\mbox{}\\[-6.3mm]\mbox{}\headerlogo\hfill\nheaderfont\color{accessblue}\headName{\raisebox{-2pt}{\,}}\color{black}\vspace*{-1.5mm}\par\hrulefill}}
+      \def\@oddfoot{\raisebox{3pt}{%%
+-       \hbox to 0pc{\hbox to \textwidth{{\footervolfont VOLUME\ \thevol, \theyear}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\thepage}}}%\hspace*{1.8pc}
++       \makebox[0pt][l]{\hbox to \textwidth{{\footervolfont AUTHOR REVIEW DRAFT}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\thepage}}}%\hspace*{1.8pc}
+        }}
+      \def\@evenfoot{\raisebox{3pt}{%
+-       \hbox to 0pc{\hbox to \textwidth{{\footerpagefont\thepage}\hfill}\mbox{}}\hspace*{1.8pc}%\hspace*{1.8pc}
+-       \hspace*{-1.8pc}\hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont VOLUME\ \thevol, \theyear}}}\hspace*{1.8pc}% [updated here]
++       \makebox[0pt][l]{\hbox to \textwidth{{\footerpagefont\thepage}\hfill}\mbox{}}\hspace*{1.8pc}%\hspace*{1.8pc}
++       \hspace*{-1.8pc}\makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont\@pubid}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont AUTHOR REVIEW DRAFT}}}\hspace*{1.8pc}% [updated here]
+      }}
+   }
+ % normal page
+@@ -571,12 +576,12 @@
+      \def\@oddhead{\parbox[t]{\textwidth}{\mbox{}\\[-6.3mm]{\raisebox{-2pt}{\headerfont\rightmark}}\hfill\headerlogoall\mbox{}\vspace*{-1.5mm}\par\hrulefill}}
+      \def\@evenhead{\parbox[t]{\textwidth}{\mbox{}\\[-6.3mm]\mbox{}\headerlogoall\hfill{\raisebox{-2pt}{\headerfont\leftmark}}\vspace*{-1.5mm}\par\hrulefill}}
+      \def\@oddfoot{\raisebox{8pt}{%
+-       \hbox to 0pc{\hbox to \textwidth{{\footervolfont VOLUME\ \thevol, \theyear}\hfill\mbox{}}}%
+-       \hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\thepage}}}%\hspace*{1.8pc}
++       \makebox[0pt][l]{\hbox to \textwidth{{\footervolfont AUTHOR REVIEW DRAFT}\hfill\mbox{}}}%
++       \makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footerpagefont\thepage}}}%\hspace*{1.8pc}
+        }}
+      \def\@evenfoot{\raisebox{8pt}{%
+-       \hbox to 0pc{\hbox to \textwidth{{\footerpagefont\thepage}\mbox{}\hfill}}\hspace*{1.8pc}%\hspace*{-1.8pc}
+-       \hspace*{-1.8pc}\hbox to 0pc{\hbox to \textwidth{\mbox{}\hfill{\footervolfont VOLUME\ \thevol, \theyear}}}\hspace*{1.8pc}% [updated here]
++       \makebox[0pt][l]{\hbox to \textwidth{{\footerpagefont\thepage}\mbox{}\hfill}}\hspace*{1.8pc}%\hspace*{-1.8pc}
++       \hspace*{-1.8pc}\makebox[0pt][l]{\hbox to \textwidth{\mbox{}\hfill{\footervolfont AUTHOR REVIEW DRAFT}}}\hspace*{1.8pc}% [updated here]
+      }}
+   }
+ \fi
+@@ -586,11 +591,11 @@
+ \newlength\abstractwidth
+ \ifjtehm
+   \setlength\titlewidth{35.90pc}
+-  \let\abstractwidth\titlewidth
++  \setlength{\abstractwidth}{\titlewidth}
+ \else
+   \setlength\titlewidth{152.83mm}
+-  \let\abstractwidth\titlewidth
+-  \advance\abstractwidth by -2.39mm
++  \setlength{\abstractwidth}{\titlewidth}
++  \setlength{\abstractwidth}{\dimexpr\titlewidth-.5em-1.5mm\relax}
+ \fi
+ \newcounter{addrCtr}
+ \newsavebox\abstractbox

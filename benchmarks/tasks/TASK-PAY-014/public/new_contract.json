@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-014",
+    "version": "2.0.0",
+    "description": "Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation"
+  },
+  "paths": {
+    "/v2/payment/currency_minor_units_enforcement/task-pay-014": {
+      "post": {
+        "operationId": "submit_transaction",
+        "description": "Updated v2 contract for TASK-PAY-014: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "minor_unit_settlement"
+                ],
+                "properties": {
+                  "minor_unit_settlement": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

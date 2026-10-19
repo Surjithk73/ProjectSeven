@@ -1,0 +1,9 @@
+{
+  "patches": [
+    {
+      "file": "src/parcel.py",
+      "old_code_snippet": "f\"{API_URL}/labels\"",
+      "new_code_snippet": "f\"{API_URL}/labels/create\""
+    }
+  ]
+}

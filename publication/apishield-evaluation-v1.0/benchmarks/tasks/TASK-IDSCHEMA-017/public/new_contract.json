@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-017",
+    "version": "2.0.0",
+    "description": "Convert space-separated OAuth scope string to structured permission object list"
+  },
+  "paths": {
+    "/v2/identity/scopes_list_to_bitmask/task-idschema-017": {
+      "post": {
+        "operationId": "get_user_profile",
+        "description": "Updated v2 contract for TASK-IDSCHEMA-017: Convert space-separated OAuth scope string to structured permission object list",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "structured_permissions"
+                ],
+                "properties": {
+                  "structured_permissions": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

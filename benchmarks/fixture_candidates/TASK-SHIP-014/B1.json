@@ -1,0 +1,7 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B1) for TASK-SHIP-014 (metric_weight_conversion)\ndef build_request(data):\n    return {\n        'path': '/v2/logistics/metric_weight_conversion/task-ship-014',\n        'body': {\n            'metric_parcel_weight': {\n                'parcel_id': data['parcel_id'],\n                'weight_grams': float(data['weight_grams']) / 1000.0,\n                'length_cm': int(data['length_cm']),\n                'carrier_iso': data['carrier_code'],\n                'route_address': data['street_address']\n            }\n        },\n        'headers': {\n            'X-Shipment-Idempotency': 'missing-ship-idem-b1'\n        }\n    }\n\ndef generate_label(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": null,
+  "predicted_locations": []
+}

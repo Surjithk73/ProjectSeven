@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-BANK-004",
+  "rules": [
+    "Migrate operation according to iso20022_pacs008_wrap: Wrap transfer payload in standard pacs.008 document envelope",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred structural contract check (B6) for TASK-BANK-004\ndef check(inputs, outputs):\n    return all(o.get('path') == '/v2/banking/iso20022_pacs008_wrap/task-bank-004' and isinstance(o.get('body', {}).get('pacs008_document'), dict) and len(o['body']['pacs008_document']) >= 2 for o in outputs)\n"
+}

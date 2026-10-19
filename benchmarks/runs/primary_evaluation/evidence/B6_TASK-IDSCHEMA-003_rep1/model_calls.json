@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "872074c48ac84ecc35df41d769f1e753fd70605be2b66d8dab31a82e28a7434b",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"flattened_principal_claims\": {\"type\": \"object\"}}, \"required\": [\"flattened_principal_claims\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-003 (user_profile_claim_flattening).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-003\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2742,
+    "cached_tokens": 0,
+    "output_tokens": 226,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:30:56 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}",
+                "thought": null,
+                "thought_signature": "63653cc9843ab6fd0abf86af89a165bfe6e98a7ae5a3b40f788e7353e9ae2d31",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:30:56.970273Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_774038b516ab17e60c176f",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 226,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 226
+          }
+        ],
+        "prompt_token_count": 2742,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2742
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 2968,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"flattened_principal_claims\": {\"type\": \"object\"}}, \"required\": [\"flattened_principal_claims\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-003 (user_profile_claim_flattening).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-003\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:30:56 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}",
+                "thoughtSignature": "63653cc9843ab6fd0abf86af89a165bfe6e98a7ae5a3b40f788e7353e9ae2d31"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:30:56.970273Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_774038b516ab17e60c176f",
+      "usageMetadata": {
+        "candidatesTokenCount": 226,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 226
+          }
+        ],
+        "promptTokenCount": 2742,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2742
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 2968,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 23.4751,
+    "wall_seconds": 23.4751,
+    "timestamp_utc": "2026-10-15T20:30:56.970273+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "fdbfbe1428f183a16704ae195d55efbfe457a2ff136994885c82a5edffa44a14",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"flattened_principal_claims\": {\"type\": \"object\"}}, \"required\": [\"flattened_principal_claims\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-003 (user_profile_claim_flattening).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}, \"source\": \"# TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-003\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3002,
+    "cached_tokens": 0,
+    "output_tokens": 497,
+    "reasoning_tokens": 0,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:31:20 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/user_profile_claim_flattening/task-idschema-003':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('flattened_principal_claims')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to user_profile_claim_flattening: Flatten nested claims object to top-level attributes in response parser\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-003\"}",
+                "thought": null,
+                "thought_signature": "81aa0a53f4858fcea7d593ebad430676ad2f3e354020ad7e3ca9b8479a06e2be",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:31:20.445373Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_cc1aad8ada9e56d1ca5b90",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 497,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 497
+          }
+        ],
+        "prompt_token_count": 3002,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3002
+          }
+        ],
+        "thoughts_token_count": 0,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3499,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/user_profile_claim_flattening/task-idschema-003':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('flattened_principal_claims')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to user_profile_claim_flattening: Flatten nested claims object to top-level attributes in response parser\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-003\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"flattened_principal_claims\": {\"type\": \"object\"}}, \"required\": [\"flattened_principal_claims\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-003 (user_profile_claim_flattening).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}, \"source\": \"# TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-003\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:31:20 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/user_profile_claim_flattening/task-idschema-003':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('flattened_principal_claims')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to user_profile_claim_flattening: Flatten nested claims object to top-level attributes in response parser\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-003\"}",
+                "thoughtSignature": "81aa0a53f4858fcea7d593ebad430676ad2f3e354020ad7e3ca9b8479a06e2be"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:31:20.445373Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_cc1aad8ada9e56d1ca5b90",
+      "usageMetadata": {
+        "candidatesTokenCount": 497,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 497
+          }
+        ],
+        "promptTokenCount": 3002,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3002
+          }
+        ],
+        "thoughtsTokenCount": 0,
+        "totalTokenCount": 3499,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 42.4893,
+    "wall_seconds": 42.4893,
+    "timestamp_utc": "2026-10-15T20:31:20.445373+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "d3948a685e2da3af6a716f55bd1db6a2794f5579c6d9f72f809ac2a0add4e9ed",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/user_profile_claim_flattening/task-idschema-003':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('flattened_principal_claims')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to user_profile_claim_flattening: Flatten nested claims object to top-level attributes in response parser\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-003\"}, \"new_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"flattened_principal_claims\": {\"type\": \"object\"}}, \"required\": [\"flattened_principal_claims\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-003 (user_profile_claim_flattening).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/user_profile_claim_flattening/task-idschema-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('flattened_principal_claims'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}, \"source\": \"# TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-003\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3242,
+    "cached_tokens": 0,
+    "output_tokens": 499,
+    "reasoning_tokens": 171,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:32:02 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'flattened_principal_claims': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "33f02cbc290329e14644000715e5bb8621662206d84b92660e07fb9d4541b27f",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T20:32:02.934673Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_10d5ac07457d4a87604067",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 499,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 499
+          }
+        ],
+        "prompt_token_count": 3242,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3242
+          }
+        ],
+        "thoughts_token_count": 171,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3912,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'flattened_principal_claims': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/identity/user_profile_claim_flattening/task-idschema-003':\\n            return False\\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\\n            return False\\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\\n            return False\\n        env = o.get('body', {}).get('flattened_principal_claims')\\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to user_profile_claim_flattening: Flatten nested claims object to top-level attributes in response parser\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-IDSCHEMA-003\"}, \"new_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Updated v2 contract for TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"flattened_principal_claims\": {\"type\": \"object\"}}, \"required\": [\"flattened_principal_claims\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Flatten nested claims object to top-level attributes in response parser\", \"title\": \"TASK-IDSCHEMA-003\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/identity/user_profile_claim_flattening/task-idschema-003\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-IDSCHEMA-003 (user_profile_claim_flattening).\", \"operationId\": \"exchange_token\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"scopes\": {\"type\": \"string\"}, \"subject_id\": {\"type\": \"string\"}, \"tenant_id\": {\"type\": \"string\"}, \"ttl\": {\"type\": \"string\"}}, \"required\": [\"subject_id\", \"tenant_id\", \"scopes\", \"ttl\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/identity/user_profile_claim_flattening/task-idschema-003' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('flattened_principal_claims'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"user_profile_claim_flattening\", \"coupled_ast_nodes\": [], \"domain_cluster\": \"IdentitySchema\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-IDSCHEMA-003\"}, \"source\": \"# TASK-IDSCHEMA-003: Flatten nested claims object to top-level attributes in response parser\\ndef build_request(data):\\n    return {\\n        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'subject_id': data['subject_id'],\\n            'tenant_id': data['tenant_id'],\\n            'scopes': data['scope_str'],\\n            'ttl': data['ttl_seconds']\\n        },\\n        'headers': {\\n            'Authorization': 'Token ' + data['access_token']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"exchange_token\", \"get_health_status\"]}, \"task_id\": \"TASK-IDSCHEMA-003\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 20:32:02 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [], \"source\": \"# Candidate (B6) for TASK-IDSCHEMA-003 (user_profile_claim_flattening)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/identity/user_profile_claim_flattening/task-idschema-003',\\n        'body': {\\n            'flattened_principal_claims': {\\n                'sub': data['subject_id'],\\n                'permissions': data['scope_str'].split(' '),\\n                'next_cursor': data['cursor_token'],\\n                'ttl_seconds': int(data['ttl_seconds'])\\n            }\\n        },\\n        'headers': {\\n            'Authorization': 'Bearer ' + data['access_token'],\\n            'X-Tenant-Context': data['tenant_id']\\n        }\\n    }\\n\\ndef exchange_token(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "33f02cbc290329e14644000715e5bb8621662206d84b92660e07fb9d4541b27f"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T20:32:02.934673Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_10d5ac07457d4a87604067",
+      "usageMetadata": {
+        "candidatesTokenCount": 499,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 499
+          }
+        ],
+        "promptTokenCount": 3242,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3242
+          }
+        ],
+        "thoughtsTokenCount": 171,
+        "totalTokenCount": 3912,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 38.9852,
+    "wall_seconds": 38.9852,
+    "timestamp_utc": "2026-10-15T20:32:02.934673+00:00"
+  }
+]

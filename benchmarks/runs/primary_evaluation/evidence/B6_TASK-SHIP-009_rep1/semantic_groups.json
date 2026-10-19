@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-SHIP-009",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "carrier_code_enum_standardization",
+  "coupled_ast_nodes": [
+    "client.py:generate_label"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

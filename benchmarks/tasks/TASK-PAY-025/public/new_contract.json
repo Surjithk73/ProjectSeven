@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-025",
+    "version": "2.0.0",
+    "description": "Migrate legacy /v1/charges payload to /v2/payment_intents state machine"
+  },
+  "paths": {
+    "/v2/payment/charge_to_payment_intent/task-pay-025": {
+      "post": {
+        "operationId": "refund_charge",
+        "description": "Updated v2 contract for TASK-PAY-025: Migrate legacy /v1/charges payload to /v2/payment_intents state machine",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "payment_intent"
+                ],
+                "properties": {
+                  "payment_intent": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

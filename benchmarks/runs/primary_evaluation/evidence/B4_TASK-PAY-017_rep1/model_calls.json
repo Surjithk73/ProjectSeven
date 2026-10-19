@@ -1,0 +1,370 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "5d092207e4fcddf1712c65fd2bb6fa51148f77cd64d3820b2b7d2bc145d719f3",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-017: Replace raw token string with payment_method_data dictionary\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_method_charge\": {\"type\": \"object\"}}, \"required\": [\"payment_method_charge\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-017 (card_token_to_payment_method).\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-017: Replace raw token string with payment_method_data dictionary\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"authorize_payment\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-017\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2728,
+    "cached_tokens": 0,
+    "output_tokens": 335,
+    "reasoning_tokens": 323,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:29:48 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"card_token_to_payment_method\", \"coupled_ast_nodes\": [\"client.py:authorize_payment\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-017\"}",
+                "thought": null,
+                "thought_signature": "fe1bf2a467e59790cfa122f51d02b356cbaa20bfb069a33d41fb972094078245",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:29:48.440277Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_4782ea6ef75c46e94d2fd8",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 335,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 335
+          }
+        ],
+        "prompt_token_count": 2728,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2728
+          }
+        ],
+        "thoughts_token_count": 323,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3386,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"card_token_to_payment_method\", \"coupled_ast_nodes\": [\"client.py:authorize_payment\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-017\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-017: Replace raw token string with payment_method_data dictionary\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_method_charge\": {\"type\": \"object\"}}, \"required\": [\"payment_method_charge\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-017 (card_token_to_payment_method).\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-017: Replace raw token string with payment_method_data dictionary\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"authorize_payment\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-017\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:29:48 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"card_token_to_payment_method\", \"coupled_ast_nodes\": [\"client.py:authorize_payment\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-017\"}",
+                "thoughtSignature": "fe1bf2a467e59790cfa122f51d02b356cbaa20bfb069a33d41fb972094078245"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:29:48.440277Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_4782ea6ef75c46e94d2fd8",
+      "usageMetadata": {
+        "candidatesTokenCount": 335,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 335
+          }
+        ],
+        "promptTokenCount": 2728,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2728
+          }
+        ],
+        "thoughtsTokenCount": 323,
+        "totalTokenCount": 3386,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 35.7785,
+    "wall_seconds": 35.7785,
+    "timestamp_utc": "2026-10-15T14:29:48.440277+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "9d9dc634c62faa010469cbbfa348dbe10fcc7242ef7cb6fc6828f0d354456f79",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-017: Replace raw token string with payment_method_data dictionary\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_method_charge\": {\"type\": \"object\"}}, \"required\": [\"payment_method_charge\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-017 (card_token_to_payment_method).\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/card_token_to_payment_method/task-pay-017' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_method_charge'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"card_token_to_payment_method\", \"coupled_ast_nodes\": [\"client.py:authorize_payment\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-017\"}, \"source\": \"# TASK-PAY-017: Replace raw token string with payment_method_data dictionary\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"authorize_payment\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-017\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2907,
+    "cached_tokens": 0,
+    "output_tokens": 497,
+    "reasoning_tokens": 388,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:30:24 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:authorize_payment\"], \"source\": \"# Candidate (B4) for TASK-PAY-017 (card_token_to_payment_method)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'payment_method_charge': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': 'dropped-idem-b4-task-pay-017'\\n        }\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "65ec8f47f8583f0c98ec39dc8a14479c465a02496434811d4a7ec3627283f6cf",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T14:30:24.218777Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_28f3bfb708300165ff51f5",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 497,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 497
+          }
+        ],
+        "prompt_token_count": 2907,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2907
+          }
+        ],
+        "thoughts_token_count": 388,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3792,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:authorize_payment\"], \"source\": \"# Candidate (B4) for TASK-PAY-017 (card_token_to_payment_method)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'payment_method_charge': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': 'dropped-idem-b4-task-pay-017'\\n        }\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-017: Replace raw token string with payment_method_data dictionary\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"payment_method_charge\": {\"type\": \"object\"}}, \"required\": [\"payment_method_charge\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Replace raw token string with payment_method_data dictionary\", \"title\": \"TASK-PAY-017\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/card_token_to_payment_method/task-pay-017\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-017 (card_token_to_payment_method).\", \"operationId\": \"authorize_payment\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/card_token_to_payment_method/task-pay-017' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('payment_method_charge'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"card_token_to_payment_method\", \"coupled_ast_nodes\": [\"client.py:authorize_payment\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-017\"}, \"source\": \"# TASK-PAY-017: Replace raw token string with payment_method_data dictionary\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"authorize_payment\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-017\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 14:30:24 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:authorize_payment\"], \"source\": \"# Candidate (B4) for TASK-PAY-017 (card_token_to_payment_method)\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/card_token_to_payment_method/task-pay-017',\\n        'body': {\\n            'payment_method_charge': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': 'dropped-idem-b4-task-pay-017'\\n        }\\n    }\\n\\ndef authorize_payment(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "65ec8f47f8583f0c98ec39dc8a14479c465a02496434811d4a7ec3627283f6cf"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T14:30:24.218777Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_28f3bfb708300165ff51f5",
+      "usageMetadata": {
+        "candidatesTokenCount": 497,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 497
+          }
+        ],
+        "promptTokenCount": 2907,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2907
+          }
+        ],
+        "thoughtsTokenCount": 388,
+        "totalTokenCount": 3792,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 44.4197,
+    "wall_seconds": 44.4197,
+    "timestamp_utc": "2026-10-15T14:30:24.218777+00:00"
+  }
+]

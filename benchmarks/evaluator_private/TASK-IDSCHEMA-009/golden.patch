@@ -1,0 +1,28 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,18 @@
+-# TASK-IDSCHEMA-009: Flatten nested claims object to top-level attributes in response parser
++# Candidate (GOLDEN) for TASK-IDSCHEMA-009 (user_profile_claim_flattening)
+ def build_request(data):
+     return {
+-        'path': '/v1/identity/user_profile_claim_flattening/task-idschema-009',
++        'path': '/v2/identity/user_profile_claim_flattening/task-idschema-009',
+         'body': {
+-            'subject_id': data['subject_id'],
+-            'tenant_id': data['tenant_id'],
+-            'scopes': data['scope_str'],
+-            'ttl': data['ttl_seconds']
++            'flattened_principal_claims': {
++                'sub': data['subject_id'],
++                'permissions': data['scope_str'].split(' '),
++                'next_cursor': data['cursor_token'],
++                'ttl_seconds': int(data['ttl_seconds'])
++            }
+         },
+         'headers': {
+-            'Authorization': 'Token ' + data['access_token']
++            'Authorization': 'Bearer ' + data['access_token'],
++            'X-Tenant-Context': data['tenant_id']
+         }
+     }
+ 

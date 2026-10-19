@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-IDSCHEMA-026",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "pagination_cursor_migration",
+  "coupled_ast_nodes": [
+    "client.py:authenticate_client"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

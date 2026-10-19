@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-IDSCHEMA-010",
+    "version": "2.0.0",
+    "description": "Move tenant_id from URL query string to X-Tenant-Context header"
+  },
+  "paths": {
+    "/v2/identity/tenant_workspace_routing/task-idschema-010": {
+      "post": {
+        "operationId": "revoke_session",
+        "description": "Updated v2 contract for TASK-IDSCHEMA-010: Move tenant_id from URL query string to X-Tenant-Context header",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "workspace_session_payload"
+                ],
+                "properties": {
+                  "workspace_session_payload": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

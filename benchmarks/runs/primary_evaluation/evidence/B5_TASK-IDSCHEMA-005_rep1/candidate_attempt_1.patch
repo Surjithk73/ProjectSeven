@@ -1,0 +1,28 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,18 @@
+-# TASK-IDSCHEMA-005: Convert space-separated OAuth scope string to structured permission object list
++# Candidate (B5) for TASK-IDSCHEMA-005 (scopes_list_to_bitmask)
+ def build_request(data):
+     return {
+-        'path': '/v1/identity/scopes_list_to_bitmask/task-idschema-005',
++        'path': '/v2/identity/scopes_list_to_bitmask/task-idschema-005',
+         'body': {
+-            'subject_id': data['subject_id'],
+-            'tenant_id': data['tenant_id'],
+-            'scopes': data['scope_str'],
+-            'ttl': data['ttl_seconds']
++            'structured_permissions': {
++                'sub': data['subject_id'],
++                'permissions': data['scope_str'].split(' '),
++                'next_cursor': data['cursor_token'],
++                'ttl_seconds': float(data['ttl_seconds']) / 60.0
++            }
+         },
+         'headers': {
+-            'Authorization': 'Token ' + data['access_token']
++            'Authorization': 'Token ' + data['access_token'],
++            'X-Tenant-Context': data['tenant_id']
+         }
+     }
+ 

@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-IDSCHEMA-028",
+  "domain_cluster": "IdentitySchema",
+  "breaking_change_type": "tenant_workspace_routing",
+  "coupled_ast_nodes": [
+    "client.py:exchange_token"
+  ],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

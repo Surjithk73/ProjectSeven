@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-SHIP-029",
+  "domain_cluster": "Shipping",
+  "breaking_change_type": "hazmat_declaration_subschema",
+  "coupled_ast_nodes": [],
+  "isolated_distractors": [
+    "client.py:get_health_status"
+  ]
+}

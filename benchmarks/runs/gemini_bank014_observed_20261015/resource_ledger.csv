@@ -1,0 +1,7 @@
+run_id,record_kind,configuration,task_id,detection_seconds,graph_seconds,intent_seconds,inference_seconds,visible_tests_seconds,hidden_tests_seconds,overhead_seconds,total_seconds,prompt_tokens,cached_tokens,completion_tokens,estimated_api_usd,measured_gpu_watts,measured_gpu_seconds,measured_energy_kwh,actual_invoice_usd
+B1_TASK-BANK-014_rep1,live_model_execution,B1,TASK-BANK-014,0.0015352,1.2e-06,0.0,0.0,0.0,0.0,126.75015339999999,126.7516898,0,0,0,0.0,,,,
+B2_TASK-BANK-014_rep1,live_model_execution,B2,TASK-BANK-014,0.0054298,3.4e-06,0.0,0.0,0.0,0.0,21.5364973,21.5419305,0,0,0,0.0,,,,
+B3_TASK-BANK-014_rep1,live_model_execution,B3,TASK-BANK-014,0.0018532,3.6e-06,0.0,9.6859629,0.0,0.0,0.023523299999999026,9.711343,472,0,46,0.0005265,,,,
+B4_TASK-BANK-014_rep1,live_model_execution,B4,TASK-BANK-014,0.0009691,24.216948300000002,0.0,0.0,0.0,0.0,22.5797348,46.7976522,452,0,270,0.0013515,,,,
+B5_TASK-BANK-014_rep1,live_model_execution,B5,TASK-BANK-014,0.002642,3.7e-06,0.0,0.0,0.0,0.0,21.5700915,21.5727372,0,0,0,0.0,,,,
+B6_TASK-BANK-014_rep1,live_model_execution,B6,TASK-BANK-014,0.00074,3.6e-06,0.0,0.0,0.0,0.0,21.648481,21.6492246,0,0,0,0.0,,,,

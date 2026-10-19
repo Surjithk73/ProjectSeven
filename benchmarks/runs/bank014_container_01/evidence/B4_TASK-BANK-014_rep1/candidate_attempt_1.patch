@@ -1,0 +1,7 @@
+--- a/client.py
++++ b/client.py
+@@ -1,2 +1,3 @@
++# Candidate repair (B4) for TASK-BANK-014
+ def build_request(data):
+-    return {'path': '/transfers', 'body': {'amount_cents': data['amount_cents']}, 'headers': {}}
++    return {'path': '/v1/transfers', 'body': {'source': data['source'], 'destination': data['destination'], 'amount': {'value': int(data['amount_cents']), 'currency': data['currency']}}, 'headers': {'Idempotency-Key': data['idempotency_key']}}

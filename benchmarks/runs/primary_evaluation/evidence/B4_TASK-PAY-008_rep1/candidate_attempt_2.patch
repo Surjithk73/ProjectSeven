@@ -1,0 +1,7 @@
+--- a/client.py
++++ b/client.py
+@@ -1,2 +1,3 @@
++# Candidate repair (B4) for TASK-PAY-008
+ def build_request(data):
+-    return {'path': '/refunds', 'body': {'transaction_id': data['transaction_id']}, 'headers': {}}
++    return {'path': '/refunds/create', 'body': {'refund': {'transaction_id': data['transaction_id'], 'amount_cents': int(data['amount_cents']), 'currency': data['currency']}}, 'headers': {'Idempotency-Key': data['idempotency_key']}}

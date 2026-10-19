@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-BANK-005: Migrate integer account_id to UUID format with validation
++# Attempt 1 candidate (B3) for TASK-BANK-005
+ def build_request(data):
+-    return {
+-        'path': '/v1/banking/account_id_uuid_type/task-bank-005',
+-        'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/banking/account_id_uuid_type/task-bank-005', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}
+ 
+ def execute_debit(data):
+     return build_request(data)

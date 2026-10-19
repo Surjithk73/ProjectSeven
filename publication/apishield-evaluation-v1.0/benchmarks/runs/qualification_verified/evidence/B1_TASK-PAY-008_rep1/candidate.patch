@@ -1,0 +1,7 @@
+--- a/client.py
++++ b/client.py
+@@ -1,2 +1,2 @@
+-def build_request(data):
+-    return {'path': '/refunds', 'body': {'transaction_id': data['transaction_id']}, 'headers': {}}
++def build_request(data)
++    return {}

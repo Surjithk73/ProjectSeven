@@ -1,0 +1,8 @@
+{
+  "task_id": "TASK-IDSCHEMA-029",
+  "rules": [
+    "Migrate operation according to scopes_list_to_bitmask: Convert space-separated OAuth scope string to structured permission object list",
+    "Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults."
+  ],
+  "checks_source": "# Inferred OAuth/OIDC & schema invariant check for TASK-IDSCHEMA-029 (scopes_list_to_bitmask)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/identity/scopes_list_to_bitmask/task-idschema-029':\n            return False\n        if o.get('headers', {}).get('Authorization') != 'Bearer ' + d['access_token']:\n            return False\n        if o.get('headers', {}).get('X-Tenant-Context') != d['tenant_id']:\n            return False\n        env = o.get('body', {}).get('structured_permissions')\n        if not isinstance(env, dict) or type(env.get('ttl_seconds')) is not int:\n            return False\n    return True\n"
+}

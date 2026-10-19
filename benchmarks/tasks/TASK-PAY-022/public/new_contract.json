@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-PAY-022",
+    "version": "2.0.0",
+    "description": "Nest application_fee_amount inside transfer_data object"
+  },
+  "paths": {
+    "/v2/payment/split_fee_nesting/task-pay-022": {
+      "post": {
+        "operationId": "authorize_payment",
+        "description": "Updated v2 contract for TASK-PAY-022: Nest application_fee_amount inside transfer_data object",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "transfer_data_split"
+                ],
+                "properties": {
+                  "transfer_data_split": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

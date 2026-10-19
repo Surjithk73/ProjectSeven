@@ -1,0 +1,50 @@
+{
+  "B1": {
+    "enable_structural_graph": false,
+    "enable_semantic_clustering": false,
+    "enable_intent_inference": false,
+    "enable_hidden_invariant_checks": true,
+    "enable_generated_checks": false,
+    "enable_test_feedback": false
+  },
+  "B2": {
+    "enable_structural_graph": false,
+    "enable_semantic_clustering": false,
+    "enable_intent_inference": false,
+    "enable_hidden_invariant_checks": true,
+    "enable_generated_checks": false,
+    "enable_test_feedback": true
+  },
+  "B3": {
+    "enable_structural_graph": true,
+    "enable_semantic_clustering": false,
+    "enable_intent_inference": false,
+    "enable_hidden_invariant_checks": true,
+    "enable_generated_checks": false,
+    "enable_test_feedback": true
+  },
+  "B4": {
+    "enable_structural_graph": true,
+    "enable_semantic_clustering": true,
+    "enable_intent_inference": false,
+    "enable_hidden_invariant_checks": true,
+    "enable_generated_checks": false,
+    "enable_test_feedback": true
+  },
+  "B5": {
+    "enable_structural_graph": true,
+    "enable_semantic_clustering": false,
+    "enable_intent_inference": true,
+    "enable_hidden_invariant_checks": true,
+    "enable_generated_checks": true,
+    "enable_test_feedback": true
+  },
+  "B6": {
+    "enable_structural_graph": true,
+    "enable_semantic_clustering": true,
+    "enable_intent_inference": true,
+    "enable_hidden_invariant_checks": true,
+    "enable_generated_checks": true,
+    "enable_test_feedback": true
+  }
+}

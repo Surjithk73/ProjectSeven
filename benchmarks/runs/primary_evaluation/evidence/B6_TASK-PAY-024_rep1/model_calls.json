@@ -1,0 +1,554 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "f020269930c9726de120d3dcc59c22eb6e218b8fdbf5ea6e6cf1ac846139faa8",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"signed_webhook_event\": {\"type\": \"object\"}}, \"required\": [\"signed_webhook_event\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-024 (webhook_signature_header).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-024\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2662,
+    "cached_tokens": 0,
+    "output_tokens": 180,
+    "reasoning_tokens": 339,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 22:27:32 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}",
+                "thought": null,
+                "thought_signature": "5146b16a928db1491adf7e84466eef511478dc09e89de80179a2938bbeecf016",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T22:27:32.431918Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_11a01d825608822ec14fe8",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 180,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 180
+          }
+        ],
+        "prompt_token_count": 2662,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2662
+          }
+        ],
+        "thoughts_token_count": 339,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3181,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"signed_webhook_event\": {\"type\": \"object\"}}, \"required\": [\"signed_webhook_event\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-024 (webhook_signature_header).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-024\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 22:27:32 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}",
+                "thoughtSignature": "5146b16a928db1491adf7e84466eef511478dc09e89de80179a2938bbeecf016"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T22:27:32.431918Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_11a01d825608822ec14fe8",
+      "usageMetadata": {
+        "candidatesTokenCount": 180,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 180
+          }
+        ],
+        "promptTokenCount": 2662,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2662
+          }
+        ],
+        "thoughtsTokenCount": 339,
+        "totalTokenCount": 3181,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 35.0238,
+    "wall_seconds": 35.0238,
+    "timestamp_utc": "2026-10-15T22:27:32.431918+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "intent_inference",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "a38801b86aacacb786a67e1f002667de129b6196eb60dd0c27205638a42099b0",
+    "raw_prompt": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"signed_webhook_event\": {\"type\": \"object\"}}, \"required\": [\"signed_webhook_event\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-024 (webhook_signature_header).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}, \"source\": \"# TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-024\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2967,
+    "cached_tokens": 0,
+    "output_tokens": 525,
+    "reasoning_tokens": 211,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 22:28:07 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-PAY-024 (webhook_signature_header)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/webhook_signature_header/task-pay-024':\\n            return False\\n        blk = o.get('body', {}).get('signed_webhook_event')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('X-Nexus-Signature') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to webhook_signature_header: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-024\"}",
+                "thought": null,
+                "thought_signature": "4ae555b7b7a31abf57fde66a3d97973ee5959a2894c2245a5d712b2fe05759b3",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T22:28:07.455718Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_e439fce08dd48aa5439b4a",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 525,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 525
+          }
+        ],
+        "prompt_token_count": 2967,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2967
+          }
+        ],
+        "thoughts_token_count": 211,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3703,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"checks_source\": \"# Inferred invariant check for TASK-PAY-024 (webhook_signature_header)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/webhook_signature_header/task-pay-024':\\n            return False\\n        blk = o.get('body', {}).get('signed_webhook_event')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('X-Nexus-Signature') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to webhook_signature_header: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-024\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON with rules (array) and checks_source (Python defining check(inputs, outputs)->bool). Infer only from supplied inputs.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B6\", \"new_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"signed_webhook_event\": {\"type\": \"object\"}}, \"required\": [\"signed_webhook_event\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-024 (webhook_signature_header).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"semantic_groups\": {\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}, \"source\": \"# TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-024\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 22:28:07 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"checks_source\": \"# Inferred invariant check for TASK-PAY-024 (webhook_signature_header)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/webhook_signature_header/task-pay-024':\\n            return False\\n        blk = o.get('body', {}).get('signed_webhook_event')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('X-Nexus-Signature') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to webhook_signature_header: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-024\"}",
+                "thoughtSignature": "4ae555b7b7a31abf57fde66a3d97973ee5959a2894c2245a5d712b2fe05759b3"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T22:28:07.455718Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_e439fce08dd48aa5439b4a",
+      "usageMetadata": {
+        "candidatesTokenCount": 525,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 525
+          }
+        ],
+        "promptTokenCount": 2967,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2967
+          }
+        ],
+        "thoughtsTokenCount": 211,
+        "totalTokenCount": 3703,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 47.5301,
+    "wall_seconds": 47.5301,
+    "timestamp_utc": "2026-10-15T22:28:07.455718+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "13c9302eda30b7ed222222f35a5601c454bc4ac77d61be9df3c4c1bcc3d564de",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-PAY-024 (webhook_signature_header)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/webhook_signature_header/task-pay-024':\\n            return False\\n        blk = o.get('body', {}).get('signed_webhook_event')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('X-Nexus-Signature') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to webhook_signature_header: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-024\"}, \"new_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"signed_webhook_event\": {\"type\": \"object\"}}, \"required\": [\"signed_webhook_event\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-024 (webhook_signature_header).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/webhook_signature_header/task-pay-024' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('signed_webhook_event'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}, \"source\": \"# TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-024\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 3308,
+    "cached_tokens": 0,
+    "output_tokens": 522,
+    "reasoning_tokens": 187,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 22:28:54 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:submit_transaction\"], \"source\": \"# Candidate (B6) for TASK-PAY-024 (webhook_signature_header)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'signed_webhook_event': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'X-Nexus-Signature': data['idempotency_key']\\n        }\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "82cd765f33d6a23309e8b1391998c35655d4460d87210de5a578ae82c7aca5d0",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T22:28:54.985818Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_b058fddb7663206a8d6b43",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 522,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 522
+          }
+        ],
+        "prompt_token_count": 3308,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 3308
+          }
+        ],
+        "thoughts_token_count": 187,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 4017,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:submit_transaction\"], \"source\": \"# Candidate (B6) for TASK-PAY-024 (webhook_signature_header)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'signed_webhook_event': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'X-Nexus-Signature': data['idempotency_key']\\n        }\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B6\", \"inferred_intent\": {\"checks_source\": \"# Inferred invariant check for TASK-PAY-024 (webhook_signature_header)\\ndef check(inputs, outputs):\\n    for d, o in zip(inputs, outputs):\\n        if o.get('path') != '/v2/payment/webhook_signature_header/task-pay-024':\\n            return False\\n        blk = o.get('body', {}).get('signed_webhook_event')\\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\\n            return False\\n        if o.get('headers', {}).get('X-Nexus-Signature') != d['idempotency_key']:\\n            return False\\n    return True\\n\", \"rules\": [\"Migrate operation according to webhook_signature_header: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"Preserve exact integer precision, caller identity, routing context, and idempotency headers without inventing fallback defaults.\"], \"task_id\": \"TASK-PAY-024\"}, \"new_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Updated v2 contract for TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"signed_webhook_event\": {\"type\": \"object\"}}, \"required\": [\"signed_webhook_event\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Change webhook header from Stripe-Signature to X-Nexus-Signature\", \"title\": \"TASK-PAY-024\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/payment/webhook_signature_header/task-pay-024\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-PAY-024 (webhook_signature_header).\", \"operationId\": \"submit_transaction\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/payment/webhook_signature_header/task-pay-024' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('signed_webhook_event'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"webhook_signature_header\", \"coupled_ast_nodes\": [\"client.py:submit_transaction\"], \"domain_cluster\": \"Payment\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-PAY-024\"}, \"source\": \"# TASK-PAY-024: Change webhook header from Stripe-Signature to X-Nexus-Signature\\ndef build_request(data):\\n    return {\\n        'path': '/v1/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"submit_transaction\", \"get_health_status\"]}, \"task_id\": \"TASK-PAY-024\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 22:28:54 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:submit_transaction\"], \"source\": \"# Candidate (B6) for TASK-PAY-024 (webhook_signature_header)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/payment/webhook_signature_header/task-pay-024',\\n        'body': {\\n            'signed_webhook_event': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'X-Nexus-Signature': data['idempotency_key']\\n        }\\n    }\\n\\ndef submit_transaction(data):\\n    return build_request(data)\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "82cd765f33d6a23309e8b1391998c35655d4460d87210de5a578ae82c7aca5d0"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T22:28:54.985818Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_b058fddb7663206a8d6b43",
+      "usageMetadata": {
+        "candidatesTokenCount": 522,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 522
+          }
+        ],
+        "promptTokenCount": 3308,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 3308
+          }
+        ],
+        "thoughtsTokenCount": 187,
+        "totalTokenCount": 4017,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 49.6861,
+    "wall_seconds": 49.6861,
+    "timestamp_utc": "2026-10-15T22:28:54.985818+00:00"
+  }
+]

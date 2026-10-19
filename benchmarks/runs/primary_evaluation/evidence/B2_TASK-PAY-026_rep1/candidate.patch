@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-PAY-026: Ensure zero-decimal currencies (JPY) vs two-decimal currencies (USD/EUR) avoid float truncation
++# Candidate (B2) for TASK-PAY-026 (currency_minor_units_enforcement)
+ def build_request(data):
+     return {
+-        'path': '/v1/payment/currency_minor_units_enforcement/task-pay-026',
++        'path': '/v2/payment/currency_minor_units_enforcement/task-pay-026',
+         'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
++            'minor_unit_settlement': {
++                'amount_subunits': float(data['amount_cents']) / 100.0,
++                'currency': data['currency'],
++                'source_route': data['source'],
++                'destination_route': data['destination'],
++                'token_ref': data['extra_token']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'Idempotency-Key': data['idempotency_key']
++        }
+     }
+ 
+ def create_charge(data):

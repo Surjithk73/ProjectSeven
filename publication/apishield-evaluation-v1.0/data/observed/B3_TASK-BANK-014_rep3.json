@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "evidence_kind": "live_inference",
+  "task_id": "TASK-BANK-014",
+  "config_id": "B3",
+  "model_requested": "gemini-3.8-flash",
+  "model_resolved_snapshot": {
+    "provider_returned_id": "gemini-3.8-flash",
+    "immutable_verified": false,
+    "identity_kind": "provider_returned_version"
+  },
+  "git_commit_sha": "80e7bbe0c01b58fa6615098c1bc56c6534a830eb",
+  "git_commit_identifies_run": false,
+  "runtime_s": 12.4361565,
+  "prompt_tokens": 472,
+  "completion_tokens": 46,
+  "token_accounting": "measured_aggregate_all_model_calls",
+  "repair_attempts": 1,
+  "hidden_invariants_status": {
+    "evaluated": false,
+    "checks": {}
+  },
+  "oracle_verdict": "NOT_EVALUATED",
+  "original_record_path": "benchmarks/runs/gemini_bank014_observed_20261015_sdk/B3_TASK-BANK-014_rep3.json"
+}

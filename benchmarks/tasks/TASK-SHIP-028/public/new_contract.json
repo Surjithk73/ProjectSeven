@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-SHIP-028",
+    "version": "2.0.0",
+    "description": "Nest length, width, height into dimensions: {l, w, h, unit}"
+  },
+  "paths": {
+    "/v2/logistics/dimensions_nesting_object/task-ship-028": {
+      "post": {
+        "operationId": "dispatch_package",
+        "description": "Updated v2 contract for TASK-SHIP-028: Nest length, width, height into dimensions: {l, w, h, unit}",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "parcel_dimensions_box"
+                ],
+                "properties": {
+                  "parcel_dimensions_box": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

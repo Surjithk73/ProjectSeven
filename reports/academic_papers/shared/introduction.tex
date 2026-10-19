@@ -1,0 +1,44 @@
+\section{Introduction}
+A client can conform to a revised REST interface and still perform the wrong operation. Moving a payment amount into a nested object preserves the request shape only if its monetary unit and exact value also survive the edit. An idempotency token can be syntactically optional yet necessary to prevent duplicate operations. These obligations make API migration a maintenance problem that extends beyond schema compatibility.
+
+OpenAPI descriptions expose operations and data structures in a form that tools can compare~\cite{openapi}. They rarely provide a complete executable specification of a consuming application's business behavior. A migration assistant must connect the provider's change to client code, identify behavior that should remain stable, and produce a patch whose acceptance has an inspectable basis. Patch-plausibility research shows why available tests alone may be insufficient: a candidate can satisfy them while changing untested behavior~\cite{plausibility2015}.
+
+APIShield addresses this problem for supported Python REST integrations. It relates versioned contracts to source-level call sites, enriches the selected context with inferred intent, and evaluates proposed edits against public tests and additional executable checks. A Semantic Intent Graph (SIG) represents source relationships together with declared or inferred behavioral interpretations. Generated checks guide the repair loop. A separate hidden oracle assesses the retained candidate after that loop ends. The resulting patch remains subject to developer review.
+
+The research question is whether the additional context and checks improve independently assessed migration outcomes enough to justify their inference cost. The evaluation covers 120 curated migration tasks and six treatments, yielding 720 task-level records. The full configuration passes the hidden evaluator on 97 tasks, compared with 34 for iterative test feedback. Pairing the treatments on the same tasks separates the effect of the repair configuration from differences in task composition.
+
+The study examines how semantic context and executable preservation checks work together during REST migration. It defines the repair boundary, evaluates the two mechanisms through a six-treatment design, and relates hidden correctness to localization, financial obligations and inference cost. The comparison tests their combination; repository graphs and invariant inference have established precedents.
+
+\ifAccess
+\subsection{Scope and intended use}
+The target user maintains a trusted local repository and has access to previous and updated API descriptions. APIShield helps prepare a reviewable migration proposal. Its Python engine is shared by a command-line interface and a browser workspace coordinated through FastAPI. The browser presents contracts, source relationships, proposed edits and validation evidence. Interface behavior is separate from the benchmark's unit of evaluation.
+
+The research task is smaller than a deployed integration. A fixture exposes a Python request builder and explicit input/output behavior. This supports controlled comparisons of candidate construction and preservation checks. Claims about distributed retries, concurrent settlements, production authentication or human review effort require other observations. Preserving an idempotency field in a request is an observable obligation; exactly-once execution of a remote transaction is a system-level property.
+
+We distinguish three sources of evidence throughout the article. Static analysis establishes supported source relationships. Inferred rules propose behavior to check. Independent evaluator assertions assess selected outputs. Keeping these sources visible prevents a model explanation, a passing generated test and a hidden-oracle result from being treated as equivalent evidence.
+\fi
+
+\section{Background and Related Work}
+\subsection{API evolution and migration repair}
+APIDiff identifies breaking and non-breaking changes between Java library versions~\cite{apidiff2018}. APIfix uses output-oriented synthesis to adapt clients after library changes~\cite{apifix2021}; ASAP-Repair uses API usage graphs for API-specific repair~\cite{asap2024}. These systems establish precedents for connecting API changes with client edits. Their library interfaces and datasets differ from versioned REST contracts, so their published success rates are not direct baselines for this benchmark.
+
+For REST clients, dcFix combines specification-based identification of non-conforming fragments with LLM repair~\cite{dcfix2025}. APIShield examines a related setting in which an old contract, a new contract and preservation obligations jointly constrain a migration. Its proposed distinction is the experimental combination of contextual representation and additional behavioral checks. A direct comparison with dcFix would require a common implementation, task population and budget; the present experiment compares the six APIShield configurations.
+
+\subsection{LLM repair and repository context}
+ChatRepair studies conversational repair using feedback from earlier candidates~\cite{chatrepair2024}. RepairAgent provides a tool-using LLM workflow~\cite{repairagent2024}, while SWE-bench supplies repository-level tasks derived from GitHub issues~\cite{swebench2024}. These studies motivate iterative generation and reproducible task descriptions, but differ from the compact migration fixtures used here.
+
+RepoGraph provides repository-level graph context for software-engineering agents~\cite{repograph2025}. SpecRover investigates intent extraction and specification inference during repair~\cite{specrover2024}. APIShield applies related ideas to relationships between a changed remote operation and client behavior. Static edges and inferred interpretations remain distinguishable, because a correct source relationship does not establish that its inferred business meaning is correct.
+
+\subsection{Invariants and service testing}
+Daikon demonstrates inference of likely invariants from execution observations~\cite{daikon2007}. Such invariants are hypotheses whose usefulness depends on their supporting observations. In APIShield, inferred intent supplies candidate checks whose assertions still need independent evaluation.
+
+RESTler generates stateful API tests from service descriptions and execution feedback~\cite{restler2019}. RestSpecIt uses LLM-assisted request mutations for REST documentation and testing~\cite{restspecit2025}. These approaches primarily exercise service behavior. APIShield's repair target is the consuming client's source. Service testing could strengthen migration validation, but its results cannot substitute for the client-side hidden-oracle endpoint.
+
+\ifAccess
+\subsection{Position of the present comparison}
+Dependency migration can require coordinated edits beyond one call. Fruntke and Krinke study repair of dependency-breaking changes~\cite{dependency2025}, illustrating that broader maintenance setting. We isolate request-builder changes so that exact obligations can be stated and identical tasks compared across treatments. This improves interpretability while restricting external validity.
+
+Public tests participate in candidate selection. Repeated optimization can exploit their omissions, which motivates a held-out evaluator~\cite{plausibility2015}. Generated checks occupy a third position: they are intentionally visible and can improve selection, but cannot also serve as the independent endpoint used to claim correctness. This separation is central to the experimental design.
+
+Differences in models, tasks, context and budgets prevent a numerical ranking against published success rates. The quantitative comparisons use treatments evaluated on the same task identifiers.
+\fi

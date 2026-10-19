@@ -1,0 +1,29 @@
+--- a/client.py
++++ b/client.py
+@@ -1,14 +1,19 @@
+-# TASK-PAY-012: Change webhook header from Stripe-Signature to X-Nexus-Signature
++# Candidate (B5) for TASK-PAY-012 (webhook_signature_header)
+ def build_request(data):
+     return {
+-        'path': '/v1/payment/webhook_signature_header/task-pay-012',
++        'path': '/v2/payment/webhook_signature_header/task-pay-012',
+         'body': {
+-            'amount_cents': data['amount_cents'],
+-            'source': data['source'],
+-            'destination': data['destination'],
+-            'legacy_token': data['extra_token']
++            'signed_webhook_event': {
++                'amount_subunits': int(data['amount_cents']),
++                'currency': data['currency'],
++                'source_route': data['source'],
++                'destination_route': data['destination'],
++                'token_ref': data['extra_token']
++            }
+         },
+-        'headers': {}
++        'headers': {
++            'X-Nexus-Signature': data['idempotency_key']
++        }
+     }
+ 
+ def authorize_payment(data):

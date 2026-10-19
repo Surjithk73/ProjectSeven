@@ -1,0 +1,738 @@
+[
+  {
+    "call_index": 1,
+    "stage": "semantic_clustering",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "a7277b7c6f494efdf2f32fd666e92675b65ce10a0def5c213c52f754ab3222c9",
+    "raw_prompt": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2541,
+    "cached_tokens": 0,
+    "output_tokens": 263,
+    "reasoning_tokens": 248,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:39:28 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}",
+                "thought": null,
+                "thought_signature": "7f9f7897de000aa1b994952dd0f01f4b054e9035f90da530be859ba194d3ca8f",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T12:39:28.354435Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_95abf5ae28e39eb0bda9b8",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 263,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 263
+          }
+        ],
+        "prompt_token_count": 2541,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2541
+          }
+        ],
+        "thoughts_token_count": 248,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3052,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Return JSON semantic groups supported by this context. No tools.\n{\"allowed_edit_paths\": [\"client.py\"], \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:39:28 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}",
+                "thoughtSignature": "7f9f7897de000aa1b994952dd0f01f4b054e9035f90da530be859ba194d3ca8f"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T12:39:28.354435Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_95abf5ae28e39eb0bda9b8",
+      "usageMetadata": {
+        "candidatesTokenCount": 263,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 263
+          }
+        ],
+        "promptTokenCount": 2541,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2541
+          }
+        ],
+        "thoughtsTokenCount": 248,
+        "totalTokenCount": 3052,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 33.8381,
+    "wall_seconds": 33.8381,
+    "timestamp_utc": "2026-10-15T12:39:28.354435+00:00"
+  },
+  {
+    "call_index": 2,
+    "stage": "repair",
+    "attempt": 1,
+    "retry_index": 0,
+    "prompt_sha256": "7f656300873f892be21b3f86fa29b864aba97f68b32d365bb76fa1005564d586",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/account_id_uuid_type/task-bank-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('uuid_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\"}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2973,
+    "cached_tokens": 0,
+    "output_tokens": 221,
+    "reasoning_tokens": 360,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:40:02 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-BANK-011\\ndef build_request(data):\\n    return {'path': '/v1/banking/account_id_uuid_type/task-bank-011', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "b47f9efebe1e904734f6be8ec85998f2be64f23b5f81bbf6ff78a27373b1cfe4",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T12:40:02.192535Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_8adc1eca27db17aa43f677",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 221,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 221
+          }
+        ],
+        "prompt_token_count": 2973,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2973
+          }
+        ],
+        "thoughts_token_count": 360,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3554,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-BANK-011\\ndef build_request(data):\\n    return {'path': '/v1/banking/account_id_uuid_type/task-bank-011', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 1, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/account_id_uuid_type/task-bank-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('uuid_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\"}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:40:02 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-BANK-011\\ndef build_request(data):\\n    return {'path': '/v1/banking/account_id_uuid_type/task-bank-011', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "b47f9efebe1e904734f6be8ec85998f2be64f23b5f81bbf6ff78a27373b1cfe4"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T12:40:02.192535Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_8adc1eca27db17aa43f677",
+      "usageMetadata": {
+        "candidatesTokenCount": 221,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 221
+          }
+        ],
+        "promptTokenCount": 2973,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2973
+          }
+        ],
+        "thoughtsTokenCount": 360,
+        "totalTokenCount": 3554,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.851,
+    "wall_seconds": 41.851,
+    "timestamp_utc": "2026-10-15T12:40:02.192535+00:00"
+  },
+  {
+    "call_index": 3,
+    "stage": "repair",
+    "attempt": 2,
+    "retry_index": 0,
+    "prompt_sha256": "5e499c8e26b6895edc8996e181b0fc96b9685f22dfeb5c00b623c54b009b9bd4",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/account_id_uuid_type/task-bank-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('uuid_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2907,
+    "cached_tokens": 0,
+    "output_tokens": 282,
+    "reasoning_tokens": 340,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:40:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-BANK-011\\ndef build_request(data):\\n    return {'path': '/v1/banking/account_id_uuid_type/task-bank-011', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "897a47fc34d33232be2aedaa522b4f5a112f8b7fa6a19fb8c667f5f105dd8029",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T12:40:44.043535Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_2cc7644f21156786aaffc5",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 282,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 282
+          }
+        ],
+        "prompt_token_count": 2907,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2907
+          }
+        ],
+        "thoughts_token_count": 340,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3529,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-BANK-011\\ndef build_request(data):\\n    return {'path': '/v1/banking/account_id_uuid_type/task-bank-011', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 2, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/account_id_uuid_type/task-bank-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('uuid_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:40:44 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Attempt 1 candidate (B4) for TASK-BANK-011\\ndef build_request(data):\\n    return {'path': '/v1/banking/account_id_uuid_type/task-bank-011', 'body': {'uuid_transfer': data['amount_cents']}, 'headers': {}}\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "897a47fc34d33232be2aedaa522b4f5a112f8b7fa6a19fb8c667f5f105dd8029"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T12:40:44.043535Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_2cc7644f21156786aaffc5",
+      "usageMetadata": {
+        "candidatesTokenCount": 282,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 282
+          }
+        ],
+        "promptTokenCount": 2907,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2907
+          }
+        ],
+        "thoughtsTokenCount": 340,
+        "totalTokenCount": 3529,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 41.0881,
+    "wall_seconds": 41.0881,
+    "timestamp_utc": "2026-10-15T12:40:44.043535+00:00"
+  },
+  {
+    "call_index": 4,
+    "stage": "repair",
+    "attempt": 3,
+    "retry_index": 0,
+    "prompt_sha256": "2f1bdaab67db87725fd12ed0c3245790cb522c5c478a1f75e415ccc329ed7ce7",
+    "raw_prompt": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 3, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/account_id_uuid_type/task-bank-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('uuid_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}",
+    "generation_parameters": {
+      "temperature": 0.1,
+      "top_p": 0.95,
+      "seed": 42,
+      "max_output_tokens": 4096
+    },
+    "transport": "sdk_standard",
+    "requested_model": "gemini-3.8-flash",
+    "resolved_model_version": "gemini-3.8-flash",
+    "http_status": 200,
+    "prompt_tokens": 2722,
+    "cached_tokens": 0,
+    "output_tokens": 361,
+    "reasoning_tokens": 120,
+    "response": {
+      "sdk_http_response": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:41:25 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        },
+        "body": null
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "media_resolution": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "file_data": null,
+                "function_call": null,
+                "function_response": null,
+                "inline_data": null,
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Candidate (B4) for TASK-BANK-011 (account_id_uuid_type)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'uuid_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thought": null,
+                "thought_signature": "1712c56a2900e26e9908661c45501f1082a2f3f8c79ccb21039eb55cdae1d1e1",
+                "video_metadata": null,
+                "tool_call": null,
+                "tool_response": null,
+                "part_metadata": null,
+                "audio_transcription": null,
+                "media_processing": null
+              }
+            ],
+            "role": "model"
+          },
+          "citation_metadata": null,
+          "finish_message": null,
+          "token_count": null,
+          "finish_reason": "STOP",
+          "grounding_metadata": null,
+          "avg_logprobs": null,
+          "index": null,
+          "logprobs_result": null,
+          "safety_ratings": null,
+          "url_context_metadata": null
+        }
+      ],
+      "create_time": "2026-10-15T12:41:25.131635Z",
+      "model_version": "gemini-3.8-flash",
+      "prompt_feedback": null,
+      "response_id": "resp_46642b4c79e8089c069731",
+      "usage_metadata": {
+        "cache_tokens_details": null,
+        "cached_content_token_count": null,
+        "candidates_token_count": 361,
+        "candidates_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 361
+          }
+        ],
+        "prompt_token_count": 2722,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2722
+          }
+        ],
+        "thoughts_token_count": 120,
+        "tool_use_prompt_token_count": null,
+        "tool_use_prompt_tokens_details": null,
+        "total_token_count": 3203,
+        "traffic_type": "ON_DEMAND"
+      },
+      "model_status": null,
+      "automatic_function_calling_history": null,
+      "parsed": null
+    },
+    "response_text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Candidate (B4) for TASK-BANK-011 (account_id_uuid_type)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'uuid_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+    "request_envelope": {
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "{\"allowed_edit_paths\": [\"client.py\"], \"attempt\": 3, \"configuration\": \"B4\", \"new_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"2.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v2/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Updated v2 contract for TASK-BANK-011: Migrate integer account_id to UUID format with validation\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"uuid_transfer\": {\"type\": \"object\"}}, \"required\": [\"uuid_transfer\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"old_contract\": {\"info\": {\"description\": \"Migrate integer account_id to UUID format with validation\", \"title\": \"TASK-BANK-011\", \"version\": \"1.0.0\"}, \"openapi\": \"3.0.3\", \"paths\": {\"/v1/banking/account_id_uuid_type/task-bank-011\": {\"post\": {\"description\": \"Legacy v1 contract for TASK-BANK-011 (account_id_uuid_type).\", \"operationId\": \"build_request\", \"requestBody\": {\"content\": {\"application/json\": {\"schema\": {\"properties\": {\"amount_cents\": {\"type\": \"string\"}, \"destination\": {\"type\": \"string\"}, \"source\": {\"type\": \"string\"}}, \"required\": [\"amount_cents\", \"source\", \"destination\"], \"type\": \"object\"}}}, \"required\": true}, \"responses\": {\"200\": {\"description\": \"OK\"}}}}}}, \"public_test_source\": \"def evaluate(inputs, outputs):\\n    return {\\n        'endpoint': all(o.get('path') == '/v2/banking/account_id_uuid_type/task-bank-011' for o in outputs),\\n        'payload_shape': all(isinstance(o.get('body', {}).get('uuid_transfer'), dict) for o in outputs)\\n    }\\n\", \"semantic_groups\": {\"breaking_change_type\": \"account_id_uuid_type\", \"coupled_ast_nodes\": [\"client.py:build_request\"], \"domain_cluster\": \"Banking\", \"isolated_distractors\": [\"client.py:get_health_status\"], \"task_id\": \"TASK-BANK-011\"}, \"source\": \"# TASK-BANK-011: Migrate integer account_id to UUID format with validation\\ndef build_request(data):\\n    return {\\n        'path': '/v1/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'amount_cents': data['amount_cents'],\\n            'source': data['source'],\\n            'destination': data['destination'],\\n            'legacy_token': data['extra_token']\\n        },\\n        'headers': {}\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\", \"structural_graph\": {\"distractors\": [\"get_health_status\"], \"functions\": [\"build_request\", \"get_health_status\"]}, \"task_id\": \"TASK-BANK-011\", \"visible_feedback\": {\"generated_checks_pass\": true, \"public_checks\": {\"endpoint\": false, \"payload_shape\": false}}}"
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "temperature": 0.1,
+        "topP": 0.95,
+        "seed": 42,
+        "maxOutputTokens": 4096,
+        "responseMimeType": "application/json",
+        "thinkingConfig": {
+          "thinkingLevel": "LOW"
+        }
+      }
+    },
+    "response_envelope": {
+      "sdkHttpResponse": {
+        "headers": {
+          "content-type": "application/json; charset=UTF-8",
+          "vary": "Origin, X-Origin, Referer",
+          "content-encoding": "gzip",
+          "date": "Thu, 15 Oct 2026 12:41:25 GMT",
+          "server": "scaffolding on HTTPServer2",
+          "x-xss-protection": "0",
+          "x-frame-options": "SAMEORIGIN",
+          "x-content-type-options": "nosniff",
+          "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+          "transfer-encoding": "chunked"
+        }
+      },
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "{\"abstain_reason\": null, \"predicted_locations\": [\"client.py:build_request\"], \"source\": \"# Candidate (B4) for TASK-BANK-011 (account_id_uuid_type)\\ndef build_request(data):\\n    return {\\n        'path': '/v2/banking/account_id_uuid_type/task-bank-011',\\n        'body': {\\n            'uuid_transfer': {\\n                'amount_subunits': int(data['amount_cents']),\\n                'currency': data['currency'],\\n                'source_route': data['source'],\\n                'destination_route': data['destination'],\\n                'token_ref': data['extra_token']\\n            }\\n        },\\n        'headers': {\\n            'Idempotency-Key': data['idempotency_key']\\n        }\\n    }\\n\\ndef get_health_status():\\n    return {'path': '/health', 'status': 'ok'}\\n\"}",
+                "thoughtSignature": "1712c56a2900e26e9908661c45501f1082a2f3f8c79ccb21039eb55cdae1d1e1"
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "createTime": "2026-10-15T12:41:25.131635Z",
+      "modelVersion": "gemini-3.8-flash",
+      "responseId": "resp_46642b4c79e8089c069731",
+      "usageMetadata": {
+        "candidatesTokenCount": 361,
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 361
+          }
+        ],
+        "promptTokenCount": 2722,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 2722
+          }
+        ],
+        "thoughtsTokenCount": 120,
+        "totalTokenCount": 3203,
+        "trafficType": "ON_DEMAND"
+      }
+    },
+    "elapsed_seconds": 35.4253,
+    "wall_seconds": 35.4253,
+    "timestamp_utc": "2026-10-15T12:41:25.131635+00:00"
+  }
+]

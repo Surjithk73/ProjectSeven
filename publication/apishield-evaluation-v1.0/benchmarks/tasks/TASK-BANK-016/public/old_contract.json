@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-016",
+    "version": "1.0.0",
+    "description": "Wrap transfer payload in standard pacs.008 document envelope"
+  },
+  "paths": {
+    "/v1/banking/iso20022_pacs008_wrap/task-bank-016": {
+      "post": {
+        "operationId": "build_request",
+        "description": "Legacy v1 contract for TASK-BANK-016 (iso20022_pacs008_wrap).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

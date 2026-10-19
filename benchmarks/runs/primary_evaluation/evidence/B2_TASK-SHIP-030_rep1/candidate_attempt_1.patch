@@ -1,0 +1,20 @@
+--- a/client.py
++++ b/client.py
+@@ -1,15 +1,6 @@
+-# TASK-SHIP-030: Migrate /v1/tracking/shipments/{id} to /v2/shipments/{id}/milestones
++# Attempt 1 candidate (B2) for TASK-SHIP-030
+ def build_request(data):
+-    return {
+-        'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030',
+-        'body': {
+-            'parcel_id': data['parcel_id'],
+-            'weight_grams': data['weight_grams'],
+-            'address_line_1': data['street_address'],
+-            'carrier': data['carrier_code']
+-        },
+-        'headers': {}
+-    }
++    return {'path': '/v1/logistics/tracking_endpoint_path_migration/task-ship-030', 'body': {'shipment_milestone_envelope': data['parcel_id']}, 'headers': {}}
+ 
+ def book_courier(data):
+     return build_request(data)

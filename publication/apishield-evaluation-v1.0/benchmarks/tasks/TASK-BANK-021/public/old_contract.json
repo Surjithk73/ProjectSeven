@@ -1,0 +1,47 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TASK-BANK-021",
+    "version": "1.0.0",
+    "description": "Move idempotency_key from request body to X-Idempotency-Key HTTP header"
+  },
+  "paths": {
+    "/v1/banking/idempotency_header_enforcement/task-bank-021": {
+      "post": {
+        "operationId": "build_request",
+        "description": "Legacy v1 contract for TASK-BANK-021 (idempotency_header_enforcement).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "amount_cents",
+                  "source",
+                  "destination"
+                ],
+                "properties": {
+                  "amount_cents": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "destination": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

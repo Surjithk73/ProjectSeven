@@ -1,0 +1,9 @@
+{
+  "origin": "evaluated_model_candidate",
+  "source": "# Candidate (B5) for TASK-BANK-024 (beneficiary_name_structure)\ndef build_request(data):\n    return {\n        'path': '/v2/banking/beneficiary_name_structure/task-bank-024',\n        'body': {\n            'beneficiary_transfer': {\n                'amount_subunits': int(data['amount_cents']),\n                'currency': data['currency'],\n                'source_route': data['source'],\n                'destination_route': data['destination'],\n                'token_ref': data['extra_token']\n            }\n        },\n        'headers': {\n            'Idempotency-Key': data['idempotency_key']\n        }\n    }\n\ndef dispatch_settlement(data):\n    return build_request(data)\n\ndef get_health_status():\n    return {'path': '/health', 'status': 'ok'}\n",
+  "abstain_reason": null,
+  "checks_source": "# Inferred invariant check for TASK-BANK-024 (beneficiary_name_structure)\ndef check(inputs, outputs):\n    for d, o in zip(inputs, outputs):\n        if o.get('path') != '/v2/banking/beneficiary_name_structure/task-bank-024':\n            return False\n        blk = o.get('body', {}).get('beneficiary_transfer')\n        if not isinstance(blk, dict) or type(blk.get('amount_subunits')) is not int:\n            return False\n        if o.get('headers', {}).get('Idempotency-Key') != d['idempotency_key']:\n            return False\n    return True\n",
+  "predicted_locations": [
+    "client.py:dispatch_settlement"
+  ]
+}

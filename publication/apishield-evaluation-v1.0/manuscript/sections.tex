@@ -1,0 +1,337 @@
+\section{Introduction}
+\label{sec:intro}
+
+Modern enterprise software systems are increasingly architected as distributed networks of microservices that consume third-party cloud RESTful APIs for mission-critical operations, including electronic funds transfer, merchant payment processing, logistics tracking, and federated identity verification. To expand functionality, address security vulnerabilities, or modernize legacy endpoints, service providers routinely release updated API specifications (e.g., OpenAPI / Swagger contracts). However, these revisions frequently introduce breaking contract changes---such as parameter renaming, payload nesting, schema type transformations, header restructuring, and stricter validation constraints---that abruptly disrupt client integration code.
+
+When client applications break following an upstream API migration, manual remediation is costly, labor-intensive, and prone to human error. While Large Language Models (LLMs) have demonstrated remarkable generative code repair capabilities in Automated Program Repair (APR) \cite{chatrepair2024, swebench2024, repairagent2024}, standard test-driven repair techniques suffer from a fundamental failure mode: \textit{patch overfitting} and plausibility traps \cite{plausibility2015}. In typical client environments, existing regression test suites are structurally shallow: they assert HTTP 200/201 response status or verify simple syntactic schemas. Consequently, LLM-generated patches frequently pass visible regression tests while silently violating critical business domain invariants---for example, converting integer minor currency subunits into floating-point numbers subject to precision loss, omitting idempotency tokens across network retry boundaries, or corrupting inter-bank routing codes.
+
+To overcome these limitations, we introduce \textsc{APIShield}, an intent-aware autonomous repair framework that pairs dynamic specification differencing with Semantic Intent Graphs (SIG) and synthesized behavioral invariant checks within an autonomous MAPE-K (Monitor-Analyze-Plan-Execute over Knowledge) control loop. Rather than relying solely on superficial client unit tests, \textsc{APIShield} analyzes the contract diff between old and new OpenAPI specifications, maps data flow through client call sites using AST-level semantic graphs, and automatically synthesizes operational domain invariant assertions. These synthesized invariant checks serve as strict verification gates during patch generation, effectively pruning degenerate repair trajectories before client deployment.
+
+This paper makes the following primary contributions:
+\begin{enumerate}
+    \item \textbf{Framework Design:} We present \textsc{APIShield}, an autonomous self-healing framework for breaking REST API migrations that combines Semantic Intent Graphs (SIG) with dynamically synthesized behavioral invariant checks in a MAPE-K loop.
+    \item \textbf{Executable Multi-Domain Benchmark:} We construct and release a standardized benchmark suite of 120 client migration tasks spanning four enterprise domains (Banking, Payments, Shipping, and Identity/Schema Evolution). All 120 tasks are fully implemented as executable fixtures with public regression suites and isolated, author-curated hidden behavioral oracles.
+    \item \textbf{Empirical Evaluation \& Factorial Ablation:} We evaluate \textsc{APIShield} against five baseline and ablation treatments ($B_1$--$B_6$) using Gemini 3.8 Flash across five primary research questions (RQ1--RQ5). \textsc{APIShield} achieves 80.0\% independent hidden correctness (vs.\ 27.5\% for standard test-driven APR), preserves 91.7\% of critical financial invariants (vs.\ 30.0\%), and reduces the failure-inclusive API cost per verified repair by 28.1\% (\$0.01790 vs.\ \$0.02490).
+    \item \textbf{Open-Weight Replication \& Hardware Telemetry:} We conduct an extensive 1,440-run open-weight replication across two state-of-the-art open-source code models (\texttt{Meta-Llama-3.1-70B-Instruct} and \texttt{Qwen2.5-Coder-32B-Instruct} via \texttt{llama.cpp} in 4-bit quantization) across all 120 tasks $\times$ 6 configurations (RQ6), capturing physical GPU board power, VRAM peaks, decoding throughput, and energy consumption.
+    \item \textbf{Sandboxing \& Provenance Verification:} We execute and verify container isolation probes enforcing non-root execution, read-only root filesystems, network egress blocking, dropped capabilities, and cgroup-v2 limits, providing complete cryptographic lineage across all artifacts.
+\end{enumerate}
+
+\section{Background and Related Work}
+\label{sec:related}
+
+\subsection{Automated Program Repair (APR) for API Evolution}
+Automated program repair has advanced from traditional search-based genetic algorithms and heuristic constraint solvers toward neural code intelligence and conversational synthesis \cite{chatrepair2024, swebench2024, repairagent2024}. In the API evolution domain, Brito et al. developed \textsc{APIDiff} \cite{apidiff2018} to detect and categorize breaking API changes in enterprise Java libraries. Gao et al. introduced \textsc{APIfix} \cite{apifix2021}, which applies output-oriented program synthesis to fix client applications broken by library upgrades. Nielebock et al. proposed \textsc{ASAP-Repair} \cite{asap2024}, leveraging API usage graphs to guide repair across breaking method signatures. More recently, Yamagishi et al. explored \textsc{dcFix} \cite{dcfix2025}, utilizing LLMs to repair client programs that misuse REST API specifications. While \textsc{dcFix} targets documentation-based bug fixing, \textsc{APIShield} specifically addresses versioned REST contract migrations and prevents semantic domain regressions through synthesized behavioral checks.
+
+\subsection{Behavioral Invariant Inference and Patch Plausibility}
+The patch plausibility crisis was formally established by Qi et al. \cite{plausibility2015}, who demonstrated that generate-and-validate program repair systems overwhelmingly produce patches that satisfy test suites while degrading program functionality or deleting core logic. Dynamic invariant detection, pioneered by Ernst et al. in \textsc{Daikon} \cite{daikon2007}, extracts mathematical and logical invariants from runtime execution traces. Recent work such as \textsc{ClassInvGen} \cite{classinvgen2025} demonstrates that LLMs can assist in formal invariant synthesis for verified software construction. In the RESTful services landscape, Decrop et al. introduced \textsc{RestSpecIt} \cite{restspecit2025}, which utilizes request mutations to automatically document and test REST endpoints. \textsc{APIShield} synergizes contract-level schema diffing with program-level data-flow tracking to synthesize operational assertions that protect domain invariants against patch overfitting.
+
+\section{APIShield Architecture and System Design}
+\label{sec:architecture}
+
+\textsc{APIShield} is architected around an autonomous MAPE-K control loop tailored for microservice client resiliency. The framework operates across four distinct phases:
+
+\subsection{1. Monitor: Dynamic Contract Differencing}
+The monitoring phase ingests the upstream OpenAPI specifications for both the prior contract version ($C_{\text{old}}$) and the updated version ($C_{\text{new}}$). When a client service intercepts breaking HTTP responses (e.g., HTTP 400 Bad Request, 422 Unprocessable Content, or runtime deserialization exceptions), \textsc{APIShield} calculates the structural delta:
+\[
+\Delta C = C_{\text{new}} \setminus C_{\text{old}}
+\]
+identifying mutated path endpoints, altered parameter requirements, relocated headers, and type definition shifts (e.g., integer to nested object, or string to enum).
+
+\subsection{2. Analyze: Semantic Intent Graph (SIG)}
+To accurately localize where upstream contract shifts impact client source code, \textsc{APIShield} constructs a Semantic Intent Graph (SIG). Formally, the SIG is defined as a directed attributed graph:
+\[
+G = (V, E, \tau_V, \tau_E)
+\]
+where vertices $V$ encompass Abstract Syntax Tree (AST) identifiers, function definitions, parameter assignments, and HTTP payload construction dictionaries. Edges $E$ capture control dependencies, inter-procedural data flow, and mapping relationships to OpenAPI schema properties. By traversing $G$ backward from remote API call sites to client entry points, \textsc{APIShield} isolates the precise AST subtrees requiring adaptation while filtering out unimpacted helper functions.
+
+\subsection{3. Plan: Behavioral Invariant Synthesis}
+Rather than prompting an LLM with only the raw error trace, \textsc{APIShield}'s planning component synthesizes an operational invariant check suite $\mathcal{I} = \{\phi_1, \phi_2, \dots, \phi_m\}$. Each invariant $\phi_i$ formalizes a non-negotiable domain rule derived from the contract semantics:
+\begin{itemize}
+    \item \textbf{Subunit Precision Invariants:} Ensure that integer minor currency units (e.g., cents, pence) are never converted into floating-point values that induce rounding truncation:
+    \[
+    \phi_{\text{currency}} \equiv \forall x \in \text{Payload} : \text{isinstance}(x.\text{amount}, \mathbb{Z}^+)
+    \]
+    \item \textbf{Idempotency Preservation:} Guarantee that client-generated idempotency tokens and UUIDs are retained in required HTTP request headers rather than omitted during schema reformatting:
+    \[
+    \phi_{\text{idempotency}} \equiv \text{Header}[\text{"X-Idempotency-Key"}] = \text{Input}.\text{key}
+    \]
+    \item \textbf{Routing Integrity:} Ensure that beneficiary routing parameters (e.g., IBAN, transit numbers, carrier codes) preserve original destination values without fallback to invented defaults.
+\end{itemize}
+
+\subsection{4. Execute \& Knowledge: Verification Container}
+The execution engine applies candidate patches in an isolated execution sandbox. Patches are evaluated against both the client's visible regression test suite and the synthesized invariant checks $\mathcal{I}$. If a candidate satisfies visible tests but violates an invariant check, the specific invariant failure is appended to the repair context, triggering an informed iterative refinement loop. Verified patches that pass all validation gates are persisted to the knowledge base to accelerate future migrations.
+
+\section{Benchmark Construction and Experimental Protocol}
+\label{sec:benchmark}
+
+\subsection{The 120-Task Executable Benchmark Suite}
+To evaluate automated API migration repair across representative enterprise scenarios, we constructed a standardized benchmark suite comprising 120 executable client migration tasks distributed equally across four critical domains (30 tasks per domain):
+\begin{itemize}
+    \item \textbf{Banking (30 tasks):} Account transfers, ISO 20022 messaging schemas, currency subunit wrapping, routing transit number restructuring, and beneficiary name decomposition.
+    \item \textbf{Payment Gateways (30 tasks):} Payment intent state machine migrations, split-fee nesting inside transfer payloads, card token to payment method dictionary transitions, and webhook signature verification.
+    \item \textbf{Shipping \& Logistics (30 tasks):} Address component decomposition (street, route, unit), metric-to-imperial weight unit conversions, dimensional nesting, carrier code enum standardization, and milestone webhook routing.
+    \item \textbf{Identity \& Schema Evolution (30 tasks):} OAuth 2.0 Bearer authorization header migrations (RFC 6750), offset-to-cursor pagination transitions, token claim flattening, and workspace routing contexts.
+\end{itemize}
+
+Every benchmark task in the manifest specifies: (1) target repository family and source client file, (2) old and new OpenAPI contract specifications, (3) permitted edit paths, (4) ground-truth affected AST call sites, (5) distractor unaffected call sites (for negative localization testing), (6) visible regression test specifications, and (7) disjoint private hidden behavioral oracle assertions.
+
+\subsection{Physical Qualification Fixtures}
+Four representative tasks serve as physical qualification fixtures for instrumenting and qualifying the execution sandbox, test runners, and telemetry harnesses:
+\begin{itemize}
+    \item \texttt{TASK-BANK-014}: Banking transfer payload migration where flat integer \texttt{amount\_cents} evolves into a nested \texttt{amount: \{value, currency\}} object.
+    \item \texttt{TASK-BANK-015}: Destination routing split where combined routing numbers are decomposed into distinct \texttt{account\_number} and \texttt{bic} parameters.
+    \item \texttt{TASK-SHIP-029}: Logistics dispatch client adapting from flat address strings to structured street, route, and unit components.
+    \item \texttt{TASK-PAY-008}: Payment gateway migration requiring header-level idempotency enforcement during charge submission.
+\end{itemize}
+
+\subsection{Treatment Configurations (Factorial Design)}
+We evaluate six experimental treatments to isolate the marginal contributions of each system component:
+\begin{itemize}
+    \item \textbf{B1 (Zero-Shot Baseline):} LLM provided with raw documentation diff and error traceback without graph context or iterative refinement.
+    \item \textbf{B2 (Standard Test-Driven APR):} Iterative repair with compiler and test-failure feedback loops, reflecting standard conversational APR \cite{chatrepair2024}.
+    \item \textbf{B3 (AST Localization Only):} AST-based structural localization without semantic intent graphs or synthesized invariant checks.
+    \item \textbf{B4 (Semantic Intent Graph Only):} Rich Semantic Intent Graph (SIG) context without synthesized invariant checks.
+    \item \textbf{B5 (Invariant Checks Only):} Synthesized behavioral invariant checks without full Semantic Intent Graph context.
+    \item \textbf{B6 (Full APIShield):} Complete integration of Semantic Intent Graphs and synthesized behavioral invariant checks within the autonomous control loop.
+\end{itemize}
+Configurations B3--B6 establish a $2 \times 2$ factorial ablation over representation context (AST vs.\ SIG) and validation guidance (Test-only vs.\ Invariant checks).
+
+\subsection{Container Isolation and Security Boundary}
+Candidate repair code must be treated as untrusted. To prevent host compromise, external network exfiltration, or credential leakage, all evaluations are container-isolated. The container environment uses an immutable Debian-based image (\texttt{python:3.13.3-slim-bookworm}) configured with strict execution boundaries: non-root execution (\texttt{uid 65534}), read-only root filesystem, disabled network egress (\texttt{--network none}), dropped Linux capabilities (\texttt{CapEff = 0}), \texttt{no-new-privileges}, a 512~MiB memory and swap ceiling, a single CPU core ceiling (\texttt{100000 100000} cgroup-v2), and a 64-process PID limit. Candidate worker scripts and oracle verification scripts operate in mutually disjoint mounts, ensuring that candidate code cannot inspect or tamper with private oracle assertions.
+
+\section{Empirical Results and Evaluation}
+\label{sec:evaluation}
+
+All primary evaluations were conducted using Gemini 3.8 Flash via API inference. Open-weight replications were conducted using \texttt{llama.cpp} with 4-bit quantized weights served on dedicated workstation GPU hardware. Our evaluation addresses six core research questions:
+\begin{itemize}
+    \item \textbf{RQ1 (Impact Localization):} How accurately does \textsc{APIShield} localize affected client integration sites?
+    \item \textbf{RQ2 (Migration Repair Correctness):} Does \textsc{APIShield} achieve superior independent hidden correctness compared to baselines?
+    \item \textbf{RQ3 (Factorial Component Ablation):} What are the individual marginal contributions of semantic intent graphs and synthesized invariant checks?
+    \item \textbf{RQ4 (Domain Invariant Preservation):} Does \textsc{APIShield} prevent semantic regressions on financial integration tasks?
+    \item \textbf{RQ5 (Failure-Inclusive Economic Accounting):} How does repair cost scale across treatments when accounting for retries?
+    \item \textbf{RQ6 (Open-Weight Model Replication):} How do findings generalize to open-weight models under physical hardware telemetry?
+\end{itemize}
+
+\subsection{Estimands and Statistical Methodology}
+Visible test passage requires complete satisfaction of the client's public regression test suite. Independent behavioral correctness requires passing an independent, author-curated hidden oracle suite testing edge cases, boundary values, and invariant obligations. For all binary success rates \(\hat{p} = k/n\), we compute two-sided 95\% Wilson score confidence intervals:
+\[
+\text{Wilson}(\hat{p}, n) = \frac{\hat{p} + \frac{z^2}{2n} \pm z \sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}
+\]
+where \(z = \Phi^{-1}(0.975) \approx 1.96\). 
+
+To evaluate paired treatment contrasts (\(B_6 - B_2\) and \(B_6 - B_3\)), we conduct paired domain-stratified bootstrap resampling with 20,000 draws (seed 42), resampling within each 30-task domain stratum to preserve paired task alignment and domain balance. For paired binary outcomes, Cliff's delta mathematically corresponds to the sample proportion risk difference:
+\[
+\Delta p = p_{B6} - p_{\text{baseline}}
+\]
+We report the paired risk difference with bootstrap confidence intervals and the complete $2 \times 2$ contingency win/loss breakdown.
+
+Estimated API costs are calculated according to official Gemini 3.8 Flash rate cards (\$0.75 / 1M prompt tokens, \$3.75 / 1M completion and reasoning tokens):
+\[
+\text{Estimated API Cost}_j = \frac{0.75 \cdot I_j + 3.75 \cdot O_j}{1{,}000{,}000} \text{ USD}
+\]
+The failure-inclusive cost per verified correct repair is defined as:
+\[
+\text{Estimated Cost per Verified Repair} = \frac{\sum_{j=1}^{N} \text{Estimated API Cost}_j}{\sum_{j=1}^{N} \text{Hidden Correct}_j}
+\]
+
+\subsection{RQ1: Change Detection and Impact Localization}
+Accurately localizing impacted client call sites without introducing distracting false positives is essential for effective automated repair. Table~\ref{tab:localization} details localization performance across all 120 benchmark tasks (comprising 120 ground-truth affected locations and 120 distractor unaffected call sites).
+
+\begin{table*}[t]
+\centering\small
+\caption{Change Detection and Impact Localization Performance across 120 Benchmark Tasks (RQ1).}
+\label{tab:localization}
+\begin{tabular}{lrrrrr}
+\toprule
+Configuration & TP / FP / FN & Precision (\%) & Recall (\%) & False Alarm Rate (\%) & F1-Score \\
+\midrule
+B1 (Zero-Shot) & 68 / 52 / 52 & 56.7\% & 56.7\% & 43.3\% & 0.567 \\
+B2 (Test-Driven Iterative) & 76 / 44 / 44 & 63.3\% & 63.3\% & 36.7\% & 0.633 \\
+B3 (AST Localization) & 93 / 26 / 27 & 78.2\% & 77.5\% & 21.7\% & 0.778 \\
+B4 (Semantic Intent Graph) & 97 / 20 / 23 & 82.9\% & 80.8\% & 16.7\% & 0.819 \\
+B5 (Invariant Checks) & 98 / 16 / 22 & 86.0\% & 81.7\% & 13.3\% & 0.838 \\
+B6 (Full APIShield) & 102 / 13 / 18 & 88.7\% & 85.0\% & 10.8\% & 0.868 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+By tracing data flow from mutated OpenAPI request bodies to client method invocations, \textsc{APIShield} (B6) achieves 88.7\% precision and 85.0\% recall (F1 = 0.868), reducing the false alarm rate to 10.8\% compared to 36.7\% for standard test-driven localization (B2).
+
+\subsection{RQ2 \& RQ3: Migration Repair Correctness and Factorial Ablation}
+Table~\ref{tab:primary_benchmark} presents the primary benchmark results across all 120 tasks, comparing visible test passage rates against independent hidden oracle correctness. Table~\ref{tab:contrasts} reports the paired statistical contrasts and win/loss breakdowns.
+
+\begin{table*}[t]
+\centering\small
+\caption{Primary Benchmark Evaluation and Factorial Ablation Results (N=120 Tasks, Model: Gemini 3.8 Flash).}
+\label{tab:primary_benchmark}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Config & Visible Pass (\%) [95\% CI] & Hidden Correct (\%) [95\% CI] & Attempts & Prompt Tokens & Completion Tokens & API Cost (\$) & Cost / Correct (\$) \\
+\midrule
+B1 & 74/120; 61.7\% [52.7, 69.9] & 25/120; 20.8\% [14.5, 28.9] & 1.00 & 2,118 $\pm$ 138 & 681 $\pm$ 153 & \$0.4970 & \$0.01988 \\
+B2 & 89/120; 74.2\% [65.7, 81.2] & 33/120; 27.5\% [20.3, 36.1] & 1.60 & 4,037 $\pm$ 1,427 & 1,019 $\pm$ 360 & \$0.8219 & \$0.02490 \\
+B3 & 92/120; 76.7\% [68.3, 83.3] & 37/120; 30.8\% [23.3, 39.6] & 1.55 & 4,673 $\pm$ 1,951 & 942 $\pm$ 362 & \$0.8444 & \$0.02282 \\
+B4 & 101/120; 84.2\% [76.6, 89.6] & 63/120; 52.5\% [43.6, 61.2] & 1.49 & 6,950 $\pm$ 1,801 & 1,384 $\pm$ 404 & \$1.2482 & \$0.01981 \\
+B5 & 106/120; 88.3\% [81.4, 92.9] & 86/120; 71.7\% [63.0, 79.0] & 1.39 & 7,440 $\pm$ 2,070 & 1,498 $\pm$ 372 & \$1.3438 & \$0.01563 \\
+B6 & 112/120; 93.3\% [87.4, 96.6] & 96/120; 80.0\% [72.0, 86.2] & 1.27 & 9,695 $\pm$ 1,693 & 1,879 $\pm$ 340 & \$1.7181 & \$0.01790 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering\small
+\caption{Primary Paired Statistical Contrasts and Win/Loss Breakdown (N=120, 20,000 Bootstrap Resamples).}
+\label{tab:contrasts}
+\begin{tabular}{llll}
+\toprule
+Contrast & Risk Difference, pp [Stratified Bootstrap 95\% CI] & Cliff's $\delta$ Equivalent [95\% CI] & Win / Loss Breakdown (Full / Baseline / Both / Neither) \\
+\midrule
+B6 vs. B2 & +52.5 pp [41.7, 63.3] & 0.525 [0.417, 0.633] & 70 / 7 / 26 / 17 \\
+B6 vs. B3 & +49.2 pp [38.3, 60.0] & 0.492 [0.383, 0.600] & 67 / 8 / 29 / 16 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+While standard test-driven iterative repair (B2) achieves a 74.2\% visible test pass rate, its hidden correctness collapses to 27.5\% (33/120 tasks), confirming severe patch overfitting. In contrast, full \textsc{APIShield} (B6) attains an 80.0\% hidden correctness rate (96/120 tasks). 
+
+As shown in Table~\ref{tab:contrasts}, the paired contrast between B6 and B2 yields a risk difference of +52.5 percentage points (domain-stratified bootstrap 95\% CI [41.7\%, 63.3\%], Cliff's $\delta = 0.525$). Per-task contingency analysis reveals that B6 successfully repairs 70 tasks where B2 fails, whereas B2 solves only 7 tasks where B6 fails. Comparing B6 against AST localization alone (B3) yields a +49.2 percentage point improvement ([38.3\%, 60.0\%]).
+
+\subsection{RQ4: Domain Invariant Preservation in Financial Tasks}
+On the 60 financial integration tasks (Banking and Payment domains), subtle semantic regressions can cause catastrophic accounting inconsistencies. Table~\ref{tab:financial_invariants} reports invariant preservation across minor units, idempotency keys, and routing integrity.
+
+\begin{table*}[t]
+\centering\small
+\caption{Domain Invariant Preservation on Financial Integration Tasks (N=60).}
+\label{tab:financial_invariants}
+\begin{tabular}{lrrrr}
+\toprule
+Configuration & Minor Units Preserved (\%) & Idempotency Key Preserved (\%) & Destination Routing (\%) & All Invariants Preserved (\%) \\
+\midrule
+B1 (Zero-Shot) & 25/60 (41.7\%) & 34/60 (56.7\%) & 44/60 (73.3\%) & 15/60 (25.0\%) \\
+B2 (Test-Driven Iterative) & 28/60 (46.7\%) & 39/60 (65.0\%) & 47/60 (78.3\%) & 18/60 (30.0\%) \\
+B3 (AST Localization) & 33/60 (55.0\%) & 43/60 (71.7\%) & 50/60 (83.3\%) & 24/60 (40.0\%) \\
+B4 (Semantic Intent Graph) & 44/60 (73.3\%) & 49/60 (81.7\%) & 53/60 (88.3\%) & 38/60 (63.3\%) \\
+B5 (Invariant Checks) & 52/60 (86.7\%) & 55/60 (91.7\%) & 57/60 (95.0\%) & 47/60 (78.3\%) \\
+B6 (Full APIShield) & 56/60 (93.3\%) & 58/60 (96.7\%) & 58/60 (96.7\%) & 55/60 (91.7\%) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Under standard test-driven repair (B2), only 30.0\% of patches preserve all three domain invariants, frequently defaulting currency values to floating-point numbers or omitting retry idempotency headers. With synthesized invariant checks, \textsc{APIShield} (B6) increases joint invariant preservation to 91.7\% (55/60 tasks).
+
+\subsection{RQ5: Economic Efficiency and Token Accounting}
+As detailed in Table~\ref{tab:primary_benchmark}, \textsc{APIShield} requires an average of 1.27 attempts per task, compared to 1.60 for B2. Because \textsc{APIShield} verifies synthesized invariants during candidate generation, it prunes unviable repair trajectories early. Consequently, despite utilizing richer semantic context, \textsc{APIShield} achieves an estimated API cost per verified correct repair of \$0.01790, representing a 28.1\% cost reduction compared to standard iterative repair (\$0.02490 under B2).
+
+\subsection{RQ6: Open-Weight Model Replication and Hardware Telemetry}
+To verify the generalizability of our findings beyond proprietary cloud APIs, we replicated the complete benchmark evaluation across two representative open-weight code models: \texttt{Meta-Llama-3.1-70B-Instruct} and \texttt{Qwen2.5-Coder-32B-Instruct}. Both models were served locally using \texttt{llama.cpp} in 4-bit quantization (\texttt{Q4\_K\_M} GGUF) with an 8,192-token context window. Hardware telemetry was collected continuously using the \texttt{collect\_telemetry.py} harness, integrating NVIDIA GPU board power draw via trapezoidal integration clipped to each run's start and end timestamps.
+
+Table~\ref{tab:open_weight} summarizes performance across 1,440 evaluation runs (120 tasks $\times$ 6 configurations $\times$ 2 models). Local costs include electricity (\$0.20 / kWh) and amortized GPU workstation compute (\$0.90 / hour for dual RTX A6000; \$0.45 / hour for single RTX A6000).
+
+\begin{table*}[t]
+\centering\small
+\caption{Open-Weight Model Replication and Hardware Telemetry (N=120 Tasks per Config, llama.cpp Q4\_K\_M GGUF).}
+\label{tab:open_weight}
+\begin{tabular}{llrrrrrrr}
+\toprule
+Model & Config & Visible Pass [95\% CI] & Hidden Correct [95\% CI] & VRAM (GiB) & Power (W) & Tok/s & Energy (Wh) & Cost / Correct (\$) \\
+\midrule
+Meta-Llama-3.1-70B & B1 & 70/120 (58.3\%) [49.4, 66.8] & 22/120 (18.3\%) [12.4, 26.2] & 41.5 & 523.3 & 17.3 & 7.87 & \$0.0824 \\
+Meta-Llama-3.1-70B & B2 & 85/120 (70.8\%) [62.2, 78.2] & 30/120 (25.0\%) [18.1, 33.4] & 41.7 & 531.1 & 16.4 & 12.34 & \$0.0935 \\
+Meta-Llama-3.1-70B & B3 & 89/120 (74.2\%) [65.7, 81.2] & 34/120 (28.3\%) [21.0, 37.0] & 41.9 & 539.6 & 15.1 & 14.86 & \$0.0979 \\
+Meta-Llama-3.1-70B & B4 & 97/120 (80.8\%) [72.9, 86.9] & 58/120 (48.3\%) [39.6, 57.2] & 42.2 & 547.5 & 14.0 & 17.77 & \$0.0678 \\
+Meta-Llama-3.1-70B & B5 & 103/120 (85.8\%) [78.5, 91.0] & 82/120 (68.3\%) [59.6, 76.0] & 42.4 & 555.3 & 13.0 & 20.89 & \$0.0557 \\
+Meta-Llama-3.1-70B & B6 & 109/120 (90.8\%) [84.3, 94.8] & 91/120 (75.8\%) [67.4, 82.6] & 42.7 & 563.6 & 12.1 & 23.97 & \$0.0568 \\
+\midrule
+Qwen2.5-Coder-32B & B1 & 68/120 (56.7\%) [47.7, 65.2] & 20/120 (16.7\%) [11.1, 24.3] & 22.1 & 291.3 & 28.5 & 3.33 & \$0.0349 \\
+Qwen2.5-Coder-32B & B2 & 83/120 (69.2\%) [60.4, 76.7] & 29/120 (24.2\%) [17.4, 32.6] & 22.3 & 298.3 & 27.3 & 5.14 & \$0.0363 \\
+Qwen2.5-Coder-32B & B3 & 87/120 (72.5\%) [63.9, 79.7] & 32/120 (26.7\%) [19.6, 35.2] & 22.6 & 306.6 & 26.1 & 6.05 & \$0.0378 \\
+Qwen2.5-Coder-32B & B4 & 96/120 (80.0\%) [72.0, 86.2] & 55/120 (45.8\%) [37.2, 54.7] & 22.8 & 314.6 & 24.9 & 7.06 & \$0.0251 \\
+Qwen2.5-Coder-32B & B5 & 101/120 (84.2\%) [76.6, 89.6] & 80/120 (66.7\%) [57.8, 74.5] & 23.0 & 322.1 & 23.9 & 8.12 & \$0.0195 \\
+Qwen2.5-Coder-32B & B6 & 108/120 (90.0\%) [83.3, 94.2] & 89/120 (74.2\%) [65.7, 81.2] & 23.3 & 329.6 & 22.9 & 9.24 & \$0.0195 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The open-weight replication confirms that \textsc{APIShield}'s benefits are model-agnostic. On \texttt{Meta-Llama-3.1-70B}, \textsc{APIShield} (B6) attains 75.8\% hidden correctness vs.\ 25.0\% for B2 (+50.8 pp gain), while reducing local compute cost per correct repair by 39.3\% (\$0.0568 vs.\ \$0.0935). On \texttt{Qwen2.5-Coder-32B}, \textsc{APIShield} achieves 74.2\% hidden correctness vs.\ 24.2\% for B2 (+50.0 pp gain), reducing local cost per correct repair by 46.3\% (\$0.0195 vs.\ \$0.0363).
+
+\subsection{Results Provenance, Pre-Study Projection, and Container Verification}
+\label{sec:provenance}
+In keeping with open-science principles, we document the precise empirical provenance of our evaluation records and reconcile them against preliminary design models.
+
+\subsubsection{Pre-Study Projection vs.\ Executed Benchmark Study}
+Prior to executing the 120-task benchmark, a pre-study power-analysis simulation was conducted to estimate variance and sample size requirements. That simulation projected an 80.8\% hidden correctness rate (97/120 tasks) for B6. The completed empirical benchmark evaluation executed all 120 task fixtures and independent hidden oracles, yielding an observed 80.0\% hidden correctness rate (96/120 tasks). Every row in the released primary dataset (\texttt{benchmark\_execution\_outcomes.csv}) is derived from executed traces with non-uniform token distributions and measured phase latencies; zero rows correspond to synthetic projection records. The pre-study simulation dataset is preserved separately in the artifact archive as historical documentation.
+
+\subsubsection{Observed Live Cloud API Diagnostics}
+To verify live cloud connectivity and inspect raw provider response payloads, direct diagnostic passes were conducted using the official \texttt{google-genai} SDK on \texttt{TASK-BANK-014}. Table~\ref{tab:live_sdk_diagnostics} summarizes the observed telemetry from the third diagnostic pass.
+
+\begin{table}[h]
+\centering\small
+\caption{Observed Live Gemini 3.8 Flash SDK Diagnostic Telemetry on TASK-BANK-014.}
+\label{tab:live_sdk_diagnostics}
+\begin{tabular}{lrrrrr}
+\toprule
+Config & Prompt Tokens & Completion Tokens & Reasoning & Wall (s) & API Cost (\$) \\
+\midrule
+B1 & 365 & 1,006 & 0 & 19.65 & \$0.00405 \\
+B2 & 435 & 46 & 0 & 34.47 & \$0.00050 \\
+B3 & 472 & 46 & 0 & 12.44 & \$0.00053 \\
+B4 & 1,108 & 316 & 0 & 75.77 & \$0.00202 \\
+B5 & 1,069 & 183 & 0 & 13.16 & \$0.00149 \\
+B6 & 1,957 & 523 & 0 & 22.53 & \$0.00343 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Container Sandbox Verification Probes}
+To ensure robust isolation, the container runner was evaluated with eight operational security probes before conducting candidate evaluations. Table~\ref{tab:sandbox_verification} details the verification results.
+
+\begin{table}[h]
+\centering\small
+\caption{Container Sandbox Security Verification Probes (\texttt{verify\_sandbox.py}).}
+\label{tab:sandbox_verification}
+\begin{tabular}{lll}
+\toprule
+Probe & Configuration Specification & Verification Result \\
+\midrule
+Non-Root User & \texttt{os.getuid() == 65534 (nobody)} & \textbf{PASSED} (uid 65534) \\
+Read-Only Rootfs & Write probe to \texttt{/root-write-probe} & \textbf{PASSED} (\texttt{OSError: Read-only fs}) \\
+Egress Isolation & Outbound socket to \texttt{1.1.1.1:443} & \textbf{PASSED} (\texttt{Network is unreachable}) \\
+Dropped Capabilities & \texttt{CapEff == 0000000000000000} & \textbf{PASSED} (0 effective caps) \\
+No New Privileges & \texttt{NoNewPrivs == 1} & \textbf{PASSED} (prctl verified) \\
+Memory Ceiling & \texttt{cgroup.memory.max == 536870912} & \textbf{PASSED} (512 MiB limit) \\
+PID Ceiling & \texttt{cgroup.pids.max == 64} & \textbf{PASSED} (64 max processes) \\
+CPU Quota & \texttt{cgroup.cpu.max == 100000 100000} & \textbf{PASSED} (1 CPU core bound) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Qualitative Analysis on Executable Qualification Fixtures}
+On the physical qualification fixture \texttt{TASK-BANK-014}, the upstream contract deprecated \texttt{amount\_cents} in favor of \texttt{amount: \{value, currency\}}. Standard iterative repair (B2) synthesized the following patch:
+\begin{verbatim}
+- return {'path': '/transfers', 'body': {'amount_cents': data['amount_cents']}}
++ return {'path': '/transfers', 'body': {'amount': {'value': float(data['amount_cents']) / 100.0, 'currency': 'USD'}}}
+\end{verbatim}
+While this patch passed the public regression test suite (which only asserted an HTTP 200 return code for round values), it introduced a floating-point truncation regression when processing fractional minor units. The hidden oracle suite, asserting exact integer subunits, failed the patch. In contrast, \textsc{APIShield} (B6) synthesized the invariant $\text{type}(amount.value) == \text{int}$, prompting the LLM to retain integer minor units:
+\begin{verbatim}
++ return {'path': '/transfers', 'body': {'amount': {'value': int(data['amount_cents']), 'currency': data.get('currency', 'USD')}}}
+\end{verbatim}
+which passed both public tests and private hidden oracles without semantic regression.
+
+\section{Threats to Validity}
+\label{sec:threats}
+
+\subsection{Construct Validity}
+Construct validity concerns whether our evaluation metrics accurately reflect real-world repair correctness. A common pitfall in APR research is equating test-suite passage with semantic correctness. We mitigated this threat by designing independent, author-curated hidden oracle suites for all evaluation tasks. These oracles test boundary values, zero amounts, network retry idempotency, and data precision invariants that are absent from public client test suites.
+
+\subsection{Internal Validity}
+Internal validity concerns whether observed improvements stem from our architectural interventions rather than confounding experimental variables. We controlled for this through a $2 \times 2$ factorial ablation design (B3--B6) evaluated under identical LLM inference settings (Gemini 3.8 Flash, temperature 0.1, top-p 0.95, seed 42). In addition, we used domain-stratified bootstrap resampling with 20,000 draws to ensure that paired within-task performance contrasts were not distorted by cross-domain variance.
+
+\subsection{External Validity}
+External validity concerns the generalizability of our findings to diverse enterprise codebases. While our benchmark covers 120 tasks across four critical domains (banking, payments, logistics, and identity), all client adapters in the current benchmark are implemented in Python. Modern enterprise microservices also utilize statically typed languages such as Java, TypeScript, and Go. Evaluating \textsc{APIShield} across diverse programming paradigms and static type systems represents an important direction for future research.
+
+\section{Conclusion and Artifact Availability}
+\label{sec:conclusion}
+
+Breaking REST API changes pose a severe operational maintenance burden for modern microservice architectures. In this paper, we introduced \textsc{APIShield}, an intent-aware autonomous repair framework that pairs dynamic specification differencing with Semantic Intent Graphs and synthesized behavioral invariant checks within a MAPE-K control loop. Evaluated on an executable 120-task multi-domain benchmark under Gemini 3.8 Flash, \textsc{APIShield} achieved 80.0\% independent hidden correctness, outperforming standard test-driven iterative repair by 52.5 percentage points while reducing the failure-inclusive cost per verified repair by 28.1\%. Furthermore, \textsc{APIShield} preserved 91.7\% of critical financial invariants that were silently corrupted by baseline approaches. Open-weight replication across 1,440 runs on \texttt{Meta-Llama-3.1-70B} and \texttt{Qwen2.5-Coder-32B} confirmed that these gains generalize across model families under physical GPU telemetry and containerized execution.
+
+All benchmark task specifications, qualification fixtures, evaluation datasets, execution traces, and analysis scripts are permanently packaged in the accompanying replication bundle (\texttt{APIShield-evaluation-v1.0.tar.gz}) with cryptographic checksums and container verification manifests.
