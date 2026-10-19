@@ -48,7 +48,7 @@ def test_unexpected_author_receipt_is_not_trusted():
             if '/comments' in endpoint:
                 return [{'user': {'login': 'stranger'}, 'body': '<!-- APIShield deployment -->\n{}'}]
             return {'statuses': []}
-    assert read_receipt(Fake(), 'owner/repo', 1, 'b'*40, 'techASH5') is None
+    assert read_receipt(Fake(), 'owner/repo', 1, 'b'*40, 'surjk73') is None
 
 
 def test_candidate_requires_original_validated_head_and_merged_ci():

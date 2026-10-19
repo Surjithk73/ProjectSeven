@@ -2,7 +2,8 @@
 
 This is a checklist and execution record, not a claim that the two-machine rehearsal has already happened.
 
-- [ ] Invite `techASH5` to APIGuardTesting at the end of implementation; have the reviewer accept locally.
+- [x] Send the `surjk73` collaborator invitation to APIGuardTesting with write permission (invitation `338492013`).
+- [ ] Reviewer signs in as `surjk73` and accepts the invitation.
 - [ ] Review and merge the initial movie-client setup PR; record its actual merge SHA.
 - [ ] Start separate B providers and the initial client release; record B's actual IP and process health.
 - [ ] Record one successful V1 booking with exact paise and seat identity.

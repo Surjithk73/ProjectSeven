@@ -8,18 +8,17 @@ ProjectSeven holds APIShield and its supporting project files. APIGuardTesting w
 
 ## Details to provide
 
-The user has identified the reviewer as `techASH5` (`https://github.com/techASH5`). Collaborator invitation acceptance remains to be confirmed; identifying the account does not send an invitation.
+The reviewer is now `surjk73` (`https://github.com/surjk73`), replacing the previously proposed account. On 2026-10-19, the owner sent invitation `338492013` with write permission to `Surjithk73/APIGuardTesting`. The invitation was verified as pending. Acceptance must happen while signed in as `surjk73`; the invitation is not yet active collaborator access. No collaborator access was granted to the previously proposed reviewer.
 
-- The reviewer account's GitHub username or profile URL. In GitHub, select the avatar at the top right, choose Your profile, and copy the profile URL.
 - Confirmation the reviewer accepted the invitation to APIGuardTesting.
 - The GitHub username used by the deployment helper on B, if different from the reviewer. The planned helper posts deployment evidence and therefore needs repository write access; read-only anonymous cloning alone is insufficient for that role.
 - Later, B's active Wi-Fi IPv4 address and chosen installation directory for service setup.
 
 Passwords, personal access tokens, service-account JSON, private keys, and browser/device login codes are not needed in chat or committed files.
 
-## Invite the reviewer
+## Accept the reviewer invitation
 
-The owner opens `https://github.com/Surjithk73/APIGuardTesting/settings/access`, selects Add people, enters the reviewer's username, and sends the invitation. The reviewer signs into their own account and accepts it. The publisher should not use the reviewer's login; the separate account reviews the publisher's PR and merges it after checks pass.
+The invitation has already been sent. Sign in as `surjk73` and open `https://github.com/Surjithk73/APIGuardTesting/invitations` to accept it. Do not create a duplicate invitation. If the original expires, the owner opens `https://github.com/Surjithk73/APIGuardTesting/settings/access`, selects Add people, enters the reviewer's username, and sends the invitation. The reviewer must accept using their own account. The publisher should not use the reviewer's login; the separate account reviews the publisher's PR and merges it after checks pass.
 
 ## Authenticate the helper on B locally
 

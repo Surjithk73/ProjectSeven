@@ -50,7 +50,7 @@ A fresh read-only whole-branch review identified six lifecycle issues. Each rece
 
 Follow [setup.md](setup.md) and [rehearsal.md](rehearsal.md). Still required:
 
-1. Add/accept `techASH5` collaborator access at the end, as requested; authenticate the deployment identity locally on B.
+1. Accept the pending `surjk73` collaborator invitation, then authenticate that deployment identity locally on B.
 2. Human review/merge of the initial CinemaFlow setup PR, then a clean checkout of its merged baseline on A.
 3. B's actual private IPv4 address and installation folder; Private-profile LAN firewall setup and reachability checks.
 4. Real two-machine manual cycle: break payment V2, generate/validate, publish, second-account review/merge, exact-SHA deployment, booking verification and cleared current impact.
@@ -65,3 +65,7 @@ The user approved a reference-led three-column booking layout with charcoal/yell
 Verification: JavaScript syntax check passed; the targeted movie-provider, HTTP and client tests passed (10 tests). Browser checks verified movie/showtime changes, exact seat totals, a successful B3/B4 booking for 60,000 paise, booked-seat disabling, retained confirmation/total, light/dark switching and theme persistence. Switching theatre V2 produced the expected actionable compatibility error; returning to V1 restored all 32 seats with existing bookings still unavailable. The final 390px mobile capture had a document width of 390px, with no horizontal overflow.
 
 The one-pass UI detector reported only the retained Open Sans font choice. It remains self-hosted with its license and follows the existing requested font. The replacement cinema theme is scoped in `demo/movie-client/DESIGN.md`; APIShield workspace styling is unchanged. Desktop dark/light and mobile captures are retained locally under `.impeccable/review/cinemaflow-redesign/`.
+
+## Reviewer account update
+
+The user replaced the proposed reviewer with `surjk73`. The owner account `Surjithk73` sent GitHub invitation `338492013` to `surjk73` with write permission to APIGuardTesting and verified that it is pending acceptance. The System B configuration example and local CinemaFlow project now expect `surjk73` as the deployment-receipt author. This does not sign in on B, accept the invitation, approve/merge a PR or attest to an actual deployment. Earlier no-invitation statements above describe the earlier verification checkpoints.
