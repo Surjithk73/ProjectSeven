@@ -1,6 +1,6 @@
 # CinemaFlow two-machine setup
 
-Implementation branch: `feature/cinemaflow-multi-provider`. Collaborator invitations and the human merge rehearsal are deliberately deferred until the end. Existing banking examples remain available.
+Implementation branch: `feature/cinemaflow-multi-provider`. `surjk73` has accepted collaborator write access. The initial client PR awaits human review/merge before the LAN deployment rehearsal. Existing banking examples remain available.
 
 ## Machines and repositories
 
@@ -20,7 +20,7 @@ npm --prefix frontend run build
 
 ## Initial client baseline
 
-The baseline is a normal setup PR, separate from later AI-generated migrations. Do not merge it automatically. On a clean APIGuardTesting checkout, the export command creates only the movie client, its requirements and its CI workflow; it refuses to overwrite an existing movie client:
+The baseline is already published as [client setup PR #2](https://github.com/Surjithk73/APIGuardTesting/pull/2), ready for `surjk73` to review. Use that existing PR; the export command below is only needed when preparing a new clean baseline checkout. This normal setup PR is separate from later AI-generated migrations. Do not merge it automatically. On a clean APIGuardTesting checkout, the export command creates only the movie client, its requirements and its CI workflow; it refuses to overwrite an existing movie client:
 
 ```powershell
 ./venv/Scripts/python.exe -m demo.setup export-client --repository C:/APIShieldDemo/client-source

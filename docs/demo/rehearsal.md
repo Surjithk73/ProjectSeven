@@ -3,7 +3,8 @@
 This is a checklist and execution record, not a claim that the two-machine rehearsal has already happened.
 
 - [x] Send the `surjk73` collaborator invitation to APIGuardTesting with write permission (invitation `338492013`).
-- [ ] Reviewer signs in as `surjk73` and accepts the invitation.
+- [x] Verify `surjk73` accepted: GitHub reports active write access.
+- [x] Mark initial client PR #2 ready and request review from `surjk73`; both exact-head CI checks passed.
 - [ ] Review and merge the initial movie-client setup PR; record its actual merge SHA.
 - [ ] Start separate B providers and the initial client release; record B's actual IP and process health.
 - [ ] Record one successful V1 booking with exact paise and seat identity.

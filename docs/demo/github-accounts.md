@@ -8,17 +8,16 @@ ProjectSeven holds APIShield and its supporting project files. APIGuardTesting w
 
 ## Details to provide
 
-The reviewer is now `surjk73` (`https://github.com/surjk73`), replacing the previously proposed account. On 2026-10-19, the owner sent invitation `338492013` with write permission to `Surjithk73/APIGuardTesting`. The invitation was verified as pending. Acceptance must happen while signed in as `surjk73`; the invitation is not yet active collaborator access. No collaborator access was granted to the previously proposed reviewer.
+The reviewer is now `surjk73` (`https://github.com/surjk73`), replacing the previously proposed account. On 2026-10-19, the owner sent invitation `338492013` with write permission to `Surjithk73/APIGuardTesting`. Acceptance has now been verified through GitHub: `surjk73` has the `write` role, and the invitation is no longer pending. No collaborator access was granted to the previously proposed reviewer.
 
-- Confirmation the reviewer accepted the invitation to APIGuardTesting.
 - The GitHub username used by the deployment helper on B, if different from the reviewer. The planned helper posts deployment evidence and therefore needs repository write access; read-only anonymous cloning alone is insufficient for that role.
 - Later, B's active Wi-Fi IPv4 address and chosen installation directory for service setup.
 
 Passwords, personal access tokens, service-account JSON, private keys, and browser/device login codes are not needed in chat or committed files.
 
-## Accept the reviewer invitation
+## Reviewer access and initial client PR
 
-The invitation has already been sent. Sign in as `surjk73` and open `https://github.com/Surjithk73/APIGuardTesting/invitations` to accept it. Do not create a duplicate invitation. If the original expires, the owner opens `https://github.com/Surjithk73/APIGuardTesting/settings/access`, selects Add people, enters the reviewer's username, and sends the invitation. The reviewer must accept using their own account. The publisher should not use the reviewer's login; the separate account reviews the publisher's PR and merges it after checks pass.
+Collaborator setup is complete. [Client setup PR #2](https://github.com/Surjithk73/APIGuardTesting/pull/2) is ready for review, and `surjk73` is its requested reviewer. Both `cinema-client` checks passed on head `1403ea98cb67a4a37cc87c74fc872431920fb098`. Sign in as `surjk73`, inspect the files and checks, approve, then merge when satisfied. The publisher account must not approve its own PR. No automatic merge has been performed.
 
 ## Authenticate the helper on B locally
 

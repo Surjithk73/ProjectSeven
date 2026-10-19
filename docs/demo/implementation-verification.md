@@ -50,7 +50,7 @@ A fresh read-only whole-branch review identified six lifecycle issues. Each rece
 
 Follow [setup.md](setup.md) and [rehearsal.md](rehearsal.md). Still required:
 
-1. Accept the pending `surjk73` collaborator invitation, then authenticate that deployment identity locally on B.
+1. Authenticate `surjk73` locally on B for deployment; collaborator write access is now verified.
 2. Human review/merge of the initial CinemaFlow setup PR, then a clean checkout of its merged baseline on A.
 3. B's actual private IPv4 address and installation folder; Private-profile LAN firewall setup and reachability checks.
 4. Real two-machine manual cycle: break payment V2, generate/validate, publish, second-account review/merge, exact-SHA deployment, booking verification and cleared current impact.
@@ -69,3 +69,7 @@ The one-pass UI detector reported only the retained Open Sans font choice. It re
 ## Reviewer account update
 
 The user replaced the proposed reviewer with `surjk73`. The owner account `Surjithk73` sent GitHub invitation `338492013` to `surjk73` with write permission to APIGuardTesting and verified that it is pending acceptance. The System B configuration example and local CinemaFlow project now expect `surjk73` as the deployment-receipt author. This does not sign in on B, accept the invitation, approve/merge a PR or attest to an actual deployment. Earlier no-invitation statements above describe the earlier verification checkpoints.
+
+## Invitation acceptance and review handoff
+
+GitHub now reports active write access for `surjk73`, with no pending invitation. Client setup PR #2 was marked ready for review and `surjk73` was added as requested reviewer. It remains open and unmerged at head `1403ea98cb67a4a37cc87c74fc872431920fb098`, with both exact-head `cinema-client` checks successful. Next: human review/merge from the reviewer account, then actual B network configuration and local deployment authentication.
