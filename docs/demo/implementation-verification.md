@@ -4,7 +4,7 @@
 
 The implementation is on `feature/cinemaflow-multi-provider` in ProjectSeven. The existing main snapshot remains at `7e69ad7d1ffe98165dc03e99d002648785c78767`. Independent theatre/payment providers, the CinemaFlow client, multi-provider project identity, manual/automatic orchestration, GitHub proposal tracking, managed deployment/rollback, provider-aware UI and Windows launch/setup/reset tools are implemented.
 
-The initial V1 client setup is draft PR [APIGuardTesting #2](https://github.com/Surjithk73/APIGuardTesting/pull/2), head `c471361338413061d99549363f5a7f82d9cecd6a`. Both `cinema-client` checks passed on that head. No PR was merged and no collaborator invitation was sent. Existing shipping files/history remain in that repository. AI candidates used for qualification were applied only to temporary copies, not committed into this V1 baseline.
+The initial V1 client setup is draft PR [APIGuardTesting #2](https://github.com/Surjithk73/APIGuardTesting/pull/2), initially verified at head `c471361338413061d99549363f5a7f82d9cecd6a`. Both `cinema-client` checks passed on that head. No PR was merged and no collaborator invitation was sent. Existing shipping files/history remain in that repository. AI candidates used for qualification were applied only to temporary copies, not committed into this V1 baseline.
 
 ## Verification evidence
 
@@ -57,3 +57,11 @@ Follow [setup.md](setup.md) and [rehearsal.md](rehearsal.md). Still required:
 5. Real automatic theatre-V2 cycle and simultaneous-change/outage/failed-deployment rehearsal. The deployment state machine has regression coverage; this document does not claim it has already deployed to the second computer.
 
 Research datasets, manuscripts and publication results were not changed by this implementation.
+
+## Booking interface redesign
+
+The user approved a reference-led three-column booking layout with charcoal/yellow dark mode and a white light mode, without posters, cast or payment-disclaimer wording. The updated UI is also in client setup PR #2 at `1403ea98cb67a4a37cc87c74fc872431920fb098`; both `cinema-client` checks passed on this exact head. No merge or collaborator invitation was performed.
+
+Verification: JavaScript syntax check passed; the targeted movie-provider, HTTP and client tests passed (10 tests). Browser checks verified movie/showtime changes, exact seat totals, a successful B3/B4 booking for 60,000 paise, booked-seat disabling, retained confirmation/total, light/dark switching and theme persistence. Switching theatre V2 produced the expected actionable compatibility error; returning to V1 restored all 32 seats with existing bookings still unavailable. The final 390px mobile capture had a document width of 390px, with no horizontal overflow.
+
+The one-pass UI detector reported only the retained Open Sans font choice. It remains self-hosted with its license and follows the existing requested font. The replacement cinema theme is scoped in `demo/movie-client/DESIGN.md`; APIShield workspace styling is unchanged. Desktop dark/light and mobile captures are retained locally under `.impeccable/review/cinemaflow-redesign/`.
