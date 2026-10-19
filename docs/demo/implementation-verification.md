@@ -81,3 +81,13 @@ The user no longer needs to supply System B's address in advance. Its launcher p
 All new demo state, jobs, managed releases, logs, temporary files and cache paths are inside the ProjectSeven checkout; external demo paths are rejected after resolution. System B's example release directory is relative to that root. The temporary movie and APIShield previews previously created outside the project were stopped without deleting or moving their data. The original port-8002 app was left alone. Existing managed AI credentials remain at their established location and are only read.
 
 Validation: 25 targeted launcher/provider/HTTP/deployment/API tests passed. PowerShell launchers parsed successfully. A real invocation of `start_system_b.ps1` started the three HTTP services with state inside ProjectSeven; all health checks passed, the generated hostname URL responded, and an isolated real HTTP booking confirmed. The second physical computer is still unavailable, so cross-machine connectivity/firewall and reviewed deployment remain pending.
+
+## Laptop and phone profile verification — 2026-10-19
+
+- Added project-root `Start Phone Demo.bat` and `Stop Phone Demo.bat`, backed by `demo.phone`. Existing two-machine launchers remain available.
+- Started the profile, stopped its owned process trees, and restarted successfully. Duplicate startup exits without starting another service set.
+- Verified HTTP 200 for client health through both loopback and Wi-Fi (`192.168.1.40:8100`), the Wi-Fi show catalogue, and the phone workspace project API on port 8005. Provider administration over the Wi-Fi address returned HTTP 403.
+- Confirmed listeners: client `0.0.0.0:8100`; providers `127.0.0.1:8101`/`:8102`; APIShield `127.0.0.1:8005`.
+- Targeted regression suite: **29 passed**, one existing Starlette/AnyIO deprecation warning. Covered phone profile, launchers, deployment, client HTTP, provider services and project API. The merged-baseline configuration branch was exercised with an isolated GitHub fixture; this is not a claim of a live deployment.
+- Actual startup used preview mode because setup PR #2 was still unmerged. Its client source was revision `1403ea98cb67a4a37cc87c74fc872431920fb098`. New state/source/logs stay under the ProjectSeven folder; publisher/deployment receipt identity is `Surjithk73`, and human reviewer is `surjk73`.
+- Still pending: physical phone connectivity/review and a live merge-to-deployment rehearsal after human approval of setup PR #2 and successful main-commit CI. Wi-Fi HTTP verification above ran from the laptop and does not establish connectivity from a separate device.

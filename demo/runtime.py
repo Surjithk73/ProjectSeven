@@ -20,6 +20,7 @@ def main():
     parser.add_argument('--client-repository')
     parser.add_argument('--deployment-config')
     parser.add_argument('--host', choices=['127.0.0.1','0.0.0.0'], default='0.0.0.0')
+    parser.add_argument('--providers-host', choices=['127.0.0.1','0.0.0.0'])
     for name, port in [('client',8100),('theatre',8101),('payment',8102)]:
         parser.add_argument('--' + name + '-port', type=int, default=port)
     args = parser.parse_args()
@@ -68,7 +69,7 @@ def main():
                 log.close()
         try:
             for name,port in [('theatre',theatre_port),('payment',payment_port)]:
-                start(name,['-m','uvicorn',f'demo.providers.{name}:create_app','--factory','--host',args.host,'--port',str(port)])
+                start(name,['-m','uvicorn',f'demo.providers.{name}:create_app','--factory','--host',args.providers_host or args.host,'--port',str(port)])
             if args.deployment_config:
                 start('deployment',['-m','demo.deployment.agent','--config',str(Path(args.deployment_config).resolve()),'--bootstrap'])
             else:

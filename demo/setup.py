@@ -117,7 +117,7 @@ def reset_rehearsal(directory):
             db.execute('DELETE FROM holds')
 
 
-def configure_system_a(repository, provider_host, jobs_root, model, client_port=8100, theatre_port=8101, payment_port=8102):
+def configure_system_a(repository, provider_host, jobs_root, model, client_port=8100, theatre_port=8101, payment_port=8102, deployment_actor='surjk73'):
     client_port, theatre_port, payment_port = service_ports(client_port, theatre_port, payment_port)
     from apishield.browser_setup import read_registry
     from apishield.configuration import IntegrationConfig
@@ -138,7 +138,7 @@ def configure_system_a(repository, provider_host, jobs_root, model, client_port=
     if jobs_root.is_relative_to(repository):
         raise ValueError('Keep APIShield state outside the client repository')
     jobs_root.mkdir(parents=True, exist_ok=True)
-    project = ClientProject('cinemaflow', str(repository), bindings, target_repository='Surjithk73/APIGuardTesting', display_name='CinemaFlow Integration', deployment_actor='surjk73', client_url=f'http://{provider_host}:{client_port}')
+    project = ClientProject('cinemaflow', str(repository), bindings, target_repository='Surjithk73/APIGuardTesting', display_name='CinemaFlow Integration', deployment_actor=deployment_actor, client_url=f'http://{provider_host}:{client_port}')
     docs = {name: json.loads((ROOT / f'demo/contracts/{name}-v1.json').read_text()) for name in ('theatre','payment')}
     with _job_transaction(jobs_root):
         registry = read_registry(jobs_root)

@@ -1,5 +1,7 @@
 # Run the APIShield CinemaFlow demo
 
+**Recommended: laptop + phone.** Use [PHONE-DEMO.md](PHONE-DEMO.md) and double-click `Start Phone Demo.bat`. Only the laptop needs developer tools. The instructions below retain the separate two-Windows-machine deployment option.
+
 Status checked on 2026-10-19: the implementation is committed on local ProjectSeven branch `feature/cinemaflow-multi-provider` at `828fbca`. That branch has not yet been pushed. CinemaFlow setup PR https://github.com/Surjithk73/APIGuardTesting/pull/2 is open, ready for review and unmerged. `surjk73` has active write access; both client checks passed on the proposed head. A physical two-machine deployment rehearsal remains pending.
 
 ## 1. Publish the prepared APIShield branch (System A)

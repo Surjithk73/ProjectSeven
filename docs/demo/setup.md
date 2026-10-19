@@ -1,5 +1,7 @@
 # CinemaFlow two-machine setup
 
+For the simpler laptop-hosted demo with a phone browser, use [PHONE-DEMO.md](PHONE-DEMO.md). The setup below remains available when a second Windows machine actually hosts the client and providers.
+
 Implementation branch: `feature/cinemaflow-multi-provider`. `surjk73` has accepted collaborator write access. The initial client PR awaits human review/merge before the LAN deployment rehearsal. Existing banking examples remain available.
 
 ## Machines and repositories
