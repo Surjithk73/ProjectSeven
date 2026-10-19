@@ -75,3 +75,16 @@ def test_provider_admin_rejects_remote_browser(services):
     app = services[0].app
     remote = TestClient(app, client=('192.168.1.60', 1234))
     assert remote.post('/admin/version', json={'version': 2}).status_code == 403
+
+
+def test_smoke_checks_browsing_not_only_booking(monkeypatch):
+    from movie_booking import app as client_app
+    class PartialRepair:
+        def __init__(self,*args):
+            self.theatre=self
+        def list_shows(self):return [{'id':'show-001'}]
+        def get_seats(self,show_id):raise KeyError('seats')
+        def book(self,*args):return {'status':'confirmed'}
+    monkeypatch.setattr(client_app,'BookingClient',PartialRepair)
+    client=TestClient(client_app.create_app())
+    assert client.post('/internal/smoke').status_code==502

@@ -1075,8 +1075,8 @@ export default function Workspace() {
             Local application
           </span>
 
-          <a className="banking-demo-link" href="/banking">
-            Banking demo <ArrowRight size={16} />
+          <a className="banking-demo-link" href={multiProject?.client_url || "/banking"}>
+            {multiProject?.client_url ? "CinemaFlow client" : "Banking demo"} <ArrowRight size={16} />
           </a>
         </div>
       </aside>
@@ -1314,10 +1314,10 @@ export default function Workspace() {
                         <ChevronRight size={16} />
                       </button>
 
-                      <a href="/banking">
+                      <a href={multiProject?.client_url || "/banking"}>
                         <LayoutDashboard size={19} />
 
-                        <span>Banking demo</span>
+                        <span>{multiProject?.client_url ? "CinemaFlow client" : "Banking demo"}</span>
 
                         <ChevronRight size={16} />
                       </a>
@@ -1337,7 +1337,7 @@ export default function Workspace() {
                           Local workspace
                           <br />
                           <small>
-                            Repairs stay proposals until you apply them.
+                            {multiProject ? "Updates reach the client after human review, merge and verified deployment." : "Repairs stay proposals until you apply them."}
                           </small>
                         </span>
                       </div>

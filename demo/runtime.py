@@ -10,7 +10,7 @@ import uuid
 
 from apishield.engine import _execution_lock
 from apishield.jobs import atomic_json
-from .setup import ROOT, environment_report
+from .setup import ROOT, environment_report, service_ports
 
 
 def main():
@@ -19,6 +19,9 @@ def main():
     parser.add_argument('--stop', action='store_true')
     parser.add_argument('--client-repository')
     parser.add_argument('--deployment-config')
+    parser.add_argument('--host', choices=['127.0.0.1','0.0.0.0'], default='0.0.0.0')
+    for name, port in [('client',8100),('theatre',8101),('payment',8102)]:
+        parser.add_argument('--' + name + '-port', type=int, default=port)
     args = parser.parse_args()
     root = Path(args.state).resolve()
     root.mkdir(parents=True, exist_ok=True)
@@ -30,13 +33,21 @@ def main():
     with _execution_lock(root) as owned:
         if not owned:
             raise ValueError('A CinemaFlow runtime already owns this state folder')
-        ports = (8101,8102) if args.deployment_config else (8100,8101,8102)
+        client_port, theatre_port, payment_port = service_ports(args.client_port, args.theatre_port, args.payment_port)
+        if args.deployment_config:
+            from urllib.parse import urlsplit
+            config = json.loads(Path(args.deployment_config).read_text(encoding='utf-8'))
+            provider_urls = [urlsplit(config['providers'][name]) for name in ('theatre', 'payment')]
+            if any(url.scheme != 'http' or url.hostname not in {'127.0.0.1', 'localhost'} for url in provider_urls):
+                raise ValueError('Managed System B providers must use local HTTP URLs')
+            client_port, theatre_port, payment_port = service_ports(config.get('client_port',8100), *(url.port or 80 for url in provider_urls))
+        ports = (theatre_port,payment_port) if args.deployment_config else (client_port,theatre_port,payment_port)
         if any(not p['available'] for p in environment_report(ports)['ports']):
             raise ValueError('A demo port is occupied; stop the managed demo or choose free ports before starting')
         (root / '.apishield-demo-state').touch()
         (root / 'stop.request').unlink(missing_ok=True)
-        environment = {**os.environ,'CINEMA_STATE_DIR':str(root),'CINEMA_PAYMENT_URL':'http://127.0.0.1:8102',
-            'CINEMA_THEATRE_URL':'http://127.0.0.1:8101','PYTHONPATH':str(ROOT),'CINEMA_INSTANCE_ID':uuid.uuid4().hex}
+        environment = {**os.environ,'CINEMA_STATE_DIR':str(root),'CINEMA_PAYMENT_URL':f'http://127.0.0.1:{payment_port}',
+            'CINEMA_THEATRE_URL':f'http://127.0.0.1:{theatre_port}','PYTHONPATH':str(ROOT),'CINEMA_INSTANCE_ID':uuid.uuid4().hex}
         processes = []
         trees = []
         def start(label, argv, cwd=ROOT, env=None):
@@ -54,8 +65,8 @@ def main():
             finally:
                 log.close()
         try:
-            for name,port in [('theatre',8101),('payment',8102)]:
-                start(name,['-m','uvicorn',f'demo.providers.{name}:create_app','--factory','--host','0.0.0.0','--port',str(port)])
+            for name,port in [('theatre',theatre_port),('payment',payment_port)]:
+                start(name,['-m','uvicorn',f'demo.providers.{name}:create_app','--factory','--host',args.host,'--port',str(port)])
             if args.deployment_config:
                 start('deployment',['-m','demo.deployment.agent','--config',str(Path(args.deployment_config).resolve()),'--bootstrap'])
             else:
@@ -63,7 +74,7 @@ def main():
                 if not (client/'movie_booking/app.py').is_file():
                     raise ValueError('Movie client source is absent from the selected directory')
                 client_env = {**environment,'PYTHONPATH':str(client)}
-                start('client',['-m','uvicorn','movie_booking.app:create_app','--factory','--host','0.0.0.0','--port','8100'],client,client_env)
+                start('client',['-m','uvicorn','movie_booking.app:create_app','--factory','--host',args.host,'--port',str(client_port)],client,client_env)
             atomic_json(root/'runtime.json',{'pid':os.getpid(),'children':[p.pid for p in processes]})
             while not (root/'stop.request').exists():
                 if any(p.poll() is not None for p in processes):

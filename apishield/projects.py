@@ -48,6 +48,7 @@ class ClientProject:
     base_branch: str = 'main'
     deployment_actor: str = ''
     display_name: str = ''
+    client_url: str = ''
 
     def __post_init__(self):
         identifier(self.project_id)
@@ -70,6 +71,8 @@ class ClientProject:
             raise ValueError('Invalid base branch')
         if self.deployment_actor and not re.fullmatch(r'[A-Za-z0-9-]{1,39}', self.deployment_actor):
             raise ValueError('Invalid deployment account')
+        if self.client_url:
+            validate_url(self.client_url, True)
 
     def to_dict(self):
         return asdict(self)

@@ -12,6 +12,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def service_ports(client_port=8100, theatre_port=8101, payment_port=8102):
+    ports = tuple(int(p) for p in (client_port, theatre_port, payment_port))
+    if len(set(ports)) != 3 or any(p < 1 or p > 65535 for p in ports):
+        raise ValueError('Demo ports must be distinct values between 1 and 65535')
+    return ports
+
+
 def environment_report(ports=(8002, 8100, 8101, 8102)):
     report = {'python': sys.version.split()[0], 'executables': {name: shutil.which(name) for name in ('git','gh','node','npm')}, 'ports': []}
     for port in ports:
@@ -61,7 +68,8 @@ def reset_rehearsal(directory):
             db.execute('DELETE FROM holds')
 
 
-def configure_system_a(repository, provider_host, jobs_root, model):
+def configure_system_a(repository, provider_host, jobs_root, model, client_port=8100, theatre_port=8101, payment_port=8102):
+    client_port, theatre_port, payment_port = service_ports(client_port, theatre_port, payment_port)
     from apishield.browser_setup import read_registry
     from apishield.configuration import IntegrationConfig
     from apishield.dashboard_jobs import LocalJobs
@@ -78,12 +86,12 @@ def configure_system_a(repository, provider_host, jobs_root, model):
     if git(repository, 'status', '--porcelain'):
         raise ValueError('Commit or preserve client changes before configuring the demo')
     bindings = [ProviderBinding(name, 'cinema-' + name, f'http://{provider_host}:{port}', '', [f'movie_booking/{name}_client.py'])
-                for name, port in [('theatre',8101),('payment',8102)]]
+                for name, port in [('theatre',theatre_port),('payment',payment_port)]]
     jobs_root = Path(jobs_root).resolve()
     jobs_root.mkdir(parents=True, exist_ok=True)
     if jobs_root.is_relative_to(repository):
         raise ValueError('Keep APIShield state outside the client repository')
-    project = ClientProject('cinemaflow', str(repository), bindings, target_repository='Surjithk73/APIGuardTesting', display_name='CinemaFlow Integration')
+    project = ClientProject('cinemaflow', str(repository), bindings, target_repository='Surjithk73/APIGuardTesting', display_name='CinemaFlow Integration', client_url=f'http://{provider_host}:{client_port}')
     docs = {name: json.loads((ROOT / f'demo/contracts/{name}-v1.json').read_text()) for name in ('theatre','payment')}
     with _job_transaction(jobs_root):
         registry = read_registry(jobs_root)
@@ -119,7 +127,9 @@ def main():
     export = commands.add_parser('export-client'); export.add_argument('--repository',required=True)
     reset = commands.add_parser('reset'); reset.add_argument('--state',required=True)
     setup = commands.add_parser('system-a'); setup.add_argument('--repository',required=True); setup.add_argument('--provider-host',required=True)
-    setup.add_argument('--jobs-root', default=str(Path.home()/'.apishield/jobs')); setup.add_argument('--model',default='gemini-2.5-flash')
+    setup.add_argument('--jobs-root', default=str(Path.home()/'.apishield/jobs')); setup.add_argument('--model',default='gemini-3.8-flash')
+    for name, port in [('client',8100),('theatre',8101),('payment',8102)]:
+        setup.add_argument('--' + name + '-port', type=int, default=port)
     args = parser.parse_args()
     if args.command == 'check-environment':
         print(json.dumps(environment_report(),indent=2))
@@ -130,7 +140,7 @@ def main():
         reset_rehearsal(args.state)
         print('Dedicated provider state reset to V1. Client source and Git history were preserved.')
     else:
-        print(json.dumps(configure_system_a(args.repository,args.provider_host,args.jobs_root,args.model),indent=2))
+        print(json.dumps(configure_system_a(args.repository,args.provider_host,args.jobs_root,args.model,args.client_port,args.theatre_port,args.payment_port),indent=2))
 
 
 if __name__ == '__main__':

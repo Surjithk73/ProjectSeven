@@ -1,0 +1,13 @@
+--- a/movie_booking/payment_client.py
++++ b/movie_booking/payment_client.py
+@@ -10,7 +10,7 @@
+         self.client = client or httpx.Client(base_url=PAYMENT_URL, timeout=10, trust_env=False)
+ 
+     def create_payment(self, booking_id, amount_paise, currency, idempotency_key):
+-        response = self.client.post('/payments', json={'booking_id': booking_id, 'amount_paise': amount_paise,
+-            'currency': currency, 'idempotency_key': idempotency_key})
++        response = self.client.post('/payments', json={'booking_id': booking_id,
++            'amount': {'value': amount_paise, 'currency': currency}, 'idempotency_key': idempotency_key})
+         response.raise_for_status()
+-        return response.json()['payment_id']
++        return response.json()['payment']['id']

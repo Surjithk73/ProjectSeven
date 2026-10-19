@@ -97,6 +97,16 @@ class PublicationService:
             raise JobCancelled('Publication preparation cancelled or application stopped')
         if time.monotonic()>=deadline:raise PublicationError('Publication exceeded its 180-second deadline')
         self._target(record)
+        context = self.jobs.store.get(record['source_job_id']).get('project_workflow')
+        if context:
+            workflows = self.jobs.automation.projects.workflows(context['project_id'])
+            workflow = next((item for item in workflows if item['workflow_id'] == context['workflow_id']), None)
+            if not workflow or workflow['state'] in {'superseded','failed','closed','verified'}:
+                raise PublicationConflict('Client workflow was superseded or stopped; no stale publication is allowed')
+            project = self.jobs.automation.projects.load_project(context['project_id'])
+            _, changes = self.jobs.automation.snapshots(project)
+            if changes != context['providers']:
+                raise PublicationConflict('Provider snapshots changed; regenerate the combined update before publication')
 
     def _artifacts(self,record):
         result,patch=retained_patch(self.jobs.store,record['source_job_id'])

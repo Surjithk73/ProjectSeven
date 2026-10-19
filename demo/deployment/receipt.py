@@ -12,11 +12,15 @@ def digest(receipt):
     return hashlib.sha256(json.dumps(receipt, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
 
 
-def verify_receipt(receipt, workflow, merge_sha, provider_hashes):
+def receipt_identity_matches(receipt, workflow, merge_sha, provider_hashes):
     return (isinstance(receipt, dict) and receipt.get('version') == 1 and receipt.get('workflow_id') == workflow['workflow_id']
         and receipt.get('project_id') == workflow['project_id'] and receipt.get('deployed_sha') == merge_sha
-        and receipt.get('provider_hashes') == provider_hashes and receipt.get('status') == 'verified'
-        and receipt.get('health_passed') is True and receipt.get('smoke_passed') is True)
+        and receipt.get('provider_hashes') == provider_hashes)
+
+
+def verify_receipt(receipt, workflow, merge_sha, provider_hashes):
+    return (receipt_identity_matches(receipt, workflow, merge_sha, provider_hashes) and receipt.get('status') == 'verified'
+            and receipt.get('health_passed') is True and receipt.get('smoke_passed') is True)
 
 
 def publish_receipt(github, repository, number, merge_sha, receipt, actor):

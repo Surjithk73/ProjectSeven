@@ -73,7 +73,7 @@ class AutomationService:
         key = hashlib.sha256(json.dumps([project_id, providers, source_sha], sort_keys=True).encode()).hexdigest()
         cancelled = []
         with self.projects.transaction(project_id) as state:
-            existing = next((w for w in state['workflows'] if w['identity'] == key), None)
+            existing = next((w for w in reversed(state['workflows']) if w['identity'] == key and w['state'] != 'superseded'), None)
             if existing:
                 return json.loads(json.dumps(existing))
             for prior in state['workflows']:
@@ -171,9 +171,12 @@ class AutomationService:
             if not self.jobs.model_connection.ready:
                 raise ValueError('Configure the AI connection before requesting an update')
             documents, changes = self.snapshots(project)
-            source_sha = self.source(project)
+            source_sha = self.source(project, refresh=True)
             if changes != record['providers'] or source_sha != record['source_sha']:
-                raise ValueError('Provider or source snapshot changed; check again')
+                record = self.observe(project_id, changes, source_sha)
+                workflow_id = record['workflow_id']
+                if record['state'] != 'awaiting_request':
+                    return record
             config = self.config(project, source_sha, documents)
             job_id = uuid.uuid4().hex
             # Persist identity first, so interruption cannot silently dispatch a second paid request.
@@ -232,6 +235,10 @@ class AutomationService:
                 record = self.update(project.project_id, wid, state='preparing', publication_id=prepared['id'])
             if record['publication_id']:
                 published = self.jobs.publication.store.read(record['publication_id'])
+                if published['status'] == 'reconciliation_needed':
+                    self.jobs.publication.reconcile(published['id'])
+                    self.update(project.project_id, wid, state='reconciling', error=None)
+                    continue
                 if published['status'] in {'failed', 'stale', 'cancelled'}:
                     self.update(project.project_id, wid, state='failed', error=published.get('error'))
                     continue
@@ -250,12 +257,20 @@ class AutomationService:
                         self.reconcile_deployment(project, record, published, result['merge_sha'])
 
     def reconcile_deployment(self, project, record, publication, merge_sha):
-        from demo.deployment.receipt import read_receipt, verify_receipt
+        from demo.deployment.receipt import read_receipt, verify_receipt, receipt_identity_matches
         receipt = read_receipt(self.jobs.publication.github, project.target_repository, publication['publication']['number'],
                                merge_sha, project.deployment_actor)
         if receipt is None:
             return
         current = {key: value['observed_hash'] for key, value in record['providers'].items()}
+        if receipt_identity_matches(receipt, record, merge_sha, current) and receipt.get('status') == 'failed':
+            details = receipt.get('error', 'Deployment validation failed')
+            if receipt.get('rollback_error'):
+                details += '; rollback failed: ' + receipt['rollback_error']
+            elif receipt.get('rollback_sha'):
+                details += '; restored client ' + receipt['rollback_sha'][:12]
+            self.update(project.project_id, record['workflow_id'], state='failed', receipt=receipt, error=details)
+            return
         if not verify_receipt(receipt, record, merge_sha, current):
             self.update(project.project_id, record['workflow_id'], state='failed', error='Deployment evidence is stale or validation failed')
             return

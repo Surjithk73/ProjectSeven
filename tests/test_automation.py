@@ -53,3 +53,39 @@ def test_superseding_a_running_candidate_cancels_it(tmp_path):
     service.update('cinema', first['workflow_id'], state='generating', job_id='job-1')
     service.observe('cinema', {'payment': {'observed_hash': 'b'*64}}, 'd'*40)
     assert canceled == ['job-1']
+
+
+def test_returning_to_prior_provider_combination_creates_fresh_current_work(tmp_path):
+    service=make_service(tmp_path)
+    payment={'payment':{'observed_hash':'a'*64}}
+    first=service.observe('cinema',payment,'d'*40)
+    second=service.observe('cinema',{**payment,'theatre':{'observed_hash':'b'*64}},'d'*40)
+    third=service.observe('cinema',payment,'d'*40)
+    assert third['workflow_id']!=first['workflow_id'] and third['state']=='awaiting_request'
+    assert next(w for w in service.projects.workflows('cinema') if w['workflow_id']==second['workflow_id'])['state']=='superseded'
+
+
+def test_interrupted_publication_reconciles_instead_of_sticking(tmp_path):
+    service=make_service(tmp_path)
+    record=service.observe('cinema',{'payment':{'observed_hash':'a'*64}},'d'*40)
+    service.update('cinema',record['workflow_id'],state='preparing',publication_id='pub1')
+    reconciled=[]
+    service.jobs.publication=SimpleNamespace(store=SimpleNamespace(read=lambda identity:{'id':identity,'status':'reconciliation_needed'}),reconcile=reconciled.append)
+    service.advance(service.projects.load_project('cinema'))
+    assert reconciled==['pub1']
+
+
+def test_generation_refreshes_merged_publication_base(tmp_path):
+    service=make_service(tmp_path)
+    changes={'payment':{'observed_hash':'a'*64}}
+    old=service.observe('cinema',changes,'b'*40)
+    refreshed=[]
+    service.jobs.model_connection.ready=True
+    service.source=lambda project,refresh=False: refreshed.append(refresh) or 'c'*40
+    service.snapshots=lambda project: ({},changes)
+    service.config=lambda *args: None
+    service.jobs.create_config_job=lambda integration,config,operation,job_id: SimpleNamespace(id=job_id,path=tmp_path,_initial={})
+    service.jobs.dispatch=lambda job: None
+    generated=service.dispatch_change('cinema',old['workflow_id'])
+    assert refreshed==[True]
+    assert generated['source_sha']=='c'*40 and generated['state']=='generating'

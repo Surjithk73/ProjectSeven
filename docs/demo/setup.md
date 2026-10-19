@@ -61,10 +61,10 @@ Confirm A can reach `http://B_ADDRESS:8101/health` and `http://B_ADDRESS:8102/op
 After the client baseline is merged and A has a clean local checkout of it:
 
 ```powershell
-./demo/scripts/start_system_a.ps1 -ClientRepository C:/APIShieldDemo/client-source -ProviderHost 192.168.1.20 -Model gemini-2.5-flash
+./demo/scripts/start_system_a.ps1 -ClientRepository C:/APIShieldDemo/client-source -ProviderHost 192.168.1.20 -Model gemini-3.8-flash
 ```
 
-The address in this example must be replaced by B's actual Wi-Fi address. The script registers `cinemaflow`, `cinema-theatre`, and `cinema-payment` in the existing private APIShield job registry, with five-minute real monitoring and explicit LAN-source permission. It refuses to overwrite an existing CinemaFlow registration. The model identifier is configurable; this file does not claim a live Gemini request has been verified.
+The address in this example must be replaced by B's actual Wi-Fi address. The script registers `cinemaflow`, `cinema-theatre`, and `cinema-payment` in the existing private APIShield job registry, with five-minute real monitoring and explicit LAN-source permission. It refuses to overwrite an existing CinemaFlow registration. The model identifier is configurable; the live qualification records in reports/demo-verification-2026-10-19 document the model actually exercised on this development machine.
 
 Start APIShield with `start_app.bat`, select CinemaFlow Integration, and choose Check now for immediate rehearsal. The parent overview shows both provider states, endpoint inventory, combined semantic graph, and a manual/automatic mode selector. Manual is the default. Manual mode detects automatically if monitoring is enabled, but requires Ask AI to Update and explicit publication. Automatic mode generates/validates/publishes a PR; it never merges it.
 
@@ -79,3 +79,5 @@ Stop System B first, then run:
 ```
 
 This resets only the named managed provider SQLite databases to V1 and clears demo bookings/payments. It preserves unrelated files and never resets client source or rewrites Git history. To repeat a V1-client migration, use a new clean checkout of the recorded baseline commit and publish the next demo cycle through a normal forward commit/PR. Do not force-push main. Starting services alone preserves the active provider versions.
+
+Nondefault ports: both PowerShell launchers accept `-ClientPort`, `-TheatrePort`, and `-PaymentPort`. Use the same three distinct ports on A and B. In reviewed-merge mode, B reads the ports from `client_port` and the two provider URLs in its private deployment JSON instead; those settings take precedence over launcher port flags. Adjust the Private-profile firewall rule accordingly.

@@ -1,5 +1,6 @@
 const $ = selector => document.querySelector(selector);
-let shows = [], current, selected = new Set(), key = crypto.randomUUID();
+let shows = [], current, selected = new Set(), key = crypto.randomUUID(), selectionRevision = 0, bookingInFlight = false;
+function setBookingBusy(value){bookingInFlight=value;document.querySelectorAll(".show").forEach(button=>button.disabled=value);document.querySelectorAll(".seats button").forEach(button=>button.disabled=value||button.dataset.available==="false");}
 const money = paise => new Intl.NumberFormat('en-IN', {style:'currency',currency:'INR'}).format(paise / 100);
 function notice(message='') { $('#notice').textContent = message; $('#notice').hidden = !message; }
 async function api(path, body) {
@@ -17,15 +18,18 @@ function summary() {
   $('#book').disabled=!selected.size;
 }
 async function choose(show) {
+  if(bookingInFlight)return;
+  const revision=++selectionRevision;
   current=show; selected.clear(); key=crypto.randomUUID(); summary(); notice(); $('#confirmation').hidden=true;
   document.querySelectorAll('.show').forEach(node=>node.classList.toggle('selected',node.dataset.id===show.id));
   $('#selection-description').textContent=`${show.theatre} · ${show.time} · ${money(show.price_paise)} per seat`;
   $('#seats').replaceChildren(element('p','Loading seats…'));
   try {
     const seats=await api(`/api/shows/${encodeURIComponent(show.id)}/seats`);
+    if(revision!==selectionRevision)return;
     $('#seats').replaceChildren();
-    seats.forEach(seat=>{const button=element('button',seat.id);button.disabled=!seat.available;button.setAttribute('aria-label',`Seat ${seat.id}${seat.available?'':' · unavailable'}`);button.setAttribute('aria-pressed','false');button.onclick=()=>{if(selected.has(seat.id))selected.delete(seat.id);else if(selected.size<8)selected.add(seat.id);button.classList.toggle('selected',selected.has(seat.id));button.setAttribute('aria-pressed',String(selected.has(seat.id)));key=crypto.randomUUID();summary();};$('#seats').append(button);});
-  } catch(error){$('#seats').replaceChildren();notice(error.message);}
+    seats.forEach(seat=>{const button=element('button',seat.id);button.disabled=!seat.available;button.dataset.available=String(seat.available);button.setAttribute('aria-label',`Seat ${seat.id}${seat.available?'':' · unavailable'}`);button.setAttribute('aria-pressed','false');button.onclick=()=>{if(selected.has(seat.id))selected.delete(seat.id);else if(selected.size<8)selected.add(seat.id);button.classList.toggle('selected',selected.has(seat.id));button.setAttribute('aria-pressed',String(selected.has(seat.id)));key=crypto.randomUUID();summary();};$('#seats').append(button);});
+  } catch(error){if(revision===selectionRevision){$('#seats').replaceChildren();notice(error.message);}}
 }
 async function load() {
   try {
@@ -46,5 +50,5 @@ async function load() {
 }
 document.querySelectorAll('[data-tab]').forEach(button=>button.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(tab=>{tab.classList.toggle('active',tab===button);tab.setAttribute('aria-selected',String(tab===button));});$('#client').hidden=button.dataset.tab!=='client';$('#providers').hidden=button.dataset.tab!=='providers';});
 $('#refresh').onclick=load;
-$('#book').onclick=async()=>{const button=$('#book');button.disabled=true;button.textContent='Confirming your booking…';notice();try{const result=await api('/api/bookings',{show_id:current.id,seat_ids:[...selected],idempotency_key:key});const confirmation=$('#confirmation');confirmation.replaceChildren(element('h3','You’re going to the movies.'),element('p',`Seats ${result.seat_ids.join(', ')} · ${money(result.amount_paise)}`),element('p',`Confirmation ${result.booking_id.slice(0,12)}`));confirmation.hidden=false;selected.clear();summary();}catch(error){notice(error.message);}finally{button.textContent='Continue to payment';button.disabled=!selected.size;}};
+$('#book').onclick=async()=>{const button=$('#book');setBookingBusy(true);button.disabled=true;button.textContent='Confirming your booking…';notice();try{const result=await api('/api/bookings',{show_id:current.id,seat_ids:[...selected],idempotency_key:key});const confirmation=$('#confirmation');confirmation.replaceChildren(element('h3','You’re going to the movies.'),element('p',`Seats ${result.seat_ids.join(', ')} · ${money(result.amount_paise)}`),element('p',`Confirmation ${result.booking_id.slice(0,12)}`));confirmation.hidden=false;document.querySelectorAll('.seats button').forEach(seat=>{seat.classList.remove('selected');seat.setAttribute('aria-pressed','false');if(result.seat_ids.includes(seat.textContent)){seat.dataset.available='false';seat.setAttribute('aria-label',`Seat ${seat.textContent} · unavailable`);}});selected.clear();summary();}catch(error){notice(error.message);}finally{setBookingBusy(false);button.textContent='Continue to payment';button.disabled=!selected.size;}};
 load();

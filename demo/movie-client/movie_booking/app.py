@@ -106,6 +106,16 @@ def create_app():
     def smoke(request: Request):
         local(request)
         key = 'smoke-' + uuid.uuid4().hex
-        return book(BookingRequest(show_id=key, seat_ids=['A1'], idempotency_key=key))
+        with httpx.Client(base_url=provider('theatre'), timeout=10, trust_env=False) as theatre, httpx.Client(
+                base_url=provider('payment'), timeout=10, trust_env=False) as payment:
+            client = BookingClient(theatre, payment)
+            shows = client.theatre.list_shows()
+            if not shows or not isinstance(shows[0].get('id'), str):
+                raise HTTPException(502, 'Deployed client cannot browse showtimes')
+            client.theatre.get_seats(shows[0]['id'])
+            available = client.theatre.get_seats(key)
+            if not any(seat.get('id') == 'A1' and seat.get('available') is True for seat in available):
+                raise HTTPException(502, 'Deployed client cannot read the isolated show seat availability')
+            return client.book(key, ['A1'], key)
 
     return app

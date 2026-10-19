@@ -1,6 +1,6 @@
 export function workflowPresentation(workflow) {
   const labels={awaiting_request:'API changes detected',generating:'AI update in progress',validating:'Running validation',awaiting_publication:'Update validated',preparing:'Preparing draft preview',ready:'Draft ready to publish',pr_open:'Awaiting human review',awaiting_ci:'Waiting for merged-revision CI',merged:'Merged · awaiting deployment',deploying:'Deploying client',verified:'Deployed and verified',failed:'Update needs attention',ci_failed:'Merged client CI failed',superseded:'Replaced by a newer analysis',closed:'PR closed without merging'};
-  return {label:labels[workflow?.state] || 'No migration in progress',tone:workflow?.state==='verified'?'success':['failed','ci_failed'].includes(workflow?.state)?'danger':'pending'};
+  return {label:workflow?.state==='reconciling'?'Recovering GitHub publication':labels[workflow?.state] || 'No migration in progress',tone:workflow?.state==='verified'?'success':['failed','ci_failed'].includes(workflow?.state)?'danger':'pending'};
 }
 export function providerHealth(state) {
   if(state.error)return {label:'Connection needs attention',tone:'danger'};

@@ -41,7 +41,7 @@ def test_three_independent_http_services(tmp_path):
         response = httpx.post(urls[2] + '/api/bookings', json={'show_id': 'show-001', 'seat_ids': ['B2'], 'idempotency_key': 'http-booking'}, trust_env=False)
         assert response.status_code == 200, response.text
         assert response.json()['status'] == 'confirmed'
-        smoke = httpx.post(urls[2] + '/internal/smoke', timeout=10, trust_env=False)
+        smoke = httpx.post(urls[2] + '/internal/smoke', timeout=25, trust_env=False)
         assert smoke.status_code == 200, smoke.text
         assert smoke.json()['show_id'].startswith('smoke-')
         switched = httpx.post(urls[2] + '/api/providers/payment/version', json={'version': 2}, trust_env=False)
