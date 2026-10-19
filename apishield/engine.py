@@ -127,14 +127,14 @@ def _execute(job, operation, candidate_path, result):
         from dataclasses import replace
         from .intent import discover_test_commands
         try:
-            commands = discover_test_commands(job.workspace)
+            commands = job.config.test_commands or discover_test_commands(job.workspace)
         except ValueError:
             commands = []
         job.config = replace(job.config, test_commands=commands, requirements=[])
     atomic_json(job.path / 'result.json', redact_data({**job._initial, **result}))
     job.check()
     job.event('activity', stage='analyze', message='Scanning API consumers and building the structural graph')
-    result['scan'] = scan_sources(job.workspace, job.config.code_paths)
+    result['scan'] = scan_sources(job.workspace, job.config.code_paths, job.config.http_bindings)
     result['requirements'] = job.config.requirements
     result['requirements_hash'] = requirements_hash(job.config.requirements)
     result['requirement_graph'] = build_requirement_graph(result['scan'], job.config.requirements, result)

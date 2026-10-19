@@ -211,6 +211,9 @@ class PublicationService:
         prepared=prepare_repair(self.jobs.store,record['source_job_id'],check,verification_job_id=verification)
         check();self._base(record,client,deadline)
         title,body=_summary(prepared,record['id'],record['target'])
+        workflow = self.jobs.store.get(record['source_job_id']).get('project_workflow')
+        if workflow:
+            body += '\n\n<!-- APIShield workflow ' + json.dumps(workflow, sort_keys=True, separators=(',', ':')) + ' -->'
         self.store.update(record['id'],status='ready',phase='prepared',revision=record['revision']+1,prepared=prepared,
                           prepared_hash=_digest(prepared),review_hash=_digest([title,body]),title=title,body=body)
 
@@ -255,7 +258,10 @@ class PublicationService:
         existing=client.find_publication(record['target'],record['branch'],{'sha':record['commit']['sha'],'marker':marker},deadline=deadline)
         if not existing:
             effect('before','draft_pr',None)
-            existing=client.create_draft(target['repository'],target['base'],record['branch'],record['title'],record['body'],deadline=deadline)
+            body = record['body']
+            if '<!-- APIShield workflow ' in body:
+                body += '\n<!-- APIShield candidate ' + record['commit']['sha'] + ' -->'
+            existing=client.create_draft(target['repository'],target['base'],record['branch'],record['title'],body,deadline=deadline)
         if existing['commit']!=record['commit']['sha']:raise PublicationError('Remote draft commit did not match the reviewed proposal')
         self.store.update(identity,status='published',phase='published',publication=existing)
 

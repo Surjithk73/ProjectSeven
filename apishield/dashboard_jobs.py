@@ -72,6 +72,8 @@ class LocalJobs:
         self.monitoring = MonitorService(self)
         from .publication import PublicationService
         self.publication = PublicationService(self)
+        from .automation import AutomationService
+        self.automation = AutomationService(self)
 
     def model_settings(self):
         with self.lock:
@@ -192,6 +194,7 @@ class LocalJobs:
         return self.dispatch(self.create_config_job(integration, config, operation))
 
     def close(self):
+        self.automation.close()
         self.publication.close()
         self.monitoring.close()
         with self.lock:
@@ -218,6 +221,7 @@ def local_service(app):
                 root = Path(get_setting('APISHIELD_JOBS_DIR', str(Path.home() / '.apishield/jobs')))
                 app.state.local_jobs = LocalJobs(root, integrations)
                 app.state.local_jobs.monitoring.start()
+                app.state.local_jobs.automation.start()
             except (ValueError, OSError) as error:
                 raise HTTPException(503, f'Local job configuration invalid: {error}') from error
         return app.state.local_jobs
