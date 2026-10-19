@@ -92,7 +92,7 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 - [ ] Write tests: manual mode detects but makes no model call; automatic mode dispatches once; unchanged polling makes no model call; missing AI/GitHub/repo configuration prevents activation; simultaneous provider changes queue per repository; restart reconciles a persisted dispatch; failed generation does not retry on every poll; disabling mode stops new dispatches.
 - [ ] Run `venv/Scripts/python.exe -m pytest tests/test_automation.py -q` and confirm the dispatch tests fail.
-- [ ] Connect completed actionable comparisons to the existing AI engine, with durable deduplication and repository-level ownership. Default monitoring interval is 5 minutes for this demo, with explicit Check now; do not reduce global minimums.
+- [ ] Connect completed actionable comparisons to the existing AI engine, with durable deduplication and repository-level ownership. Batch pending provider changes into one candidate, supplying each provider's retained contracts and validating the full booking flow. A new incompatible change supersedes an in-flight proposal and schedules a fresh combined candidate; never require deploying the stale proposal first. Default monitoring interval is 5 minutes for this demo, with explicit Check now; do not reduce global minimums.
 - [ ] Rerun new tests with `tests/test_monitoring.py`, `tests/test_monitor_state.py`, and `tests/test_ai_repair_flow.py`. Verify timeouts, connection failures and exhausted generation attempts expose an actionable phase/error and preserve snapshots.
 - [ ] Commit `feat: orchestrate monitored updates with explicit automation modes`.
 

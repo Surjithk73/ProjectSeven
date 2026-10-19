@@ -54,7 +54,7 @@ First supported scenarios:
 
 1. Payment V2 changes the create-payment body from a scalar minor-unit amount to a nested money object and changes the confirmation response shape. Currency remains INR and the integer amount must remain in paise, without multiplication or division during migration.
 2. Theatre V2 changes seat availability/hold response nesting and the booking-confirmation request shape. Showtime, theatre, seat, and hold identities must remain intact.
-3. Both providers change while a PR is in flight. Retain both events; serialize updates for the client repository. Revalidate remaining work against the latest merged/deployed client revision before generating the next PR.
+3. Both providers change while a PR is in flight. Retain both events; serialize updates for the client repository. Batch all currently pending provider changes into one candidate and validate the entire booking flow. If a new change invalidates an open proposal, mark it superseded and generate a replacement against current contracts and the current base; do not wait for a stale proposal to deploy. Revalidate remaining work against the latest merged/deployed client revision before generating the next PR.
 
 Tests cover exact monetary amounts, payment idempotency, seat uniqueness, expired holds, declined payments, and the rule that a booking cannot be confirmed without successful payment. Demo admin resets affect only the dedicated demo state and require a deliberate Reset action. Starting services does not reset a provider switched to V2 during a rehearsal. A separate Reset rehearsal command explicitly restores V1 state and a known client baseline; remote Git history is never rewritten.
 
