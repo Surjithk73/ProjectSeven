@@ -1,0 +1,299 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Grand Cinema theatre provider",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/shows": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "shows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "movie": {
+                            "type": "string"
+                          },
+                          "price_paise": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "movie",
+                          "price_paise"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "shows"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shows/{show_id}/seats": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "availability": {
+                      "type": "object",
+                      "properties": {
+                        "show_id": {
+                          "type": "string"
+                        },
+                        "seats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "available": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "available"
+                            ]
+                          }
+                        },
+                        "price": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "integer",
+                              "description": "Exact integer paise; preserve amount unchanged. No rupee scaling."
+                            },
+                            "currency": {
+                              "type": "string",
+                              "enum": [
+                                "INR"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "show_id",
+                        "seats",
+                        "price"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "availability"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "show_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/holds": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hold": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "expires_at": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "integer",
+                              "description": "Exact integer paise; preserve amount unchanged. No rupee scaling."
+                            },
+                            "currency": {
+                              "type": "string",
+                              "enum": [
+                                "INR"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "expires_at",
+                        "total"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "hold"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "show_id": {
+                    "type": "string"
+                  },
+                  "seat_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "show_id",
+                  "seat_ids",
+                  "idempotency_key"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bookings": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "booking_id": {
+                      "type": "string"
+                    },
+                    "show_id": {
+                      "type": "string"
+                    },
+                    "seat_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "amount_paise": {
+                      "type": "integer"
+                    },
+                    "currency": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "payment_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "booking_id",
+                    "show_id",
+                    "seat_ids",
+                    "amount_paise",
+                    "currency",
+                    "status",
+                    "payment_id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "confirmation": {
+                    "type": "object",
+                    "properties": {
+                      "hold_id": {
+                        "type": "string"
+                      },
+                      "payment_id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "hold_id",
+                      "payment_id"
+                    ]
+                  }
+                },
+                "required": [
+                  "confirmation"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
