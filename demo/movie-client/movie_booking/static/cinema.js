@@ -1,6 +1,15 @@
 const $ = selector => document.querySelector(selector);
 const money = paise => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(paise / 100);
-let shows = [], current, lastBooking, selected = new Set(), key = crypto.randomUUID();
+// getRandomValues also works on LAN HTTP, where randomUUID is unavailable.
+function bookingKey() {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 15) | 64;
+  bytes[8] = (bytes[8] & 63) | 128;
+  const hex = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+let shows = [], current, lastBooking, selected = new Set(), key = bookingKey();
 let selectionRevision = 0, bookingInFlight = false, loading = false;
 
 function element(tag, text = '', className) {
@@ -103,7 +112,7 @@ function renderSeats(seats) {
         notice();
         button.classList.toggle('selected', selected.has(seat.id));
         button.setAttribute('aria-pressed', String(selected.has(seat.id)));
-        key = crypto.randomUUID();
+        key = bookingKey();
         summary();
       };
       row.append(button);
@@ -121,7 +130,7 @@ async function choose(show) {
   current = show;
   lastBooking = null;
   selected.clear();
-  key = crypto.randomUUID();
+  key = bookingKey();
   summary();
   notice();
   $('#confirmation').hidden = true;
