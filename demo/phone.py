@@ -85,6 +85,8 @@ def prepare_phone_demo(root=None,github=None):
         project=store.load_project('cinemaflow')
     if Path(project.repository).resolve()!=source.resolve() or any(p.base_url not in profile['deployment']['providers'].values() for p in project.providers):
         raise ValueError('Existing phone project settings differ from this profile; nothing was overwritten')
+    from .setup import ensure_provider_bindings
+    ensure_provider_bindings(profile['jobs'],project)
     if project.deployment_actor!=PUBLISHER or project.base_branch!=base:
         project.deployment_actor=PUBLISHER
         project.base_branch=base

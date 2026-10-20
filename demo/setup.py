@@ -151,7 +151,7 @@ def configure_system_a(repository, provider_host, jobs_root, model, client_port=
             atomic_json(directory / 'base.json', document)
             config = IntegrationConfig(repository, directory / 'base.json', directory / 'base.json', code_paths,
                 test_commands=[['python','-m','pytest','movie_booking/tests','-q']], model=model,
-                http_bindings=project.http_bindings() if name == 'cinemaflow' else {})
+                http_bindings={file: binding for file,binding in project.http_bindings().items() if file in code_paths})
             atomic_json(directory / 'integration.json', config.to_dict())
             registry[name] = {'config': str(directory / 'integration.json'), 'example': False}
         atomic_json(jobs_root / 'integrations.json', registry)
@@ -165,6 +165,20 @@ def configure_system_a(repository, provider_host, jobs_root, model, client_port=
     finally:
         jobs.close()
     return {'project_id':'cinemaflow','jobs_root':str(jobs_root),'mode':'manual'}
+
+
+def ensure_provider_bindings(jobs_root, project):
+    """Upgrade existing provider configs without accepting or replacing API baselines."""
+    from apishield.jobs import atomic_json
+    bindings=project.http_bindings()
+    for provider in project.providers:
+        path=Path(jobs_root)/'_integrations'/provider.integration_id/'integration.json'
+        if not path.is_file():
+            continue
+        config=json.loads(path.read_text(encoding='utf-8'))
+        expected={file:bindings[file] for file in provider.source_files}
+        if config.get('http_bindings')!=expected:
+            atomic_json(path,{**config,'http_bindings':expected})
 
 
 def main():

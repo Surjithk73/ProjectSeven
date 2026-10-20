@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { ArrowRight, FileCode2, GitCompareArrows } from "lucide-react";
 import { endpointIdentity } from '../project-workflow';
+import { contractDisplayTitle } from '../workspace';
 import {
   endpointPresentation,
   definitionSection,
@@ -96,7 +97,7 @@ export default function RunOverview({ report, catalogOnly }) {
       <header className="comparison-heading">
         <div>
           <GitCompareArrows size={22} />
-          <h3>{overview?.before?.info?.title || "API details"}</h3>
+          <h3>{contractDisplayTitle(overview?.before?.info?.title)}</h3>
         </div>
         <span>
           {rows.length} endpoints{" "}

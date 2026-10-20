@@ -17,13 +17,13 @@ function page(crypto) {
   const document = { documentElement: { dataset: { theme: 'dark' } },
     querySelector(selector) { if (!nodes.has(selector)) nodes.set(selector, node()); return nodes.get(selector); },
     querySelectorAll() { return []; }, createElement: node, createElementNS: node };
-  const show = { id: 'show-001', movie: 'The Last Horizon', theatre: 'Grand Cinema', time: '19:30', price_paise: 25000 };
+  const show = { id: 'show-001', movie: 'The Last Horizon', theatre: 'IMAX', time: '19:30', price_paise: 25000 };
   const context = vm.createContext({ crypto, document, Intl, localStorage: { setItem() {} },
     Option: function(text, value) { return { text, value }; },
     fetch: async (path, options) => {
       calls.push({ path, options });
       const data = path === '/health' ? { revision: 'working-files' }
-        : path === '/api/providers' ? [] : path === '/api/shows' ? [show]
+        : path === '/api/providers' ? [{id:'theatre',version:1,status:'ok'},{id:'payment',version:1,status:'ok'}] : path === '/api/shows' ? [show]
         : path.endsWith('/seats') ? [{ id: 'A1', available: true }] : {};
       return { ok: true, json: async () => data };
     } });
@@ -40,7 +40,9 @@ for (const secure of [false, true]) {
     assert.ok(calls.some(call => call.path === '/api/shows'));
     assert.equal(nodes.get('#movie-select').children[0].text, 'The Last Horizon');
     assert.equal(nodes.get('#movie-select').disabled, false);
-    assert.equal(nodes.get('#theatre-select').children[0].text, 'Grand Cinema');
+    assert.equal(nodes.get('#theatre-select').children[0].text, 'IMAX');
+    assert.equal(nodes.get('#provider-list').children[0].children[0].textContent, 'IMAX');
+    assert.equal(nodes.get('#provider-list').children[1].children[0].textContent, 'GPay');
     const seat = nodes.get('#seats').children[0].children[1];
     const before = vm.runInContext('key', context);
     seat.onclick();

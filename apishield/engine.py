@@ -134,7 +134,9 @@ def _execute(job, operation, candidate_path, result):
     atomic_json(job.path / 'result.json', redact_data({**job._initial, **result}))
     job.check()
     job.event('activity', stage='analyze', message='Scanning API consumers and building the structural graph')
-    result['scan'] = scan_sources(job.workspace, job.config.code_paths, job.config.http_bindings)
+    base_paths = json.loads(job._contract_bytes['base.json']).get('paths', {})
+    result['scan'] = scan_sources(job.workspace, job.config.code_paths, job.config.http_bindings,
+        qualify_operations=any(path.startswith('/__provider__/') for path in base_paths))
     result['requirements'] = job.config.requirements
     result['requirements_hash'] = requirements_hash(job.config.requirements)
     result['requirement_graph'] = build_requirement_graph(result['scan'], job.config.requirements, result)

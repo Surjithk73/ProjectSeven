@@ -48,7 +48,19 @@ export function graphEvidence(report) {
 }
 
 export function projectDisplayName(name) {
-  return name === "banking-example" ? "NexusBank Integration" : name === "cinemaflow" ? "CinemaFlow Integration" : name;
+  return ({'banking-example':'NexusBank Integration',cinemaflow:'CinemaFlow Integration','cinema-theatre':'IMAX','cinema-payment':'GPay'})[name] || name;
+}
+
+export function repositoryGroups(projects) {
+  return {repositories:projects.filter(p=>p.kind!=='provider'),providers:projects.filter(p=>p.kind==='provider')};
+}
+
+export function contractDisplayTitle(title) {
+  return ({'Grand Cinema theatre provider':'IMAX theatre provider','CinemaPay simulated payment provider':'GPay payment provider'})[title] || title || 'API details';
+}
+
+export function providerDisplayName(id) {
+  return ({theatre:'IMAX',payment:'GPay'})[id] || id;
 }
 
 export function refreshedJobReport(current, incoming) {

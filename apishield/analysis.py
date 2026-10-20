@@ -46,10 +46,11 @@ def _endpoint(url):
 
 
 class _Scanner:
-    def __init__(self, file, source, binding=None):
+    def __init__(self, file, source, binding=None, qualify_operations=True):
         self.file, self.source = file, source
         self.sites, self.limitations = [], []
         self.binding = binding
+        self.qualify_operations = qualify_operations
 
     def limitation(self, node, reason):
         self.limitations.append({'file': self.file, 'line': getattr(node, 'lineno', None), 'reason': reason})
@@ -101,7 +102,7 @@ class _Scanner:
                 'method': method, 'endpoint': endpoint, 'intent': intent})
             if self.binding and endpoint:
                 self.sites[-1].update(provider_id=self.binding['provider_id'], display_endpoint=endpoint,
-                    endpoint='/__provider__/' + self.binding['provider_id'] + endpoint)
+                    endpoint=('/__provider__/' + self.binding['provider_id'] + endpoint) if self.qualify_operations else endpoint)
             if endpoint is None:
                 self.limitation(call, 'Dynamic or unsupported URL; endpoint unknown')
 
@@ -207,7 +208,7 @@ class _Scanner:
                         values[name.id] = None; modules.discard(name.id); direct.pop(name.id, None)
 
 
-def scan_sources(workspace: Path, code_paths: list[str], http_bindings=None) -> dict:
+def scan_sources(workspace: Path, code_paths: list[str], http_bindings=None, *, qualify_operations=True) -> dict:
     root = Path(workspace).resolve()
     files = set()
     limitations = [{'file': None, 'line': None, 'reason':
@@ -233,7 +234,7 @@ def scan_sources(workspace: Path, code_paths: list[str], http_bindings=None) -> 
         except (UnicodeError, SyntaxError) as exc:
             limitations.append({'file': name, 'line': getattr(exc, 'lineno', None), 'reason': f'Unparseable Python source: {exc}'})
             continue
-        scanner = _Scanner(name, source, (http_bindings or {}).get(name))
+        scanner = _Scanner(name, source, (http_bindings or {}).get(name), qualify_operations)
         scanner.body(tree.body)
         sites.extend(scanner.sites); limitations.extend(scanner.limitations); scanned.append(name)
     return {'sites': sites, 'files_scanned': scanned, 'limitations': limitations}

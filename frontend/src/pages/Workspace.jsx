@@ -1075,8 +1075,8 @@ export default function Workspace() {
             Local application
           </span>
 
-          <a className="banking-demo-link" href={multiProject?.client_url || "/banking"}>
-            {multiProject?.client_url ? "CinemaFlow client" : "Banking demo"} <ArrowRight size={16} />
+          <a className="banking-demo-link" href={(multiProject?.client_url || current?.client_url) || "/banking"}>
+            {(multiProject?.client_url || current?.client_url) ? "CinemaFlow client" : "Banking demo"} <ArrowRight size={16} />
           </a>
         </div>
       </aside>
@@ -1175,7 +1175,7 @@ export default function Workspace() {
                       <span className="project-kind">
                         <FolderGit2 size={15} />
 
-                        {current.example
+                        {current.kind==='provider' ? 'API provider for '+projectDisplayName(current.project_id) : current.example
                           ? current.name === "banking-example" ? "Banking integration repository" : "Example repository"
                           : "Connected repository"}
                       </span>
@@ -1314,10 +1314,10 @@ export default function Workspace() {
                         <ChevronRight size={16} />
                       </button>
 
-                      <a href={multiProject?.client_url || "/banking"}>
+                      <a href={(multiProject?.client_url || current?.client_url) || "/banking"}>
                         <LayoutDashboard size={19} />
 
-                        <span>{multiProject?.client_url ? "CinemaFlow client" : "Banking demo"}</span>
+                        <span>{(multiProject?.client_url || current?.client_url) ? "CinemaFlow client" : "Banking demo"}</span>
 
                         <ChevronRight size={16} />
                       </a>

@@ -11,7 +11,7 @@ from .state import Store, fingerprint, local_admin, required_text
 
 
 def create_app(database=None):
-    app = FastAPI(title='CinemaPay · simulated payments', openapi_url=None)
+    app = FastAPI(title='GPay · simulated payments', openapi_url=None)
     store = Store(database or Path(os.environ.get('CINEMA_STATE_DIR', DEMO_ROOT / 'providers')) / 'payment.db')
     app.state.store = store
 

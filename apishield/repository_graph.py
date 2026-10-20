@@ -181,6 +181,41 @@ def build_repository_graph(root, scan, requirements, changed_operations, check=l
                         routes.setdefault(route, []).append(key)
                 walk(item.body, name + '.', key)
         walk(tree.body)
+    classes={(node['file'],node['label']) for node in nodes.values() if node['kind']=='class'}
+
+    def constructor(file, expression, blocked=()):
+        if not isinstance(expression,ast.Call):
+            return None
+        target_file,target_name=file,None
+        if isinstance(expression.func,ast.Name):
+            if expression.func.id in blocked:
+                return None
+            target_name=expression.func.id
+            if target_name in imports[file]:
+                module,target_name=imports[file][target_name]
+                target_file=module.replace('.','/')+'.py'
+        elif isinstance(expression.func,ast.Attribute) and isinstance(expression.func.value,ast.Name):
+            imported=imports[file].get(expression.func.value.id)
+            if imported and not imported[1]:
+                target_file=imported[0].replace('.','/')+'.py'
+                target_name=expression.func.attr
+        return (target_file,target_name) if (target_file,target_name) in classes else None
+
+    # Resolve only explicit, unambiguous constructor assignments. No source execution.
+    fields={}
+    for (file,name),tree in records.items():
+        if tree is None or not name.endswith('.__init__'):
+            continue
+        assignments={}
+        for statement in tree.body:
+            if isinstance(statement,ast.Assign):
+                for target in statement.targets:
+                    if isinstance(target,ast.Attribute) and isinstance(target.value,ast.Name) and target.value.id=='self':
+                        assignments.setdefault(target.attr,[]).append(constructor(file,statement.value))
+        for attribute,values in assignments.items():
+            if len(values)==1 and values[0]:
+                fields[(file,name.rsplit('.',1)[0],attribute)]=values[0]
+
     for (file, name), tree in records.items():
         check()
         key = f'function:{file}:{name}'
@@ -203,6 +238,29 @@ def build_repository_graph(root, scan, requirements, changed_operations, check=l
             continue
         shadowed = {arg.arg for arg in (*tree.args.posonlyargs, *tree.args.args, *tree.args.kwonlyargs)}
         shadowed.update(_scope_bindings(tree))
+        local_types={}
+        assignments={}
+        for statement in _body_nodes(tree):
+            if isinstance(statement,ast.Assign):
+                for target in statement.targets:
+                    if isinstance(target,ast.Name):
+                        assignments.setdefault(target.id,[]).append(constructor(file,statement.value,shadowed))
+        for local,values in assignments.items():
+            if len(values)==1 and values[0]:
+                local_types[local]=values[0]
+
+        def receiver_type(expression):
+            if isinstance(expression,ast.Name):
+                if expression.id=='self' and '.' in name:
+                    return file,name.rsplit('.',1)[0]
+                return local_types.get(expression.id)
+            if isinstance(expression,ast.Call):
+                return constructor(file,expression,shadowed)
+            if isinstance(expression,ast.Attribute):
+                owner=receiver_type(expression.value)
+                return fields.get((*owner,expression.attr)) if owner else None
+            return None
+
         for call in (n for n in _body_nodes(tree) if isinstance(n, ast.Call)):
             target_file, target_name = file, None
             if isinstance(call.func, ast.Name) and call.func.id not in shadowed:
@@ -223,6 +281,13 @@ def build_repository_graph(root, scan, requirements, changed_operations, check=l
                         target_file, target_name = imported_file, call.func.attr
             if target_name and (target_file, target_name) in records:
                 edge(key, f'function:{target_file}:{target_name}', 'calls')
+            elif isinstance(call.func,ast.Attribute):
+                owner=receiver_type(call.func.value)
+                if owner:
+                    target_file,target_class=owner
+                    target_name=target_class+'.'+call.func.attr
+                    if (target_file,target_name) in records:
+                        edge(key,f'function:{target_file}:{target_name}','calls','explicit_constructor_binding')
     changed = {(op['method'], _path(op['endpoint'])) for op in changed_operations}
     direct = set()
     for site in scan['sites']:

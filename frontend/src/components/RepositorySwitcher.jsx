@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { FolderGit2, ChevronDown, Check, Plus } from "lucide-react";
-import { projectDisplayName } from "../workspace";
+import { projectDisplayName, repositoryGroups } from "../workspace";
 
 export default function RepositorySwitcher({
   projects = [],
@@ -12,6 +12,7 @@ export default function RepositorySwitcher({
   const menu = useRef(null),
     trigger = useRef(null);
   const selected = projects.find((project) => project.name === value);
+  const groups=repositoryGroups(projects);
   const close = () => {
     if (menu.current) menu.current.open = false;
   };
@@ -44,15 +45,16 @@ export default function RepositorySwitcher({
               : selected?.example
                 ? selected.name === "banking-example" ? "Banking integration" : "Example project"
                 : selected
-                  ? "Local repository"
+                  ? selected.kind==='provider' ? 'API provider · '+projectDisplayName(selected.project_id) : "Client repository"
                   : `${projects.length} connected`}
           </small>
         </span>
         <ChevronDown size={16} className="repository-chevron" />
       </summary>
       <div className="repository-menu">
-        <div className="repository-menu-label">Repositories</div>
-        {projects.map((project) => (
+        {[["Repositories",groups.repositories],["API providers",groups.providers]].map(([label,items])=><div key={label}>
+        {items.length>0&&<div className="repository-menu-label">{label}</div>}
+        {items.map((project) => (
           <button
             key={project.name}
             aria-pressed={project.name === value}
@@ -67,12 +69,12 @@ export default function RepositorySwitcher({
             <span>
               <strong>{projectDisplayName(project.name)}</strong>
               <small>
-                {project.name === "banking-example" ? "Banking integration" : project.example ? "Example project" : "Local repository"}
+                {project.kind==='provider' ? 'Provider for '+projectDisplayName(project.project_id) : project.name === "banking-example" ? "Banking integration" : project.example ? "Example project" : "Client repository"}
               </small>
             </span>
             {project.name === value && <Check size={17} />}
           </button>
-        ))}
+        ))}</div>)}
         {!projects.length && (
           <p>
             {loading

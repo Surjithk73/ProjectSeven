@@ -188,7 +188,7 @@ async function load() {
     $('#provider-list').replaceChildren();
     providers.forEach(provider => {
       const card = element('article', '', 'provider');
-      card.append(element('h2', provider.id === 'payment' ? 'CinemaPay' : 'Grand Cinema'));
+      card.append(element('h2', provider.id === 'payment' ? 'GPay' : 'IMAX'));
       card.append(element('span', provider.version ? `V${provider.version} · ${provider.status}` : 'Unreachable', `version${provider.version ? '' : ' unreachable'}`));
       card.append(element('p', provider.id === 'payment' ? 'Payment requests, exact currency amounts and transaction status.' : 'Showtimes, seat availability, reservations and booking confirmations.'));
       const controls = element('div', '', 'provider-buttons');

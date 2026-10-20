@@ -1,3 +1,4 @@
+import { providerDisplayName } from '../workspace';
 import {
   useCallback,
   useEffect,
@@ -303,7 +304,7 @@ export default function SemanticNetwork({ report, active }) {
         </div>
       </div>
       <div className="graph-controls">
-        {graph.nodes.some(n=>n.provider_id)&&<label>Provider<select aria-label="Graph provider" value={providerFilter} onChange={event=>{setProviderFilter(event.target.value);setGroupId(null);setFocusId(null);setSelected(null);}}><option value="all">All providers</option>{[...new Set(graph.nodes.map(n=>n.provider_id).filter(Boolean))].sort().map(id=><option key={id} value={id}>{id}</option>)}</select></label>}
+        {graph.nodes.some(n=>n.provider_id)&&<label>Provider<select aria-label="Graph provider" value={providerFilter} onChange={event=>{setProviderFilter(event.target.value);setGroupId(null);setFocusId(null);setSelected(null);}}><option value="all">All providers</option>{[...new Set(graph.nodes.map(n=>n.provider_id).filter(Boolean))].sort().map(id=><option key={id} value={id}>{providerDisplayName(id)}</option>)}</select></label>}
         <label className="graph-search">
           <Search size={18} />
           <input

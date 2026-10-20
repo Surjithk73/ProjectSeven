@@ -12,9 +12,9 @@ from ..setup import DEMO_ROOT
 from .state import Store, fingerprint, local_admin, required_text
 
 SHOWS = [{'id': 'show-001', 'movie': 'The Last Horizon', 'genre': 'Adventure · Sci-Fi',
-          'theatre': 'Grand Cinema', 'time': '19:30', 'price_paise': 25000, 'duration': '2h 18m'},
+          'theatre': 'IMAX', 'time': '19:30', 'price_paise': 25000, 'duration': '2h 18m'},
          {'id': 'show-002', 'movie': 'A Little More Summer', 'genre': 'Drama · Romance',
-          'theatre': 'Grand Cinema', 'time': '21:00', 'price_paise': 30000, 'duration': '1h 54m'}]
+          'theatre': 'IMAX', 'time': '21:00', 'price_paise': 30000, 'duration': '1h 54m'}]
 
 
 def find_show(show_id):
@@ -25,7 +25,7 @@ def find_show(show_id):
 
 
 def create_app(database=None, payment_client=None):
-    app = FastAPI(title='Grand Cinema · theatre provider', openapi_url=None)
+    app = FastAPI(title='IMAX · theatre provider', openapi_url=None)
     store = Store(database or Path(os.environ.get('CINEMA_STATE_DIR', DEMO_ROOT / 'providers')) / 'theatre.db')
     app.state.store = store
 
