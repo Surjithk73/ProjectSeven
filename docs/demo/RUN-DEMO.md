@@ -2,6 +2,8 @@
 
 **Recommended: laptop + phone.** Use [PHONE-DEMO.md](PHONE-DEMO.md) and double-click `Start Phone Demo.bat`. Only the laptop needs developer tools. The instructions below retain the separate two-Windows-machine deployment option.
 
+For a complete repeat after a merged migration, use **Reset Phone Demo.bat**, then **Start Phone Demo.bat**. Reset archives the old local workspace and creates a fresh V1 GitHub rehearsal branch; new PRs and deployment use that branch. See the complete-reset section in the phone guide. The provider-only reset command below is not a complete phone-demo reset.
+
 Status checked on 2026-10-19: the implementation is committed on local ProjectSeven branch `feature/cinemaflow-multi-provider` at `828fbca`. That branch has not yet been pushed. CinemaFlow setup PR https://github.com/Surjithk73/APIGuardTesting/pull/2 is open, ready for review and unmerged. `surjk73` has active write access; both client checks passed on the proposed head. A physical two-machine deployment rehearsal remains pending.
 
 ## 1. Publish the prepared APIShield branch (System A)

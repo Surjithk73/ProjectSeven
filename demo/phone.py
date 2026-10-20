@@ -61,12 +61,17 @@ def prepare_phone_demo(root=None,github=None):
     if account['login'].casefold()!=PUBLISHER.casefold():
         raise ValueError('Keep the laptop signed in as Surjithk73. Review as surjk73 on the phone.')
     profile=phone_configuration(root)
+    from .phone_reset import rehearsal_settings
+    rehearsal=rehearsal_settings(Path(profile['root']))
+    base=rehearsal['base'] if rehearsal else 'main'
+    profile['deployment']['base']=base
     try:
-        github.api('GET',f'repos/{REPOSITORY}/contents/movie_booking/app.py?ref=main',None,deadline=deadline)
-        mode='deployment';branch='main'
+        github.api('GET',f'repos/{REPOSITORY}/contents/movie_booking/app.py?ref={base}',None,deadline=deadline)
+        mode='deployment';branch=base
         message='Merged-release deployment enabled. Review migration PRs as surjk73 on the phone.'
+        if rehearsal: message+=f' Rehearsal PR target: {base}.'
     except GitHubError as error:
-        if error.code!=404: raise
+        if error.code!=404 or rehearsal: raise
         mode='preview';branch='feature/cinemaflow-client'
         message='Preview only: review and merge setup PR #2 as surjk73, wait for main CI, then restart this launcher to enable deployment.'
     source=Path(profile['source'])
@@ -80,8 +85,9 @@ def prepare_phone_demo(root=None,github=None):
         project=store.load_project('cinemaflow')
     if Path(project.repository).resolve()!=source.resolve() or any(p.base_url not in profile['deployment']['providers'].values() for p in project.providers):
         raise ValueError('Existing phone project settings differ from this profile; nothing was overwritten')
-    if project.deployment_actor!=PUBLISHER:
+    if project.deployment_actor!=PUBLISHER or project.base_branch!=base:
         project.deployment_actor=PUBLISHER
+        project.base_branch=base
         store.save(project.to_dict(),project.revision)
     if mode=='deployment':
         from apishield.dashboard_jobs import LocalJobs
@@ -90,7 +96,9 @@ def prepare_phone_demo(root=None,github=None):
             jobs.publication.github=github
             target=jobs.publication.store.read_target('cinemaflow')
             if not target['configured']:
-                jobs.publication.configure('cinemaflow',REPOSITORY,'main',target['revision'])
+                jobs.publication.configure('cinemaflow',REPOSITORY,base,target['revision'])
+            elif target['base']!=base:
+                raise ValueError('GitHub target differs from the rehearsal branch; reset or inspect project settings')
         finally:
             jobs.close()
     profile.update(mode=mode,message=message,source_sha=git(source,'rev-parse','HEAD'))
@@ -100,6 +108,17 @@ def prepare_phone_demo(root=None,github=None):
 
 
 def run_phone_demo(root=None,api_port=8005,no_browser=False):
+    from apishield.engine import _execution_lock
+    from .phone_reset import control_directory
+    root=workspace_path(root or DEMO_ROOT/'phone')
+    with _execution_lock(control_directory(root)) as owned:
+        if not owned:
+            print('The phone demo is already running or resetting. Use Stop Phone Demo.bat before restarting.',flush=True)
+            return
+        _run_phone_demo(root,api_port,no_browser)
+
+
+def _run_phone_demo(root,api_port,no_browser):
     import sys
     import webbrowser
     import httpx
@@ -194,6 +213,7 @@ def main():
     actions=parser.add_mutually_exclusive_group()
     actions.add_argument('--start',action='store_true')
     actions.add_argument('--stop',action='store_true')
+    actions.add_argument('--reset',action='store_true')
     parser.add_argument('--api-port',type=int,default=8005)
     parser.add_argument('--no-browser',action='store_true')
     args=parser.parse_args()
@@ -201,6 +221,13 @@ def main():
         if args.start:
             if not 1<=args.api_port<=65535:raise ValueError('Use a valid APIShield port')
             run_phone_demo(args.root,args.api_port,args.no_browser)
+        elif args.reset:
+            from .phone_reset import reset_phone_demo
+            print('Stopping the phone demo and preparing a clean V1 rehearsal...',flush=True)
+            result=reset_phone_demo(args.root)
+            print('Complete reset finished. Previous data archived at '+result['archive'])
+            print('Next PR target: '+result['base'])
+            print('Double-click Start Phone Demo.bat, then refresh APIShield and CinemaFlow.')
         elif args.stop:
             root=workspace_path(args.root or DEMO_ROOT/'phone')
             if not (root/'.phone-demo').is_file():raise ValueError('No managed phone demo has been started')

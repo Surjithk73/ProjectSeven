@@ -32,6 +32,24 @@ This demonstrates a browser client on another device with deployment hosted on t
 
 Double-click `Stop Phone Demo.bat`. It requests shutdown of this launcher's owned services and leaves unrelated applications running. Restarting preserves provider data and run history; it does not silently reset the demo to V1. Select V1 explicitly for another rehearsal when appropriate.
 
+## Complete reset, including after a merged migration
+
+Double-click **Reset Phone Demo.bat**, wait for **Complete reset finished**, then double-click **Start Phone Demo.bat**. Refresh both browser pages after startup. The reset requests shutdown itself, so it can also be used while the phone demo is running. It does not start the demo automatically.
+
+The equivalent command, from `C:/Users/surji/ProjectSeven`, is:
+
+```powershell
+.\venv\Scripts\python.exe -B -m demo.phone --reset
+```
+
+The reset restores both providers to V1 with empty payments/reservations, prepares the V1-compatible client at commit `77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0` (including the phone HTTP fix), and starts with fresh APIShield state. On the next launch, APIShield initializes V1 contract baselines, manual mode, a clean graph/run history and a new GitHub publication target. The existing Google credential connection remains available.
+
+Each reset creates a fresh GitHub branch named `demo/rehearsal-<UTC timestamp>-<unique suffix>` from that verified commit. New migration PRs target this branch, and deployment follows its human-reviewed merges. This makes a complete migration repeatable even after previous trials were merged; it does not rewrite `main` or remove old PRs/branches. Internet access and the laptop's `Surjithk73` GitHub CLI login are required. The launcher prints the current rehearsal branch so the reviewer can verify the PR destination.
+
+Previous local state, logs, candidates, client source and releases are moved intact to `.apishield/cinema/phone-archives/<rehearsal identifier>/`. Archives accumulate; they are not silently deleted. A failed authentication/CI check or client download preserves the previous workspace. If shutdown cannot finish, reset refuses to move the running workspace. Other APIShield workspaces, the banking demo and academic artifacts are outside this reset.
+
+The older `demo.setup reset --state .../providers` command still resets **providers only**. Use **Reset Phone Demo.bat** for the complete reset described here.
+
 All new runtime files stay under `C:/Users/surji/ProjectSeven/.apishield/cinema/phone`: `profile.json`, `deployment.json`, `client-source/`, `jobs/`, `providers/`, `releases/` and `logs/`. Temporary files and caches stay under the project's `.apishield/cinema/` directory. The existing managed Google credential is read from its configured location and is not copied into the client or repository.
 
 The previous two-Windows-machine option remains documented in [RUN-DEMO.md](RUN-DEMO.md).
