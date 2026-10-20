@@ -42,7 +42,7 @@ The equivalent command, from `C:/Users/surji/ProjectSeven`, is:
 .\venv\Scripts\python.exe -B -m demo.phone --reset
 ```
 
-The reset restores both providers to V1 with empty payments/reservations, prepares the V1-compatible client at commit `77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0` (including the phone HTTP fix), and starts with fresh APIShield state. On the next launch, APIShield initializes V1 contract baselines, manual mode, a clean graph/run history and a new GitHub publication target. The existing Google credential connection remains available.
+The reset restores both providers to V1 with empty payments/reservations, prepares the V1-compatible client at commit `0439f7c451dcc1032ed309071b0536ad2b12000b` (including the phone HTTP fix and IMAX/GPay labels), and starts with fresh APIShield state. On the next launch, APIShield initializes V1 contract baselines, manual mode, a clean graph/run history and a new GitHub publication target. The existing Google credential connection remains available.
 
 Each reset creates a fresh GitHub branch named `demo/rehearsal-<UTC timestamp>-<unique suffix>` from that verified commit. New migration PRs target this branch, and deployment follows its human-reviewed merges. This makes a complete migration repeatable even after previous trials were merged; it does not rewrite `main` or remove old PRs/branches. Internet access and the laptop's `Surjithk73` GitHub CLI login are required. The launcher prints the current rehearsal branch so the reviewer can verify the PR destination.
 

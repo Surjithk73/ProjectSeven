@@ -10,8 +10,9 @@ from apishield.github_cli import GhClient
 from apishield.jobs import atomic_json
 from .setup import DEMO_ROOT, workspace_path
 
-# Human-merged PR #3: V1 API clients plus the phone HTTP compatibility fix.
-BASELINE_SHA = '77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0'
+# Human-merged PR #4: V1 clients, phone HTTP compatibility, and IMAX/GPay labels.
+BASELINE_SHA = '0439f7c451dcc1032ed309071b0536ad2b12000b'
+SUPPORTED_BASELINES = {BASELINE_SHA, '77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0'}
 
 
 def control_directory(root):
@@ -26,7 +27,7 @@ def rehearsal_settings(root):
         return None
     import re
     value = json.loads(path.read_text(encoding='utf-8'))
-    if (value.get('version') != 1 or value.get('baseline_sha') != BASELINE_SHA
+    if (value.get('version') != 1 or value.get('baseline_sha') not in SUPPORTED_BASELINES
             or not re.fullmatch(r'demo/rehearsal-[0-9TZ-]+-[0-9a-f]{8}', value.get('base', ''))):
         raise ValueError('Invalid rehearsal settings; preserve and inspect rehearsal.json')
     return value

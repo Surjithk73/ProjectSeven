@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 
-BASELINE = '77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0'
+from demo.phone_reset import BASELINE_SHA as BASELINE
 
 
 class GitHub:
@@ -143,3 +143,15 @@ def test_start_and_reset_share_ownership_lock(phone):
             reset_phone_demo(phone, github=github, stop_timeout=0)
     assert not github.branches
     assert (phone / 'jobs/old-evidence.json').exists()
+
+
+def test_previous_phone_baseline_settings_remain_readable(phone):
+    from demo.phone_reset import rehearsal_settings
+    value={'version':1,'base':'demo/rehearsal-20261020T000000Z-1234abcd',
+           'baseline_sha':'77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0'}
+    (phone/'rehearsal.json').write_text(json.dumps(value))
+    assert rehearsal_settings(phone)==value
+    value['baseline_sha']='a'*40
+    (phone/'rehearsal.json').write_text(json.dumps(value))
+    with pytest.raises(ValueError,match='rehearsal settings'):
+        rehearsal_settings(phone)
