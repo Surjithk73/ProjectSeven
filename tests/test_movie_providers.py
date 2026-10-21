@@ -38,6 +38,18 @@ def test_v2_breaks_unchanged_v1_adapter(services, provider_index):
         services[2].book('show-001', ['A2'], 'order-v2')
 
 
+def test_gpay_v2_rejects_old_payment_without_taking_money_or_confirming_seats(services):
+    payment, theatre, client = services
+    payment.post('/admin/version', json={'version':2}).raise_for_status()
+    with pytest.raises((httpx.HTTPStatusError, httpx2.HTTPStatusError)) as failure:
+        client.book('show-001',['A2'],'gpay-v2-error')
+    assert failure.value.response.status_code == 422
+    assert failure.value.response.json()['detail'].startswith('Payment failed:')
+    assert payment.get('/payments').json() == []
+    with theatre.app.state.store.connect() as db:
+        assert db.execute('SELECT COUNT(*) FROM holds WHERE result IS NOT NULL').fetchone()[0] == 0
+
+
 def test_exact_paise_and_key_payload_conflict(services):
     payment, _, _ = services
     body = {'booking_id': 'hold-1', 'amount_paise': 25001, 'currency': 'INR', 'idempotency_key': 'key-1'}

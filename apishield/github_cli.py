@@ -83,8 +83,10 @@ class GhClient:
         if method=='PATCH' and ('/git/refs/heads/' not in endpoint or not isinstance(payload,dict) or payload.get('force') is not False):
             raise ValueError('GitHub force updates are unsupported')
         if self.effect and method!='GET':self.effect('before',endpoint,None)
+        # This controller relies on merge_commit_sha for exact-revision CI and
+        # deployment checks; the 2026-03-10 PR schema removed that field.
         argv=['gh','api','--hostname','github.com','--method',method,endpoint,
-              '--header','Accept: application/vnd.github+json','--header','X-GitHub-Api-Version: 2026-03-10']
+              '--header','Accept: application/vnd.github+json','--header','X-GitHub-Api-Version: 2022-11-28']
         files=None
         if payload is not None:
             argv+=['--input','{request.json}'];files={'request.json':json.dumps(payload,ensure_ascii=False)}

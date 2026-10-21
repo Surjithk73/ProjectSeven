@@ -21,7 +21,10 @@ def test_two_file_offline_revalidation_preserves_source_and_original_result(ship
     git(repo,'add','.');git(repo,'-c','user.name=Fixture','-c','user.email=fixture@example.test','commit','-m','Second source')
     value=json.loads(candidate.read_text());value['patches'].append({**value['patches'][0],'file':'src/second.py'})
     candidate.write_text(json.dumps(value))
-    result=run(shipment);original=(store._path(result['job_id'])/'result.json').read_bytes()
+    result=run(shipment)
+    result['generation_guidance'] = {'kind':'prewritten_demo_reference','files':['src/client.py'],'unseeded_evaluation':False}
+    atomic_json(store._path(result['job_id'])/'result.json', result)
+    original=(store._path(result['job_id'])/'result.json').read_bytes()
     source={name:(repo/name).read_bytes() for name in ['src/client.py','src/second.py']}
     monkeypatch.setattr('apishield.engine.generate_candidate',lambda *args,**kwargs:pytest.fail('Offline preparation must never infer'))
     prepared=prepare_repair(store,result['job_id'])
@@ -30,6 +33,9 @@ def test_two_file_offline_revalidation_preserves_source_and_original_result(ship
     assert store.get(prepared['verification_job_id'])['status']=='validated'
     assert prepared['source_commit']==result['source_commit']
     assert prepared['patch_sha256']==result['patch_sha256']
+    assert prepared['validation']['generation_guidance'] == result['generation_guidance']
+    from apishield.publication import _summary
+    assert 'prewritten reference patch' in _summary(prepared,'fixture')[1]
     assert all((repo/name).read_bytes()==content for name,content in source.items())
     assert (store._path(result['job_id'])/'result.json').read_bytes()==original
     assert not (store._path(prepared['verification_job_id'])/'workspace').exists()

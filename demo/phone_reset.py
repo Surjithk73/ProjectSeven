@@ -10,9 +10,10 @@ from apishield.github_cli import GhClient
 from apishield.jobs import atomic_json
 from .setup import DEMO_ROOT, workspace_path
 
-# Human-merged PR #4: V1 clients, phone HTTP compatibility, and IMAX/GPay labels.
-BASELINE_SHA = '0439f7c451dcc1032ed309071b0536ad2b12000b'
-SUPPORTED_BASELINES = {BASELINE_SHA, '77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0'}
+# Human-merged PR #5: V1 clients and a contract-complete public hold fixture.
+BASELINE_SHA = '5c2ce0bc39136d5038c77a35faf1d16f9c0d1254'
+SUPPORTED_BASELINES = {BASELINE_SHA, '0439f7c451dcc1032ed309071b0536ad2b12000b',
+                      '77dfc946dd1a40f0fc8af8ef820bdd7009c7cdf0'}
 
 
 def control_directory(root):

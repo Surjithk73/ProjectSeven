@@ -267,6 +267,14 @@ def _execute(job, operation, candidate_path, result):
             job.check()
             model_arguments = {} if job._model_connection is None else dict(connection=job._model_connection,
                 check=job.check, on_usage=lambda **data:job.event('model_usage',**data))
+            if candidate_path is None and job._initial.get('browser_ai') and job._initial.get('project_workflow'):
+                from demo.repair_guidance import reference_patches
+                reference = reference_patches(context, job._initial['project_workflow'])
+                if reference:
+                    model_arguments['demo_reference_patches'] = reference
+                    result['generation_guidance'] = {'kind':'prewritten_demo_reference',
+                        'files':sorted({p['file'] for p in reference}), 'unseeded_evaluation':False}
+                    job.event('demo_reference_guidance', files=result['generation_guidance']['files'])
             job.event('activity', stage='repair', attempt=number,
                       message='Generating a targeted patch' if number == 1 else 'Retrying the patch with validation feedback')
             candidate = offline if candidate_path is not None else generate_candidate(context, feedback, **model_arguments)

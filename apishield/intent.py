@@ -105,6 +105,9 @@ def infer_intent(context, connection, *, check=None, on_activity=None):
         'dunder introspection, filesystem writes, process calls, skip or xfail: validation rejects these operations. '
         'Only create new tests/apishield_generated/test_*.py files; never edit existing files. '
         'Every referenced name must be imported or defined. Dictionary keys such as "json" must be quoted strings. '
+        'Mock responses must include all required target-contract fields, including nested IDs, amounts, currency and expiry fields. '
+        'Preserve caller-visible return shapes; test exact integer amounts, identity and idempotency where supported. '
+        'An HTTP payment failure must never become a successful booking. Infer assertions from contracts and behavior, not a proposed patch. '
         'Use at most16 rules and12 files, and meaningful assertions. Avoid tests of your proposed implementation.')
     usage_records = []
     deadline = time.monotonic() + context.get('intent_timeout_seconds', 240)

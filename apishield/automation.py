@@ -73,6 +73,13 @@ class AutomationService:
         key = hashlib.sha256(json.dumps([project_id, providers, source_sha], sort_keys=True).encode()).hexdigest()
         cancelled = []
         with self.projects.transaction(project_id) as state:
+            # A launcher restart may already have fetched the reviewed merge.
+            # Keep its workflow while deployment evidence is still pending.
+            deploying = next((w for w in reversed(state['workflows'])
+                if w['state'] in {'merged', 'deploying', 'awaiting_ci'}
+                and w.get('merge_sha') == source_sha and w['providers'] == providers), None)
+            if deploying:
+                return json.loads(json.dumps(deploying))
             existing = next((w for w in reversed(state['workflows']) if w['identity'] == key and w['state'] != 'superseded'), None)
             if existing:
                 return json.loads(json.dumps(existing))
@@ -198,13 +205,15 @@ class AutomationService:
         for item in self.projects.list():
             project = self.projects.load_project(item['project_id'])
             try:
+                # Reconcile a human merge before treating its fetched source as
+                # an unrelated edit that would supersede the pending deployment.
+                self.advance(project)
                 documents, changes = self.snapshots(project)
                 source_sha = self.source(project)
                 if changes:
                     record = self.observe(project.project_id, changes, source_sha)
                     if record['state'] == 'awaiting_request' and project.automation_mode == 'automatic_edit':
                         self.dispatch_change(project.project_id, record['workflow_id'], automatic=True)
-                self.advance(project)
                 with self.projects.transaction(project.project_id) as state:
                     state.pop('error', None)
             except Exception as error:

@@ -48,6 +48,7 @@ def test_three_independent_http_services(tmp_path):
         assert switched.status_code == 200
         broken = httpx.post(urls[2] + '/api/bookings', json={'show_id': 'show-001', 'seat_ids': ['B3'], 'idempotency_key': 'http-v2'}, trust_env=False)
         assert broken.status_code == 502 and 'detail' in broken.json()
+        assert broken.json()['detail'].startswith('Payment failed: GPay V2')
         assert httpx.get(urls[0] + '/openapi.json', trust_env=False).json()['info']['version'] == '2.0.0'
     finally:
         for process in processes:

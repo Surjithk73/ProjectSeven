@@ -1,6 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { workflowPresentation, providerHealth, endpointIdentity, filterProviderGraph } from '../src/project-workflow.js';
+import { workflowPresentation, providerHealth, endpointIdentity, filterProviderGraph, workflowOwner } from '../src/project-workflow.js';
+
+test('provider AI updates belong to the parent deployment workflow',()=>{
+  assert.equal(workflowOwner('cinema-theatre',{name:'cinema-theatre',kind:'provider',project_id:'cinemaflow'},null),'cinemaflow');
+  assert.equal(workflowOwner('cinemaflow',{name:'cinemaflow'},{project_id:'cinemaflow'}),'cinemaflow');
+  assert.equal(workflowOwner('banking-example',{name:'banking-example'},null),null);
+  assert.equal(workflowOwner('other',{name:'cinema-theatre',kind:'provider',project_id:'cinemaflow'},null),null);
+});
 
 test('merge does not imply deployed health, and rollback is a failure',()=>{
   assert.equal(workflowPresentation({state:'merged'}).tone,'pending');

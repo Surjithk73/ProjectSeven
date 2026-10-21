@@ -43,6 +43,8 @@ def _summary(prepared,identity,target=None):
     connection=prepared['validation'].get('model_connection')
     if connection and prepared['validation'].get('proposal_source')=='model':
         lines.extend(['',f'Model: `{text(connection.get("model","unavailable"))}`; provider: `{text(connection.get("provider","unavailable"))}`'])
+    if (prepared['validation'].get('generation_guidance') or {}).get('kind') == 'prewritten_demo_reference':
+        lines.extend(['','Guided demonstration: generation included a prewritten reference patch. This is not an unseeded evaluation run.'])
     lines.extend(['','Human review is required before merging. Local validation does not establish complete semantic correctness.',
                   '',f'<!-- APIShield proposal {identity} -->'])
     return title,'\n'.join(lines)

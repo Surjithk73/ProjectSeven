@@ -6,7 +6,7 @@ import vm from 'node:vm';
 
 const source = readFileSync(new URL('../../demo/movie-client/movie_booking/static/cinema.js', import.meta.url), 'utf8');
 
-function page(crypto) {
+function page(crypto, paymentFailure = false) {
   const nodes = new Map(), calls = [];
   function node() {
     return { dataset: {}, children: [], classList: { toggle() {}, remove() {} },
@@ -22,6 +22,7 @@ function page(crypto) {
     Option: function(text, value) { return { text, value }; },
     fetch: async (path, options) => {
       calls.push({ path, options });
+      if (paymentFailure && path === '/api/bookings') return {ok:false,json:async()=>({detail:'Payment failed: GPay V2 requires an updated payment client.'})};
       const data = path === '/health' ? { revision: 'working-files' }
         : path === '/api/providers' ? [{id:'theatre',version:1,status:'ok'},{id:'payment',version:1,status:'ok'}] : path === '/api/shows' ? [show]
         : path.endsWith('/seats') ? [{ id: 'A1', available: true }] : {};
@@ -29,6 +30,19 @@ function page(crypto) {
     } });
   return { context, nodes, calls };
 }
+
+test('GPay V2 checkout failure is shown and never becomes a booking confirmation', async () => {
+  const {context,nodes,calls} = page({getRandomValues:array=>webcrypto.getRandomValues(array)},true);
+  vm.runInContext(source,context);
+  await new Promise(resolve=>setImmediate(resolve));
+  nodes.get('#seats').children[0].children[1].onclick();
+  await nodes.get('#book').onclick();
+  assert.ok(calls.some(call=>call.path==='/api/bookings'));
+  assert.match(nodes.get('#notice').textContent,/^Payment failed: GPay V2/);
+  assert.equal(nodes.get('#notice').hidden,false);
+  assert.equal(vm.runInContext('lastBooking',context),null);
+  assert.equal(nodes.get('#book').disabled,false);
+});
 
 for (const secure of [false, true]) {
   test(`CinemaFlow loads movie, theatre and seat selection on ${secure ? 'HTTPS/localhost' : 'phone HTTP'} origins`, async () => {

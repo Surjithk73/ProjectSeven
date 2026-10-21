@@ -49,8 +49,8 @@ def create_app(database=None):
             amount, currency = body.get('amount_paise'), body.get('currency')
         else:
             money = body.get('amount', {})
-            if not isinstance(money, dict):
-                raise HTTPException(422, 'V2 requires amount.value in paise and amount.currency=INR')
+            if not isinstance(money, dict) or 'value' not in money or 'currency' not in money:
+                raise HTTPException(422, 'Payment failed: GPay V2 requires amount.value in paise and amount.currency=INR. The payment client needs an API update.')
             amount, currency = money.get('value'), money.get('currency')
         if type(amount) is not int or amount <= 0 or amount > 100_000_000 or currency != 'INR':
             raise HTTPException(422, 'An exact positive integer amount in paise and INR currency are required')

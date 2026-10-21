@@ -46,8 +46,9 @@ def read_receipt(github, repository, number, merge_sha, actor):
     repo = repository_name(repository)
     deadline = time.monotonic() + 40
     comments = client.api('GET', f'repos/{repo}/issues/{int(number)}/comments?per_page=100', None, deadline=deadline)
-    status = client.api('GET', f'repos/{repo}/commits/{sha(merge_sha)}/status', None, deadline=deadline)
-    contexts = [s for s in status.get('statuses', []) if s.get('context') == 'apishield/deployment'
+    # Individual statuses include creator; the combined /status schema omits it.
+    statuses = client.api('GET', f'repos/{repo}/commits/{sha(merge_sha)}/statuses?per_page=100', None, deadline=deadline)
+    contexts = [s for s in statuses if s.get('context') == 'apishield/deployment'
                 and s.get('creator', {}).get('login', '').casefold() == actor.casefold()]
     if not contexts:
         return None

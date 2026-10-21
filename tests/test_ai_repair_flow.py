@@ -1,11 +1,13 @@
 import json
+import pytest
 from dataclasses import replace
 from test_local_engine import shipment
 from apishield.configuration import load_config
 from apishield.engine import run_job
 
 
-def test_browser_repair_runs_generated_checks_before_and_after_model_patch(shipment, monkeypatch):
+@pytest.mark.parametrize('guided', [False, True])
+def test_browser_repair_runs_generated_checks_before_and_after_model_patch(shipment, monkeypatch, guided):
     repo, path, candidate, store, raw = shipment
     check = '''import httpx
 from src.client import ship
@@ -22,12 +24,25 @@ def test_generated_route(monkeypatch):
         return {'rules': [], 'checks': [
             {'file': 'tests/apishield_generated/test_route.py', 'code': check}], 'model': 'gemini-3.8-flash'}
     monkeypatch.setattr('apishield.intent.infer_intent', infer)
-    monkeypatch.setattr('apishield.engine.generate_candidate', lambda *a, **k: json.loads(candidate.read_text()))
+    generation_calls = []
+    def generate(*args, **kwargs):
+        generation_calls.append(kwargs)
+        return json.loads(candidate.read_text())
+    monkeypatch.setattr('apishield.engine.generate_candidate', generate)
     config = replace(load_config(path), source_mode='working')
     job = store.create(config, 'repair')
     job._initial['browser_ai'] = True
+    if guided:
+        job._initial['project_workflow'] = {'project_id':'cinemaflow','repository':'Surjithk73/APIGuardTesting'}
+        monkeypatch.setattr('demo.repair_guidance.reference_patches',lambda *args:json.loads(candidate.read_text())['patches'])
     result = run_job(config, 'repair', store, job=job)
     assert result['status'] == 'validated', result.get('error')
+    if guided:
+        assert generation_calls[0]['demo_reference_patches']
+        assert result['generation_guidance']['unseeded_evaluation'] is False
+    else:
+        assert 'demo_reference_patches' not in generation_calls[0]
+        assert 'generation_guidance' not in result
     context, callbacks = intent_calls[0]
     assert 0 < context['request_timeout_seconds'] <= config.budgets.command_timeout_seconds
     assert context['request_timeout_seconds'] <= context['intent_timeout_seconds'] <= config.budgets.job_timeout_seconds

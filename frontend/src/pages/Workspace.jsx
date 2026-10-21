@@ -58,6 +58,7 @@ import AppliedUpdateNotice from "../components/AppliedUpdateNotice";
 import IntegrationSnapshot from "../components/IntegrationSnapshot";
 import ProviderOverview from "../components/ProviderOverview";
 import DeploymentStatus from "../components/DeploymentStatus";
+import { workflowOwner } from "../project-workflow";
 import { activityOutcome } from "../dashboard-details";
 
 import "../workbench.css";
@@ -803,13 +804,17 @@ export default function Workspace() {
       await action(() => requestJSON(`/api/projects/${encodeURIComponent(projectName)}/check`, {method:"POST"}));
       return;
     }
-    if (multiProject?.project_id === projectName && operation === "repair") {
+    const owner = workflowOwner(projectName, current, multiProject);
+    if (owner && operation === "repair") {
       await action(async () => {
-        const value=await requestJSON(`/api/projects/${projectName}/workflows`);
-        const workflow=value.workflows.filter(w=>w.state==="awaiting_request").at(-1);
-        if(!workflow) throw new Error("Check both providers first; no pending migration is available.");
-        const result=await requestJSON(`/api/projects/${projectName}/workflows/${workflow.workflow_id}`,post({action:"generate"}));
-        setOverviewTab("activity");openJob(result.job_id,{job_id:result.job_id,integration:projectName,operation:"repair",status:"queued"});
+        const projectUrl = `/api/projects/${encodeURIComponent(owner)}`;
+        const {workflow} = await requestJSON(`${projectUrl}/check`, {method:"POST"});
+        if(!workflow) throw new Error("No API migration is pending for this client.");
+        const result = ['awaiting_request','failed'].includes(workflow.state)
+          ? await requestJSON(`${projectUrl}/workflows/${workflow.workflow_id}`,post({action:workflow.state==='failed'?'retry':'generate'}))
+          : workflow;
+        if (!result.job_id) throw new Error("An update is already active or the analysis changed. Check the project activity before starting another update.");
+        setOverviewTab("activity");openJob(result.job_id,{job_id:result.job_id,integration:owner,operation:"repair",status:"queued"});
       });
       return;
     }

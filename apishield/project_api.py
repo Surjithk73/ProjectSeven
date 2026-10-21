@@ -107,7 +107,13 @@ def deployment_settings(project_id: str, body: DeploymentInput, request: Request
 @router.post('/api/projects/{project_id}/check')
 def check_all(project_id: str, request: Request):
     jobs = service(request)
-    return respond(lambda: {'checks': [jobs.monitoring.check(p.integration_id) for p in jobs.automation.projects.load_project(project_id).providers]})
+    def run():
+        project = jobs.automation.projects.load_project(project_id)
+        checks = [jobs.monitoring.check(p.integration_id) for p in project.providers]
+        _, changes = jobs.automation.snapshots(project)
+        workflow = jobs.automation.observe(project_id, changes, jobs.automation.source(project)) if changes else None
+        return {'checks': checks, 'workflow': workflow}
+    return respond(run)
 
 
 @router.post('/api/projects/{project_id}/providers/{provider_id}/check')

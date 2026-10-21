@@ -26,7 +26,19 @@ While main does not contain this client, the launcher explicitly starts **previe
 5. On the phone, inspect the PR and checks as `surjk73`, approve and merge it. A person always performs this step. In automatic edit mode APIShield may detect, generate, validate and publish automatically, but it still waits for a human merge.
 6. Leave the laptop launcher running. After merge and successful CI, its deployment helper activates the exact merged commit, runs a smoke check and records deployment evidence. Refresh CinemaFlow on the phone and repeat the booking action.
 
+You do not need to notify Codex, pull code manually, or restart the launcher after a normal migration PR is merged. The helper polls GitHub every 10 seconds; merged-revision CI, dependency installation, tests and the booking smoke check can take longer. Wait for **Deployed and verified** in APIShield before refreshing the phone. Starting an AI update from IMAX or GPay also uses the parent CinemaFlow workflow, so its PR carries the deployment tracking information.
+
+Initial setup and ordinary maintenance PRs on `main` are separate from this migration workflow. They can require a one-time baseline update or restart. Merge only the migration PR generated for the rehearsal branch printed by the launcher during a demonstration. A failed validation does not update the running client or produce a deployable candidate.
+
 This demonstrates a browser client on another device with deployment hosted on the laptop. The phone does not run a server or receive a Git checkout.
+
+## Guided demo updates
+
+Switching GPay to V2 leaves browsing and seat selection available, but an unchanged V1 payment adapter fails at checkout with **Payment failed: GPay V2 requires amount.value in paise and amount.currency=INR**. No payment or confirmed booking is created by that rejected request. Once the reviewed V2 client update deploys, checkout should work again.
+
+CinemaFlow's AI generation system prompt includes user-approved prewritten reference patches for its known IMAX/GPay V2 migrations. They are selected only for the configured `cinemaflow` project targeting `Surjithk73/APIGuardTesting`, matching target schema fields, allowed files and exact current source snippets. They are not applied automatically or used as a fallback when model generation fails. Generated checks, repository validation, human merge and deployment smoke validation still run.
+
+Guided executions retain `generation_guidance.kind=prewritten_demo_reference` and `unseeded_evaluation=false`; their PR descriptions also identify the guidance. Keep those executions separate from unseeded academic evaluation. The ordinary benchmark harness does not enable these demo references.
 
 ## Stop and retained files
 
@@ -42,7 +54,7 @@ The equivalent command, from `C:/Users/surji/ProjectSeven`, is:
 .\venv\Scripts\python.exe -B -m demo.phone --reset
 ```
 
-The reset restores both providers to V1 with empty payments/reservations, prepares the V1-compatible client at commit `0439f7c451dcc1032ed309071b0536ad2b12000b` (including the phone HTTP fix and IMAX/GPay labels), and starts with fresh APIShield state. On the next launch, APIShield initializes V1 contract baselines, manual mode, a clean graph/run history and a new GitHub publication target. The existing Google credential connection remains available.
+The reset restores both providers to V1 with empty payments/reservations, prepares the V1-compatible client at commit `5c2ce0bc39136d5038c77a35faf1d16f9c0d1254` (including the phone HTTP fix, IMAX/GPay labels and contract-complete hold-response test fixture), and starts with fresh APIShield state. On the next launch, APIShield initializes V1 contract baselines, manual mode, a clean graph/run history and a new GitHub publication target. The existing Google credential connection remains available.
 
 Each reset creates a fresh GitHub branch named `demo/rehearsal-<UTC timestamp>-<unique suffix>` from that verified commit. New migration PRs target this branch, and deployment follows its human-reviewed merges. This makes a complete migration repeatable even after previous trials were merged; it does not rewrite `main` or remove old PRs/branches. Internet access and the laptop's `Surjithk73` GitHub CLI login are required. The launcher prints the current rehearsal branch so the reviewer can verify the PR destination.
 

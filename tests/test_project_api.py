@@ -42,3 +42,17 @@ def test_workflow_retains_failed_state_and_live_evidence(api):
     jobs.automation.update('cinema', record['workflow_id'], state='failed', error='Provider unavailable')
     rows = client.get('/api/projects/cinema/workflows').json()['workflows']
     assert rows[0]['state'] == 'failed' and rows[0]['error'] == 'Provider unavailable'
+
+
+def test_check_records_workflow_before_returning_without_waiting_for_poll(api, monkeypatch):
+    client, jobs = api
+    changes = {'payment': {'base_hash': 'a'*64, 'observed_hash': 'b'*64}}
+    monkeypatch.setattr(jobs.monitoring, 'check', lambda integration: {'status': 'changed'})
+    monkeypatch.setattr(jobs.automation, 'snapshots', lambda project: ({}, changes))
+    monkeypatch.setattr(jobs.automation, 'source', lambda project: 'c'*40)
+    response = client.post('/api/projects/cinema/check')
+    assert response.status_code == 200
+    record = response.json()['workflow']
+    assert record['state'] == 'awaiting_request'
+    assert record['providers'] == changes
+    assert client.post('/api/projects/cinema/check').json()['workflow']['workflow_id'] == record['workflow_id']

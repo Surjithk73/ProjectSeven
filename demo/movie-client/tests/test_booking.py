@@ -11,7 +11,9 @@ def test_booking_preserves_exact_amount_destination_and_key():
         seen.append((request.url.path, body))
         if request.url.path == '/holds':
             return httpx.Response(200, json={'hold_id': 'hold-001', 'amount_paise': 25001,
-                'hold': {'id': 'hold-001', 'total': {'value': 25001, 'currency': 'INR'}}})
+                'expires_at': 4102444800.0,
+                'hold': {'id': 'hold-001', 'expires_at': 4102444800.0,
+                         'total': {'value': 25001, 'currency': 'INR'}}})
         return httpx.Response(200, json={'status': 'confirmed', 'booking_id': body.get('hold_id', body.get('confirmation', {}).get('hold_id'))})
     def payment(request):
         import json

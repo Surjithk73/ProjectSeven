@@ -89,3 +89,21 @@ def test_generation_refreshes_merged_publication_base(tmp_path):
     generated=service.dispatch_change('cinema',old['workflow_id'])
     assert refreshed==[True]
     assert generated['source_sha']=='c'*40 and generated['state']=='generating'
+
+
+def test_restart_at_merged_source_keeps_deployment_workflow(tmp_path):
+    service = make_service(tmp_path)
+    changes = {'payment': {'observed_hash':'a'*64}}
+    record = service.observe('cinema', changes, 'b'*40)
+    service.update('cinema', record['workflow_id'], state='pr_open', publication_id='p1')
+    service.snapshots = lambda project: ({}, changes)
+    service.source = lambda project: 'c'*40
+    def advance(project):
+        service.update('cinema', record['workflow_id'], state='merged', merge_sha='c'*40)
+    service.advance = advance
+    service.tick()
+    rows = service.projects.workflows('cinema')
+    assert len(rows) == 1 and rows[0]['state'] == 'merged'
+    # Unrelated source edits and fresh provider changes must still supersede.
+    next_record = service.observe('cinema', changes, 'd'*40)
+    assert next_record['workflow_id'] != record['workflow_id']

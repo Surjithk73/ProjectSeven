@@ -86,7 +86,7 @@ class DeploymentAgent:
             try:
                 info = httpx.get(self.url + '/health', timeout=1, trust_env=False).json()
                 if info.get('revision') == revision and info.get('instance') == instance:
-                    return {'pid': process.pid, 'instance': instance}
+                    return {'pid': process.pid, 'server_pid': int(info['pid']), 'instance': instance}
             except (httpx.HTTPError, ValueError):
                 pass
             time.sleep(.5)
@@ -94,15 +94,17 @@ class DeploymentAgent:
         raise ValueError('Client did not start at the expected port and revision')
 
     def stop(self, active):
-        process = self.children.get(active['pid'])
-        if process:
-            process.terminate()
-            process.wait(timeout=15)
-            return
+        # Windows venv python.exe can be a redirector; /health identifies the
+        # serving process, whose termination also lets the redirector exit.
         info = httpx.get(self.url + '/health', timeout=3, trust_env=False).json()
-        if info.get('pid') != active['pid'] or info.get('instance') != active['instance']:
+        server_pid = active.get('server_pid', active['pid'])
+        if (info.get('pid') != server_pid or info.get('instance') != active['instance']
+                or info.get('revision') != active.get('sha')):
             raise ValueError('Refusing to stop a process that does not match the managed client identity')
-        os.kill(int(active['pid']), signal.SIGTERM)
+        os.kill(int(server_pid), signal.SIGTERM)
+        process = self.children.pop(active['pid'], None)
+        if process:
+            process.wait(timeout=15)
         time.sleep(1)
 
     def verify(self, active):
