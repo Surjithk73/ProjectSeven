@@ -1,5 +1,7 @@
 import { Fragment, useState } from "react";
 import { ArrowRight, FileCode2, GitCompareArrows } from "lucide-react";
+import { endpointIdentity } from '../project-workflow';
+import { contractDisplayTitle } from '../workspace';
 import {
   endpointPresentation,
   definitionSection,
@@ -33,7 +35,7 @@ function ContractPane({
         <>
           <div className="contract-caption">
             <strong>
-              {operation.definition?.summary || operation.endpoint}
+              {operation.definition?.summary || endpointIdentity(operation.endpoint).path}
             </strong>
             {operation.definition?.description && (
               <p>{operation.definition.description}</p>
@@ -95,7 +97,7 @@ export default function RunOverview({ report, catalogOnly }) {
       <header className="comparison-heading">
         <div>
           <GitCompareArrows size={22} />
-          <h3>{overview?.before?.info?.title || "API details"}</h3>
+          <h3>{contractDisplayTitle(overview?.before?.info?.title)}</h3>
         </div>
         <span>
           {rows.length} endpoints{" "}
@@ -125,7 +127,7 @@ export default function RunOverview({ report, catalogOnly }) {
                   )}
                 </span>
                 <code>
-                  {row.endpoint.split("/").map((part, index) => (
+                  {endpointIdentity(row.endpoint).path.split("/").map((part, index) => (
                     <Fragment key={index}>
                       {index > 0 && <wbr />}
                       {index > 0 ? "/" : ""}
@@ -133,13 +135,14 @@ export default function RunOverview({ report, catalogOnly }) {
                     </Fragment>
                   ))}
                 </code>
+                {endpointIdentity(row.endpoint).provider && <span className="project-endpoint-provider">{endpointIdentity(row.endpoint).provider}</span>}
               </button>
             ))}
           </nav>
           <div className="comparison-main">
             <div className="comparison-selection">
               <code>
-                {selected.method} {selected.endpoint}
+                {selected.method} {endpointIdentity(selected.endpoint).path}
               </code>
               {comparing && <ArrowRight size={17} />}
               {comparing && (

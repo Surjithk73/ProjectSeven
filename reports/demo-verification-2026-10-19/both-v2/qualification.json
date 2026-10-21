@@ -1,0 +1,55 @@
+{
+  "scenario": "both-v2",
+  "job_id": "2f6188c656ed4ae98f7ce40a714a0517",
+  "source_commit": "ae2209590cc427003694db60ec9470b1829d384a",
+  "model": "gemini-3.8-flash",
+  "status": "validated",
+  "attempts": 2,
+  "base_spec_sha256": "e832ce42658f3325a79164787ba047deacc5d62f6978c42e4bd569eed46991d0",
+  "target_spec_sha256": "b879124cec023987c203b5b52727234bcdd05c8f38ec7fa1f5a8c3e9d5a3899f",
+  "generated_check_count": 2,
+  "model_usage_events": [
+    {
+      "model": "gemini-3.8-flash",
+      "elapsed_seconds": 11.08,
+      "usage": {
+        "cache_tokens_details": "[REDACTED]",
+        "cached_content_token_count": "[REDACTED]",
+        "candidates_token_count": "[REDACTED]",
+        "candidates_tokens_details": "[REDACTED]",
+        "prompt_token_count": "[REDACTED]",
+        "prompt_tokens_details": "[REDACTED]",
+        "thoughts_token_count": "[REDACTED]",
+        "tool_use_prompt_token_count": "[REDACTED]",
+        "tool_use_prompt_tokens_details": "[REDACTED]",
+        "total_token_count": "[REDACTED]",
+        "traffic_type": "ON_DEMAND"
+      },
+      "kind": "model_usage",
+      "time": "2026-10-19T09:32:47.956298+00:00",
+      "job_id": "2f6188c656ed4ae98f7ce40a714a0517"
+    }
+  ],
+  "http_qualification": {
+    "job_id": "2f6188c656ed4ae98f7ce40a714a0517",
+    "source_commit": "ae2209590cc427003694db60ec9470b1829d384a",
+    "payment_version": 2,
+    "theatre_version": 2,
+    "candidate_source": "actual Gemini generated patch",
+    "seats_browsing": true,
+    "booking_confirmed": true,
+    "exact_50000_paise_preserved": true,
+    "duplicate_payment_prevented": true,
+    "isolated_smoke_passed": true,
+    "human_merge_tested": false,
+    "cross_machine_lan_tested": false
+  },
+  "validation_exit_codes": [
+    [],
+    [
+      0,
+      0
+    ]
+  ],
+  "scope": "Local implementation qualification; not a benchmark experiment, human merge or cross-machine deployment."
+}

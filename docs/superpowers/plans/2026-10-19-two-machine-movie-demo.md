@@ -10,6 +10,10 @@
 
 **Spec:** [Agreed workflow and proposed design](../specs/2026-10-19-two-machine-movie-demo-design.md).
 
+## Implementation status — 2026-10-19
+
+Tasks 1–7 are implemented and verified locally; Task 8 tooling/documentation is implemented, while physical two-machine rehearsal and reviewer access remain pending. See [verification and remaining inputs](../../demo/implementation-verification.md). The checklist below is the original execution checklist; this status record and linked evidence distinguish delivered implementation from the remaining live rehearsal.
+
 ## Global Constraints
 
 - Manual mode is the default; automatic edit mode ends at a validated PR. Human review and merge are mandatory.
@@ -53,10 +57,10 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interface:** Produces the actual ProjectSeven baseline commit SHA and a documented list of excluded private/runtime material. Do not invent a SHA.
 
-- [ ] Inventory tracked/untracked files, ignored material, repository sizes, archives, and credential candidates. Inspect flagged content locally without printing secrets.
-- [ ] Confirm origin, GitHub identity, and remote divergence; preserve user modifications and existing remote commits. Exclude actual credentials, environments, caches, runtime state and private backups; document large artifact handling if GitHub limits require a separate release.
-- [ ] Stage the audited snapshot, run `git diff --cached --check`, inspect the staged inventory, commit with `chore: preserve current APIShield project snapshot`, and push normally to `Surjithk73/ProjectSeven`. No force push.
-- [ ] Compare remote and local commit IDs; record upload success separately from CI status. A failed CI job is not a failed upload and is not called passing.
+- [x] Inventory tracked/untracked files, ignored material, repository sizes, archives, and credential candidates. Inspect flagged content locally without printing secrets.
+- [x] Confirm origin, GitHub identity, and remote divergence; preserve user modifications and existing remote commits. Exclude actual credentials, environments, caches, runtime state and private backups; document large artifact handling if GitHub limits require a separate release.
+- [x] Stage the audited snapshot, run `git diff --cached --check`, inspect the staged inventory, commit with `chore: preserve current APIShield project snapshot`, and push normally to `Surjithk73/ProjectSeven`. No force push.
+- [x] Compare remote and local commit IDs; record upload success separately from CI status. A failed CI job is not a failed upload and is not called passing.
 
 ## Task 2: Build independent providers and the movie client
 
@@ -64,11 +68,11 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** Theatre serves shows, seats, holds, confirmations and its active OpenAPI contract. Payment serves idempotent create/status operations and its active contract. Client adapter functions are `list_shows()`, `get_seats(show_id)`, `hold_seats(show_id, seat_ids)`, `create_payment(booking_id, amount_paise, currency, idempotency_key)`, and `confirm_booking(hold_id, payment_id)`; each accepts an injected HTTP client/base URL through construction rather than hardcoded localhost.
 
-- [ ] Add failing tests: V1 booking succeeds; payment V2 fails the unchanged V1 adapter; theatre V2 fails the unchanged V1 adapter; exact paise and INR remain unchanged; repeated payment key charges once; two holds cannot reserve one seat; expired holds/declines cannot confirm booking.
-- [ ] Run `venv/Scripts/python.exe -m pytest demo/movie-client/tests -q`; confirm tests fail for missing implementations before implementing.
-- [ ] Implement SQLite-backed providers and the V1-only client. Provider admin changes active version independently; client deployments cannot reset provider state. Build the CinemaFlow flow and separate provider control screens using existing frontend conventions/theme.
-- [ ] Run the same tests plus provider tests in `tests/test_movie_providers.py`; verify the intended V2 incompatibilities are asserted rather than accidental test failures. Start three real HTTP processes in a test fixture and verify cross-process calls.
-- [ ] Commit `feat: add independent cinema client and versioned demo providers`. Introduce the template under `movie_booking/` in APIGuardTesting using a normal branch/PR, preserving existing shipping files. Retain the template revision in ProjectSeven and record the deployed repo revision; later AI changes target APIGuardTesting only.
+- [x] Add failing tests: V1 booking succeeds; payment V2 fails the unchanged V1 adapter; theatre V2 fails the unchanged V1 adapter; exact paise and INR remain unchanged; repeated payment key charges once; two holds cannot reserve one seat; expired holds/declines cannot confirm booking.
+- [x] Run `venv/Scripts/python.exe -m pytest demo/movie-client/tests -q`; confirm tests fail for missing implementations before implementing.
+- [x] Implement SQLite-backed providers and the V1-only client. Provider admin changes active version independently; client deployments cannot reset provider state. Build the CinemaFlow flow and separate provider control screens using existing frontend conventions/theme.
+- [x] Run the same tests plus provider tests in `tests/test_movie_providers.py`; verify the intended V2 incompatibilities are asserted rather than accidental test failures. Start three real HTTP processes in a test fixture and verify cross-process calls.
+- [x] Commit `feat: add independent cinema client and versioned demo providers`. Introduce the template under `movie_booking/` in APIGuardTesting using a normal branch/PR, preserving existing shipping files. Retain the template revision in ProjectSeven and record the deployed repo revision; later AI changes target APIGuardTesting only.
 
 ## Task 3: Add client projects, provider children, and qualified graph identity
 
@@ -77,11 +81,11 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** `ProviderBinding(provider_id, integration_id, base_url, path_prefix)`, `ClientProject(project_id, repository, providers, automation_mode)`, `load_project(project_id) -> ClientProject`, `resolve_provider(call_url, bindings) -> str | None`. Store project metadata under the existing external APIShield data directory, with schema version and atomic writes; leave current IntegrationConfig v1 loading intact.
 
-- [ ] Write tests for migration of an existing integration to one provider; two providers sharing `/payments`; path-prefix matching; unresolved dynamic hosts; provider-only and combined graph filters. Assert historical job IDs and contract hashes remain intact.
-- [ ] Run `venv/Scripts/python.exe -m pytest tests/test_projects.py tests/test_provider_identity.py -q` and confirm the new behavior is missing.
-- [ ] Add the parent project layer and provider-qualified graph keys. Retain existing integrations as child job targets and maintain current single-integration API compatibility.
-- [ ] Rerun the new tests with `tests/test_current_overview.py` and `tests/test_repository_graph.py`; all must pass.
-- [ ] Commit `feat: group provider integrations under client projects`.
+- [x] Write tests for migration of an existing integration to one provider; two providers sharing `/payments`; path-prefix matching; unresolved dynamic hosts; provider-only and combined graph filters. Assert historical job IDs and contract hashes remain intact.
+- [x] Run `venv/Scripts/python.exe -m pytest tests/test_projects.py tests/test_provider_identity.py -q` and confirm the new behavior is missing.
+- [x] Add the parent project layer and provider-qualified graph keys. Retain existing integrations as child job targets and maintain current single-integration API compatibility.
+- [x] Rerun the new tests with `tests/test_current_overview.py` and `tests/test_repository_graph.py`; all must pass.
+- [x] Commit `feat: group provider integrations under client projects`.
 
 ## Task 4: Connect real monitoring to manual and automatic edit modes
 
@@ -90,11 +94,11 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** `dispatch_change(project_id, change_id) -> WorkflowRecord`, `set_automation_mode(project_id, mode, expected_revision)`, where mode is `manual` or `automatic_edit`. A WorkflowRecord has `workflow_id`, provider change IDs/hashes, source SHA, mode revision, state, job/publication IDs, timestamps and last error. Reuse existing job/activity stores for detailed evidence.
 
-- [ ] Write tests: manual mode detects but makes no model call; automatic mode dispatches once; unchanged polling makes no model call; missing AI/GitHub/repo configuration prevents activation; simultaneous provider changes queue per repository; restart reconciles a persisted dispatch; failed generation does not retry on every poll; disabling mode stops new dispatches.
-- [ ] Run `venv/Scripts/python.exe -m pytest tests/test_automation.py -q` and confirm the dispatch tests fail.
-- [ ] Connect completed actionable comparisons to the existing AI engine, with durable deduplication and repository-level ownership. Batch pending provider changes into one candidate, supplying each provider's retained contracts and validating the full booking flow. A new incompatible change supersedes an in-flight proposal and schedules a fresh combined candidate; never require deploying the stale proposal first. Default monitoring interval is 5 minutes for this demo, with explicit Check now; do not reduce global minimums.
-- [ ] Rerun new tests with `tests/test_monitoring.py`, `tests/test_monitor_state.py`, and `tests/test_ai_repair_flow.py`. Verify timeouts, connection failures and exhausted generation attempts expose an actionable phase/error and preserve snapshots.
-- [ ] Commit `feat: orchestrate monitored updates with explicit automation modes`.
+- [x] Write tests: manual mode detects but makes no model call; automatic mode dispatches once; unchanged polling makes no model call; missing AI/GitHub/repo configuration prevents activation; simultaneous provider changes queue per repository; restart reconciles a persisted dispatch; failed generation does not retry on every poll; disabling mode stops new dispatches.
+- [x] Run `venv/Scripts/python.exe -m pytest tests/test_automation.py -q` and confirm the dispatch tests fail.
+- [x] Connect completed actionable comparisons to the existing AI engine, with durable deduplication and repository-level ownership. Batch pending provider changes into one candidate, supplying each provider's retained contracts and validating the full booking flow. A new incompatible change supersedes an in-flight proposal and schedules a fresh combined candidate; never require deploying the stale proposal first. Default monitoring interval is 5 minutes for this demo, with explicit Check now; do not reduce global minimums.
+- [x] Rerun new tests with `tests/test_monitoring.py`, `tests/test_monitor_state.py`, and `tests/test_ai_repair_flow.py`. Verify timeouts, connection failures and exhausted generation attempts expose an actionable phase/error and preserve snapshots.
+- [x] Commit `feat: orchestrate monitored updates with explicit automation modes`.
 
 ## Task 5: Publish validated updates and track human merge/CI state
 
@@ -103,11 +107,11 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** `reconcile_publication(publication_id) -> PublicationRecord`, including exact PR head SHA, merge SHA, base branch, review state and CI result. Existing prepare/publish remains the only publication route; automatic mode invokes it after validation. Initial PRs may remain drafts until the human marks them ready; they are never automatically merged.
 
-- [ ] Write tests for automatic validated publication, manual preview/publish gates, invalid candidates producing no PR, interrupted publication reconciliation, duplicate ticks producing one PR, human-closed unmerged PR producing no deployment, changed main requiring refreshed validation, and CI results belonging to a different SHA being rejected.
-- [ ] Run `venv/Scripts/python.exe -m pytest tests/test_merge_tracking.py -q` and confirm new lifecycle assertions fail.
-- [ ] Extend the existing publisher and GitHub CLI wrapper with read-only PR/review/merge/check polling. Set a fixed proposal identity and source/contract hash manifest in PR metadata. Require current provider snapshots/source revision before publication; queue remaining provider work until the preceding PR is resolved and refreshed.
-- [ ] Run the new tests and existing `tests/test_publication.py`, `tests/test_publication_prepare.py`, `tests/test_github_cli.py`. Verify stale heads never inherit old validation evidence.
-- [ ] Commit `feat: track reviewed API updates through GitHub merge`.
+- [x] Write tests for automatic validated publication, manual preview/publish gates, invalid candidates producing no PR, interrupted publication reconciliation, duplicate ticks producing one PR, human-closed unmerged PR producing no deployment, changed main requiring refreshed validation, and CI results belonging to a different SHA being rejected.
+- [x] Run `venv/Scripts/python.exe -m pytest tests/test_merge_tracking.py -q` and confirm new lifecycle assertions fail.
+- [x] Extend the existing publisher and GitHub CLI wrapper with read-only PR/review/merge/check polling. Set a fixed proposal identity and source/contract hash manifest in PR metadata. Require current provider snapshots/source revision before publication; queue remaining provider work until the preceding PR is resolved and refreshed.
+- [x] Run the new tests and existing `tests/test_publication.py`, `tests/test_publication_prepare.py`, `tests/test_github_cli.py`. Verify stale heads never inherit old validation evidence.
+- [x] Commit `feat: track reviewed API updates through GitHub merge`.
 
 ## Task 6: Automatically deploy merged client releases on System B
 
@@ -115,12 +119,12 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** `find_deployable_merge(project_config) -> DeploymentCandidate | None`, `deploy(candidate) -> DeploymentReceipt`, `verify_receipt(receipt, workflow) -> bool`. Candidate pins repository, PR/proposal ID, merge SHA, successful CI SHA and provider hashes. Receipt includes deployment ID, status, start/end times, deployed SHA, previous SHA, live provider hashes, health/smoke results and sanitized error.
 
-- [ ] Write tests for an approved merged candidate, unmerged PR refusal, pending/failed CI refusal, SHA/hash mismatch, idempotent polls, rejected unexpected receipt author, interrupted deployment recovery, failed health rollback, and retention of provider databases across restart. Assert no shell deletion/move escapes dedicated release directories.
-- [ ] Run `venv/Scripts/python.exe -m pytest tests/test_demo_deployment.py -q`; confirm missing deployment behavior fails.
-- [ ] Implement 10-second outbound polling, exact-SHA release preparation, locked release pointer switching and client-only restart. Use private helper config for deployment identity; authenticate locally. Preflight tests use isolated provider fixtures; post-start booking smoke uses a dedicated namespace and idempotency key.
-- [ ] Publish `apishield/deployment` status and a sanitized receipt on the associated PR using GitHub's existing status/comment APIs. A polls and validates them before rebuilding deployed-source graphs and accepting affected provider baselines. Preserve unresolved provider changes and historical impact reports.
-- [ ] Run the deployment tests plus `tests/test_current_api.py` and graph tests; simulate a deployment failure and prove rollback is recorded as failed compatibility rather than a successful V2 deployment.
-- [ ] Commit `feat: deploy verified merged cinema client revisions with rollback`.
+- [x] Write tests for an approved merged candidate, unmerged PR refusal, pending/failed CI refusal, SHA/hash mismatch, idempotent polls, rejected unexpected receipt author, interrupted deployment recovery, failed health rollback, and retention of provider databases across restart. Assert no shell deletion/move escapes dedicated release directories.
+- [x] Run `venv/Scripts/python.exe -m pytest tests/test_demo_deployment.py -q`; confirm missing deployment behavior fails.
+- [x] Implement 10-second outbound polling, exact-SHA release preparation, locked release pointer switching and client-only restart. Use private helper config for deployment identity; authenticate locally. Preflight tests use isolated provider fixtures; post-start booking smoke uses a dedicated namespace and idempotency key.
+- [x] Publish `apishield/deployment` status and a sanitized receipt on the associated PR using GitHub's existing status/comment APIs. A polls and validates them before rebuilding deployed-source graphs and accepting affected provider baselines. Preserve unresolved provider changes and historical impact reports.
+- [x] Run the deployment tests plus `tests/test_current_api.py` and graph tests; simulate a deployment failure and prove rollback is recorded as failed compatibility rather than a successful V2 deployment.
+- [x] Commit `feat: deploy verified merged cinema client revisions with rollback`.
 
 ## Task 7: Expose provider health, modes, and deployment progress in the UI
 
@@ -129,11 +133,11 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** `GET /api/projects/{id}`, `PATCH /api/projects/{id}/automation` with revision check, `GET /api/projects/{id}/workflows`, `POST /api/projects/{id}/providers/{provider_id}/check`. Mutations use the existing loopback browser guard. Provider/settings responses return public metadata only; preserve existing single-provider routes.
 
-- [ ] Write API/state tests: mode persists server-side; cosmetic localStorage values cannot enable automation; provider errors are independent; a merged PR is shown awaiting deployment; only a verified receipt produces Deployed and verified; rollback keeps attention visible. Add UI tests for provider filtering and manual/automatic action visibility.
-- [ ] Run `venv/Scripts/python.exe -m pytest tests/test_project_api.py -q` and `npm --prefix frontend test`; verify new assertions fail before implementation.
-- [ ] Apply Impeccable and ui-ux-pro-max when implementing the UI. Replace the cosmetic automatic-check control with real state, add two provider cards and project mode, extend Agent activity through review/merge/deployment, and show current deployed SHA. Preserve stable tabs, bottom-following readable logs, white/blue design and useful failure explanations.
-- [ ] Run API tests, frontend tests/build/lint, then inspect both manual and automatic flows at desktop and smaller widths. Verify every successful/failed/pending label corresponds to retained evidence.
-- [ ] Commit `feat: show multi-provider monitoring and deployment evidence`.
+- [x] Write API/state tests: mode persists server-side; cosmetic localStorage values cannot enable automation; provider errors are independent; a merged PR is shown awaiting deployment; only a verified receipt produces Deployed and verified; rollback keeps attention visible. Add UI tests for provider filtering and manual/automatic action visibility.
+- [x] Run `venv/Scripts/python.exe -m pytest tests/test_project_api.py -q` and `npm --prefix frontend test`; verify new assertions fail before implementation.
+- [x] Apply Impeccable and ui-ux-pro-max when implementing the UI. Replace the cosmetic automatic-check control with real state, add two provider cards and project mode, extend Agent activity through review/merge/deployment, and show current deployed SHA. Preserve stable tabs, bottom-following readable logs, white/blue design and useful failure explanations.
+- [x] Run API tests, frontend tests/build/lint, then inspect both manual and automatic flows at desktop and smaller widths. Verify every successful/failed/pending label corresponds to retained evidence.
+- [x] Commit `feat: show multi-provider monitoring and deployment evidence`.
 
 ## Task 8: Prepare both machines and rehearse the complete cycle
 
@@ -141,17 +145,17 @@ Tasks 1–2 establish the independent demo. Task 3 provides multi-provider ident
 
 **Interfaces:** Environment report returns command versions, allowed repository URLs, provider reachability, available ports and nonsecret authenticated usernames. A/B configuration is local; public examples contain no fixed personal LAN address or credential. Rehearsal report records real source/merge/deployed SHAs and links.
 
-- [ ] Write launcher tests for missing prerequisites, port conflicts, unreachable B, dirty client checkout and reset scope. Reset refuses unmanaged paths/user changes and never force-pushes or rewrites GitHub history.
-- [ ] Run `venv/Scripts/python.exe -m pytest tests/test_demo_launchers.py -q`, implement launch/reset diagnostics, then rerun until passing. Document private-network firewall setup without automatic policy mutation.
-- [ ] Run the full offline Python suite and frontend tests/build. Record any skipped live checks explicitly. Keep research datasets/manuscripts unchanged.
+- [x] Write launcher tests for missing prerequisites, port conflicts, unreachable B, dirty client checkout and reset scope. Reset refuses unmanaged paths/user changes and never force-pushes or rewrites GitHub history.
+- [x] Run `venv/Scripts/python.exe -m pytest tests/test_demo_launchers.py -q`, implement launch/reset diagnostics, then rerun until passing. Document private-network firewall setup without automatic policy mutation.
+- [x] Run the full offline Python suite and frontend tests/build. Record any skipped live checks explicitly. Keep research datasets/manuscripts unchanged.
 - [ ] Rehearse on both actual Windows machines: healthy V1 booking; payment V2 break; manual Ask AI to Update; validated PR; second-account review/merge; automatic exact-SHA deploy; successful booking and cleared current impact.
 - [ ] Repeat theatre V2 in automatic mode; verify no human action until PR review. Then exercise simultaneous changes, provider outage, a failed candidate and failed deployment/rollback. Retain actionable failure evidence; do not manufacture a successful AI outcome.
 - [ ] Record actual PR links, source/merge/deployment SHAs, provider versions, CI results and timestamps. Commit `docs: record two-machine demo setup and verified rehearsal` only after the report distinguishes completed and unverified checks.
 
 ## Inputs needed before the live rehearsal
 
-1. Reviewer is `techASH5` (`https://github.com/techASH5`); confirmation they accepted APIGuardTesting collaborator access is still needed. The publisher is currently `Surjithk73`.
-2. B's private IPv4 address (PowerShell `ipconfig`, active Wi-Fi adapter), and the intended B installation folder.
+1. Reviewer is `surjk73` (`https://github.com/surjk73`); GitHub has verified accepted APIGuardTesting collaborator access with the write role. The publisher is currently `Surjithk73`.
+2. When B is available, the HTTP link generated by its launcher. No IP is needed beforehand; all new demo folders stay inside the ProjectSeven checkout.
 3. B deployment GitHub username, if different from the reviewer. Local browser/CLI login supplies credentials securely; no passwords, tokens, private keys or one-time codes are needed in chat.
 
 These inputs configure the rehearsal; the implementation can use local test processes and temporary repositories until the machines are available. No additional product-scope choices are outstanding.

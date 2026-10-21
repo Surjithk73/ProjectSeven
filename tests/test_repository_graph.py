@@ -1,6 +1,37 @@
 from apishield.repository_graph import build_repository_graph
 
 
+def test_typed_adapter_instances_connect_booking_and_bff_to_changed_provider(tmp_path):
+    from apishield.analysis import scan_sources
+    (tmp_path/'theatre.py').write_text('''class TheatreClient:
+    def hold(self):
+        return self.client.post('/holds')
+''')
+    (tmp_path/'booking.py').write_text('''from theatre import TheatreClient
+class BookingClient:
+    def __init__(self): self.theatre = TheatreClient()
+    def book(self): return self.theatre.hold()
+''')
+    (tmp_path/'app.py').write_text('''from booking import BookingClient
+def checkout():
+    client = BookingClient()
+    return client.book()
+''')
+    scan=scan_sources(tmp_path,['theatre.py'],{'theatre.py':{'provider_id':'theatre','base_url':'http://localhost:8101','receiver':'self.client'}})
+    graph=build_repository_graph(tmp_path,scan,[],[{'method':'POST','endpoint':'/__provider__/theatre/holds'}])
+    nodes={n['id']:n for n in graph['nodes']}
+    for file,function in [('theatre.py','TheatreClient.hold'),('booking.py','BookingClient.book'),('app.py','checkout')]:
+        assert nodes[f'function:{file}:{function}'].get('impact')
+    assert any(nodes[e['from']].get('file')=='booking.py' and nodes[e['to']].get('file')=='theatre.py' for e in graph['edges'] if e['kind']=='calls')
+
+
+def test_shadowed_constructor_parameter_does_not_invent_adapter_edges(tmp_path):
+    (tmp_path/'adapter.py').write_text('class Adapter:\n    def call(self): return 1\n')
+    (tmp_path/'app.py').write_text('from adapter import Adapter\ndef handler(Adapter):\n    client=Adapter()\n    return client.call()\n')
+    graph=build_repository_graph(tmp_path,{'sites':[]},[],[])
+    assert not any(e['kind']=='calls' for e in graph['edges'])
+
+
 def test_changed_endpoint_reaches_python_callers_and_frontend(tmp_path):
     (tmp_path / 'app.py').write_text('''import httpx
 API_BASE = "https://bank.test"

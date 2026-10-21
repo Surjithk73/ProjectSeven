@@ -1,3 +1,4 @@
+import { providerDisplayName } from '../workspace';
 import {
   useCallback,
   useEffect,
@@ -23,6 +24,7 @@ import { impactView, networkView, nodeLabel } from "../workbench";
 import { layoutNetwork, keyboardReveal, fitCamera } from "../network-layout";
 import { communityProjection, communityColors } from "../community-view";
 import { requestJSON } from "../workspace";
+import { filterProviderGraph } from '../project-workflow';
 
 const names = {
   operation: "Endpoint",
@@ -38,6 +40,7 @@ const names = {
 const noGroups = [];
 
 export default function SemanticNetwork({ report, active }) {
+  const [providerFilter,setProviderFilter]=useState('all');
   const [groupId, setGroupId] = useState(null),
     [focusId, setFocusId] = useState(null),
     [source, setSource] = useState("detected"),
@@ -91,13 +94,13 @@ export default function SemanticNetwork({ report, active }) {
       : report.graph_view?.communities || noGroups;
   const linkedGraph = useMemo(
     () => ({
-      ...graph,
+      ...filterProviderGraph(graph,providerFilter),
       edges: [
-        ...graph.edges,
+        ...filterProviderGraph(graph,providerFilter).edges,
         ...(source === "ai" && showInferred ? ai?.inferred_edges || [] : []),
       ],
     }),
-    [graph, source, showInferred, ai],
+    [graph, source, showInferred, ai, providerFilter],
   );
   const view = useMemo(() => {
     const filtered = networkView(linkedGraph, affectedOnly, query, allCode);
@@ -301,6 +304,7 @@ export default function SemanticNetwork({ report, active }) {
         </div>
       </div>
       <div className="graph-controls">
+        {graph.nodes.some(n=>n.provider_id)&&<label>Provider<select aria-label="Graph provider" value={providerFilter} onChange={event=>{setProviderFilter(event.target.value);setGroupId(null);setFocusId(null);setSelected(null);}}><option value="all">All providers</option>{[...new Set(graph.nodes.map(n=>n.provider_id).filter(Boolean))].sort().map(id=><option key={id} value={id}>{providerDisplayName(id)}</option>)}</select></label>}
         <label className="graph-search">
           <Search size={18} />
           <input

@@ -6,6 +6,19 @@ from test_dashboard_jobs import api, configured_source
 from test_requirements import RULE
 
 
+def test_workspace_labels_project_owned_integrations_as_providers(api,tmp_path):
+    import dashboard_api
+    from apishield.projects import ClientProject,ProviderBinding
+    body=registration(tmp_path)
+    assert api.post('/api/integrations',json=body).status_code==201
+    jobs=dashboard_api.app.state.local_jobs
+    project=ClientProject('cinema',body['repository'],[ProviderBinding('theatre','parcel','http://localhost:8101')],client_url='http://localhost:8100')
+    jobs.automation.projects.save(project.to_dict(),0)
+    item=next(x for x in api.get('/api/workspace').json()['integrations'] if x['name']=='parcel')
+    assert item['kind']=='provider' and item['project_id']=='cinema'
+    assert item['provider_id']=='theatre' and item['client_url']=='http://localhost:8100'
+
+
 def registration(tmp_path):
     config = json.loads(configured_source(tmp_path).read_text())
     return dict(name='parcel', repository=config['repository'], code_paths=['src'], test_path='tests',

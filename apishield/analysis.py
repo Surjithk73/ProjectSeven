@@ -46,9 +46,11 @@ def _endpoint(url):
 
 
 class _Scanner:
-    def __init__(self, file, source):
+    def __init__(self, file, source, binding=None, qualify_operations=True):
         self.file, self.source = file, source
         self.sites, self.limitations = [], []
+        self.binding = binding
+        self.qualify_operations = qualify_operations
 
     def limitation(self, node, reason):
         self.limitations.append({'file': self.file, 'line': getattr(node, 'lineno', None), 'reason': reason})
@@ -67,11 +69,15 @@ class _Scanner:
             if not isinstance(call, ast.Call):
                 continue
             method = None
+            bound = False
             if isinstance(call.func, ast.Attribute) and call.func.attr in {'get', 'post'}:
                 if isinstance(call.func.value, ast.Name) and call.func.value.id in modules:
                     method = call.func.attr.upper()
                 elif isinstance(call.func.value, ast.Name) and call.func.value.id in self.reassigned_imports:
                     self.limitation(call, 'HTTP import binding is reassigned at module scope; endpoint not inferred')
+                elif self.binding and ast.unparse(call.func.value) == self.binding['receiver']:
+                    method = call.func.attr.upper()
+                    bound = True
                 else:
                     self.limitation(call, 'Wrapper or client-instance call unsupported; endpoint not inferred')
             elif isinstance(call.func, ast.Name):
@@ -82,9 +88,21 @@ class _Scanner:
                 continue
             url_node = call.args[0] if call.args else next((kw.value for kw in call.keywords if kw.arg == 'url'), None)
             url = _string(url_node, values)
+            if bound and url and url.startswith('/'):
+                url = self.binding['base_url'].rstrip('/') + url
             endpoint = _endpoint(url)
+            if self.binding and endpoint:
+                actual, configured = urlsplit(url), urlsplit(self.binding['base_url'])
+                prefix = configured.path.rstrip('/')
+                if actual.scheme != configured.scheme or actual.netloc.lower() != configured.netloc.lower() or (prefix and not endpoint.startswith(prefix + '/')):
+                    endpoint = None
+                elif prefix:
+                    endpoint = endpoint[len(prefix):] or '/'
             self.sites.append({'file': self.file, 'function': function, 'line': call.lineno,
                 'method': method, 'endpoint': endpoint, 'intent': intent})
+            if self.binding and endpoint:
+                self.sites[-1].update(provider_id=self.binding['provider_id'], display_endpoint=endpoint,
+                    endpoint=('/__provider__/' + self.binding['provider_id'] + endpoint) if self.qualify_operations else endpoint)
             if endpoint is None:
                 self.limitation(call, 'Dynamic or unsupported URL; endpoint unknown')
 
@@ -190,7 +208,7 @@ class _Scanner:
                         values[name.id] = None; modules.discard(name.id); direct.pop(name.id, None)
 
 
-def scan_sources(workspace: Path, code_paths: list[str]) -> dict:
+def scan_sources(workspace: Path, code_paths: list[str], http_bindings=None, *, qualify_operations=True) -> dict:
     root = Path(workspace).resolve()
     files = set()
     limitations = [{'file': None, 'line': None, 'reason':
@@ -216,7 +234,7 @@ def scan_sources(workspace: Path, code_paths: list[str]) -> dict:
         except (UnicodeError, SyntaxError) as exc:
             limitations.append({'file': name, 'line': getattr(exc, 'lineno', None), 'reason': f'Unparseable Python source: {exc}'})
             continue
-        scanner = _Scanner(name, source)
+        scanner = _Scanner(name, source, (http_bindings or {}).get(name), qualify_operations)
         scanner.body(tree.body)
         sites.extend(scanner.sites); limitations.extend(scanner.limitations); scanned.append(name)
     return {'sites': sites, 'files_scanned': scanned, 'limitations': limitations}

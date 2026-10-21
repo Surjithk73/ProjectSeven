@@ -123,6 +123,7 @@ def prepare_repair(store,job_id,check=None,*,verification_job_id=None):
                     'status':'validated','test_commands':len(config.test_commands),
                     'requirements':[{key:item.get(key) for key in ('id','description','status','checks')} for item in verified['requirement_outcomes']],
                     'proposal_source':result.get('proposal_source','unavailable'),
+                    'generation_guidance':result.get('generation_guidance'),
                     'model_connection':result.get('model_connection')}}
         except (JobCancelled,JobTimedOut) as error:
             job.cancelled=original_cancelled

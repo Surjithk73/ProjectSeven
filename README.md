@@ -1,5 +1,7 @@
 # APIShield — local integration repair engine
 
+For the current **CinemaFlow / IMAX / GPay** demonstration on another Windows laptop, use [the fresh-Windows setup guide](docs/demo/NEW-WINDOWS-LAPTOP.md). Clone the `feature/cinemaflow-multi-provider` branch for this version. The host runs all services; a phone or another laptop needs only its browser.
+
 ## Use the browser app
 
 The current app is in `C:\Users\surji\ProjectSeven`. Double-click **start_app.bat** to build and open **http://127.0.0.1:8002**. No sign-in is required.

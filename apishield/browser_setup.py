@@ -138,10 +138,19 @@ def workspace(request: Request):
     refresh_example_requirements(jobs)
     registry = read_registry(jobs.store.root)
     details = []
+    projects=jobs.automation.projects.list()
+    client_urls={project['project_id']:project.get('client_url','') for project in projects}
+    owners={binding['integration_id']:(project['project_id'],binding['provider_id'])
+            for project in projects
+            for binding in project['providers']}
     for name, path in sorted(jobs.integrations.items()):
         try:
             config = load_config(path)
-            details.append({'name': name, 'repository': str(config.repository), 'code_paths': config.code_paths,
+            owner=owners.get(name)
+            details.append({'name': name, 'kind':'provider' if owner else 'repository',
+                            'project_id':owner[0] if owner else name,'provider_id':owner[1] if owner else None,
+                            'client_url':client_urls.get(owner[0] if owner else name,''),
+                            'repository': str(config.repository), 'code_paths': config.code_paths,
                             'test_commands': config.test_commands, 'example': name in jobs.example_candidates,
                             'editable': name in registry and not registry[name].get('example') and registry[name]['config'] == path})
         except (OSError, ValueError) as error:
@@ -167,6 +176,8 @@ def apply_repair(job_id: str, request: Request):
     jobs = service(request)
     try:
         result = jobs.store.get(job_id)
+        if result.get('project_workflow'):
+            raise ValueError('This client uses GitHub deployment; review and merge its PR instead of applying files on System A')
         return apply_local_repair(jobs, result['integration'], job_id)
     except (KeyError, FileNotFoundError):
         raise HTTPException(404, 'Repair or integration not found') from None

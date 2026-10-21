@@ -1,0 +1,165 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "CinemaPay simulated payment provider",
+    "version": "2.0.0"
+  },
+  "paths": {
+    "/payments": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "payment": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "state": {
+                          "type": "string"
+                        },
+                        "booking_id": {
+                          "type": "string"
+                        },
+                        "amount": {
+                          "type": "object",
+                          "properties": {
+                            "value": {
+                              "type": "integer",
+                              "description": "Exact integer paise; preserve amount unchanged. No rupee scaling."
+                            },
+                            "currency": {
+                              "type": "string",
+                              "enum": [
+                                "INR"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "state",
+                        "booking_id",
+                        "amount"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "payment"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "booking_id": {
+                    "type": "string"
+                  },
+                  "idempotency_key": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "description": "Exact integer paise; preserve amount unchanged. No rupee scaling."
+                      },
+                      "currency": {
+                        "type": "string",
+                        "enum": [
+                          "INR"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "value",
+                      "currency"
+                    ]
+                  }
+                },
+                "required": [
+                  "booking_id",
+                  "idempotency_key",
+                  "amount"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments/{payment_id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "payment_id": {
+                      "type": "string"
+                    },
+                    "booking_id": {
+                      "type": "string"
+                    },
+                    "amount_paise": {
+                      "type": "integer"
+                    },
+                    "currency": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "succeeded",
+                        "declined"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "payment_id",
+                    "booking_id",
+                    "amount_paise",
+                    "currency",
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "payment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

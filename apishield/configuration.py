@@ -56,6 +56,7 @@ class IntegrationConfig:
     version: int = 1
     requirements: list[dict] = field(default_factory=list)
     source_mode: str = 'committed'
+    http_bindings: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         data = asdict(self)
@@ -72,7 +73,7 @@ def load_config(path: str | Path) -> IntegrationConfig:
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise ValueError(f"cannot read integration config: {exc}") from exc
     keys = {"version", "repository", "ref", "code_paths", "base_spec", "target_spec",
-            "setup_commands", "test_commands", "environment", "budgets", "model", "use_intent", "requirements", "source_mode"}
+            "setup_commands", "test_commands", "environment", "budgets", "model", "use_intent", "requirements", "source_mode", "http_bindings"}
     if not isinstance(data, dict) or set(data) - keys:
         raise ValueError("unknown or invalid integration config keys")
     if type(data.get("version")) is not int or data["version"] != 1:
@@ -120,12 +121,22 @@ def load_config(path: str | Path) -> IntegrationConfig:
         raise ValueError("use_intent must be boolean")
     if data.get('source_mode', 'committed') not in {'committed', 'working'}:
         raise ValueError('source_mode must be committed or working')
+    bindings = data.get('http_bindings', {})
+    if not isinstance(bindings, dict):
+        raise ValueError('Invalid HTTP client bindings')
+    for file, binding in bindings.items():
+        relative_path(file)
+        if not isinstance(binding, dict) or set(binding) != {'provider_id', 'base_url', 'receiver'} or binding['receiver'] != 'self.client':
+            raise ValueError('Only explicitly configured self.client HTTP receivers are supported')
+        from .projects import identifier
+        from .contract_fetch import validate_url
+        identifier(binding['provider_id']); validate_url(binding['base_url'], True)
     from .requirements import validate_requirements
     requirements = validate_requirements(data.get('requirements', []), code_paths)
     config = IntegrationConfig(**resolved, code_paths=code_paths, requirements=requirements, **commands,
         environment=dict(environment), budgets=Budgets(**budgets), path=path,
         ref=data.get("ref", "HEAD"), model=data.get("model", "gemini-3.8-flash"), use_intent=data.get("use_intent", True),
-        source_mode=data.get('source_mode', 'committed'))
+        source_mode=data.get('source_mode', 'committed'), http_bindings=bindings)
     from .commands import sanitized_environment
     try:
         top = subprocess.check_output(["git", "-C", str(config.repository), "rev-parse", "--show-toplevel"],

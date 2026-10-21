@@ -127,14 +127,16 @@ def _execute(job, operation, candidate_path, result):
         from dataclasses import replace
         from .intent import discover_test_commands
         try:
-            commands = discover_test_commands(job.workspace)
+            commands = job.config.test_commands or discover_test_commands(job.workspace)
         except ValueError:
             commands = []
         job.config = replace(job.config, test_commands=commands, requirements=[])
     atomic_json(job.path / 'result.json', redact_data({**job._initial, **result}))
     job.check()
     job.event('activity', stage='analyze', message='Scanning API consumers and building the structural graph')
-    result['scan'] = scan_sources(job.workspace, job.config.code_paths)
+    base_paths = json.loads(job._contract_bytes['base.json']).get('paths', {})
+    result['scan'] = scan_sources(job.workspace, job.config.code_paths, job.config.http_bindings,
+        qualify_operations=any(path.startswith('/__provider__/') for path in base_paths))
     result['requirements'] = job.config.requirements
     result['requirements_hash'] = requirements_hash(job.config.requirements)
     result['requirement_graph'] = build_requirement_graph(result['scan'], job.config.requirements, result)
@@ -176,6 +178,7 @@ def _execute(job, operation, candidate_path, result):
         from .intent import infer_intent
         job.event('activity', stage='intent', message='Gemini is inferring behavior and generating regression checks')
         context = {'snapshot_root': str(job.workspace), 'model': job.config.model,
+                   'http_bindings': job.config.http_bindings,
                    'request_timeout_seconds': min(job.config.budgets.command_timeout_seconds, job.remaining()),
                    'intent_timeout_seconds': min(2 * job.config.budgets.command_timeout_seconds, job.remaining()),
                    'sources': {name: (job.workspace / name).read_text(encoding='utf-8') for name in sorted(allowed)},
@@ -248,6 +251,7 @@ def _execute(job, operation, candidate_path, result):
                         attempt['status'] = 'needs_input'
                         return {**result, 'status':'needs_input', 'error':outcome['id'] + ': ' + outcome['reason']}
             context = {'model': job.config.model,
+                'http_bindings': job.config.http_bindings,
                 'request_timeout_seconds': min(job.config.budgets.command_timeout_seconds, job.remaining(), 60),
                 'allowed_files': sorted(allowed),
                 'sources': {name: (job.workspace / name).read_bytes().decode('utf-8') for name in sorted(allowed)},
@@ -263,6 +267,14 @@ def _execute(job, operation, candidate_path, result):
             job.check()
             model_arguments = {} if job._model_connection is None else dict(connection=job._model_connection,
                 check=job.check, on_usage=lambda **data:job.event('model_usage',**data))
+            if candidate_path is None and job._initial.get('browser_ai') and job._initial.get('project_workflow'):
+                from demo.repair_guidance import reference_patches
+                reference = reference_patches(context, job._initial['project_workflow'])
+                if reference:
+                    model_arguments['demo_reference_patches'] = reference
+                    result['generation_guidance'] = {'kind':'prewritten_demo_reference',
+                        'files':sorted({p['file'] for p in reference}), 'unseeded_evaluation':False}
+                    job.event('demo_reference_guidance', files=result['generation_guidance']['files'])
             job.event('activity', stage='repair', attempt=number,
                       message='Generating a targeted patch' if number == 1 else 'Retrying the patch with validation feedback')
             candidate = offline if candidate_path is not None else generate_candidate(context, feedback, **model_arguments)

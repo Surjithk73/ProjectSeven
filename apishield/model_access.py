@@ -140,7 +140,14 @@ def cloud_connection(raw):
 
 def connection_error(error):
     code=getattr(error,'code',None)
-    if code in {401}:
+    body=getattr(error,'response_json',None) or getattr(error,'details',{}) or {}
+    details=body.get('error',body).get('details',[]) if isinstance(body,dict) and isinstance(body.get('error',body),dict) else []
+    reasons={item['reason'] for item in details if isinstance(item,dict) and isinstance(item.get('reason'),str)}
+    if code==403 and 'BILLING_DISABLED' in reasons:
+        category,message='billing','Google Cloud billing is disabled for this project. Enable billing in Google Cloud Console, then test the connection again.'
+    elif code==403 and 'SERVICE_DISABLED' in reasons:
+        category,message='configuration','The Google AI API is disabled for this project. Enable the Vertex AI API in Google Cloud Console, then test the connection again.'
+    elif code in {401}:
         category,message='authentication','Google could not authenticate this credential. Select a valid service-account file.'
     elif code==403:
         category,message='permissions','Google denied access. Check the selected project API and service-account permissions.'

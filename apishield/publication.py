@@ -43,6 +43,8 @@ def _summary(prepared,identity,target=None):
     connection=prepared['validation'].get('model_connection')
     if connection and prepared['validation'].get('proposal_source')=='model':
         lines.extend(['',f'Model: `{text(connection.get("model","unavailable"))}`; provider: `{text(connection.get("provider","unavailable"))}`'])
+    if (prepared['validation'].get('generation_guidance') or {}).get('kind') == 'prewritten_demo_reference':
+        lines.extend(['','Guided demonstration: generation included a prewritten reference patch. This is not an unseeded evaluation run.'])
     lines.extend(['','Human review is required before merging. Local validation does not establish complete semantic correctness.',
                   '',f'<!-- APIShield proposal {identity} -->'])
     return title,'\n'.join(lines)
@@ -97,6 +99,16 @@ class PublicationService:
             raise JobCancelled('Publication preparation cancelled or application stopped')
         if time.monotonic()>=deadline:raise PublicationError('Publication exceeded its 180-second deadline')
         self._target(record)
+        context = self.jobs.store.get(record['source_job_id']).get('project_workflow')
+        if context:
+            workflows = self.jobs.automation.projects.workflows(context['project_id'])
+            workflow = next((item for item in workflows if item['workflow_id'] == context['workflow_id']), None)
+            if not workflow or workflow['state'] in {'superseded','failed','closed','verified'}:
+                raise PublicationConflict('Client workflow was superseded or stopped; no stale publication is allowed')
+            project = self.jobs.automation.projects.load_project(context['project_id'])
+            _, changes = self.jobs.automation.snapshots(project)
+            if changes != context['providers']:
+                raise PublicationConflict('Provider snapshots changed; regenerate the combined update before publication')
 
     def _artifacts(self,record):
         result,patch=retained_patch(self.jobs.store,record['source_job_id'])
@@ -211,6 +223,9 @@ class PublicationService:
         prepared=prepare_repair(self.jobs.store,record['source_job_id'],check,verification_job_id=verification)
         check();self._base(record,client,deadline)
         title,body=_summary(prepared,record['id'],record['target'])
+        workflow = self.jobs.store.get(record['source_job_id']).get('project_workflow')
+        if workflow:
+            body += '\n\n<!-- APIShield workflow ' + json.dumps(workflow, sort_keys=True, separators=(',', ':')) + ' -->'
         self.store.update(record['id'],status='ready',phase='prepared',revision=record['revision']+1,prepared=prepared,
                           prepared_hash=_digest(prepared),review_hash=_digest([title,body]),title=title,body=body)
 
@@ -255,7 +270,10 @@ class PublicationService:
         existing=client.find_publication(record['target'],record['branch'],{'sha':record['commit']['sha'],'marker':marker},deadline=deadline)
         if not existing:
             effect('before','draft_pr',None)
-            existing=client.create_draft(target['repository'],target['base'],record['branch'],record['title'],record['body'],deadline=deadline)
+            body = record['body']
+            if '<!-- APIShield workflow ' in body:
+                body += '\n<!-- APIShield candidate ' + record['commit']['sha'] + ' -->'
+            existing=client.create_draft(target['repository'],target['base'],record['branch'],record['title'],body,deadline=deadline)
         if existing['commit']!=record['commit']['sha']:raise PublicationError('Remote draft commit did not match the reviewed proposal')
         self.store.update(identity,status='published',phase='published',publication=existing)
 

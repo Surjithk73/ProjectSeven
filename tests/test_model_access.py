@@ -94,6 +94,17 @@ def test_errors_classified_without_echoing_private_values():
     assert 'FIXTURE' not in json.dumps(result)
 
 
+def test_billing_disabled_is_not_misreported_as_iam_permissions():
+    from google.genai.errors import ClientError
+    error=ClientError(403,{'error':{'details':[{
+        '@type':'type.googleapis.com/google.rpc.ErrorInfo','reason':'BILLING_DISABLED',
+        'metadata':{'consumer':'PRIVATE-FIXTURE'}}]}})
+    result=connection_error(error)
+    assert result['category']=='billing'
+    assert 'billing' in result['message'].lower()
+    assert 'PRIVATE-FIXTURE' not in json.dumps(result)
+
+
 @pytest.mark.parametrize('url',['http://aiplatform.googleapis.com/test','https://evil.example/test',
     'https://aiplatform.googleapis.com:444/test','https://user:password@aiplatform.googleapis.com/test'])
 def test_transport_rejects_unapproved_destinations_before_connect(url):
